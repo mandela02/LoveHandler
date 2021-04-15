@@ -31,6 +31,12 @@ class HeartView: UIView {
 
     private var wave: WaveAnimationView?
     
+    var progress: Float = 0.5 {
+        didSet {
+            wave?.setProgress(progress)
+        }
+    }
+    
     private func animationInitial() {
         wave = WaveAnimationView(frame: self.bounds, color: UIColor.blue.withAlphaComponent(0.5))
         wave?.startAnimation()

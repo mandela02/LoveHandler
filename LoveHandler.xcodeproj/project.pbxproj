@@ -11,8 +11,30 @@
 		84AB1F092628B3C100A01F9E /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F082628B3C100A01F9E /* Int+Extension.swift */; };
 		84AB1F112628B41C00A01F9E /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F102628B41C00A01F9E /* HeartView.swift */; };
 		84AB1F152628BCB600A01F9E /* heart_wave.json in Resources */ = {isa = PBXBuildFile; fileRef = 84AB1F142628BCB600A01F9E /* heart_wave.json */; };
+		84AB1F3B2628C88900A01F9E /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F212628C88700A01F9E /* UITextView+Extension.swift */; };
+		84AB1F3D2628C88900A01F9E /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F232628C88700A01F9E /* DateFormatter+Extension.swift */; };
+		84AB1F3E2628C88900A01F9E /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F242628C88700A01F9E /* Calendar+Extension.swift */; };
+		84AB1F3F2628C88900A01F9E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F252628C88700A01F9E /* Date+Extension.swift */; };
+		84AB1F402628C88900A01F9E /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F262628C88700A01F9E /* UITableViewCell+Extension.swift */; };
+		84AB1F412628C88900A01F9E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F272628C88700A01F9E /* UIView+Extension.swift */; };
+		84AB1F422628C88900A01F9E /* UIPickerView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F282628C88700A01F9E /* UIPickerView+Extension.swift */; };
+		84AB1F432628C88900A01F9E /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F292628C88700A01F9E /* NSAttributedString+Extension.swift */; };
+		84AB1F442628C88900A01F9E /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F2A2628C88700A01F9E /* UILabel+Extension.swift */; };
+		84AB1F452628C88900A01F9E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F2B2628C88700A01F9E /* NSObject+Extension.swift */; };
+		84AB1F462628C88900A01F9E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F2C2628C88800A01F9E /* UIColor+Extension.swift */; };
+		84AB1F472628C88900A01F9E /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F2D2628C88800A01F9E /* UITableView+Extension.swift */; };
+		84AB1F482628C88900A01F9E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F2E2628C88800A01F9E /* String+Extension.swift */; };
+		84AB1F492628C88900A01F9E /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F2F2628C88800A01F9E /* Collection+Extension.swift */; };
+		84AB1F4A2628C88900A01F9E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F302628C88800A01F9E /* UIViewController+Extension.swift */; };
+		84AB1F4B2628C88900A01F9E /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F312628C88800A01F9E /* Mirror+Extension.swift */; };
+		84AB1F4C2628C88900A01F9E /* UISegmentedControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F322628C88800A01F9E /* UISegmentedControl+Extension.swift */; };
+		84AB1F4D2628C88900A01F9E /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F332628C88800A01F9E /* FileManager+Extension.swift */; };
+		84AB1F502628C88900A01F9E /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F362628C88800A01F9E /* UIButton+Extension.swift */; };
+		84AB1F522628C88900A01F9E /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F382628C88800A01F9E /* UIApplication+Extension.swift */; };
+		84AB1F532628C88900A01F9E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F392628C88900A01F9E /* UIImage+Extension.swift */; };
+		84AB1F542628C88900A01F9E /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F3A2628C88900A01F9E /* UIStackView+Extension.swift */; };
+		84AB1F5B2628C92900A01F9E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F5A2628C92900A01F9E /* Utilities.swift */; };
 		84D21F152628B0A5007D43F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D21F142628B0A5007D43F2 /* AppDelegate.swift */; };
-		84D21F172628B0A5007D43F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D21F162628B0A5007D43F2 /* SceneDelegate.swift */; };
 		84D21F192628B0A5007D43F2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D21F182628B0A5007D43F2 /* ViewController.swift */; };
 		84D21F1C2628B0A5007D43F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1A2628B0A5007D43F2 /* Main.storyboard */; };
 		84D21F1E2628B0A7007D43F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1D2628B0A7007D43F2 /* Assets.xcassets */; };
@@ -28,9 +50,31 @@
 		84AB1F082628B3C100A01F9E /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		84AB1F102628B41C00A01F9E /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
 		84AB1F142628BCB600A01F9E /* heart_wave.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart_wave.json; sourceTree = "<group>"; };
+		84AB1F212628C88700A01F9E /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F232628C88700A01F9E /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F242628C88700A01F9E /* Calendar+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F252628C88700A01F9E /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F262628C88700A01F9E /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F272628C88700A01F9E /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F282628C88700A01F9E /* UIPickerView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F292628C88700A01F9E /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F2A2628C88700A01F9E /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F2B2628C88700A01F9E /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F2C2628C88800A01F9E /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F2D2628C88800A01F9E /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F2E2628C88800A01F9E /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F2F2628C88800A01F9E /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F302628C88800A01F9E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F312628C88800A01F9E /* Mirror+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F322628C88800A01F9E /* UISegmentedControl+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F332628C88800A01F9E /* FileManager+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F362628C88800A01F9E /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F382628C88800A01F9E /* UIApplication+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F392628C88900A01F9E /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F3A2628C88900A01F9E /* UIStackView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		84AB1F5A2628C92900A01F9E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		84D21F112628B0A5007D43F2 /* LoveHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D21F142628B0A5007D43F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84D21F162628B0A5007D43F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		84D21F182628B0A5007D43F2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84D21F1B2628B0A5007D43F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84D21F1D2628B0A7007D43F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,6 +108,28 @@
 		84AB1F032628B37300A01F9E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				84AB1F242628C88700A01F9E /* Calendar+Extension.swift */,
+				84AB1F2F2628C88800A01F9E /* Collection+Extension.swift */,
+				84AB1F252628C88700A01F9E /* Date+Extension.swift */,
+				84AB1F232628C88700A01F9E /* DateFormatter+Extension.swift */,
+				84AB1F332628C88800A01F9E /* FileManager+Extension.swift */,
+				84AB1F312628C88800A01F9E /* Mirror+Extension.swift */,
+				84AB1F292628C88700A01F9E /* NSAttributedString+Extension.swift */,
+				84AB1F2B2628C88700A01F9E /* NSObject+Extension.swift */,
+				84AB1F2E2628C88800A01F9E /* String+Extension.swift */,
+				84AB1F382628C88800A01F9E /* UIApplication+Extension.swift */,
+				84AB1F362628C88800A01F9E /* UIButton+Extension.swift */,
+				84AB1F2C2628C88800A01F9E /* UIColor+Extension.swift */,
+				84AB1F392628C88900A01F9E /* UIImage+Extension.swift */,
+				84AB1F2A2628C88700A01F9E /* UILabel+Extension.swift */,
+				84AB1F282628C88700A01F9E /* UIPickerView+Extension.swift */,
+				84AB1F322628C88800A01F9E /* UISegmentedControl+Extension.swift */,
+				84AB1F3A2628C88900A01F9E /* UIStackView+Extension.swift */,
+				84AB1F2D2628C88800A01F9E /* UITableView+Extension.swift */,
+				84AB1F262628C88700A01F9E /* UITableViewCell+Extension.swift */,
+				84AB1F212628C88700A01F9E /* UITextView+Extension.swift */,
+				84AB1F272628C88700A01F9E /* UIView+Extension.swift */,
+				84AB1F302628C88800A01F9E /* UIViewController+Extension.swift */,
 				84AB1F042628B38C00A01F9E /* UIBezierPath+Extension.swift */,
 				84AB1F082628B3C100A01F9E /* Int+Extension.swift */,
 			);
@@ -102,7 +168,6 @@
 				84AB1F0F2628B40F00A01F9E /* View */,
 				84D21F292628B0FF007D43F2 /* Utilites */,
 				84D21F142628B0A5007D43F2 /* AppDelegate.swift */,
-				84D21F162628B0A5007D43F2 /* SceneDelegate.swift */,
 				84D21F182628B0A5007D43F2 /* ViewController.swift */,
 				84D21F1A2628B0A5007D43F2 /* Main.storyboard */,
 				84D21F1D2628B0A7007D43F2 /* Assets.xcassets */,
@@ -117,6 +182,7 @@
 			children = (
 				84AB1F032628B37300A01F9E /* Extension */,
 				84D21F2A2628B104007D43F2 /* Animation */,
+				84AB1F5A2628C92900A01F9E /* Utilities.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -255,11 +321,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				84AB1F092628B3C100A01F9E /* Int+Extension.swift in Sources */,
+				84AB1F3E2628C88900A01F9E /* Calendar+Extension.swift in Sources */,
+				84AB1F5B2628C92900A01F9E /* Utilities.swift in Sources */,
+				84AB1F4B2628C88900A01F9E /* Mirror+Extension.swift in Sources */,
+				84AB1F442628C88900A01F9E /* UILabel+Extension.swift in Sources */,
+				84AB1F482628C88900A01F9E /* String+Extension.swift in Sources */,
+				84AB1F452628C88900A01F9E /* NSObject+Extension.swift in Sources */,
+				84AB1F462628C88900A01F9E /* UIColor+Extension.swift in Sources */,
 				84AB1F112628B41C00A01F9E /* HeartView.swift in Sources */,
+				84AB1F3D2628C88900A01F9E /* DateFormatter+Extension.swift in Sources */,
 				84D21F192628B0A5007D43F2 /* ViewController.swift in Sources */,
+				84AB1F492628C88900A01F9E /* Collection+Extension.swift in Sources */,
+				84AB1F3F2628C88900A01F9E /* Date+Extension.swift in Sources */,
+				84AB1F412628C88900A01F9E /* UIView+Extension.swift in Sources */,
+				84AB1F502628C88900A01F9E /* UIButton+Extension.swift in Sources */,
+				84AB1F402628C88900A01F9E /* UITableViewCell+Extension.swift in Sources */,
+				84AB1F472628C88900A01F9E /* UITableView+Extension.swift in Sources */,
 				84D21F152628B0A5007D43F2 /* AppDelegate.swift in Sources */,
-				84D21F172628B0A5007D43F2 /* SceneDelegate.swift in Sources */,
+				84AB1F422628C88900A01F9E /* UIPickerView+Extension.swift in Sources */,
+				84AB1F542628C88900A01F9E /* UIStackView+Extension.swift in Sources */,
+				84AB1F4D2628C88900A01F9E /* FileManager+Extension.swift in Sources */,
 				84AB1F052628B38C00A01F9E /* UIBezierPath+Extension.swift in Sources */,
+				84AB1F4C2628C88900A01F9E /* UISegmentedControl+Extension.swift in Sources */,
+				84AB1F4A2628C88900A01F9E /* UIViewController+Extension.swift in Sources */,
+				84AB1F3B2628C88900A01F9E /* UITextView+Extension.swift in Sources */,
+				84AB1F532628C88900A01F9E /* UIImage+Extension.swift in Sources */,
+				84AB1F522628C88900A01F9E /* UIApplication+Extension.swift in Sources */,
+				84AB1F432628C88900A01F9E /* NSAttributedString+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +498,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J243X8N8UC;
 				INFOPLIST_FILE = LoveHandler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -430,6 +519,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J243X8N8UC;
 				INFOPLIST_FILE = LoveHandler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
