@@ -1,0 +1,20 @@
+PODS:
+  - lottie-ios (3.2.1)
+  - WaveAnimationView (1.0.2)
+
+DEPENDENCIES:
+  - lottie-ios
+  - WaveAnimationView
+
+SPEC REPOS:
+  trunk:
+    - lottie-ios
+    - WaveAnimationView
+
+SPEC CHECKSUMS:
+  lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
+  WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
+
+PODFILE CHECKSUM: c1977d293863dec18f729ee3f6274eab29ec6889
+
+COCOAPODS: 1.10.1
