@@ -164,6 +164,8 @@
 		84AB1F602629F20700A01F9E /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				84AB1F0F2628B40F00A01F9E /* View */,
+				84D21F292628B0FF007D43F2 /* Utilites */,
 				84AB1F942629F6DA00A01F9E /* App */,
 				84AB1F612629F21500A01F9E /* Scene */,
 			);
@@ -229,8 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				84AB1F602629F20700A01F9E /* Application */,
-				84AB1F0F2628B40F00A01F9E /* View */,
-				84D21F292628B0FF007D43F2 /* Utilites */,
 				84D21F142628B0A5007D43F2 /* AppDelegate.swift */,
 				84D21F182628B0A5007D43F2 /* ViewController.swift */,
 				84D21F1A2628B0A5007D43F2 /* Main.storyboard */,
