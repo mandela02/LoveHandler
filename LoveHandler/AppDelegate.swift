@@ -10,11 +10,20 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window:UIWindow?
+    var navigator: AppNavigator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        setupAppNavigator()
         return true
     }
+}
 
+extension AppDelegate {
+    private func setupAppNavigator() {
+        window = UIWindow()
+        window?.makeKeyAndVisible()
+        
+        navigator = AppNavigator(window: window)
+    }
 }
 
