@@ -38,17 +38,19 @@ class HeartView: UIView {
     }
     
     private func animationInitial() {
-        wave = WaveAnimationView(frame: self.bounds, color: UIColor.blue.withAlphaComponent(0.5))
+        let heart = ImageNames.heart.image
+        var colorImage = heart?.withRenderingMode(.alwaysTemplate)
+        colorImage = colorImage?.tintColor(with: UIColor.white.withAlphaComponent(0.25))
+        
+        wave = WaveAnimationView(frame: self.bounds, color: UIColor.red.withAlphaComponent(0.5))
         wave?.startAnimation()
         wave?.frontColor = UIColor.red.withAlphaComponent(0.5)
         wave?.backColor = UIColor.red.withAlphaComponent(0.5)
         
-        let heart = UIImage(named: "red_heart")
 
         wave?.maskImage = heart
         
         let strokeView = UIImageView(frame: self.bounds)
-        let colorImage = heart?.withTintColor(UIColor.systemPink, renderingMode: .alwaysTemplate)
         strokeView.image = colorImage
         strokeView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
 

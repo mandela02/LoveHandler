@@ -13,6 +13,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupLocalizedString()
+        setupTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,4 +33,6 @@ class BaseViewController: UIViewController {
     func dismissView() {}
     
     func setupLocalizedString() {}
+    
+    func setupTheme() {}
 }

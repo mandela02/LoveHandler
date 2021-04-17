@@ -12,6 +12,35 @@ enum Zodiac: String {
 }
 
 extension Zodiac {
+    var name: String {
+        switch self {
+        case .aries:
+            return LocalizedString.aries
+        case .taurus:
+            return LocalizedString.taurus
+        case .gemini:
+            return LocalizedString.gemini
+        case .cancer:
+            return LocalizedString.cancer
+        case .leo:
+            return LocalizedString.leo
+        case .virgo:
+            return LocalizedString.virgo
+        case .libra:
+            return LocalizedString.libra
+        case .scorpio:
+            return LocalizedString.scorpio
+        case .sagittarius:
+            return LocalizedString.sagittarius
+        case .capricorn:
+            return LocalizedString.capricorn
+        case .aquarius:
+            return LocalizedString.aquarius
+        case .pisces:
+            return LocalizedString.pisces
+        }
+    }
+    
     var symbol: String {
         switch self {
         case .aries:

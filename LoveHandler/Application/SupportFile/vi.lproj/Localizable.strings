@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  LoveHandler
+
+  Created by LanNTH on 17/04/2021.
+  
+*/
+
+"aries" = "Bạch Dương";
+"taurus" = "Kim Ngưu";
+"gemini" = "Song Tử";
+"cancer" = "Cự Giải";
+"leo" = "Hải Sư";
+"virgo" = "Xử Nữ";
+"libra" = "Thiên Bình";
+"scorpio" = "Hổ Cáp";
+"sagittarius" = "Nhân Mã";
+"capricorn" = "Ma Kết";
+"aquarius" = "Bảo Bình";
+"pisces" = "Song Ngư ";
+
+"t01MainScreenTitle" = "Bên nhau trọn đời";
+"t01DatePickerTitleTitle" = "Chọn ngày sinh nhật";
+"t01ConfirmButtonTitle" = "Chọn";
+"t01CancelButtonTitle" = "Huỷ";

@@ -48,6 +48,10 @@ class PersonView: UIView {
         
         let genderTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         genderContainerView.addGestureRecognizer(genderTap)
+        
+        genderContainerView.backgroundColor = Colors.pink
+        zodiacContanerView.backgroundColor = Colors.deepPink
+
     }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -56,26 +60,26 @@ class PersonView: UIView {
     
     private func loadViewFromNib() -> UIView? {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "PersonView", bundle: bundle)
+        let nib = UINib(nibName: self.className, bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
-    func loadPerson(from person: Person) {
+    private func loadPerson(from person: Person) {
         nameLabel.text = person.name
         genderLabel.text = "\(person.gender.symbol) \(person.age) "
         
         if let zodiac = person.zodiacSign {
-            zodiacLabel.text = "\(zodiac.symbol) \(zodiac.rawValue)"
+            zodiacLabel.text = "\(zodiac.symbol) \(zodiac.name)"
         }
     }
 }
 
 extension PersonView {
     func datePickerTapped() {
-        let dialog = DatePickerDialog()
-        dialog.show("Chọn ngày sinh nhật",
-                    doneButtonTitle: "Chọn",
-                    cancelButtonTitle: "Huỷ",
+        let dialog = DatePickerDialog(locale: Locale(identifier: Strings.localeIdentifier))
+        dialog.show(LocalizedString.t01DatePickerTitleTitle,
+                    doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
+                    cancelButtonTitle: LocalizedString.t01CancelButtonTitle,
                     defaultDate: person?.dateOfBirth ?? Date(),
                     maximumDate: Date(),
                     datePickerMode: .date) { [weak self] date in

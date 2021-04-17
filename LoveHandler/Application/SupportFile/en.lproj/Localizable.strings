@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  LoveHandler
+
+  Created by LanNTH on 17/04/2021.
+  
+*/
+
+"aries" = "Aries";
+"taurus" = "Taurus";
+"gemini" = "Gemini";
+"cancer" = "Cancer";
+"leo" = "Leo";
+"virgo" = "Virgo";
+"libra" = "Libra";
+"scorpio" = "Scorpio";
+"sagittarius" = "Sagittarius";
+"capricorn" = "Capricorn";
+"aquarius" = "Aquarius";
+"pisces" = "Pisces ";
+
+"t01MainScreenTitle" = "Together Forever";
+"t01DatePickerTitleTitle" = "Pick date of birth";
+"t01ConfirmButtonTitle" = "Choose";
+"t01CancelButtonTitle" = "Cancel";

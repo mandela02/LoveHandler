@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WaveAnimationView
 
 class T01MainViewController: BaseViewController {
     
@@ -22,8 +23,11 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var secondLoverView: PersonView!
     @IBOutlet weak var loveButton: UIButton!
     
+    private var wave: WaveAnimationView?
+    
     override func setupView() {
         super.setupView()
+        setupBackground()
         setUpLover()
     }
     
@@ -34,14 +38,39 @@ class T01MainViewController: BaseViewController {
     
     override func dismissView() {
         navigationController?.setNavigationBarHidden(false, animated: true)
+        wave?.stopAnimation()
     }
     
     override func setupLocalizedString() {
-        titleLabel.text = "Từng ngày bên nhau"
+        titleLabel.text = LocalizedString.t01MainScreenTitle
     }
     
+    override func setupTheme() {
+        titleLabel.textColor = UIColor.black
+        
+    }
+}
+
+extension T01MainViewController {
     private func setUpLover() {
-        firstLoverView.person = Person(name: "Tri TriTriTriTriTriTri", gender: .male, dateOfBirth: Date())
-        secondLoverView.person = Person(name: "Lan", gender: .female, dateOfBirth: Date())
+        firstLoverView.person = Person(name: "Test person 1", gender: .male, dateOfBirth: Date())
+        secondLoverView.person = Person(name: "Test person 1", gender: .female, dateOfBirth: Date())
+    }
+
+    private func setupBackground() {
+        imageBackgroundView.image = ImageNames.defaultBackground.image
+        animationInitial()
+    }
+    
+    private func animationInitial() {
+        wave = WaveAnimationView(frame: defaultBackgroundView.bounds, color: UIColor.red.withAlphaComponent(0.75))
+        wave?.backgroundColor = UIColor.clear
+        wave?.startAnimation()
+        wave?.frontColor = UIColor.red.withAlphaComponent(0.25)
+        wave?.backColor = UIColor.red.withAlphaComponent(0.15)
+                
+        if let wave = wave {
+            self.defaultBackgroundView.addSubview(wave)
+        }
     }
 }
