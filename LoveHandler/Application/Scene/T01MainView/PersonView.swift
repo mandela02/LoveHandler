@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DatePickerDialog
 
 class PersonView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
@@ -41,6 +42,16 @@ class PersonView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
         contentView = view
+        
+        let zodiacTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        zodiacContanerView.addGestureRecognizer(zodiacTap)
+        
+        let genderTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        genderContainerView.addGestureRecognizer(genderTap)
+    }
+    
+    @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        datePickerTapped()
     }
     
     private func loadViewFromNib() -> UIView? {
@@ -55,6 +66,23 @@ class PersonView: UIView {
         
         if let zodiac = person.zodiacSign {
             zodiacLabel.text = "\(zodiac.symbol) \(zodiac.rawValue)"
+        }
+    }
+}
+
+extension PersonView {
+    func datePickerTapped() {
+        let dialog = DatePickerDialog()
+        dialog.show("Chọn ngày sinh nhật",
+                    doneButtonTitle: "Chọn",
+                    cancelButtonTitle: "Huỷ",
+                    defaultDate: person?.dateOfBirth ?? Date(),
+                    maximumDate: Date(),
+                    datePickerMode: .date) { [weak self] date in
+            guard let self = self else { return }
+            if let date = date {
+                self.person?.dateOfBirth = date
+            }
         }
     }
 }

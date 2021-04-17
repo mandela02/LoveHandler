@@ -8,6 +8,7 @@ target 'LoveHandler' do
   # Pods for LoveHandler
   pod 'lottie-ios'
   pod "WaveAnimationView"
+  pod 'DatePickerDialog'
 
 
 end
