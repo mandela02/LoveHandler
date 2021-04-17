@@ -23,3 +23,9 @@
 "t01DatePickerTitleTitle" = "Chọn ngày sinh nhật";
 "t01ConfirmButtonTitle" = "Chọn";
 "t01CancelButtonTitle" = "Huỷ";
+
+"t01ImagePickerTitle" = "Chọn ảnh";
+"t01ImagePickerSubTitle" = "Chọn cho mình một bức ảnh đại diện";
+"t01ImagePickerCamera" = "Chụp ảnh mới";
+"t01ImagePickerLibrary" = "Chọn từ thư viện";
+"t01ImagePickerCancel" = "Huỷ";

@@ -26,6 +26,8 @@ class PersonView: UIView {
         }
     }
 
+    private var pickerController: UIImagePickerController?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -51,11 +53,21 @@ class PersonView: UIView {
         
         genderContainerView.backgroundColor = Colors.pink
         zodiacContanerView.backgroundColor = Colors.deepPink
+        
+        let imageTap = UITapGestureRecognizer(target: self, action: #selector(self.handleImageTap(_:)))
+        avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.addGestureRecognizer(imageTap)
 
     }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         datePickerTapped()
+    }
+    
+    @objc private func handleImageTap(_ sender: UITapGestureRecognizer? = nil) {
+        ImageAction.showActionSheet { [weak self] action in
+            self?.imagePickerTapped(action: action)
+        }
     }
     
     private func loadViewFromNib() -> UIView? {
@@ -71,11 +83,30 @@ class PersonView: UIView {
         if let zodiac = person.zodiacSign {
             zodiacLabel.text = "\(zodiac.symbol) \(zodiac.name)"
         }
+        
+        if let image = person.image {
+            avatarImageView.image = image
+            avatarImageView.contentMode = .scaleAspectFill
+        } else {
+            avatarImageView.contentMode = .scaleAspectFit
+        }
     }
 }
 
 extension PersonView {
-    func datePickerTapped() {
+    private func imagePickerTapped(action: ImageAction) {
+        pickerController = UIImagePickerController()
+        
+        guard let pickerController = pickerController else { return }
+        
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
+        pickerController.sourceType = action == .camera ? .camera : .photoLibrary
+        
+        UIApplication.topViewController()?.present(pickerController, animated: true, completion: nil)
+    }
+    
+    private func datePickerTapped() {
         let dialog = DatePickerDialog(locale: Locale(identifier: Strings.localeIdentifier))
         dialog.show(LocalizedString.t01DatePickerTitleTitle,
                     doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
@@ -89,4 +120,24 @@ extension PersonView {
             }
         }
     }
+}
+
+extension PersonView: UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            picker.dismiss(animated: true, completion: nil)
+            return
+        }
+        picker.dismiss(animated: true, completion: nil)
+        self.person?.image = image
+    }
+}
+
+extension PersonView: UINavigationControllerDelegate {
+    
 }

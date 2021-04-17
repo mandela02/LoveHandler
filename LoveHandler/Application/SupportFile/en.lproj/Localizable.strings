@@ -23,3 +23,9 @@
 "t01DatePickerTitleTitle" = "Pick date of birth";
 "t01ConfirmButtonTitle" = "Choose";
 "t01CancelButtonTitle" = "Cancel";
+
+"t01ImagePickerTitle" = "Image Picker";
+"t01ImagePickerSubTitle" = "Pick an image for yourself.";
+"t01ImagePickerCamera" = "Take a picture";
+"t01ImagePickerLibrary" = "Choose from library";
+"t01ImagePickerCancel" = "Cancel";

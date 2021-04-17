@@ -25,4 +25,10 @@ struct LocalizedString {
     static var capricorn: String { return String(localizedKey: "capricorn") }
     static var aquarius: String { return String(localizedKey: "aquarius") }
     static var pisces: String { return String(localizedKey: "pisces") }
+    
+    static var t01ImagePickerTitle: String { return String(localizedKey: "t01ImagePickerTitle") }
+    static var t01ImagePickerSubTitle: String { return String(localizedKey: "t01ImagePickerSubTitle") }
+    static var t01ImagePickerCamera: String { return String(localizedKey: "t01ImagePickerCamera") }
+    static var t01ImagePickerLibrary: String { return String(localizedKey: "t01ImagePickerLibrary") }
+    static var t01ImagePickerCancel: String { return String(localizedKey: "t01ImagePickerCancel") }
 }

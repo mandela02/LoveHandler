@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 struct Person {
     var name: String
     var gender: Gender
     var dateOfBirth: Date
+    var image: UIImage?
     
     var age: Int {
         let ageComponents = Calendar.gregorian.dateComponents([.year], from: dateOfBirth, to: Date())
