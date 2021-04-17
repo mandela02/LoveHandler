@@ -17,8 +17,14 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var imageBackgroundView: UIImageView!
     @IBOutlet weak var defaultBackgroundView: UIView!
     
+    
+    @IBOutlet weak var firstLoverView: PersonView!
+    @IBOutlet weak var secondLoverView: PersonView!
+    @IBOutlet weak var loveButton: UIButton!
+    
     override func setupView() {
         super.setupView()
+        setUpLover()
     }
     
     override func refreshView() {
@@ -32,5 +38,10 @@ class T01MainViewController: BaseViewController {
     
     override func setupLocalizedString() {
         titleLabel.text = "Từng ngày bên nhau"
+    }
+    
+    private func setUpLover() {
+        firstLoverView.person = Person(name: "Tri TriTriTriTriTriTri", gender: .male, dateOfBirth: Date())
+        secondLoverView.person = Person(name: "Lan", gender: .female, dateOfBirth: Date())
     }
 }

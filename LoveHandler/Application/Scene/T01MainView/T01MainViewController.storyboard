@@ -152,8 +152,11 @@
                     <connections>
                         <outlet property="defaultBackgroundView" destination="6vS-JJ-lvf" id="war-sV-sMb"/>
                         <outlet property="diaryButton" destination="8Xr-EM-15X" id="Tvb-Ol-s5k"/>
+                        <outlet property="firstLoverView" destination="Dt1-Qf-aVJ" id="pYS-S5-dlw"/>
                         <outlet property="heartView" destination="Ooo-AW-oCX" id="Jj5-R6-6pU"/>
                         <outlet property="imageBackgroundView" destination="hw1-67-dJD" id="FxV-Ub-2PU"/>
+                        <outlet property="loveButton" destination="2rY-2B-kVW" id="ON4-wP-hMA"/>
+                        <outlet property="secondLoverView" destination="RiA-2W-D0j" id="Ht5-fk-Rze"/>
                         <outlet property="settingButton" destination="GXG-56-ZZD" id="9nf-V1-XLs"/>
                         <outlet property="titleLabel" destination="XYO-gr-tzX" id="8ZF-Oy-Vyt"/>
                     </connections>

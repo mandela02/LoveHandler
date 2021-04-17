@@ -42,6 +42,9 @@
 		84AB1F9C2629FC8000A01F9E /* PersonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AB1F9B2629FC8000A01F9E /* PersonView.xib */; };
 		84AB1F9F2629FD5C00A01F9E /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F9E2629FD5C00A01F9E /* RoundImageView.swift */; };
 		84AB1FA2262A02DD00A01F9E /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1FA1262A02DD00A01F9E /* PersonView.swift */; };
+		84AB1FA9262A06A500A01F9E /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1FA8262A06A500A01F9E /* Gender.swift */; };
+		84AB1FAD262A090500A01F9E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1FAC262A090500A01F9E /* Person.swift */; };
+		84AB1FB0262A09A800A01F9E /* Zodiac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1FAF262A09A800A01F9E /* Zodiac.swift */; };
 		84D21F152628B0A5007D43F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D21F142628B0A5007D43F2 /* AppDelegate.swift */; };
 		84D21F192628B0A5007D43F2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D21F182628B0A5007D43F2 /* ViewController.swift */; };
 		84D21F1C2628B0A5007D43F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1A2628B0A5007D43F2 /* Main.storyboard */; };
@@ -89,6 +92,9 @@
 		84AB1F9B2629FC8000A01F9E /* PersonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonView.xib; sourceTree = "<group>"; };
 		84AB1F9E2629FD5C00A01F9E /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		84AB1FA1262A02DD00A01F9E /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
+		84AB1FA8262A06A500A01F9E /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		84AB1FAC262A090500A01F9E /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		84AB1FAF262A09A800A01F9E /* Zodiac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zodiac.swift; sourceTree = "<group>"; };
 		84D21F112628B0A5007D43F2 /* LoveHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D21F142628B0A5007D43F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D21F182628B0A5007D43F2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +215,24 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		84AB1FA5262A068600A01F9E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				84AB1FA6262A069400A01F9E /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		84AB1FA6262A069400A01F9E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84AB1FA8262A06A500A01F9E /* Gender.swift */,
+				84AB1FAC262A090500A01F9E /* Person.swift */,
+				84AB1FAF262A09A800A01F9E /* Zodiac.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		84D21F082628B0A5007D43F2 = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +254,7 @@
 		84D21F132628B0A5007D43F2 /* LoveHandler */ = {
 			isa = PBXGroup;
 			children = (
+				84AB1FA5262A068600A01F9E /* Domain */,
 				84AB1F602629F20700A01F9E /* Application */,
 				84D21F142628B0A5007D43F2 /* AppDelegate.swift */,
 				84D21F182628B0A5007D43F2 /* ViewController.swift */,
@@ -392,6 +417,8 @@
 				84AB1F3E2628C88900A01F9E /* Calendar+Extension.swift in Sources */,
 				84AB1F5B2628C92900A01F9E /* Utilities.swift in Sources */,
 				84AB1F4B2628C88900A01F9E /* Mirror+Extension.swift in Sources */,
+				84AB1FAD262A090500A01F9E /* Person.swift in Sources */,
+				84AB1FA9262A06A500A01F9E /* Gender.swift in Sources */,
 				84AB1F442628C88900A01F9E /* UILabel+Extension.swift in Sources */,
 				84AB1F482628C88900A01F9E /* String+Extension.swift in Sources */,
 				84AB1F452628C88900A01F9E /* NSObject+Extension.swift in Sources */,
@@ -414,6 +441,7 @@
 				84AB1F4D2628C88900A01F9E /* FileManager+Extension.swift in Sources */,
 				84AB1F052628B38C00A01F9E /* UIBezierPath+Extension.swift in Sources */,
 				84AB1F4C2628C88900A01F9E /* UISegmentedControl+Extension.swift in Sources */,
+				84AB1FB0262A09A800A01F9E /* Zodiac.swift in Sources */,
 				84AB1F4A2628C88900A01F9E /* UIViewController+Extension.swift in Sources */,
 				84AB1F3B2628C88900A01F9E /* UITextView+Extension.swift in Sources */,
 				84AB1F532628C88900A01F9E /* UIImage+Extension.swift in Sources */,

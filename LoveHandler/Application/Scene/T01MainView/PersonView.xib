@@ -10,7 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonView" customModule="LoveHandler" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonView" customModule="LoveHandler" customModuleProvider="target">
+            <connections>
+                <outlet property="avatarImageView" destination="0ni-TI-ILI" id="abb-Ne-1KB"/>
+                <outlet property="genderContainerView" destination="hau-qy-DOL" id="eOI-ro-G6w"/>
+                <outlet property="genderLabel" destination="y7P-At-QYd" id="hme-37-chE"/>
+                <outlet property="nameLabel" destination="FAy-VY-0YF" id="mby-ON-lKr"/>
+                <outlet property="zodiacContanerView" destination="bfo-QR-8Dq" id="5b4-Jp-K4c"/>
+                <outlet property="zodiacLabel" destination="R3q-XX-fJ2" id="7vd-g1-tkF"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="281" height="527"/>
@@ -27,48 +36,48 @@
                     <rect key="frame" x="20" y="335" width="241" height="172"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hau-qy-DOL">
-                            <rect key="frame" x="0.0" y="61" width="61.5" height="50"/>
+                            <rect key="frame" x="0.0" y="61" width="45.5" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7P-At-QYd">
-                                    <rect key="frame" x="10" y="10" width="41.5" height="30"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="5" y="5" width="35.5" height="40"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemIndigoColor"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="y7P-At-QYd" secondAttribute="bottom" constant="10" id="9A0-dj-CDX"/>
-                                <constraint firstItem="y7P-At-QYd" firstAttribute="top" secondItem="hau-qy-DOL" secondAttribute="top" constant="10" id="Fkm-4E-FT2"/>
-                                <constraint firstAttribute="trailing" secondItem="y7P-At-QYd" secondAttribute="trailing" constant="10" id="JGl-Eo-rOi"/>
-                                <constraint firstItem="y7P-At-QYd" firstAttribute="leading" secondItem="hau-qy-DOL" secondAttribute="leading" constant="10" id="laW-Rf-hIY"/>
+                                <constraint firstAttribute="bottom" secondItem="y7P-At-QYd" secondAttribute="bottom" constant="5" id="9A0-dj-CDX"/>
+                                <constraint firstItem="y7P-At-QYd" firstAttribute="top" secondItem="hau-qy-DOL" secondAttribute="top" constant="5" id="Fkm-4E-FT2"/>
+                                <constraint firstAttribute="trailing" secondItem="y7P-At-QYd" secondAttribute="trailing" constant="5" id="JGl-Eo-rOi"/>
+                                <constraint firstItem="y7P-At-QYd" firstAttribute="leading" secondItem="hau-qy-DOL" secondAttribute="leading" constant="5" id="laW-Rf-hIY"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
-                                    <real key="value" value="5"/>
+                                    <real key="value" value="10"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfo-QR-8Dq">
-                            <rect key="frame" x="71.5" y="61" width="169.5" height="50"/>
+                            <rect key="frame" x="55.5" y="61" width="185.5" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3q-XX-fJ2">
-                                    <rect key="frame" x="10" y="10" width="149.5" height="30"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="5" y="5" width="175.5" height="40"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="R3q-XX-fJ2" secondAttribute="bottom" constant="10" id="8XI-Oj-5lS"/>
-                                <constraint firstAttribute="trailing" secondItem="R3q-XX-fJ2" secondAttribute="trailing" constant="10" id="dPe-We-KTC"/>
-                                <constraint firstItem="R3q-XX-fJ2" firstAttribute="leading" secondItem="bfo-QR-8Dq" secondAttribute="leading" constant="10" id="gga-tg-gli"/>
-                                <constraint firstItem="R3q-XX-fJ2" firstAttribute="top" secondItem="bfo-QR-8Dq" secondAttribute="top" constant="10" id="vzL-GV-Q7g"/>
+                                <constraint firstAttribute="bottom" secondItem="R3q-XX-fJ2" secondAttribute="bottom" constant="5" id="8XI-Oj-5lS"/>
+                                <constraint firstAttribute="trailing" secondItem="R3q-XX-fJ2" secondAttribute="trailing" constant="5" id="dPe-We-KTC"/>
+                                <constraint firstItem="R3q-XX-fJ2" firstAttribute="leading" secondItem="bfo-QR-8Dq" secondAttribute="leading" constant="5" id="gga-tg-gli"/>
+                                <constraint firstItem="R3q-XX-fJ2" firstAttribute="top" secondItem="bfo-QR-8Dq" secondAttribute="top" constant="5" id="vzL-GV-Q7g"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
-                                    <real key="value" value="5"/>
+                                    <real key="value" value="10"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
@@ -79,7 +88,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="4S6-fU-8ef"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
