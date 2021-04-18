@@ -31,4 +31,7 @@ struct LocalizedString {
     static var t01ImagePickerCamera: String { return String(localizedKey: "t01ImagePickerCamera") }
     static var t01ImagePickerLibrary: String { return String(localizedKey: "t01ImagePickerLibrary") }
     static var t01ImagePickerCancel: String { return String(localizedKey: "t01ImagePickerCancel") }
+    
+    static var t01HeartTitle: String { return String(localizedKey: "t01HeartTitle") }
+    static var t01HeartSubTitle: String { return String(localizedKey: "t01HeartSubTitle") }
 }

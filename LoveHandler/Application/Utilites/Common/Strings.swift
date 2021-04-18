@@ -41,4 +41,6 @@ struct Strings {
     static var localeIdentifier: String {
         return Settings.appLanguage.value
     }
+    
+    static var languageChangedObserver = "languageChangedObserver"
 }

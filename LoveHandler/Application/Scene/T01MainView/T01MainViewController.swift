@@ -13,7 +13,7 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var diaryButton: UIButton!
     @IBOutlet weak var settingButton: UIButton!
-    @IBOutlet weak var heartView: HeartView!
+    @IBOutlet weak var heartView: LoveProgressView!
     
     @IBOutlet weak var imageBackgroundView: UIImageView!
     @IBOutlet weak var defaultBackgroundView: UIView!
@@ -34,6 +34,11 @@ class T01MainViewController: BaseViewController {
     override func refreshView() {
         super.refreshView()
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        calculate()
     }
     
     override func dismissView() {
@@ -72,5 +77,19 @@ extension T01MainViewController {
         if let wave = wave {
             self.defaultBackgroundView.addSubview(wave)
         }
+    }
+    
+    private func calculate() {
+        let dayStartDating = Settings.relationshipStartDate.value
+        let dayGettingMarry = Settings.marryDate.value
+        let today = Date().nextMonth.nextMonth.nextMonth.nextMonth
+        
+        let totalDateDay = Date.countBetweenDate(component: .day, start: dayStartDating, end: dayGettingMarry)
+        let currentDateDay = Date.countBetweenDate(component: .day, start: dayStartDating, end: today)
+                 
+        let progressive = Float(currentDateDay)/Float(totalDateDay)
+        wave?.setProgress(progressive)
+        heartView.progress = progressive
+        heartView.numberOfDay = currentDateDay
     }
 }

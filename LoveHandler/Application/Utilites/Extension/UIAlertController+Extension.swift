@@ -1,36 +1,25 @@
 //
-//  ImageAction.swift
+//  UIAlertController+Extension.swift
 //  LoveHandler
 //
-//  Created by LanNTH on 17/04/2021.
+//  Created by LanNTH on 18/04/2021.
 //
 
 import UIKit
 
-enum ImageAction: CaseIterable {
-    case library
-    case camera
-    
-    var name: String {
-        switch self {
-        case .camera:
-            return LocalizedString.t01ImagePickerCamera
-        case .library:
-            return LocalizedString.t01ImagePickerLibrary
-        }
-    }
-}
-
-extension ImageAction {
-    static func showActionSheet(onTap: @escaping (ImageAction) -> Void) {
-        let actionSheet: UIAlertController = UIAlertController(title: LocalizedString.t01ImagePickerTitle,
-                                                               message: LocalizedString.t01ImagePickerSubTitle,
+extension UIAlertController {
+    static func showActionSheet<T: CaseIterable & EnumName>(source: T.Type,
+                                                            title: String,
+                                                            message: String,
+                                                            onTap: @escaping (T) -> Void) {
+        let actionSheet: UIAlertController = UIAlertController(title: title,
+                                                               message: message,
                                                                preferredStyle: .actionSheet)
         
         actionSheet.overrideUserInterfaceStyle = .light
         
-        for action in ImageAction.allCases {
-            let alertAction = UIAlertAction(title: action.name,
+        for action in T.allCases {
+            let alertAction = UIAlertAction(title: action.getName(),
                                         style: .default,
                                         handler: { _ in
                                             onTap(action)

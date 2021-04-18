@@ -8,7 +8,7 @@
 import UIKit
 import DatePickerDialog
 
-class PersonView: UIView {
+class PersonView: UIView, NibLoadable {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarImageView: RoundImageView!
     @IBOutlet weak var genderContainerView: UIView!
@@ -39,11 +39,7 @@ class PersonView: UIView {
     }
     
     private func setupView() {
-        guard let view = loadViewFromNib() else { return }
-        view.frame = self.bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(view)
-        contentView = view
+        setupFromNib()
         
         let zodiacTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         zodiacContanerView.addGestureRecognizer(zodiacTap)
@@ -65,17 +61,13 @@ class PersonView: UIView {
     }
     
     @objc private func handleImageTap(_ sender: UITapGestureRecognizer? = nil) {
-        ImageAction.showActionSheet { [weak self] action in
+        UIAlertController.showActionSheet(source: ImageAction.self,
+                                          title: LocalizedString.t01ImagePickerTitle,
+                                          message: LocalizedString.t01ImagePickerSubTitle) {[weak self] action in
             self?.imagePickerTapped(action: action)
         }
     }
-    
-    private func loadViewFromNib() -> UIView? {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: self.className, bundle: bundle)
-        return nib.instantiate(withOwner: self, options: nil).first as? UIView
-    }
-    
+        
     private func loadPerson(from person: Person) {
         nameLabel.text = person.name
         genderLabel.text = "\(person.gender.symbol) \(person.age) "
@@ -85,6 +77,8 @@ class PersonView: UIView {
         }
         
         if let image = person.image {
+            avatarImageView.layer.borderWidth = 1
+            avatarImageView.layer.borderColor = UIColor.white.cgColor
             avatarImageView.image = image
             avatarImageView.contentMode = .scaleAspectFill
         } else {
@@ -112,6 +106,7 @@ extension PersonView {
                     doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
                     cancelButtonTitle: LocalizedString.t01CancelButtonTitle,
                     defaultDate: person?.dateOfBirth ?? Date(),
+                    minimumDate: Constant.minDate,
                     maximumDate: Date(),
                     datePickerMode: .date) { [weak self] date in
             guard let self = self else { return }

@@ -200,8 +200,6 @@ extension Date {
             return nil
         }
         
-        
-        
         switch (month, day) {
         case (3, 21...31), (4, 1...19):
             return .aries
@@ -230,5 +228,12 @@ extension Date {
         default:
             return nil
         }
+    }
+}
+
+extension Date {
+    static func countBetweenDate(component: Calendar.Component,start: Date, end: Date) -> Int {
+        let components = Calendar.gregorian.dateComponents([component], from: start, to: end)
+        return components.day ?? 0
     }
 }

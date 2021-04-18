@@ -29,3 +29,6 @@
 "t01ImagePickerCamera" = "Take a picture";
 "t01ImagePickerLibrary" = "Choose from library";
 "t01ImagePickerCancel" = "Cancel";
+
+"t01HeartTitle" = "Been together";
+"t01HeartSubTitle" = "Days";
