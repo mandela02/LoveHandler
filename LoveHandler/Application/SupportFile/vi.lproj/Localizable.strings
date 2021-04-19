@@ -1,0 +1,54 @@
+/* 
+  Localizable.strings
+  LoveHandler
+
+  Created by LanNTH on 17/04/2021.
+  
+*/
+
+"aries" = "Bạch Dương";
+"taurus" = "Kim Ngưu";
+"gemini" = "Song Tử";
+"cancer" = "Cự Giải";
+"leo" = "Hải Sư";
+"virgo" = "Xử Nữ";
+"libra" = "Thiên Bình";
+"scorpio" = "Hổ Cáp";
+"sagittarius" = "Nhân Mã";
+"capricorn" = "Ma Kết";
+"aquarius" = "Bảo Bình";
+"pisces" = "Song Ngư ";
+
+"t01MainScreenTitle" = "Bên nhau trọn đời";
+"t01DatePickerTitleTitle" = "Chọn ngày sinh nhật";
+"t01ConfirmButtonTitle" = "Chọn";
+"t01CancelButtonTitle" = "Huỷ";
+
+"t01ImagePickerTitle" = "Chọn ảnh";
+"t01ImagePickerSubTitle" = "Chọn cho mình một bức ảnh đại diện";
+"t01ImagePickerCamera" = "Chụp ảnh mới";
+"t01ImagePickerLibrary" = "Chọn từ thư viện";
+"t01ImagePickerCancel" = "Huỷ";
+
+"t01HeartTitle" = "Bên nhau";
+"t01HeartSubTitle" = "Ngày";
+
+"t01ChooseGenderTitle" = "Giới tính";
+"t01ChooseGenderSubTitle" = "Chọn giới tính của bạn";
+
+"male" = "Nam";
+"female" = "Nữ";
+"intersexual" = "Dị tính";
+"neutral" = "Trung tính";
+
+"t01OptionTitle" = "Cài đặt";
+"t01OptionSubTitle" = "Chọn một trong những lựa chọn sau";
+
+"t01GenderOptionTitle" = "Chọn giới tính";
+"t01BirthDayOptionTitle" = "Chọn ngày sinh";
+"t01ColorOptionTitle" = "Chọn màu";
+
+"t01NameTitle" = "Tên";
+"t01NameSubTitle" = "Nhập tên người đó";
+"t01NamePlaceholder" = "Nhập tên vào đây";
+"t01NameSubmitButtonTitle" = "Xác nhận";
