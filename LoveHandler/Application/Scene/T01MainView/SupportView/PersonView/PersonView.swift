@@ -44,7 +44,7 @@ class PersonView: UIView, NibLoadable {
         let zodiacTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         zodiacContanerView.addGestureRecognizer(zodiacTap)
         
-        let genderTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        let genderTap = UITapGestureRecognizer(target: self, action: #selector(self.handleGenderTap(_:)))
         genderContainerView.addGestureRecognizer(genderTap)
         
         genderContainerView.backgroundColor = Colors.pink
@@ -59,6 +59,23 @@ class PersonView: UIView, NibLoadable {
     @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         datePickerTapped()
     }
+    
+    @objc private func handleGenderTap(_ sender: UITapGestureRecognizer? = nil) {
+        UIAlertController.showActionSheet(source: GenderAndAgeButtonAction.self,
+                                          title: LocalizedString.t01OptionTitle,
+                                          message: LocalizedString.t01OptionSubTitle) {[weak self] action in
+            switch action {
+            
+            case .chooseGender:
+                self?.chooseGender()
+            case .chooseDateOfBirth:
+                self?.datePickerTapped()
+            case .chooseColor:
+                self?.chooseGender()
+            }
+        }
+    }
+    
     
     @objc private func handleImageTap(_ sender: UITapGestureRecognizer? = nil) {
         UIAlertController.showActionSheet(source: ImageAction.self,
@@ -113,6 +130,14 @@ extension PersonView {
             if let date = date {
                 self.person?.dateOfBirth = date
             }
+        }
+    }
+    
+    private func chooseGender() {
+        UIAlertController.showActionSheet(source: Gender.self,
+                                          title: LocalizedString.t01ChooseGenderTitle,
+                                          message: LocalizedString.t01ChooseGenderSubTitle) { [weak self] gender in
+            self?.person?.gender = gender
         }
     }
 }

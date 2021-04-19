@@ -34,4 +34,19 @@ struct LocalizedString {
     
     static var t01HeartTitle: String { return String(localizedKey: "t01HeartTitle") }
     static var t01HeartSubTitle: String { return String(localizedKey: "t01HeartSubTitle") }
+    
+    static var t01ChooseGenderTitle: String { return String(localizedKey: "t01ChooseGenderTitle") }
+    static var t01ChooseGenderSubTitle: String { return String(localizedKey: "t01ChooseGenderSubTitle") }
+    
+    static var male: String { return String(localizedKey: "male") }
+    static var female: String { return String(localizedKey: "female") }
+    static var intersexual: String { return String(localizedKey: "intersexual") }
+    static var neutral: String { return String(localizedKey: "neutral") }
+    
+    static var t01OptionTitle: String { return String(localizedKey: "t01OptionTitle") }
+    static var t01OptionSubTitle: String { return String(localizedKey: "t01OptionSubTitle") }
+    
+    static var t01GenderOptionTitle: String { return String(localizedKey: "t01GenderOptionTitle") }
+    static var t01BirthDayOptionTitle: String { return String(localizedKey: "t01BirthDayOptionTitle") }
+    static var t01ColorOptionTitle: String { return String(localizedKey: "t01ColorOptionTitle") }
 }

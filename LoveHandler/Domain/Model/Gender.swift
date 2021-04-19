@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Gender {
+enum Gender: CaseIterable, EnumName {
     case female
     case male
     case intersexual
@@ -29,13 +29,17 @@ enum Gender {
     var name: String {
         switch self {
         case .female:
-            return "Nữ"
+            return LocalizedString.female
         case .male:
-            return "Nam"
+            return LocalizedString.male
         case .intersexual:
-            return "Dị tính"
+            return LocalizedString.intersexual
         case .neutral:
-            return "Trung tính"
+            return LocalizedString.neutral
         }
+    }
+    
+    func getName() -> String {
+        return "\(symbol) \(name)"
     }
 }

@@ -32,3 +32,18 @@
 
 "t01HeartTitle" = "Bên nhau";
 "t01HeartSubTitle" = "Ngày";
+
+"t01ChooseGenderTitle" = "Giới tính";
+"t01ChooseGenderSubTitle" = "Chọn giới tính của bạn";
+
+"male" = "Nam";
+"female" = "Nữ";
+"intersexual" = "Dị tính";
+"neutral" = "Trung tính";
+
+"t01OptionTitle" = "Cài đặt";
+"t01OptionSubTitle" = "Chọn một trong những lựa chọn sau";
+
+"t01GenderOptionTitle" = "Chọn giới tính";
+"t01BirthDayOptionTitle" = "Chọn ngày sinh";
+"t01ColorOptionTitle" = "Chọn màu";

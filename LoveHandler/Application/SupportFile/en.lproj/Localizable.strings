@@ -32,3 +32,18 @@
 
 "t01HeartTitle" = "Been together";
 "t01HeartSubTitle" = "Days";
+
+"t01ChooseGenderTitle" = "Gender";
+"t01ChooseGenderSubTitle" = "Choose your gender";
+
+"male" = "Male";
+"female" = "Female";
+"intersexual" = "Intersexual";
+"neutral" = "Neutral";
+
+"t01OptionTitle" = "Settings";
+"t01OptionSubTitle" = "Choose one option.";
+
+"t01GenderOptionTitle" = "Gender";
+"t01BirthDayOptionTitle" = "Birthday";
+"t01ColorOptionTitle" = "Colors";
