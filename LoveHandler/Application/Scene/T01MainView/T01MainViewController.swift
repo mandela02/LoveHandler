@@ -25,6 +25,8 @@ class T01MainViewController: BaseViewController {
     
     private var wave: WaveAnimationView?
     
+    var viewModel: T01MainViewViewModel?
+    
     override func setupView() {
         super.setupView()
         setupBackground()

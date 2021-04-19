@@ -61,6 +61,9 @@
 		84AB2005262B3C9A00A01F9E /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2004262B3C9A00A01F9E /* BaseLabel.swift */; };
 		84AB2008262BEB2D00A01F9E /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2007262BEB2D00A01F9E /* UIAlertController+Extension.swift */; };
 		84AB2016262BEC6D00A01F9E /* GenderAndAgeButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2015262BEC6D00A01F9E /* GenderAndAgeButtonAction.swift */; };
+		84AB201C262DD1D200A01F9E /* T01MainViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB201B262DD1D200A01F9E /* T01MainViewNavigator.swift */; };
+		84AB201F262DE9D400A01F9E /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB201E262DE9D400A01F9E /* BaseViewModel.swift */; };
+		84AB2022262DE9E500A01F9E /* T01MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2021262DE9E500A01F9E /* T01MainViewViewModel.swift */; };
 		84D21F152628B0A5007D43F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D21F142628B0A5007D43F2 /* AppDelegate.swift */; };
 		84D21F1E2628B0A7007D43F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1D2628B0A7007D43F2 /* Assets.xcassets */; };
 		84D21F212628B0A7007D43F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1F2628B0A7007D43F2 /* LaunchScreen.storyboard */; };
@@ -126,6 +129,9 @@
 		84AB2004262B3C9A00A01F9E /* BaseLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
 		84AB2007262BEB2D00A01F9E /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		84AB2015262BEC6D00A01F9E /* GenderAndAgeButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndAgeButtonAction.swift; sourceTree = "<group>"; };
+		84AB201B262DD1D200A01F9E /* T01MainViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T01MainViewNavigator.swift; sourceTree = "<group>"; };
+		84AB201E262DE9D400A01F9E /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		84AB2021262DE9E500A01F9E /* T01MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T01MainViewViewModel.swift; sourceTree = "<group>"; };
 		84D21F112628B0A5007D43F2 /* LoveHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D21F142628B0A5007D43F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D21F1D2628B0A7007D43F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 				84AB200A262BEBA600A01F9E /* Action */,
 				84AB1F632629F27B00A01F9E /* T01MainViewController.storyboard */,
 				84AB1F6B2629F63D00A01F9E /* T01MainViewController.swift */,
+				84AB201B262DD1D200A01F9E /* T01MainViewNavigator.swift */,
+				84AB2021262DE9E500A01F9E /* T01MainViewViewModel.swift */,
 			);
 			path = T01MainView;
 			sourceTree = "<group>";
@@ -235,6 +243,7 @@
 				84AB1F982629F7AE00A01F9E /* BaseNavigationController.swift */,
 				84AB2001262B39F300A01F9E /* BaseView.swift */,
 				84AB2004262B3C9A00A01F9E /* BaseLabel.swift */,
+				84AB201E262DE9D400A01F9E /* BaseViewModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -534,6 +543,7 @@
 				84AB1F3D2628C88900A01F9E /* DateFormatter+Extension.swift in Sources */,
 				84AB1F492628C88900A01F9E /* Collection+Extension.swift in Sources */,
 				84AB1FFB262B270600A01F9E /* LoveProgressView.swift in Sources */,
+				84AB201C262DD1D200A01F9E /* T01MainViewNavigator.swift in Sources */,
 				84AB1FF5262B1CDC00A01F9E /* Constant.swift in Sources */,
 				84AB1FB8262AB89D00A01F9E /* Settings.swift in Sources */,
 				84AB1F3F2628C88900A01F9E /* Date+Extension.swift in Sources */,
@@ -544,6 +554,7 @@
 				84AB1F472628C88900A01F9E /* UITableView+Extension.swift in Sources */,
 				84AB2008262BEB2D00A01F9E /* UIAlertController+Extension.swift in Sources */,
 				84D21F152628B0A5007D43F2 /* AppDelegate.swift in Sources */,
+				84AB201F262DE9D400A01F9E /* BaseViewModel.swift in Sources */,
 				84AB1F422628C88900A01F9E /* UIPickerView+Extension.swift in Sources */,
 				84AB1FA2262A02DD00A01F9E /* PersonView.swift in Sources */,
 				84AB1FDF262AD25300A01F9E /* ImageAction.swift in Sources */,
@@ -558,6 +569,7 @@
 				84AB1FD8262AC9EB00A01F9E /* LocalizedStrings.swift in Sources */,
 				84AB1F3B2628C88900A01F9E /* UITextView+Extension.swift in Sources */,
 				84AB1F532628C88900A01F9E /* UIImage+Extension.swift in Sources */,
+				84AB2022262DE9E500A01F9E /* T01MainViewViewModel.swift in Sources */,
 				84AB1F522628C88900A01F9E /* UIApplication+Extension.swift in Sources */,
 				84AB1F432628C88900A01F9E /* NSAttributedString+Extension.swift in Sources */,
 				84AB1F672629F5C900A01F9E /* BaseViewController.swift in Sources */,

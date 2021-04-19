@@ -9,6 +9,7 @@ target 'LoveHandler' do
   pod 'lottie-ios'
   pod "WaveAnimationView"
   pod 'DatePickerDialog'
-
+  pod 'RxSwift', '5.1.1'
+  pod 'RxCocoa', '5.1.1'
 
 end

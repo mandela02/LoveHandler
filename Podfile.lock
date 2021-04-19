@@ -1,24 +1,38 @@
 PODS:
   - DatePickerDialog (4.0)
   - lottie-ios (3.2.1)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
   - WaveAnimationView (1.0.2)
 
 DEPENDENCIES:
   - DatePickerDialog
   - lottie-ios
+  - RxCocoa (= 5.1.1)
+  - RxSwift (= 5.1.1)
   - WaveAnimationView
 
 SPEC REPOS:
   trunk:
     - DatePickerDialog
     - lottie-ios
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - WaveAnimationView
 
 SPEC CHECKSUMS:
   DatePickerDialog: ccff2f91ff7a018057a4d72fa5ad6de49c8cb0cd
   lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
 
-PODFILE CHECKSUM: 1da9fb27dc040dcdea1acfd8643bb79895d5c87a
+PODFILE CHECKSUM: 9cbc533961489225b2afb944a3ab9892f1b6e2e4
 
 COCOAPODS: 1.10.1
