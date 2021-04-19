@@ -47,3 +47,9 @@
 "t01GenderOptionTitle" = "Gender";
 "t01BirthDayOptionTitle" = "Birthday";
 "t01ColorOptionTitle" = "Colors";
+
+"t01NameTitle" = "Name";
+"t01NameSubTitle" = "Enter name";
+"t01NamePlaceholder" = "Enter name here";
+"t01NameSubmitButtonTitle" = "Submit";
+

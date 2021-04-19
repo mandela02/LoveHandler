@@ -49,4 +49,9 @@ struct LocalizedString {
     static var t01GenderOptionTitle: String { return String(localizedKey: "t01GenderOptionTitle") }
     static var t01BirthDayOptionTitle: String { return String(localizedKey: "t01BirthDayOptionTitle") }
     static var t01ColorOptionTitle: String { return String(localizedKey: "t01ColorOptionTitle") }
+    
+    static var t01NameTitle: String { return String(localizedKey: "t01NameTitle") }
+    static var t01NameSubTitle: String { return String(localizedKey: "t01NameSubTitle") }
+    static var t01NamePlaceholder: String { return String(localizedKey: "t01NamePlaceholder") }
+    static var t01NameSubmitButtonTitle: String { return String(localizedKey: "t01NameSubmitButtonTitle") }
 }

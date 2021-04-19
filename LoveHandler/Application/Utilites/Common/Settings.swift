@@ -36,7 +36,7 @@ struct Settings {
     static var appLanguage = UserDefault<String>(key: .appLanguage,
                                                  defaultValue: LanguageCode.vietnamese.rawValue)
     static var relationshipStartDate = UserDefault<Date>(key: .relationshipStartDate,
-                                                 defaultValue: Date())
+                                                         defaultValue: DefaultDateFormatter.date(from: "2020/7/5") ?? Date())
     static var marryDate = UserDefault<Date>(key: .marryDate,
                                                defaultValue: Date().nextYear)
 }

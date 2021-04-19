@@ -53,11 +53,28 @@ class PersonView: UIView, NibLoadable {
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(self.handleImageTap(_:)))
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(imageTap)
-
+        
+        let nameTap = UITapGestureRecognizer(target: self, action: #selector(self.handleNameTap(_:)))
+        nameLabel.isUserInteractionEnabled = true
+        nameLabel.addGestureRecognizer(nameTap)
     }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         datePickerTapped()
+    }
+    
+    @objc private func handleNameTap(_ sender: UITapGestureRecognizer? = nil) {
+        UIAlertController.inputDialog(currentText: person?.name ?? "",
+                                      title: LocalizedString.t01NameTitle,
+                                      message: LocalizedString.t01NameSubTitle,
+                                      placeholder: LocalizedString.t01NamePlaceholder,
+                                      buttonTitle: LocalizedString.t01NameSubmitButtonTitle) { [weak self] string in
+            if string == "" {
+                self?.person?.name = "Người ấy"
+            } else {
+                self?.person?.name = string
+            }
+        }
     }
     
     @objc private func handleGenderTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -119,6 +136,8 @@ extension PersonView {
     
     private func datePickerTapped() {
         let dialog = DatePickerDialog(locale: Locale(identifier: Strings.localeIdentifier))
+        dialog.overrideUserInterfaceStyle = .light
+        dialog.datePicker.overrideUserInterfaceStyle = .light
         dialog.show(LocalizedString.t01DatePickerTitleTitle,
                     doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
                     cancelButtonTitle: LocalizedString.t01CancelButtonTitle,

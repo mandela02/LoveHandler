@@ -82,7 +82,7 @@ extension T01MainViewController {
     private func calculate() {
         let dayStartDating = Settings.relationshipStartDate.value
         let dayGettingMarry = Settings.marryDate.value
-        let today = Date().nextMonth.nextMonth.nextMonth.nextMonth
+        let today = Date()
         
         let totalDateDay = Date.countBetweenDate(component: .day, start: dayStartDating, end: dayGettingMarry)
         let currentDateDay = Date.countBetweenDate(component: .day, start: dayStartDating, end: today)

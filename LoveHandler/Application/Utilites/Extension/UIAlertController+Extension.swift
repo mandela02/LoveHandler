@@ -11,6 +11,7 @@ extension UIAlertController {
     static func showActionSheet<T: CaseIterable & EnumName>(source: T.Type,
                                                             title: String,
                                                             message: String,
+                                                            cancelButtontTitle: String = LocalizedString.t01ImagePickerCancel,
                                                             onTap: @escaping (T) -> Void) {
         let actionSheet: UIAlertController = UIAlertController(title: title,
                                                                message: message,
@@ -27,12 +28,45 @@ extension UIAlertController {
             actionSheet.addAction(alertAction)
         }
         
-        let cancelAlertAction = UIAlertAction(title: LocalizedString.t01ImagePickerCancel,
+        let cancelAlertAction = UIAlertAction(title: cancelButtontTitle,
                                     style: .cancel,
                                     handler: {_ in })
         
         actionSheet.addAction(cancelAlertAction)
         
         UIApplication.topViewController()?.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    static func inputDialog(currentText: String,
+                            title: String,
+                            message: String,
+                            placeholder: String = "",
+                            buttonTitle: String,
+                            cancelButtontTitle: String = LocalizedString.t01ImagePickerCancel,
+                            onSubmit: @escaping (String) -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.overrideUserInterfaceStyle = .light
+
+        alert.addTextField { (textField) in
+            textField.placeholder = placeholder
+            textField.text = currentText
+        }
+
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: { [weak alert] (_) in
+            if let textField = alert?.textFields?[safe: 0],
+               let userText = textField.text {
+                onSubmit(userText)
+            }
+        }))
+
+        
+        let cancelAlertAction = UIAlertAction(title: cancelButtontTitle,
+                                    style: .cancel,
+                                    handler: {_ in })
+        
+        alert.addAction(cancelAlertAction)
+
+        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
     }
 }

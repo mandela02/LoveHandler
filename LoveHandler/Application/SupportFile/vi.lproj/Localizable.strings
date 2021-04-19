@@ -47,3 +47,8 @@
 "t01GenderOptionTitle" = "Chọn giới tính";
 "t01BirthDayOptionTitle" = "Chọn ngày sinh";
 "t01ColorOptionTitle" = "Chọn màu";
+
+"t01NameTitle" = "Tên";
+"t01NameSubTitle" = "Nhập tên người đó";
+"t01NamePlaceholder" = "Nhập tên vào đây";
+"t01NameSubmitButtonTitle" = "Xác nhận";
