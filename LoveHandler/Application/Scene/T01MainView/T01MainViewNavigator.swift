@@ -20,8 +20,16 @@ class T01MainViewNavigator: T01MainViewNavigatorType {
     }
     
     func toSettings() {
+        let viewController = T02SettingsViewController.instantiateFromStoryboard()
+        let navigationController = BaseNavigationController(rootViewController: viewController)
+        let navigator = T2SettingsNavigator(navigationController: navigationController)
+        viewController.viewModel = T02SettingsViewModel(navigator: navigator)
+        self.navigationController.present(navigationController,
+                                          animated: true, completion: nil)
+        
     }
     
     func toDiaries() {
+        print("diary")
     }
 }

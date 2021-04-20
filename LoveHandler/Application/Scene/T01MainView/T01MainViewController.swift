@@ -7,6 +7,8 @@
 
 import UIKit
 import WaveAnimationView
+import RxSwift
+import RxCocoa
 
 class T01MainViewController: BaseViewController {
     
@@ -24,6 +26,8 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var loveButton: UIButton!
     
     private var wave: WaveAnimationView?
+    
+    private let disposeBag = DisposeBag()
     
     var viewModel: T01MainViewViewModel?
     
@@ -54,7 +58,23 @@ class T01MainViewController: BaseViewController {
     
     override func setupTheme() {
         titleLabel.textColor = UIColor.black
+    }
+    
+    override func bindViewModel() {
+        guard let viewModel = viewModel else { return }
+        let settingButtonTap = settingButton.rx.tap
+            .map { _ in return T01MainButtonType.setting }
+            .asObservable()
+        let diaryButtonTap = diaryButton.rx.tap
+            .map { _ in return T01MainButtonType.diary }
+            .asObservable()
         
+        let onButtonTap = Observable.merge(settingButtonTap, diaryButtonTap)
+        
+        let input = T01MainViewViewModel.Input(onButtonTap: onButtonTap)
+        let output = viewModel.transform(input)
+        
+        output.noResponser.drive().disposed(by: disposeBag)
     }
 }
 
