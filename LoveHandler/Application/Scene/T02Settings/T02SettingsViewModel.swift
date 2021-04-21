@@ -9,9 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class T02SettingsViewModel: BaseViewModel {
-    let dataSource = Section.generateData()
-    
+class T02SettingsViewModel: BaseViewModel {    
     private var navigator: T2SettingsNavigatorType
     
     init(navigator: T2SettingsNavigator) {
@@ -33,13 +31,13 @@ class T02SettingsViewModel: BaseViewModel {
                 guard let self = self else { return .just(nil)}
                 switch cell {
                 case .marryDateSelection:
-                    return self.navigator.datePicker(title: "",
+                    return self.navigator.datePicker(title: LocalizedString.t03WeddingDayDatePickerTitle,
                                                      date: Settings.marryDate.value,
                                                      minDate: Settings.relationshipStartDate.value,
                                                      maxDate: Constant.maxDate)
                         .asObservable()
                 case .startDatingDateSelection:
-                    return self.navigator.datePicker(title: "",
+                    return self.navigator.datePicker(title: LocalizedString.t03StartDatingDatePickerTitle,
                                                      date: Settings.relationshipStartDate.value,
                                                      minDate: Constant.minDate,
                                                      maxDate: Date())
@@ -59,6 +57,12 @@ class T02SettingsViewModel: BaseViewModel {
                 }
                 selectedCell = nil
             })
+            .mapToVoid()
+        
+        let viewWillAppear = input.viewWillAppear
+        
+        let dataSource = Observable.merge(viewWillAppear,
+                                          dateCellSelected)
             .map { _ in  Section.generateData() }
             .asDriverOnErrorJustComplete()
         
@@ -66,7 +70,7 @@ class T02SettingsViewModel: BaseViewModel {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        return Output(dataSource: dateCellSelected,
+        return Output(dataSource: dataSource,
                       noRespone: dissmiss)
     }
     
@@ -97,22 +101,22 @@ class T02SettingsViewModel: BaseViewModel {
             switch self {
             case .startDatingDateSelection:
                 return CellInfo(type: .withSubTitle(icon: "",
-                                                    title: "Start Date",
+                                                    title: LocalizedString.t03StartDateTitle,
                                                     subTitle: DefaultDateFormatter.string(from: Settings.relationshipStartDate.value,
                                                                                           dateFormat: "d/M/y")))
             case .marryDateSelection:
                 return CellInfo(type: .withSubTitle(icon: "",
-                                                    title: "End Date",
+                                                    title: LocalizedString.t03EndDateTitle,
                                                     subTitle: DefaultDateFormatter.string(from: Settings.marryDate.value,
                                                                                           dateFormat: "d/M/y")))
             case .showProgressWaveBackground:
                 return CellInfo(type: .withSwitch(icon: "",
-                                                  title: "switch",
-                                                  isOn: true))
+                                                  title: LocalizedString.t02WaveBackgroundTitle,
+                                                  isOn: Settings.isShowingBackgroundWave.value))
                 
             case .premium:
                 return CellInfo(type: .normal(icon: "",
-                                              title: "Premium",
+                                              title: LocalizedString.t03PremiumTitle,
                                               isDisable: false))
             }
         }
@@ -129,14 +133,14 @@ class T02SettingsViewModel: BaseViewModel {
         var info: SectionInfo {
             switch self {
             case .dates:
-                return SectionInfo(title: "Date Setting",
+                return SectionInfo(title: LocalizedString.t03DataHeaderTitle,
                                    cells: [.startDatingDateSelection,
                                            .marryDateSelection])
             case .ui:
-                return SectionInfo(title: "View Settings",
+                return SectionInfo(title: LocalizedString.t03ViewHeaderitle,
                                    cells: [.showProgressWaveBackground])
             case .premium:
-                return SectionInfo(title: "Premium",
+                return SectionInfo(title: LocalizedString.t03PremiumHeaderitle,
                                    cells: [.premium])
             }
         }
@@ -147,6 +151,7 @@ class T02SettingsViewModel: BaseViewModel {
     }
     
     struct Input {
+        let viewWillAppear: Observable<Void>
         let didSelectCell: Observable<Cell>
         let dismissTrigger: Observable<Void>
     }

@@ -66,8 +66,9 @@ class T01MainViewController: BaseViewController {
         
         let onButtonTap = Observable.merge(settingButtonTap, diaryButtonTap)
         
-        let onSettingChange = Observable.merge(SettingsHelper.marryDate.asObservable(),
-                                               SettingsHelper.relationshipStartDate.asObservable())
+        let onSettingChange = Observable.merge(SettingsHelper.marryDate.mapToVoid().asObservable(),
+                                               SettingsHelper.relationshipStartDate.mapToVoid().asObservable(),
+                                               SettingsHelper.isShowingBackgroundWave.mapToVoid().asObservable())
             .debounce(.milliseconds(200), scheduler: MainScheduler.instance)
             .mapToVoid()
         
@@ -84,6 +85,10 @@ class T01MainViewController: BaseViewController {
         output.numberOfDay.drive(onNext: { [weak self] in
             self?.heartView.numberOfDay = $0
         }).disposed(by: disposeBag)
+        output.isShowingWaveBackground
+            .map { !$0 }
+            .drive(defaultBackgroundView.rx.isHidden)
+            .disposed(by: disposeBag)
     }
 }
 

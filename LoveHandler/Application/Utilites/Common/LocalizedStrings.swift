@@ -8,6 +8,9 @@
 import Foundation
 
 struct LocalizedString {
+    
+    static var appName: String { return String(localizedKey: "appName") }
+
     static var t01MainScreenTitle: String { return String(localizedKey: "t01MainScreenTitle") }
     static var t01DatePickerTitleTitle: String { return String(localizedKey: "t01DatePickerTitleTitle") }
     static var t01ConfirmButtonTitle: String { return String(localizedKey: "t01ConfirmButtonTitle") }
@@ -54,4 +57,16 @@ struct LocalizedString {
     static var t01NameSubTitle: String { return String(localizedKey: "t01NameSubTitle") }
     static var t01NamePlaceholder: String { return String(localizedKey: "t01NamePlaceholder") }
     static var t01NameSubmitButtonTitle: String { return String(localizedKey: "t01NameSubmitButtonTitle") }
+    
+    static var t03PremiumTitle: String { return String(localizedKey: "t03PremiumTitle") }
+    static var t02WaveBackgroundTitle: String { return String(localizedKey: "t02WaveBackgroundTitle") }
+    static var t03StartDateTitle: String { return String(localizedKey: "t03StartDateTitle") }
+    static var t03EndDateTitle: String { return String(localizedKey: "t03EndDateTitle") }
+    static var t03StartDatingDatePickerTitle: String { return String(localizedKey: "t03StartDatingDatePickerTitle") }
+    static var t03WeddingDayDatePickerTitle: String { return String(localizedKey: "t03WeddingDayDatePickerTitle") }
+    
+    static var t03SettingsTitle: String { return String(localizedKey: "t03SettingsTitle") }
+    static var t03PremiumHeaderitle: String { return String(localizedKey: "t03PremiumHeaderitle") }
+    static var t03ViewHeaderitle: String { return String(localizedKey: "t03ViewHeaderitle") }
+    static var t03DataHeaderTitle: String { return String(localizedKey: "t03DataHeaderTitle") }
 }

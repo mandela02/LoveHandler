@@ -362,4 +362,20 @@ extension UIView {
             }
         }
     }
+    
+    static func getHeaderViewForSection(with title: String) -> UIView? {
+        guard !title.isEmpty else { return nil }
+        let header = UIView()
+        header.backgroundColor = .clear
+        let headerTitle = UILabel()
+        header.addSubview(headerTitle)
+        headerTitle.translatesAutoresizingMaskIntoConstraints = false
+        [headerTitle.centerYAnchor.constraint(equalTo: header.centerYAnchor),
+         headerTitle.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20)]
+            .forEach { $0.isActive = true }
+        headerTitle.frame.origin.x = 20
+        headerTitle.font = UIFont.systemFont(ofSize: 11)
+        headerTitle.text = title
+        return header
+    }
 }

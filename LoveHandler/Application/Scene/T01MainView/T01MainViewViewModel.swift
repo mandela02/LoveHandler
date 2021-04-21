@@ -33,7 +33,7 @@ class T01MainViewViewModel: BaseViewModel {
         }).mapToVoid()
         .asDriverOnErrorJustComplete()
                 
-        let onSettingChange = input.onSettingChange
+        let onSettingChange = input.onSettingChange.share()
         let viewDidAppear = input.viewDidAppear
         
         let recalculate = Observable.merge(onSettingChange, viewDidAppear)
@@ -41,10 +41,13 @@ class T01MainViewViewModel: BaseViewModel {
         
         let progress = recalculate.map { $0.progress }.asDriverOnErrorJustComplete()
         let numberOfDay = recalculate.map { $0.numberOfDay }.asDriverOnErrorJustComplete()
+        let isShowingWaveBackground = onSettingChange
+            .map { _ in Settings.isShowingBackgroundWave.value }.asDriverOnErrorJustComplete()
 
         return Output(noResponser: navigation,
                       progress: progress,
-                      numberOfDay: numberOfDay)
+                      numberOfDay: numberOfDay,
+                      isShowingWaveBackground: isShowingWaveBackground)
     }
     
     private func calculate() -> (progress: Float, numberOfDay: Int) {
@@ -71,5 +74,6 @@ extension T01MainViewViewModel {
         let noResponser: Driver<Void>
         let progress: Driver<Float>
         let numberOfDay: Driver<Int>
+        let isShowingWaveBackground: Driver<Bool>
     }
 }

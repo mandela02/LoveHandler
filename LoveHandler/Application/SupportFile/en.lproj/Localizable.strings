@@ -6,6 +6,8 @@
   
 */
 
+"appName" = "Each minute we together";
+
 "aries" = "Aries";
 "taurus" = "Taurus";
 "gemini" = "Gemini";
@@ -53,3 +55,14 @@
 "t01NamePlaceholder" = "Enter name here";
 "t01NameSubmitButtonTitle" = "Submit";
 
+"t03PremiumTitle" = "Premium";
+"t02WaveBackgroundTitle" = "Wave Background";
+"t03StartDateTitle" = "Start dating at";
+"t03EndDateTitle" = "Wedding day";
+"t03StartDatingDatePickerTitle" = "Your start dating at";
+"t03WeddingDayDatePickerTitle" = "Your Wedding day is";
+
+"t03SettingsTitle" = "Settings";
+"t03PremiumHeaderitle" = "Premium";
+"t03ViewHeaderitle" = "Theme";
+"t03DataHeaderTitle" = "Love Settings";

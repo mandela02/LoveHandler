@@ -32,5 +32,4 @@ class SettingWithSwitchTableViewCell: UITableViewCell {
         didValueChange?(switchButton.isOn)
     }
 
-
 }
