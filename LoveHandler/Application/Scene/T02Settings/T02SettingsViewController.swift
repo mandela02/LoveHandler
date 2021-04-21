@@ -19,13 +19,11 @@ class T02SettingsViewController: BaseViewController {
                                           style: .plain,
                                           target: nil,
                                           action: nil)
-        closeButton.tintColor = UIColor.white
         return closeButton
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.white
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
@@ -96,6 +94,12 @@ class T02SettingsViewController: BaseViewController {
             self?.dataSource = dataSource
             self?.tableView.reloadData()
         }).disposed(by: disposeBag)
+    }
+    
+    override func setupTheme() {
+        super.setupTheme()
+        self.overrideUserInterfaceStyle = .light
+        self.navigationController?.overrideUserInterfaceStyle = .light
     }
     
     private func getFooter() -> String {
