@@ -11,5 +11,6 @@ target 'LoveHandler' do
   pod 'DatePickerDialog'
   pod 'RxSwift', '5.1.1'
   pod 'RxCocoa', '5.1.1'
+  pod 'RxViewController'
 
 end

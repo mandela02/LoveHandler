@@ -18,10 +18,26 @@ struct UserDefault<T> {
 
     var value: T {
         get {
-            return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+            if let value = UserDefaults.standard.object(forKey: key) as? T {
+                return value
+            } else {
+                UserDefaults.standard.set(defaultValue, forKey: key)
+                UserDefaults.standard.synchronize()
+                return defaultValue
+            }
         }
         set {
             UserDefaults.standard.set(newValue, forKey: key)
+            UserDefaults.standard.synchronize()
+
+            switch value {
+            case let relationshipStartDate as Date where key == Keys.relationshipStartDate.rawValue:
+                SettingsHelper.relationshipStartDate.accept(relationshipStartDate)
+            case let marryDate as Date where key == Keys.marryDate.rawValue:
+                SettingsHelper.relationshipStartDate.accept(marryDate)
+            default:
+                break
+            }
         }
     }
 }

@@ -42,7 +42,7 @@ class T02SettingsViewModel: BaseViewModel {
                     return self.navigator.datePicker(title: "",
                                                      date: Settings.relationshipStartDate.value,
                                                      minDate: Constant.minDate,
-                                                     maxDate: Settings.marryDate.value)
+                                                     maxDate: Date())
                         .asObservable()
                 default :
                     return .just(nil)

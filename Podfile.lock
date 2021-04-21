@@ -7,6 +7,9 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
+  - RxViewController (1.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - WaveAnimationView (1.0.2)
 
 DEPENDENCIES:
@@ -14,6 +17,7 @@ DEPENDENCIES:
   - lottie-ios
   - RxCocoa (= 5.1.1)
   - RxSwift (= 5.1.1)
+  - RxViewController
   - WaveAnimationView
 
 SPEC REPOS:
@@ -23,6 +27,7 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - RxViewController
     - WaveAnimationView
 
 SPEC CHECKSUMS:
@@ -31,8 +36,9 @@ SPEC CHECKSUMS:
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
   WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
 
-PODFILE CHECKSUM: 9cbc533961489225b2afb944a3ab9892f1b6e2e4
+PODFILE CHECKSUM: 7daad3d8e1a23cac2d1f1ac36a06e1f032786b0c
 
 COCOAPODS: 1.10.1

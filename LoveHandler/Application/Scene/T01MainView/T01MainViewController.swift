@@ -9,6 +9,7 @@ import UIKit
 import WaveAnimationView
 import RxSwift
 import RxCocoa
+import RxViewController
 
 class T01MainViewController: BaseViewController {
     
@@ -19,7 +20,6 @@ class T01MainViewController: BaseViewController {
     
     @IBOutlet weak var imageBackgroundView: UIImageView!
     @IBOutlet weak var defaultBackgroundView: UIView!
-    
     
     @IBOutlet weak var firstLoverView: PersonView!
     @IBOutlet weak var secondLoverView: PersonView!
@@ -41,12 +41,7 @@ class T01MainViewController: BaseViewController {
         super.refreshView()
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        calculate()
-    }
-    
+        
     override func dismissView() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         wave?.stopAnimation()
@@ -71,10 +66,24 @@ class T01MainViewController: BaseViewController {
         
         let onButtonTap = Observable.merge(settingButtonTap, diaryButtonTap)
         
-        let input = T01MainViewViewModel.Input(onButtonTap: onButtonTap)
+        let onSettingChange = Observable.merge(SettingsHelper.marryDate.asObservable(),
+                                               SettingsHelper.relationshipStartDate.asObservable())
+            .debounce(.milliseconds(200), scheduler: MainScheduler.instance)
+            .mapToVoid()
+        
+        let input = T01MainViewViewModel.Input(onButtonTap: onButtonTap,
+                                               viewDidAppear: self.rx.viewDidAppear.mapToVoid(),
+                                               onSettingChange: onSettingChange)
         let output = viewModel.transform(input)
         
         output.noResponser.drive().disposed(by: disposeBag)
+        output.progress.drive(onNext: { [weak self] in
+            self?.wave?.setProgress($0)
+            self?.heartView.progress = $0
+        }).disposed(by: disposeBag)
+        output.numberOfDay.drive(onNext: { [weak self] in
+            self?.heartView.numberOfDay = $0
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -99,19 +108,5 @@ extension T01MainViewController {
         if let wave = wave {
             self.defaultBackgroundView.addSubview(wave)
         }
-    }
-    
-    private func calculate() {
-        let dayStartDating = Settings.relationshipStartDate.value
-        let dayGettingMarry = Settings.marryDate.value
-        let today = Date()
-        
-        let totalDateDay = Date.countBetweenDate(component: .day, start: dayStartDating, end: dayGettingMarry)
-        let currentDateDay = Date.countBetweenDate(component: .day, start: dayStartDating, end: today)
-                 
-        let progressive = Float(currentDateDay)/Float(totalDateDay)
-        wave?.setProgress(progressive)
-        heartView.progress = progressive
-        heartView.numberOfDay = currentDateDay
     }
 }

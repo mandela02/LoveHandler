@@ -22,7 +22,7 @@ class T01MainViewViewModel: BaseViewModel {
     }
     
     func transform(_ input: Input) -> Output {
-        let noResponser = input.onButtonTap.do(onNext: { [weak self] button in
+        let navigation = input.onButtonTap.do(onNext: { [weak self] button in
             guard let self = self else { return }
             switch button {
             case .setting:
@@ -32,15 +32,44 @@ class T01MainViewViewModel: BaseViewModel {
             }
         }).mapToVoid()
         .asDriverOnErrorJustComplete()
+                
+        let onSettingChange = input.onSettingChange
+        let viewDidAppear = input.viewDidAppear
         
-        return Output(noResponser: noResponser)
+        let recalculate = Observable.merge(onSettingChange, viewDidAppear)
+            .map { _ in self.calculate() }.share()
+        
+        let progress = recalculate.map { $0.progress }.asDriverOnErrorJustComplete()
+        let numberOfDay = recalculate.map { $0.numberOfDay }.asDriverOnErrorJustComplete()
+
+        return Output(noResponser: navigation,
+                      progress: progress,
+                      numberOfDay: numberOfDay)
     }
     
+    private func calculate() -> (progress: Float, numberOfDay: Int) {
+        let dayStartDating = Settings.relationshipStartDate.value
+        let dayGettingMarry = Settings.marryDate.value
+        let today = Date()
+        
+        let totalDateDay = Date.countBetweenDate(component: .day, start: dayStartDating, end: dayGettingMarry)
+        let currentDateDay = Date.countBetweenDate(component: .day, start: dayStartDating, end: today)
+                 
+        let progressive = Float(currentDateDay)/Float(totalDateDay)
+        return (progressive, currentDateDay)
+    }
+}
+
+extension T01MainViewViewModel {
     struct Input {
         let onButtonTap: Observable<T01MainButtonType>
+        let viewDidAppear: Observable<Void>
+        let onSettingChange: Observable<Void>
     }
     
     struct Output {
         let noResponser: Driver<Void>
+        let progress: Driver<Float>
+        let numberOfDay: Driver<Int>
     }
 }
