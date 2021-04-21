@@ -6,6 +6,8 @@
   
 */
 
+"appName" = "Từng phút bên nhau";
+
 "aries" = "Bạch Dương";
 "taurus" = "Kim Ngưu";
 "gemini" = "Song Tử";
@@ -52,3 +54,15 @@
 "t01NameSubTitle" = "Nhập tên người đó";
 "t01NamePlaceholder" = "Nhập tên vào đây";
 "t01NameSubmitButtonTitle" = "Xác nhận";
+
+"t03PremiumTitle" = "Phiên bản Premium";
+"t02WaveBackgroundTitle" = "Bật hình nền sóng";
+"t03StartDateTitle" = "Ngày bắt đầu hẹn hò";
+"t03EndDateTitle" = "Ngày cưới";
+"t03StartDatingDatePickerTitle" = "Chọn ngày bắt đầu hẹn hò";
+"t03WeddingDayDatePickerTitle" = "Chọn ngày cưới";
+
+"t03SettingsTitle" = "Cài đặt";
+"t03PremiumHeaderitle" = "Premium";
+"t03ViewHeaderitle" = "Giao diện";
+"t03DataHeaderTitle" = "Tình yêu";

@@ -18,10 +18,28 @@ struct UserDefault<T> {
 
     var value: T {
         get {
-            return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+            if let value = UserDefaults.standard.object(forKey: key) as? T {
+                return value
+            } else {
+                UserDefaults.standard.set(defaultValue, forKey: key)
+                UserDefaults.standard.synchronize()
+                return defaultValue
+            }
         }
         set {
             UserDefaults.standard.set(newValue, forKey: key)
+            UserDefaults.standard.synchronize()
+
+            switch value {
+            case let relationshipStartDate as Date where key == Keys.relationshipStartDate.rawValue:
+                SettingsHelper.relationshipStartDate.accept(relationshipStartDate)
+            case let marryDate as Date where key == Keys.marryDate.rawValue:
+                SettingsHelper.relationshipStartDate.accept(marryDate)
+            case let isShowingBackgroundWave as Bool where key == Keys.isShowingBackgroundWave.rawValue:
+                SettingsHelper.isShowingBackgroundWave.accept(isShowingBackgroundWave)
+            default:
+                break
+            }
         }
     }
 }
@@ -30,6 +48,7 @@ enum Keys: String {
     case appLanguage
     case relationshipStartDate
     case marryDate
+    case isShowingBackgroundWave
 }
 
 struct Settings {
@@ -39,4 +58,6 @@ struct Settings {
                                                          defaultValue: DefaultDateFormatter.date(from: "2020/7/5") ?? Date())
     static var marryDate = UserDefault<Date>(key: .marryDate,
                                                defaultValue: Date().nextYear)
+    static var isShowingBackgroundWave = UserDefault<Bool>(key: .isShowingBackgroundWave,
+                                               defaultValue: true)
 }

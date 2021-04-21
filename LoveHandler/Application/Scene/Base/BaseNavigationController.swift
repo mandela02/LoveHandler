@@ -8,8 +8,6 @@
 import UIKit
 
 class BaseNavigationController: UINavigationController {
-
-    
     private var statusBarStyle: UIStatusBarStyle = .default
     
     override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
