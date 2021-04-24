@@ -30,6 +30,11 @@ class T01MainViewNavigator: T01MainViewNavigatorType {
     }
     
     func toDiaries() {
-        print("diary")
+        let viewController = T03CalendarViewController.instantiateFromStoryboard()
+        let navigationController = BaseNavigationController(rootViewController: viewController)
+//        let navigator = T2SettingsNavigator(navigationController: navigationController)
+//        viewController.viewModel = T02SettingsViewModel(navigator: navigator)
+        self.navigationController.present(navigationController,
+                                          animated: true, completion: nil)
     }
 }
