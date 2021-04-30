@@ -7,10 +7,11 @@
 
 import Foundation
 import DatePickerDialog
+import Combine
 
 protocol T2SettingsNavigatorType {
     func dismiss()
-    func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Single<Date?>
+    func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never>
 }
 
 class T2SettingsNavigator: T2SettingsNavigatorType {
@@ -24,8 +25,8 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
         navigationController.dismiss(animated: true, completion: nil)
     }
     
-    func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Single<Date?> {
-        return Single.create { single in
+    func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never> {
+        return Future() { promise in
             let dialog = DatePickerDialog(locale: Locale(identifier: Strings.localeIdentifier))
             dialog.overrideUserInterfaceStyle = .light
             dialog.datePicker.overrideUserInterfaceStyle = .light
@@ -35,10 +36,9 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
                         defaultDate: date,
                         minimumDate: minDate,
                         maximumDate: maxDate,
-                        datePickerMode: .date) { date in
-                single(.success(date))
+                        datePickerMode: .date) { selectedDate in
+                promise(.success(selectedDate))
             }
-            return Disposables.create()
         }
     }
 }

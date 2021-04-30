@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class T02SettingsViewModel: BaseViewModel {    
     private var navigator: T2SettingsNavigatorType
@@ -18,32 +19,33 @@ class T02SettingsViewModel: BaseViewModel {
         var selectedCell: Cell?
         
         let cellSelected = input.didSelectCell
-            .do(onNext: {
+            .handleEvents(receiveOutput: {
                 selectedCell = $0
             }).share()
             
             
         let dateCellSelected = cellSelected
             .filter { Cell.dateSelectionCell.contains($0) }
-            .flatMap { [weak self] cell -> Observable<Date?> in
-                guard let self = self else { return .just(nil)}
+            .flatMap { [weak self] cell -> AnyPublisher<Date?, Never> in
+                guard let self = self else { return Empty(completeImmediately: false).eraseToAnyPublisher()}
                 switch cell {
                 case .marryDateSelection:
                     return self.navigator.datePicker(title: LocalizedString.t03WeddingDayDatePickerTitle,
                                                      date: Settings.marryDate.value,
                                                      minDate: Settings.relationshipStartDate.value,
                                                      maxDate: Constant.maxDate)
-                        .asObservable()
+                        .eraseToAnyPublisher()
                 case .startDatingDateSelection:
                     return self.navigator.datePicker(title: LocalizedString.t03StartDatingDatePickerTitle,
                                                      date: Settings.relationshipStartDate.value,
                                                      minDate: Constant.minDate,
                                                      maxDate: Date())
-                        .asObservable()
+                        .eraseToAnyPublisher()
                 default :
-                    return .just(nil)
+                    return Empty(completeImmediately: false).eraseToAnyPublisher()
                 }
-            }.do(onNext: { date in
+            }
+            .handleEvents(receiveOutput: { date in
                 guard let date = date, let cell = selectedCell else { return }
                 switch cell {
                 case .marryDateSelection:
@@ -55,19 +57,20 @@ class T02SettingsViewModel: BaseViewModel {
                 }
                 selectedCell = nil
             })
-            .mapToVoid()
+            .map { _ in }
+            .eraseToAnyPublisher()
         
         let viewWillAppear = input.viewWillAppear
         
-        let dataSource = Observable.merge(viewWillAppear,
+        let dataSource = Publishers.Merge(viewWillAppear,
                                           dateCellSelected)
             .map { _ in  Section.generateData() }
-            .asDriverOnErrorJustComplete()
+            .eraseToAnyPublisher()
         
-        let dissmiss = input.dismissTrigger.do(onNext: navigator.dismiss)
-            .mapToVoid()
-            .asDriverOnErrorJustComplete()
-        
+        let dissmiss = input.dismissTrigger.handleEvents(receiveOutput: navigator.dismiss)
+            .map { _ in }
+            .eraseToAnyPublisher()
+
         return Output(dataSource: dataSource,
                       noRespone: dissmiss)
     }
@@ -149,13 +152,13 @@ class T02SettingsViewModel: BaseViewModel {
     }
     
     struct Input {
-        let viewWillAppear: Observable<Void>
-        let didSelectCell: Observable<Cell>
-        let dismissTrigger: Observable<Void>
+        let viewWillAppear: AnyPublisher<Void, Never>
+        let didSelectCell: AnyPublisher<Cell, Never>
+        let dismissTrigger: AnyPublisher<Void, Never>
     }
     
     struct Output {
-        let dataSource: Driver<[SectionInfo]>
-        let noRespone: Driver<Void>
+        let dataSource: AnyPublisher<[SectionInfo], Never>
+        let noRespone: AnyPublisher<Void, Never>
     }
 }
