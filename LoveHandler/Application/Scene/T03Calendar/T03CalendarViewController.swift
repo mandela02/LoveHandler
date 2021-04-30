@@ -13,7 +13,7 @@ class T03CalendarViewController: BaseViewController {
 
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     @IBOutlet weak var calendarCollectionViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var addButtonView: UIButton!
+    @IBOutlet weak var addNoteButton: UIButton!
     
     private lazy var closeButton: UIBarButtonItem = {
         let closeButton = UIBarButtonItem(title: "Back",
@@ -33,7 +33,8 @@ class T03CalendarViewController: BaseViewController {
     private let allDates = Date().getAllDateInMonth()
     var viewModel: T03CalendarViewModel?
     private var cancellables = Set<AnyCancellable>()
-
+    private var firstTimeLoadView = true
+    
     override func setupView() {
         super.setupView()
         setupNavigationBar()
@@ -43,11 +44,19 @@ class T03CalendarViewController: BaseViewController {
     
     override func refreshView() {
         super.refreshView()
-        let height = calculateCellSize()
-        let numberOfRow = CGFloat(allDates.count / 7)
-        calendarCollectionViewHeightConstraint.constant = height * numberOfRow + (numberOfRow + 1) * defaultDividerSize
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if firstTimeLoadView {
+            let height = calculateCellSize()
+            let numberOfRow = CGFloat(allDates.count / 7)
+            calendarCollectionViewHeightConstraint.constant = height * numberOfRow + (numberOfRow + 1) * defaultDividerSize
+            firstTimeLoadView.toggle()
+        }
+    }
+        
     override func setupTheme() {
         super.setupTheme()
         self.navigationController?.overrideUserInterfaceStyle = .light
@@ -63,9 +72,9 @@ class T03CalendarViewController: BaseViewController {
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel else { return }
-        let backButtonTap = closeButton.tapPublisher
-        
-        let input = T03CalendarViewModel.Input(backButtonPressed: backButtonTap)
+
+        let input = T03CalendarViewModel.Input(backButtonPressed: closeButton.tapPublisher,
+                                               addNoteButtonPressed: addNoteButton.tapPublisher)
         let output = viewModel.transform(input)
         
         output.noResponse
@@ -91,7 +100,12 @@ class T03CalendarViewController: BaseViewController {
     }
     
     private func calculateCellSize() -> CGFloat {
-        let marginsAndInsets = defaultDividerSize * 2 + calendarCollectionView.safeAreaInsets.left + calendarCollectionView.safeAreaInsets.right + defaultDividerSize * CGFloat(7 - 1)
+        let marginsAndInsets = defaultDividerSize * 2 +
+            calendarCollectionView.safeAreaInsets.left +
+            calendarCollectionView.safeAreaInsets.right +
+            defaultDividerSize *
+            CGFloat(7 - 1)
+        
         let itemWidth = ((calendarCollectionView.bounds.size.width - marginsAndInsets) / CGFloat(7)).rounded(.down)
         return itemWidth
     }

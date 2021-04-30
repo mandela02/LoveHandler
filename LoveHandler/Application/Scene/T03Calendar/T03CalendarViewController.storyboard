@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -16,11 +14,11 @@
             <objects>
                 <viewController storyboardIdentifier="T03CalendarViewController" id="hbJ-HO-Alb" customClass="T03CalendarViewController" customModule="LoveHandler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KNn-S6-5YG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n2c-OX-y0Q">
-                                <rect key="frame" x="0.0" y="44" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="lyr-kL-dU7"/>
@@ -76,7 +74,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZG-G7-QYI" customClass="RoundButton" customModule="LoveHandler" customModuleProvider="target">
-                                <rect key="frame" x="337" y="785" width="62" height="62"/>
+                                <rect key="frame" x="523" y="523" width="62" height="62"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XZG-G7-QYI" secondAttribute="height" multiplier="1:1" id="Fmo-j6-WNm"/>
@@ -99,7 +97,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addButtonView" destination="XZG-G7-QYI" id="0ai-Nl-fmr"/>
+                        <outlet property="addNoteButton" destination="XZG-G7-QYI" id="0ai-Nl-fmr"/>
                         <outlet property="calendarCollectionView" destination="n2c-OX-y0Q" id="QGU-dz-V5j"/>
                         <outlet property="calendarCollectionViewHeightConstraint" destination="lyr-kL-dU7" id="aWG-ik-DGG"/>
                     </connections>

@@ -10,6 +10,7 @@ import UIKit
 
 protocol T03CalendarNavigatorType {
     func dissmiss()
+    func toNote()
 }
 
 class T03CalendarNavigator: T03CalendarNavigatorType {
@@ -22,5 +23,10 @@ class T03CalendarNavigator: T03CalendarNavigatorType {
     
     func dissmiss() {
         navigationController.dismiss(animated: true, completion: nil)
+    }
+    
+    func toNote() {
+        let viewController = T05NoteViewController.instantiateFromStoryboard()
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

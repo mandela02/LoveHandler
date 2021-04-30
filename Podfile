@@ -10,5 +10,6 @@ target 'LoveHandler' do
   pod "WaveAnimationView"
   pod 'DatePickerDialog'
   pod 'CombineCocoa'
+  pod "BSImagePicker", "~> 3.1"
 
 end
