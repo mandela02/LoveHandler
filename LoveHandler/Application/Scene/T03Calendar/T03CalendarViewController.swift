@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CombineCocoa
+import Combine
 
 class T03CalendarViewController: BaseViewController {
 
@@ -28,11 +30,10 @@ class T03CalendarViewController: BaseViewController {
     }()
 
     private let defaultDividerSize: CGFloat = 1
-    
     private let allDates = Date().getAllDateInMonth()
-    
     var viewModel: T03CalendarViewModel?
-    
+    private var cancellables = Set<AnyCancellable>()
+
     override func setupView() {
         super.setupView()
         setupNavigationBar()
@@ -57,6 +58,20 @@ class T03CalendarViewController: BaseViewController {
     override func setupLocalizedString() {
         super.setupLocalizedString()
         titleLabel.text = LocalizedString.t03SettingsTitle
+    }
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        guard let viewModel = viewModel else { return }
+        let backButtonTap = closeButton.tapPublisher
+        
+        let input = T03CalendarViewModel.Input(backButtonPressed: backButtonTap)
+        let output = viewModel.transform(input)
+        
+        output.noResponse
+            .receive(on: DispatchQueue.main)
+            .sink {}
+            .store(in: &cancellables)
     }
     
     private func setupNavigationBar() {

@@ -12,5 +12,6 @@ target 'LoveHandler' do
   pod 'RxSwift', '5.1.1'
   pod 'RxCocoa', '5.1.1'
   pod 'RxViewController'
+  pod 'CombineCocoa'
 
 end
