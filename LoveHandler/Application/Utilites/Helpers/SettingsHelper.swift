@@ -5,11 +5,11 @@
 //  Created by LanNTH on 21/04/2021.
 //
 
-import RxSwift
-import RxCocoa
+import Combine
+import Foundation
 
 struct SettingsHelper {
-    static let relationshipStartDate = BehaviorRelay<Date>(value: Settings.relationshipStartDate.value)
-    static let marryDate = BehaviorRelay<Date>(value: Settings.marryDate.value)
-    static let isShowingBackgroundWave = BehaviorRelay<Bool>(value: Settings.isShowingBackgroundWave.value)
+    static let relationshipStartDate = CurrentValueSubject<Date, Never>(Settings.relationshipStartDate.value)
+    static let marryDate = CurrentValueSubject<Date, Never>( Settings.marryDate.value)
+    static let isShowingBackgroundWave = CurrentValueSubject<Bool, Never>(Settings.isShowingBackgroundWave.value)
 }

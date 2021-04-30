@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
 
 class T02SettingsViewModel: BaseViewModel {    
     private var navigator: T2SettingsNavigatorType

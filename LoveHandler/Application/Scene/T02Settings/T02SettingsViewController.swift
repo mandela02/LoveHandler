@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import RxViewController
 
 class T02SettingsViewController: BaseViewController {
     

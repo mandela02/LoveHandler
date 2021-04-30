@@ -7,7 +7,6 @@
 
 import Foundation
 import DatePickerDialog
-import RxSwift
 
 protocol T2SettingsNavigatorType {
     func dismiss()
