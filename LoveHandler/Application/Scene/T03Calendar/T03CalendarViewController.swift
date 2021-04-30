@@ -11,6 +11,7 @@ class T03CalendarViewController: BaseViewController {
 
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     @IBOutlet weak var calendarCollectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var addButtonView: UIButton!
     
     private lazy var closeButton: UIBarButtonItem = {
         let closeButton = UIBarButtonItem(title: "Back",
@@ -29,6 +30,8 @@ class T03CalendarViewController: BaseViewController {
     private let defaultDividerSize: CGFloat = 1
     
     private let allDates = Date().getAllDateInMonth()
+    
+    var viewModel: T03CalendarViewModel?
     
     override func setupView() {
         super.setupView()

@@ -14,13 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupAppNavigator()
-        // testDB()
+        //testDB()
         return true
     }
     
     func testDB() {
         let note = Note(id: UUID(),
-                        time: 10,
+                        createDate: 10,
+                        updateDate: 10,
+                        displayDate: 10,
                         content: "ád",
                         title: "ád",
                         images: [])

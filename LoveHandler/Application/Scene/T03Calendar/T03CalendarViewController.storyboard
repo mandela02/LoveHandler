@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -74,16 +75,31 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZG-G7-QYI" customClass="RoundButton" customModule="LoveHandler" customModuleProvider="target">
+                                <rect key="frame" x="337" y="785" width="62" height="62"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XZG-G7-QYI" secondAttribute="height" multiplier="1:1" id="Fmo-j6-WNm"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="plus" catalog="system" symbolScale="medium" renderingMode="template"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="62a-wx-PSy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="62a-wx-PSy" firstAttribute="trailing" secondItem="n2c-OX-y0Q" secondAttribute="trailing" id="L5e-qd-9IJ"/>
+                            <constraint firstItem="62a-wx-PSy" firstAttribute="trailing" secondItem="XZG-G7-QYI" secondAttribute="trailing" constant="15" id="Mrg-7B-T4N"/>
                             <constraint firstItem="n2c-OX-y0Q" firstAttribute="top" secondItem="62a-wx-PSy" secondAttribute="top" id="VhC-CS-BQq"/>
                             <constraint firstItem="n2c-OX-y0Q" firstAttribute="leading" secondItem="62a-wx-PSy" secondAttribute="leading" id="cdC-OU-T91"/>
+                            <constraint firstItem="62a-wx-PSy" firstAttribute="bottom" secondItem="XZG-G7-QYI" secondAttribute="bottom" constant="15" id="eCz-Dz-vPe"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addButtonView" destination="XZG-G7-QYI" id="0ai-Nl-fmr"/>
                         <outlet property="calendarCollectionView" destination="n2c-OX-y0Q" id="QGU-dz-V5j"/>
                         <outlet property="calendarCollectionViewHeightConstraint" destination="lyr-kL-dU7" id="aWG-ik-DGG"/>
                     </connections>
@@ -94,6 +110,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

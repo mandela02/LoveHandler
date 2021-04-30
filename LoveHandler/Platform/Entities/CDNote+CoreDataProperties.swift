@@ -18,13 +18,11 @@ extension CDNote {
 
     @NSManaged public var content: String?
     @NSManaged public var id: UUID?
-    @NSManaged public var time: Double
+    @NSManaged public var createDate: Double
+    @NSManaged public var updateDate: Double
+    @NSManaged public var displayDate: Double
     @NSManaged public var title: String?
     @NSManaged public var images: NSSet?
-
-    var wrappedTime: Double {
-        return time
-    }
     
     var wrappedTitle: String {
         return title ?? "No Title"
@@ -46,7 +44,9 @@ extension CDNote {
 extension CDNote: ModelConvertibleType {
     func asModel() -> Note {
         return Note(id: wrappedId,
-                    time: wrappedTime,
+                    createDate: createDate,
+                    updateDate: updateDate,
+                    displayDate: displayDate,
                     content: wrappedContent,
                     title: wrappedTitle,
                     images: wrappedImages.map { $0.asModel() })
