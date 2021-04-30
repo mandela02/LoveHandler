@@ -32,11 +32,11 @@ struct UserDefault<T> {
 
             switch value {
             case let relationshipStartDate as Date where key == Keys.relationshipStartDate.rawValue:
-                SettingsHelper.relationshipStartDate.accept(relationshipStartDate)
+                SettingsHelper.relationshipStartDate.send(relationshipStartDate)
             case let marryDate as Date where key == Keys.marryDate.rawValue:
-                SettingsHelper.relationshipStartDate.accept(marryDate)
+                SettingsHelper.relationshipStartDate.send(marryDate)
             case let isShowingBackgroundWave as Bool where key == Keys.isShowingBackgroundWave.rawValue:
-                SettingsHelper.isShowingBackgroundWave.accept(isShowingBackgroundWave)
+                SettingsHelper.isShowingBackgroundWave.send(isShowingBackgroundWave)
             default:
                 break
             }

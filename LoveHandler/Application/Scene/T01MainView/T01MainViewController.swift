@@ -5,11 +5,11 @@
 //  Created by LanNTH on 16/04/2021.
 //
 
+import Foundation
 import UIKit
 import WaveAnimationView
-import RxSwift
-import RxCocoa
-import RxViewController
+import Combine
+import CombineCocoa
 
 class T01MainViewController: BaseViewController {
     
@@ -26,10 +26,19 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var loveButton: UIButton!
     
     private var wave: WaveAnimationView?
-    
-    private let disposeBag = DisposeBag()
-    
+    private var cancellables = Set<AnyCancellable>()
+    private var viewDidAppearSignal = PassthroughSubject<Void, Never>()
     var viewModel: T01MainViewViewModel?
+    
+    deinit {
+        viewDidAppearSignal.send(completion: .finished)
+        cancellables.forEach { $0.cancel() }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewDidAppearSignal.send(Void())
+    }
     
     override func setupView() {
         super.setupView()
@@ -41,7 +50,7 @@ class T01MainViewController: BaseViewController {
         super.refreshView()
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-        
+    
     override func dismissView() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         wave?.stopAnimation()
@@ -57,39 +66,55 @@ class T01MainViewController: BaseViewController {
     
     override func bindViewModel() {
         guard let viewModel = viewModel else { return }
-        let settingButtonTap = settingButton.rx.tap
+        let settingButtonTap = settingButton.tapPublisher
             .map { _ in return T01MainButtonType.setting }
-            .asObservable()
-        let diaryButtonTap = diaryButton.rx.tap
+            .eraseToAnyPublisher()
+        let diaryButtonTap = diaryButton.tapPublisher
             .map { _ in return T01MainButtonType.diary }
-            .asObservable()
+            .eraseToAnyPublisher()
         
-        let onButtonTap = Observable.merge(settingButtonTap, diaryButtonTap)
+        let onButtonTap = Publishers.Merge(settingButtonTap, diaryButtonTap)
+            .eraseToAnyPublisher()
         
-        let onSettingChange = Observable.merge(SettingsHelper.marryDate.mapToVoid().asObservable(),
-                                               SettingsHelper.relationshipStartDate.mapToVoid().asObservable(),
-                                               SettingsHelper.isShowingBackgroundWave.mapToVoid().asObservable())
-            .debounce(.milliseconds(200), scheduler: MainScheduler.instance)
-            .mapToVoid()
+        let onSettingChange = Publishers.Merge3(SettingsHelper.marryDate.map { _ in }.eraseToAnyPublisher(),
+                                                SettingsHelper.relationshipStartDate.map { _ in }.eraseToAnyPublisher(),
+                                                SettingsHelper.isShowingBackgroundWave.map { _ in }.eraseToAnyPublisher())
+            .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
+            .map { _ in }
+            .eraseToAnyPublisher()
         
         let input = T01MainViewViewModel.Input(onButtonTap: onButtonTap,
-                                               viewDidAppear: self.rx.viewDidAppear.mapToVoid(),
+                                               viewDidAppear: viewDidAppearSignal.eraseToAnyPublisher(),
                                                onSettingChange: onSettingChange)
         let output = viewModel.transform(input)
         
-        output.noResponser.drive().disposed(by: disposeBag)
-        output.progress.drive(onNext: { [weak self] in
-            self?.wave?.setProgress($0)
-            self?.heartView.progress = $0
-        }).disposed(by: disposeBag)
-        output.numberOfDay.drive(onNext: { [weak self] in
-            self?.heartView.numberOfDay = $0
-        }).disposed(by: disposeBag)
-        output.isShowingWaveBackground
+        output.noResponser
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {}).store(in: &cancellables)
+        
+        output.progress
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue:  { [weak self] in
+                self?.wave?.setProgress($0)
+                self?.heartView.progress = $0
+            })
+            .store(in: &cancellables)
+        
+        output.numberOfDay
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue:  { [weak self] in
+                self?.heartView.numberOfDay = $0
+            })
+            .store(in: &cancellables)
+        
+        output
+            .isShowingWaveBackground
+            .receive(on: DispatchQueue.main)
             .map { !$0 }
-            .drive(defaultBackgroundView.rx.isHidden)
-            .disposed(by: disposeBag)
-    }
+            .sink(receiveValue: { [weak self] isHidden in
+                self?.defaultBackgroundView.isHidden = isHidden
+            })
+            .store(in: &cancellables)    }
 }
 
 extension T01MainViewController {
@@ -97,7 +122,7 @@ extension T01MainViewController {
         firstLoverView.person = Person(name: "Test person 1", gender: .male, dateOfBirth: Date())
         secondLoverView.person = Person(name: "Test person 1", gender: .female, dateOfBirth: Date())
     }
-
+    
     private func setupBackground() {
         imageBackgroundView.image = ImageNames.defaultBackground.image
         animationInitial()
@@ -109,7 +134,7 @@ extension T01MainViewController {
         wave?.startAnimation()
         wave?.frontColor = UIColor.red.withAlphaComponent(0.25)
         wave?.backColor = UIColor.red.withAlphaComponent(0.15)
-                
+        
         if let wave = wave {
             self.defaultBackgroundView.addSubview(wave)
         }

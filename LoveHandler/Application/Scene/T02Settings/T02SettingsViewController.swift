@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import RxViewController
+import Combine
+import CombineCocoa
 
 class T02SettingsViewController: BaseViewController {
     
@@ -38,7 +37,17 @@ class T02SettingsViewController: BaseViewController {
 
     var viewModel: T02SettingsViewModel?
     private var dataSource: [T02SettingsViewModel.SectionInfo] = []
-    private var disposeBag = DisposeBag()
+    private var cancellables = Set<AnyCancellable>()
+    
+    private var onCellSelected = PassthroughSubject<IndexPath, Never>()
+    private var onViewWillAppearSignal = PassthroughSubject<Void, Never>()
+
+    deinit {
+        onCellSelected.send(completion: .finished)
+        onViewWillAppearSignal.send(completion: .finished)
+        
+        cancellables.forEach { $0.cancel() }
+    }
     
     override func setupView() {
         super.setupView()
@@ -46,6 +55,11 @@ class T02SettingsViewController: BaseViewController {
         tableView.dataSource = self
         setupNavigationBar()
         tableView.tableFooterView = getTableFooterView()
+    }
+    
+    override func refreshView() {
+        super.refreshView()
+        onViewWillAppearSignal.send(Void())
     }
     
     override func setupLocalizedString() {
@@ -75,25 +89,27 @@ class T02SettingsViewController: BaseViewController {
         
         guard let viewModel = viewModel else { return }
         
-        let didSelectCell =  tableView.rx.itemSelected.asObservable()
+        let didSelectCell =  onCellSelected
             .map {[weak self] indexPath -> T02SettingsViewModel.Cell? in
                 self?.tableView.deselectRow(at: indexPath, animated: true)
                 return self?.dataSource[safe: indexPath.section]?.cells[safe: indexPath.row]
             }
             .compactMap { $0 }
+            .eraseToAnyPublisher()
         
-        let input = T02SettingsViewModel.Input(viewWillAppear: self.rx.viewWillAppear.mapToVoid(),
+        let input = T02SettingsViewModel.Input(viewWillAppear: onViewWillAppearSignal.eraseToAnyPublisher(),
                                                didSelectCell: didSelectCell,
-                                               dismissTrigger: closeButton.rx.tap.mapToVoid())
+                                               dismissTrigger: closeButton.tapPublisher)
         
         let output = viewModel.transform(input)
         
-        output.noRespone.drive().disposed(by: disposeBag)
+        output.noRespone.sink(receiveValue: {}).store(in: &cancellables)
         
-        output.dataSource.drive(onNext: { [weak self] dataSource in
+        output.dataSource.sink(receiveValue: { [weak self] dataSource in
             self?.dataSource = dataSource
             self?.tableView.reloadData()
-        }).disposed(by: disposeBag)
+        })
+        .store(in: &cancellables)
     }
     
     override func setupTheme() {
@@ -152,6 +168,10 @@ extension T02SettingsViewController: UITableViewDataSource {
 }
 
 extension T02SettingsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onCellSelected.send(indexPath)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54.0
     }
