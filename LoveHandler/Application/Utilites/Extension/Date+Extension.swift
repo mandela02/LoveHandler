@@ -236,4 +236,34 @@ extension Date {
         let components = Calendar.gregorian.dateComponents([component], from: start, to: end)
         return components.day ?? 0
     }
+    
+    func getAllDateInMonth() -> [Date] {
+        var dates: [Date] = []
+        
+        let startDate = self.startOfMonth
+        let endDate = self.endOfMonth
+        
+        // Get all date in month
+        var date = startDate
+        while date <= endDate {
+            dates.append(date)
+            date = date.tomorrow
+        }
+        // Get all date show in last month
+        let startDayOfWeek = 1
+        guard let weekDayOfFirstDay = dates.first?.weekday else { return dates }
+        let numberDatesInsert = startDayOfWeek <= weekDayOfFirstDay ? weekDayOfFirstDay - startDayOfWeek : 7 - startDayOfWeek + weekDayOfFirstDay
+        for _ in 0..<numberDatesInsert {
+            if let firstDate = dates.first {
+                dates.insert(firstDate.yesterday, at: 0)
+            }
+        }
+        // Get all date show in next month
+        while dates.count % 7 != 0 {
+            if let lastDate = dates.last {
+                dates.append(lastDate.tomorrow)
+            }
+        }
+        return dates
+    }
 }

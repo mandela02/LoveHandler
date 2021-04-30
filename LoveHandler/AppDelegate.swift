@@ -14,7 +14,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupAppNavigator()
+        //testDB()
         return true
+    }
+    
+    func testDB() {
+        let note = Note(id: UUID(),
+                        createDate: 10,
+                        updateDate: 10,
+                        displayDate: 10,
+                        content: "ád",
+                        title: "ád",
+                        images: [])
+        
+        let repo = Repository<Note>(container: PersistenceManager.shared.persistentContainer)
+        do {
+            try repo.save(model: note)
+            try print(repo.countAll())
+            print(repo.fetchAllData().map { $0.content })
+            print(repo.entityName)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
     }
 }
 
