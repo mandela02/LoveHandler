@@ -11,6 +11,8 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = Colors.deepPink
+
         setupView()
         setupLocalizedString()
         setupTheme()

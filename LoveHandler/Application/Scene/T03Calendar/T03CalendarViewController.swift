@@ -20,12 +20,14 @@ class T03CalendarViewController: BaseViewController {
                                           style: .plain,
                                           target: nil,
                                           action: nil)
+        closeButton.tintColor = UIColor.white
         return closeButton
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = UIColor.white
         return label
     }()
 
@@ -66,7 +68,7 @@ class T03CalendarViewController: BaseViewController {
     
     override func setupLocalizedString() {
         super.setupLocalizedString()
-        titleLabel.text = LocalizedString.t03SettingsTitle
+        titleLabel.text = "Calendar"
     }
     
     override func bindViewModel() {

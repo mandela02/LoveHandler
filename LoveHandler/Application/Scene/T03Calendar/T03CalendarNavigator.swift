@@ -27,6 +27,7 @@ class T03CalendarNavigator: T03CalendarNavigatorType {
     
     func toNote() {
         let viewController = T05NoteViewController.instantiateFromStoryboard()
+        viewController.viewModel = T05NoteViewModel()
         navigationController.pushViewController(viewController, animated: true)
     }
 }

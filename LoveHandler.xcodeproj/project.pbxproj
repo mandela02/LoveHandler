@@ -22,6 +22,7 @@
 		8423D1D5263BACCA00106030 /* T05NoteViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8423D1D4263BACCA00106030 /* T05NoteViewController.storyboard */; };
 		8423D1D9263BB53900106030 /* T05ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1D8263BB53900106030 /* T05ImageCollectionViewCell.swift */; };
 		8423D1DC263BD1B200106030 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */; };
+		8423D210263C5F0D00106030 /* T05NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D20F263C5F0D00106030 /* T05NoteViewModel.swift */; };
 		84AB1F052628B38C00A01F9E /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F042628B38C00A01F9E /* UIBezierPath+Extension.swift */; };
 		84AB1F092628B3C100A01F9E /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F082628B3C100A01F9E /* Int+Extension.swift */; };
 		84AB1F112628B41C00A01F9E /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F102628B41C00A01F9E /* HeartView.swift */; };
@@ -121,6 +122,7 @@
 		8423D1D4263BACCA00106030 /* T05NoteViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T05NoteViewController.storyboard; sourceTree = "<group>"; };
 		8423D1D8263BB53900106030 /* T05ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T05ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
+		8423D20F263C5F0D00106030 /* T05NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T05NoteViewModel.swift; sourceTree = "<group>"; };
 		84AB1F042628B38C00A01F9E /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
 		84AB1F082628B3C100A01F9E /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		84AB1F102628B41C00A01F9E /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				8423D1D0263BACAA00106030 /* T05NoteViewController.swift */,
 				8423D1D4263BACCA00106030 /* T05NoteViewController.storyboard */,
 				8423D1D8263BB53900106030 /* T05ImageCollectionViewCell.swift */,
+				8423D20F263C5F0D00106030 /* T05NoteViewModel.swift */,
 			);
 			path = T05Note;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				84AB208C263400FB00A01F9E /* RoundView.swift in Sources */,
 				84AB1F4C2628C88900A01F9E /* UISegmentedControl+Extension.swift in Sources */,
 				84AB1FB0262A09A800A01F9E /* Zodiac.swift in Sources */,
+				8423D210263C5F0D00106030 /* T05NoteViewModel.swift in Sources */,
 				84AB203B262DF8B900A01F9E /* T02SettingsViewModel.swift in Sources */,
 				84AB1F4A2628C88900A01F9E /* UIViewController+Extension.swift in Sources */,
 				8423D1A8263B32D200106030 /* T03CalendarViewModel.swift in Sources */,

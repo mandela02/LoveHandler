@@ -88,8 +88,8 @@ extension ImagePickerHelper {
         let imagePicker = ImagePickerController()
 
         imagePicker.settings.selection.max = 15
-        imagePicker.settings.selection.unselectOnReachingMax = true
-        imagePicker.settings.fetch.assets.supportedMediaTypes = [.image, .video]
+        imagePicker.settings.selection.unselectOnReachingMax = false
+        imagePicker.settings.fetch.assets.supportedMediaTypes = [.image]
         imagePicker.albumButton.tintColor = UIColor.green
         imagePicker.cancelButton.tintColor = UIColor.red
         imagePicker.doneButton.tintColor = UIColor.purple
@@ -139,6 +139,7 @@ extension ImagePickerHelper {
                                               contentMode: .aspectFit,
                                               options: nil) { (image, info) in
             complete(image)
+            print(info)
         }
     }
 
