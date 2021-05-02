@@ -29,19 +29,20 @@ class T05NoteViewModel: BaseViewModel {
             .handleEvents(receiveOutput: { images in
                 if !isSettingAvatar && !images.isEmpty {
                     bigImage.send(images.first)
+                    isSettingAvatar = true
                 }
             })
             .share()
             .eraseToAnyPublisher()
         
         let avatar = input.seletedCell
-            .combineLatest(allImages)
-            .filter { $0.0 != nil }
-            .handleEvents(receiveOutput: { _, _ in
+            .removeDuplicates(by: { $0 == $1 })
+            .filter { $0 != nil }
+            .handleEvents(receiveOutput: { _ in
                 isSettingAvatar = true
             })
-            .map { cell, images in
-                return images[safe: cell!] ?? images.first
+            .map { cell in
+                return totalImages[safe: cell!] ?? totalImages.first
             }
             .handleEvents(receiveOutput: { image in
                 bigImage.send(image)
@@ -56,7 +57,7 @@ class T05NoteViewModel: BaseViewModel {
                       let image = totalImages[safe: index],
                       let avatar = bigImage.value  else { return }
                 if avatar == image {
-                    if totalImages.count > 0 {
+                    if totalImages.count - 1 > 0 {
                         bigImage.send(totalImages.first)
                     } else {
                         bigImage.send(nil)
@@ -68,6 +69,11 @@ class T05NoteViewModel: BaseViewModel {
                 totalImages.remove(at: index!)
                 return totalImages
             }
+            .handleEvents(receiveOutput: { images in
+                if images.isEmpty {
+                    isSettingAvatar = false
+                }
+            })
             .eraseToAnyPublisher()
 
         let images = Publishers.Merge(allImages, deleteImageAction)

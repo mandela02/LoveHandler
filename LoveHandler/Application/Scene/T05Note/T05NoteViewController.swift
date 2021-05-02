@@ -69,12 +69,13 @@ class T05NoteViewController: BaseViewController {
             .store(in: &cancellables)
         
         output.images
-            .sink { [weak self] (images) in
+            .sink { [weak self] images in
                 guard let self = self else { return }
                 self.images.send(images)
                 self.deletedImage.send(nil)
                 self.cameraImage.send(nil)
                 self.libraryImage.send([])
+                            
                 self.imageCollectionView.reloadData()
 
             }
@@ -82,9 +83,17 @@ class T05NoteViewController: BaseViewController {
         
         output.avatar
             .sink { [weak self] image in
-                self?.avatarImageView.image = image
-                self?.avatar.send(image)
-                self?.imageCollectionView.reloadData()
+                guard let self = self else { return }
+                UIView.transition(with: self.avatarImageView,
+                                  duration: 0.5,
+                                  options: .transitionCrossDissolve,
+                                  animations: { [weak self] in
+                                    self?.avatarImageView.image = image
+                                  },
+                                  completion: nil)
+
+                self.avatar.send(image)
+                self.imageCollectionView.reloadData()
             }
             .store(in: &cancellables)
         
