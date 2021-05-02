@@ -38,7 +38,7 @@ class T05NoteViewController: BaseViewController {
         
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.imageCollectionView.reloadData()
+        //self.imageCollectionView.reloadData()
     }
     
     override func setupView() {
@@ -75,7 +75,8 @@ class T05NoteViewController: BaseViewController {
                 self.deletedImage.send(nil)
                 self.cameraImage.send(nil)
                 self.libraryImage.send([])
-                self.hotReloadCollectionView()
+                self.imageCollectionView.reloadData()
+
             }
             .store(in: &cancellables)
         
@@ -91,14 +92,7 @@ class T05NoteViewController: BaseViewController {
             .sink {}
             .store(in: &cancellables)
     }
-    
-    private func hotReloadCollectionView() {
-        imageCollectionView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.imageCollectionView.reloadData()
-        }
-    }
-    
+        
     override func setupTheme() {
         super.setupTheme()
         self.navigationController?.navigationBar.tintColor = UIColor.white;
