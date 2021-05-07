@@ -32,8 +32,7 @@ extension CDImage {
 extension CDImage: ModelConvertibleType {
     func asModel() -> Image {
         return Image(data: wrappedData,
-                     id: wrappedId,
-                     origin: origin?.asModel())
+                     id: wrappedId)
     }
 }
 

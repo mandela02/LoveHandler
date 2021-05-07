@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupAppNavigator()
-        //testDB()
+        testDB()
         return true
     }
     
@@ -29,14 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let repo = Repository<Note>(container: PersistenceManager.shared.persistentContainer)
         do {
-            try repo.save(model: note)
+            //try repo.save(model: note)
             try print(repo.countAll())
             print(repo.fetchAllData().map { $0.content })
             print(repo.entityName)
         } catch let error {
             print(error.localizedDescription)
         }
-        
     }
 }
 

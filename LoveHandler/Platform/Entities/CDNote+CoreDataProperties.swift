@@ -47,8 +47,8 @@ extension CDNote: ModelConvertibleType {
                     createDate: createDate,
                     updateDate: updateDate,
                     displayDate: displayDate,
-                    content: wrappedContent,
-                    title: wrappedTitle,
+                    content: content,
+                    title: title,
                     images: wrappedImages.map { $0.asModel() })
     }
 }

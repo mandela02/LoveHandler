@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84096DB626413DE200605068 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84096DB526413DE200605068 /* UseCaseProvider.swift */; };
 		8423D188263B173300106030 /* CDNote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D184263B173300106030 /* CDNote+CoreDataClass.swift */; };
 		8423D189263B173300106030 /* CDNote+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D185263B173300106030 /* CDNote+CoreDataProperties.swift */; };
 		8423D18A263B173300106030 /* CDImage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D186263B173300106030 /* CDImage+CoreDataClass.swift */; };
@@ -107,6 +108,7 @@
 /* Begin PBXFileReference section */
 		6585D8F41DDF493DF1847E7C /* Pods-LoveHandler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveHandler.debug.xcconfig"; path = "Target Support Files/Pods-LoveHandler/Pods-LoveHandler.debug.xcconfig"; sourceTree = "<group>"; };
 		6A6D23C89F3B893C3664717C /* Pods-LoveHandler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveHandler.release.xcconfig"; path = "Target Support Files/Pods-LoveHandler/Pods-LoveHandler.release.xcconfig"; sourceTree = "<group>"; };
+		84096DB526413DE200605068 /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		8423D184263B173300106030 /* CDNote+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDNote+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8423D185263B173300106030 /* CDNote+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDNote+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8423D186263B173300106030 /* CDImage+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDImage+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				8423D19A263B257100106030 /* T04ListNoteUseCase.swift */,
 				8423D19E263B2FF200106030 /* T05NoteUseCase.swift */,
+				84096DB526413DE200605068 /* UseCaseProvider.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -779,6 +782,7 @@
 				84AB2035262DF7F000A01F9E /* T02SettingsViewController.swift in Sources */,
 				84AB1F532628C88900A01F9E /* UIImage+Extension.swift in Sources */,
 				84AB208226308F6400A01F9E /* T03CalendarViewController.swift in Sources */,
+				84096DB626413DE200605068 /* UseCaseProvider.swift in Sources */,
 				84AB2022262DE9E500A01F9E /* T01MainViewViewModel.swift in Sources */,
 				8423D19F263B2FF200106030 /* T05NoteUseCase.swift in Sources */,
 				84AB1F522628C88900A01F9E /* UIApplication+Extension.swift in Sources */,
