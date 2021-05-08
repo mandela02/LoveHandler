@@ -9,32 +9,30 @@ import Foundation
 import Combine
 
 class T03CalendarViewModel: BaseViewModel {
-    private var navigator: T03CalendarNavigator
+    private var navigator: T03CalendarNavigatorType
     private var useCase: T03CalendarUseCaseType
 
-    init(navigator: T03CalendarNavigator, useCase: T03CalendarUseCaseType) {
+    init(navigator: T03CalendarNavigatorType, useCase: T03CalendarUseCaseType) {
         self.navigator = navigator
         self.useCase = useCase
     }
     
     func transform(_ input: Input) -> Output {
         let refDate = CurrentValueSubject<Date, Never>(Date())
-        
+        var canGo = true
         
         let addNoteButtonPressed = input.addNoteButtonPressed
             .handleEvents(receiveOutput: { [weak self] in
                 self?.navigator.toNote()
             })
             .eraseToAnyPublisher()
+        
         let backButtonPressed = input.backButtonPressed
             .handleEvents(receiveOutput: { [weak self] in
                 self?.navigator.dissmiss()
             })
             .eraseToAnyPublisher()
         
-        let noResponse = Publishers.Merge(addNoteButtonPressed, backButtonPressed)
-            .eraseToAnyPublisher()
-                
         let dates = input.viewWillAppear
             .map { refDate.value.getAllDateInMonth() }
             .map { [weak self] dates -> [DateNote] in
@@ -48,7 +46,6 @@ class T03CalendarViewModel: BaseViewModel {
                         dateNotes.append(DateNote(date: date.startOfDay, notes: []))
                     }
                 }
-                
                 return dateNotes
             }
             .share()
@@ -59,8 +56,33 @@ class T03CalendarViewModel: BaseViewModel {
             .map { path, datas  in
                 return datas[safe: path.row]
             }
+            .share()
             .eraseToAnyPublisher()
         
+        let noteSelectAction = input.selectNoteAction
+            .handleEvents(receiveOutput: { _ in
+                canGo = true
+            })
+            .combineLatest(dateSelectAction)
+            .map { path, data in
+                return data?.notes[safe: path.row]
+            }
+            .handleEvents(receiveOutput: { [weak self] note in
+                guard let note = note else { return }
+                if canGo {
+                    canGo = false
+                    self?.navigator.toNote(with: note)
+                }
+            })
+            .map { _ in }
+            .eraseToAnyPublisher()
+        
+        let noResponse = Publishers.MergeMany([addNoteButtonPressed,
+                                               backButtonPressed,
+                                               noteSelectAction])
+            .eraseToAnyPublisher()
+                
+
         return Output(noResponse: noResponse,
                       datesInMonth: dates,
                       refDate: refDate.eraseToAnyPublisher(),
@@ -81,6 +103,7 @@ extension T03CalendarViewModel {
         let viewWillAppear: AnyPublisher<Void, Never>
         let viewDidLoad: AnyPublisher<Void, Never>
         let selectDateAction: AnyPublisher<IndexPath, Never>
+        let selectNoteAction: AnyPublisher<IndexPath, Never>
     }
     
     struct Output {

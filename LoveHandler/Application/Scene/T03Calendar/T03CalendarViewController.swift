@@ -44,6 +44,7 @@ class T03CalendarViewController: BaseViewController {
     private var viewDidLoad = PassthroughSubject<Void, Never>()
     private var allDates: [T03CalendarViewModel.DateNote] = []
     private var selectedDateIndexPath = PassthroughSubject<IndexPath, Never>()
+    private var selectedNoteIndexPath = PassthroughSubject<IndexPath, Never>()
     private var today: T03CalendarViewModel.DateNote?
 
     deinit {
@@ -55,15 +56,18 @@ class T03CalendarViewController: BaseViewController {
     override func setupView() {
         super.setupView()
         setupNavigationBar()
-        calendarCollectionView.dataSource = self
-        calendarCollectionView.delegate = self
-        noteTableView.dataSource = self
-        noteTableView.delegate = self
+        
         viewDidLoad.send(Void())
+        
         self.noteTableView.isHidden = true
         self.noDataView.isHidden = true
         
         noDataLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        
+        calendarCollectionView.dataSource = self
+        calendarCollectionView.delegate = self
+        noteTableView.dataSource = self
+        noteTableView.delegate = self
     }
     
     override func refreshView() {
@@ -95,7 +99,8 @@ class T03CalendarViewController: BaseViewController {
                                                addNoteButtonPressed: addNoteButton.tapPublisher,
                                                viewWillAppear: viewWillAppear.eraseToAnyPublisher(),
                                                viewDidLoad: viewDidLoad.eraseToAnyPublisher(),
-                                               selectDateAction: selectedDateIndexPath.eraseToAnyPublisher())
+                                               selectDateAction: selectedDateIndexPath.eraseToAnyPublisher(),
+                                               selectNoteAction: selectedNoteIndexPath.eraseToAnyPublisher())
         let output = viewModel.transform(input)
         
         output.noResponse
@@ -138,7 +143,6 @@ class T03CalendarViewController: BaseViewController {
                 }
             }
             .store(in: &cancellables)
-
     }
     
     private func setupNavigationBar() {
@@ -222,6 +226,7 @@ extension T03CalendarViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        selectedNoteIndexPath.send(indexPath)
     }
 }
 
