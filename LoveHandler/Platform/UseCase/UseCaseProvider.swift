@@ -13,10 +13,15 @@ class UseCaseProvider {
     private lazy var noteRepository = Repository<Note>(container: PersistenceManager.shared.persistentContainer)
     
     private lazy var noteUseCase = T05NoteUseCase(repository: noteRepository)
+    private lazy var calendarUseCase = T03CalendarUseCase(repository: noteRepository)
 
     private init() {}
     
     func getNotesUseCase() -> T05NoteUseCaseType {
         return noteUseCase
+    }
+    
+    func getCalendarUseCase() -> T03CalendarUseCaseType {
+        return calendarUseCase
     }
 }
