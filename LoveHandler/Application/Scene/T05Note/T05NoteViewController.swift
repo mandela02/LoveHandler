@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import DatePickerDialog
 
 class T05NoteViewController: BaseViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -37,10 +38,18 @@ class T05NoteViewController: BaseViewController {
         return closeButton
     }()
     
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = UIColor.white
+        return label
+    }()
+    
     var viewModel: T05NoteViewModel?
     
     private let defaultDividerSize: CGFloat = 1
     private var picker: ImagePickerHelper?
+    private var tapGesture: UITapGestureRecognizer?
     
     private var cancellables = Set<AnyCancellable>()
     private var cameraImage = CurrentValueSubject<UIImage?, Never>(nil)
@@ -51,6 +60,8 @@ class T05NoteViewController: BaseViewController {
     private var images = CurrentValueSubject<[UIImage], Never>([])
     
     private var avatar = CurrentValueSubject<UIImage?, Never>(nil)
+    
+    private var refDate = Date()
 
     deinit {
         cancellables.forEach { $0.cancel() }
@@ -70,14 +81,38 @@ class T05NoteViewController: BaseViewController {
         
         titleTextField.borderStyle = .none
         contentTextView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        
-        self.navigationItem.rightBarButtonItem = saveButton
+        setupNavigationBar()
     }
     
+    private func setupNavigationBar() {
+        let view = UIView()
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        view.layoutIfNeeded()
+        view.sizeToFit()
+        
+        navigationItem.titleView = view
+        self.navigationItem.rightBarButtonItem = saveButton
+        setupGesture()
+    }
+    
+    private func setupGesture() {
+        tapGesture = UITapGestureRecognizer(target: self, action:nil)
+        if let tapGesture = tapGesture {
+            titleLabel.isUserInteractionEnabled = true
+            titleLabel.addGestureRecognizer(tapGesture)
+        }
+    }
+
     override func bindViewModel() {
         super.bindViewModel()
 
-        guard let viewModel = viewModel else { return }
+        guard let viewModel = viewModel, let tapGesture = tapGesture else { return }
         
         let textActiveAction = Publishers.Merge(titleTextField.controlEventPublisher(for: .editingDidBegin).eraseToAnyPublisher(),
                                                 NotificationCenter.default
@@ -88,6 +123,19 @@ class T05NoteViewController: BaseViewController {
                                                     .eraseToAnyPublisher())
             .eraseToAnyPublisher()
         
+        
+        let datePickerAction = tapGesture.tapPublisher
+            .flatMap { [weak self] _ -> AnyPublisher<Date?, Never> in
+                guard let self = self else {
+                    return Empty(completeImmediately: true)
+                        .eraseToAnyPublisher()
+                }
+                return self.datePicker(title: "", date: self.refDate, minDate: Constant.minDate, maxDate: Constant.maxDate)
+                    .eraseToAnyPublisher()
+            }
+            .compactMap { $0 }
+            .eraseToAnyPublisher()
+        
         let input = T05NoteViewModel.Input(imageButtonPressed: addImageButton.tapPublisher,
                                            cameraImage: cameraImage.eraseToAnyPublisher(),
                                            libraryImages: libraryImage.eraseToAnyPublisher(),
@@ -96,7 +144,8 @@ class T05NoteViewController: BaseViewController {
                                            saveButtonAction: saveButton.tapPublisher.eraseToAnyPublisher(),
                                            titleTextInputAction: titleTextField.textPublisher.eraseToAnyPublisher(),
                                            contentTextInputAction: contentTextView.textPublisher.eraseToAnyPublisher(),
-                                           textActiveAction: textActiveAction)
+                                           textActiveAction: textActiveAction,
+                                           datePickerAction: datePickerAction)
         let output = viewModel.transform(input)
         
         output.didPressImageButton
@@ -168,10 +217,18 @@ class T05NoteViewController: BaseViewController {
                 guard let note = note else { return }
                 
                 self.titleTextField.text = note.title
-                self.contentTextView.text = note.title
+                self.contentTextView.text = note.content
             }
             .store(in: &cancellables)
 
+        output.displayDate
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.titleLabel.text = $0.dayMonthYearHourMinuteString
+                self.refDate = $0
+            }
+            .store(in: &cancellables)
     }
         
     override func setupTheme() {
@@ -238,5 +295,24 @@ extension T05NoteViewController: ImagePickerDelegate {
     
     func libraryHandle(images: [UIImage]) {
         libraryImage.send(images)
+    }
+}
+
+extension T05NoteViewController {
+    func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never> {
+        return Future() { promise in
+            let dialog = DatePickerDialog(locale: Locale(identifier: Strings.localeIdentifier))
+            dialog.overrideUserInterfaceStyle = .light
+            dialog.datePicker.overrideUserInterfaceStyle = .light
+            dialog.show(title,
+                        doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
+                        cancelButtonTitle: LocalizedString.t01CancelButtonTitle,
+                        defaultDate: date,
+                        minimumDate: minDate,
+                        maximumDate: maxDate,
+                        datePickerMode: .dateAndTime) { selectedDate in
+                promise(.success(selectedDate))
+            }
+        }
     }
 }

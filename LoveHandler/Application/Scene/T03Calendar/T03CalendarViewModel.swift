@@ -20,13 +20,7 @@ class T03CalendarViewModel: BaseViewModel {
     func transform(_ input: Input) -> Output {
         let refDate = CurrentValueSubject<Date, Never>(Date())
         var canGo = true
-        
-        let addNoteButtonPressed = input.addNoteButtonPressed
-            .handleEvents(receiveOutput: { [weak self] in
-                self?.navigator.toNote()
-            })
-            .eraseToAnyPublisher()
-        
+
         let backButtonPressed = input.backButtonPressed
             .handleEvents(receiveOutput: { [weak self] in
                 self?.navigator.dissmiss()
@@ -74,6 +68,26 @@ class T03CalendarViewModel: BaseViewModel {
             .share()
             .eraseToAnyPublisher()
         
+        
+        let addNoteButtonPressed = input.addNoteButtonPressed
+            .handleEvents(receiveOutput: { _ in
+                canGo = true
+            })
+            .combineLatest(dateSelectAction)
+            .handleEvents(receiveOutput: { [weak self] _, date in
+                guard let date = date else {
+                    self?.navigator.toNote()
+                    return
+                }
+                if canGo {
+                    canGo = false
+                    self?.navigator.toNote(with: date.date.setTime(hour: Date().hour, minutes: Date().minute) ?? Date())
+                }
+            })
+            .map { _ in }
+            .eraseToAnyPublisher()
+        
+
         let noteSelectAction = input.selectNoteAction
             .handleEvents(receiveOutput: { _ in
                 canGo = true

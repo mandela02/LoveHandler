@@ -13,14 +13,17 @@ class T05NoteViewModel: BaseViewModel {
     
     let useCase: T05NoteUseCaseType
     let note: Note?
+    let date: Date?
     
-    init(note: Note? = nil, useCase: T05NoteUseCaseType) {
+    init(note: Note? = nil, date: Date? = nil, useCase: T05NoteUseCaseType) {
         self.note = note
         self.useCase = useCase
+        self.date = date
     }
     
     func transform(_ input: Input) -> Output {
         let didPressImageButton = input.imageButtonPressed.eraseToAnyPublisher()
+        
         var isSettingAvatar = false
         let bigImage = CurrentValueSubject<UIImage?, Never>(nil)
         
@@ -28,6 +31,12 @@ class T05NoteViewModel: BaseViewModel {
         let title = CurrentValueSubject<String?, Never>(nil)
 
         var note = self.note
+        
+        let displayDate = CurrentValueSubject<Date, Never>(date ?? Date())
+        
+        if let note = note {
+            displayDate.send(Date(timeIntervalSince1970: TimeInterval(note.displayDate)))
+        }
         
         var totalImages: [UIImage] = note?
             .images
@@ -53,7 +62,6 @@ class T05NoteViewModel: BaseViewModel {
             .eraseToAnyPublisher()
         
         let avatar = input.seletedCell
-            .removeDuplicates(by: { $0 == $1 })
             .filter { $0 != nil }
             .handleEvents(receiveOutput: { _ in
                 isSettingAvatar = true
@@ -73,17 +81,16 @@ class T05NoteViewModel: BaseViewModel {
                 guard let index = index,
                       let image = totalImages[safe: index],
                       let avatar = bigImage.value  else { return }
+                totalImages.remove(at: index)
                 if avatar == image {
-                    if totalImages.count - 1 > 0 {
+                    if totalImages.count > 0 {
                         bigImage.send(totalImages.first)
                     } else {
                         bigImage.send(nil)
                     }
                 }
-                
             })
             .map { index -> [UIImage] in
-                totalImages.remove(at: index!)
                 return totalImages
             }
             .handleEvents(receiveOutput: { images in
@@ -121,7 +128,7 @@ class T05NoteViewModel: BaseViewModel {
                 let noteToSave = Note(id: note?.id ?? UUID(),
                                       createDate: note?.createDate ?? Double(Date().timeIntervalSince1970),
                                       updateDate: Double(Date().timeIntervalSince1970),
-                                      displayDate: Double(Date().timeIntervalSince1970),
+                                      displayDate: Double(displayDate.value.timeIntervalSince1970),
                                       content: content.value,
                                       title: title.value,
                                       images: dataImages)
@@ -131,24 +138,38 @@ class T05NoteViewModel: BaseViewModel {
             .handleEvents(receiveOutput: { newNote in
                 note = newNote
             })
-            .map { [weak self] note -> Result in
+            .map { [weak self] newNote -> Result in
                 guard let self = self else { return Result.failure(error: "Unexpected Error") }
-                return self.useCase.save(note: note)
+                if let _ = note {
+                    return self.useCase.update(note: newNote)
+                } else {
+                    return self.useCase.save(note: newNote)
+                }
             }
             .share()
             .eraseToAnyPublisher()
+        
+        let datePickerAction = input.datePickerAction.share()
         
         let saveState = saveActionTriggered.map { _ in State.display }.eraseToAnyPublisher()
         let initState = note == nil ? Just(State.edit).eraseToAnyPublisher() : Just(State.display).eraseToAnyPublisher()
         let textChangeState = input.textActiveAction.map { State.edit }.eraseToAnyPublisher()
         let imageState = input.imageButtonPressed.map { State.edit }.eraseToAnyPublisher()
+        let deleteImageState = input.deleteButtonPressed.map { _ in State.edit }.eraseToAnyPublisher()
+        let datePickState = datePickerAction.map { _ in State.edit }.eraseToAnyPublisher()
 
-        let state = Publishers.MergeMany([saveState, initState, textChangeState, imageState]).eraseToAnyPublisher()
+        let state = Publishers.MergeMany([saveState, initState, textChangeState, imageState, deleteImageState, datePickState]).eraseToAnyPublisher()
         
         let noResponse = Publishers.MergeMany([avatar,
                                                titleSyncAction,
                                                contentSyncAction])
             .eraseToAnyPublisher()
+        
+        let datePickerEvent = datePickerAction.handleEvents(receiveOutput: { date in
+            displayDate.send(date)
+        })
+        
+        let changeDisplayDateAction = Publishers.Merge(displayDate.eraseToAnyPublisher(), datePickerEvent)
         
         return Output(images: images,
                       didPressImageButton: didPressImageButton,
@@ -156,7 +177,8 @@ class T05NoteViewModel: BaseViewModel {
                       noResponse: noResponse,
                       actionResponse: saveActionTriggered,
                       state: state,
-                      initialNote: Just(note).eraseToAnyPublisher())
+                      initialNote: Just(note).eraseToAnyPublisher(),
+                      displayDate: changeDisplayDateAction.eraseToAnyPublisher())
     }
 }
 
@@ -171,6 +193,7 @@ extension T05NoteViewModel {
         let titleTextInputAction: AnyPublisher<String?, Never>
         let contentTextInputAction: AnyPublisher<String?, Never>
         let textActiveAction: AnyPublisher<Void, Never>
+        let datePickerAction: AnyPublisher<Date, Never>
     }
     
     struct  Output {
@@ -181,6 +204,7 @@ extension T05NoteViewModel {
         let actionResponse: AnyPublisher<Result, Never>
         let state: AnyPublisher<State, Never>
         let initialNote: AnyPublisher<Note?, Never>
+        let displayDate: AnyPublisher<Date, Never>
     }
     
     enum State {

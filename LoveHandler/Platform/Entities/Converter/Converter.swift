@@ -11,6 +11,7 @@ import CoreData
 protocol ModelConvertibleType {
     associatedtype Model
     func asModel() -> Model
+    func updateCoreData(with model: Model, context: NSManagedObjectContext)
 }
 
 protocol CoreDataRepresentable {

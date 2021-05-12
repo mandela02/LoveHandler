@@ -34,6 +34,10 @@ extension CDImage: ModelConvertibleType {
         return Image(data: wrappedData,
                      id: wrappedId)
     }
+    
+    func updateCoreData(with model: Image, context: NSManagedObjectContext) {
+        self.data = model.data
+    }
 }
 
 extension CDImage : Identifiable {

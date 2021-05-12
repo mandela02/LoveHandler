@@ -189,7 +189,7 @@ extension Date {
     }
     
     func setTime(hour: Int, minutes: Int) -> Date? {
-        return Calendar.gregorian.date(bySettingHour: hour, minute: minute, second: 0, of: self)
+        return Calendar.gregorian.date(bySettingHour: hour, minute: minutes, second: 0, of: self)
     }
     
     var zodiac: Zodiac? {
@@ -232,6 +232,12 @@ extension Date {
     
     var monthYearString: String {
         let formatter = DateFormatter(dateFormat: "MMMM/y")
+        formatter.locale = Locale(identifier: Strings.localeIdentifier)
+        return formatter.string(from: self)
+    }
+    
+    var dayMonthYearHourMinuteString: String {
+        let formatter = DateFormatter(dateFormat: "d/M/y HH:mm")
         formatter.locale = Locale(identifier: Strings.localeIdentifier)
         return formatter.string(from: self)
     }
