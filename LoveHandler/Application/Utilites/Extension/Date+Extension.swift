@@ -229,6 +229,12 @@ extension Date {
             return nil
         }
     }
+    
+    var monthYearString: String {
+        let formatter = DateFormatter(dateFormat: "MMMM/y")
+        formatter.locale = Locale(identifier: Strings.localeIdentifier)
+        return formatter.string(from: self)
+    }
 }
 
 extension Date {

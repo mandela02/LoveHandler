@@ -11,13 +11,13 @@ class T03CalendarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var dateBackgroundView: RoundView!
-    func bind(date: Date, isHavingData: Bool = true, isSelected: Bool = false) {
+    func bind(date: Date, isHavingData: Bool = true, isSelected: Bool = false, ref: Date = Date()) {
         
-        self.backgroundColor = date.isInSameMonth(as: Date()) ? (isSelected ? Colors.lightPink : .white ): Colors.deepPink
+        self.backgroundColor = date.isInSameMonth(as: ref) ? (isSelected ? Colors.lightPink : .white ): Colors.deepPink
 
         dateLabel.text = "\(date.day)"
         
-        dateLabel.textColor = date.isInSameMonth(as: Date()) ? (isHavingData || isSelected ? .white : Colors.deepPink) : .white
+        dateLabel.textColor = date.isInSameMonth(as: ref) ? (isHavingData || isSelected ? .white : Colors.deepPink) : .white
         dateLabel.textAlignment = .center
         dateLabel.font = UIFont.systemFont(ofSize: 14.0)
 

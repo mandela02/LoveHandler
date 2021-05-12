@@ -43,14 +43,21 @@ class T03CalendarViewController: BaseViewController {
     private var viewWillAppear = PassthroughSubject<Void, Never>()
     private var viewDidLoad = PassthroughSubject<Void, Never>()
     private var allDates: [T03CalendarViewModel.DateNote] = []
-    private var selectedDateIndexPath = PassthroughSubject<IndexPath, Never>()
+    private var selectedDateIndexPath = PassthroughSubject<IndexPath?, Never>()
     private var selectedNoteIndexPath = PassthroughSubject<IndexPath, Never>()
     private var today: T03CalendarViewModel.DateNote?
 
+    private var refDate = Date()
+    
+    var leftSwipeGesture: UISwipeGestureRecognizer?
+    var rightSwipeGesture: UISwipeGestureRecognizer?
+    
     deinit {
         cancellables.forEach { $0.cancel() }
         viewWillAppear.send(completion: .finished)
         viewDidLoad.send(completion: .finished)
+        selectedNoteIndexPath.send(completion: .finished)
+        selectedDateIndexPath.send(completion: .finished)
     }
     
     override func setupView() {
@@ -68,6 +75,8 @@ class T03CalendarViewController: BaseViewController {
         calendarCollectionView.delegate = self
         noteTableView.dataSource = self
         noteTableView.delegate = self
+        
+        setupGesture()
     }
     
     override func refreshView() {
@@ -93,14 +102,21 @@ class T03CalendarViewController: BaseViewController {
     
     override func bindViewModel() {
         super.bindViewModel()
-        guard let viewModel = viewModel else { return }
+        guard let viewModel = viewModel, let leftGesture = leftSwipeGesture, let rightGesture = rightSwipeGesture else { return }
+        
+        let gesture = Publishers.Merge(
+            leftGesture.swipePublisher.map { _ in T03CalendarViewModel.Direction.left }.eraseToAnyPublisher(),
+            rightGesture.swipePublisher.map { _ in T03CalendarViewModel.Direction.right }.eraseToAnyPublisher()
+        )
+        .eraseToAnyPublisher()
                 
         let input = T03CalendarViewModel.Input(backButtonPressed: closeButton.tapPublisher,
                                                addNoteButtonPressed: addNoteButton.tapPublisher,
                                                viewWillAppear: viewWillAppear.eraseToAnyPublisher(),
                                                viewDidLoad: viewDidLoad.eraseToAnyPublisher(),
                                                selectDateAction: selectedDateIndexPath.eraseToAnyPublisher(),
-                                               selectNoteAction: selectedNoteIndexPath.eraseToAnyPublisher())
+                                               selectNoteAction: selectedNoteIndexPath.eraseToAnyPublisher(),
+                                               swipeAction: gesture)
         let output = viewModel.transform(input)
         
         output.noResponse
@@ -122,7 +138,8 @@ class T03CalendarViewController: BaseViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 guard let self = self else { return }
-                self.titleLabel.text = "\($0.month)"
+                self.titleLabel.text = $0.monthYearString
+                self.refDate = $0
             }
             .store(in: &cancellables)
         
@@ -143,6 +160,8 @@ class T03CalendarViewController: BaseViewController {
                 }
             }
             .store(in: &cancellables)
+        
+        selectedDateIndexPath.send(nil)
     }
     
     private func setupNavigationBar() {
@@ -177,6 +196,33 @@ class T03CalendarViewController: BaseViewController {
         let numberOfRow = CGFloat(allDates.count / 7)
         calendarCollectionViewHeightConstraint.constant = height * numberOfRow + (numberOfRow + 1) * defaultDividerSize
     }
+    
+    private func setupGesture() {
+
+        leftSwipeGesture = UISwipeGestureRecognizer(target: self.calendarCollectionView, action: nil)
+        rightSwipeGesture = UISwipeGestureRecognizer(target: self.calendarCollectionView, action: nil)
+
+        guard let leftSwipeGesture = leftSwipeGesture, let rightSwipeGesture = rightSwipeGesture else { return }
+        
+        leftSwipeGesture.numberOfTouchesRequired = 1
+        leftSwipeGesture.delegate = self
+        leftSwipeGesture.direction = .left
+        
+        rightSwipeGesture.numberOfTouchesRequired = 1
+        rightSwipeGesture.delegate = self
+        rightSwipeGesture.direction = .right
+
+        self.calendarCollectionView.addGestureRecognizer(leftSwipeGesture)
+        self.calendarCollectionView.addGestureRecognizer(rightSwipeGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.onTitleTap))
+        titleLabel.isUserInteractionEnabled = true
+        titleLabel.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func onTitleTap() {
+        print("tap")
+    }
 }
 
 extension T03CalendarViewController: UICollectionViewDataSource {
@@ -187,7 +233,7 @@ extension T03CalendarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: T03CalendarCollectionViewCell.className, for: indexPath) as? T03CalendarCollectionViewCell else { return UICollectionViewCell() }
         guard let data = allDates[safe: indexPath.item] else { return UICollectionViewCell() }
-        cell.bind(date: data.date, isHavingData: !data.notes.isEmpty, isSelected: today?.date == data.date)
+        cell.bind(date: data.date, isHavingData: !data.notes.isEmpty, isSelected: today?.date == data.date, ref: refDate)
         return cell
     }
 }
@@ -214,7 +260,7 @@ extension T03CalendarViewController: UICollectionViewDelegateFlowLayout {
 
 extension T03CalendarViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let data = allDates[safe: indexPath.item], data.date.isInSameMonth(as: Date()) else { return }
+        guard let data = allDates[safe: indexPath.item], data.date.isInSameMonth(as: refDate) else { return }
         selectedDateIndexPath.send(indexPath)
     }
 }
@@ -242,5 +288,11 @@ extension T03CalendarViewController: UITableViewDataSource {
         guard let data = today?.notes[safe: indexPath.row] else { return UITableViewCell() }
         cell.setupCell(with: data)
         return cell
+    }
+}
+
+extension T03CalendarViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

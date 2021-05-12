@@ -33,8 +33,19 @@ class T03CalendarViewModel: BaseViewModel {
             })
             .eraseToAnyPublisher()
         
+        let gesture = input.swipeAction
+            .handleEvents(receiveOutput: { direction in
+                switch direction {
+                case .left: refDate.send(refDate.value.nextMonth)
+                case .right: refDate.send(refDate.value.previousMonth)
+                }
+            })
+            .map { _ in }
+            .eraseToAnyPublisher()
+        
         let dates = input.viewWillAppear
-            .map { refDate.value.getAllDateInMonth() }
+            .combineLatest(refDate.eraseToAnyPublisher())
+            .map { $1.getAllDateInMonth() }
             .map { [weak self] dates -> [DateNote] in
                 guard let self = self else { return [] }
                 let notes = self.groupData()
@@ -53,8 +64,12 @@ class T03CalendarViewModel: BaseViewModel {
         
         let dateSelectAction = input.selectDateAction
             .combineLatest(dates)
-            .map { path, datas  in
-                return datas[safe: path.row]
+            .map { path, datas -> DateNote?  in
+                if let path = path {
+                    return datas[safe: path.row]
+                } else {
+                    return datas.first(where: { $0.date.isInSameDay(as: Date()) })
+                }
             }
             .share()
             .eraseToAnyPublisher()
@@ -79,7 +94,8 @@ class T03CalendarViewModel: BaseViewModel {
         
         let noResponse = Publishers.MergeMany([addNoteButtonPressed,
                                                backButtonPressed,
-                                               noteSelectAction])
+                                               noteSelectAction,
+                                               gesture])
             .eraseToAnyPublisher()
                 
 
@@ -102,8 +118,9 @@ extension T03CalendarViewModel {
         let addNoteButtonPressed: AnyPublisher<Void, Never>
         let viewWillAppear: AnyPublisher<Void, Never>
         let viewDidLoad: AnyPublisher<Void, Never>
-        let selectDateAction: AnyPublisher<IndexPath, Never>
+        let selectDateAction: AnyPublisher<IndexPath?, Never>
         let selectNoteAction: AnyPublisher<IndexPath, Never>
+        let swipeAction: AnyPublisher<Direction, Never>
     }
     
     struct Output {
@@ -116,5 +133,10 @@ extension T03CalendarViewModel {
     struct DateNote {
         let date: Date
         let notes: [Note]
+    }
+    
+    enum Direction {
+        case left
+        case right
     }
 }
