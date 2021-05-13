@@ -117,8 +117,12 @@ class T05NoteViewModel: BaseViewModel {
             .map { _ in }
             .eraseToAnyPublisher()
 
-        let saveActionTriggered = input
-            .saveButtonAction
+        let willResignActiveNotification = NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)
+            .map { _ in }
+            .eraseToAnyPublisher()
+        
+        let saveActionTriggered = Publishers.Merge(willResignActiveNotification,
+                                                   input.saveButtonAction)
             .map { _ -> Note in
                 let dataImages = totalImages
                     .map { $0.pngData() }
