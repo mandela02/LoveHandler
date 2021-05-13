@@ -61,6 +61,8 @@ class T05NoteViewController: BaseViewController {
     
     private var avatar = CurrentValueSubject<UIImage?, Never>(nil)
     
+    private var viewDidDisappear = PassthroughSubject<Void, Never>()
+
     private var refDate = Date()
 
     deinit {
@@ -70,7 +72,16 @@ class T05NoteViewController: BaseViewController {
         deletedImage.send(completion: .finished)
         seletedImage.send(completion: .finished)
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
             
+    override func dismissView() {
+        super.dismissView()
+        viewDidDisappear.send(Void())
+    }
+    
     override func setupView() {
         super.setupView()
         imageCollectionView.delegate = self
@@ -145,7 +156,8 @@ class T05NoteViewController: BaseViewController {
                                            titleTextInputAction: titleTextField.textPublisher.eraseToAnyPublisher(),
                                            contentTextInputAction: contentTextView.textPublisher.eraseToAnyPublisher(),
                                            textActiveAction: textActiveAction,
-                                           datePickerAction: datePickerAction)
+                                           datePickerAction: datePickerAction,
+                                           viewDidDisappear: viewDidDisappear.eraseToAnyPublisher())
         let output = viewModel.transform(input)
         
         output.didPressImageButton
@@ -229,6 +241,15 @@ class T05NoteViewController: BaseViewController {
                 self.refDate = $0
             }
             .store(in: &cancellables)
+        
+        output.isSaveButtonEnable
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isSaveButtonEnable in
+                guard let self = self else { return }
+                self.saveButton.isEnabled = isSaveButtonEnable;
+            }
+            .store(in: &cancellables)
+
     }
         
     override func setupTheme() {

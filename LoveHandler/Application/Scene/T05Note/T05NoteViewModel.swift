@@ -38,6 +38,26 @@ class T05NoteViewModel: BaseViewModel {
             displayDate.send(Date(timeIntervalSince1970: TimeInterval(note.displayDate)))
         }
         
+        let titleSyncAction = input.titleTextInputAction
+            .handleEvents(receiveOutput: { string in
+                title.send(string)
+            })
+            .map { _ in }
+            .eraseToAnyPublisher()
+        
+        let contentSyncAction = input.contentTextInputAction
+            .handleEvents(receiveOutput: { string in
+                content.send(string)
+            })
+            .map { _ in }
+            .eraseToAnyPublisher()
+
+        let saveButtonState = Publishers.CombineLatest(title, content)
+            .map { title, content -> Bool in
+                return !(title?.isEmpty ?? true) || !(content?.isEmpty ?? true)
+            }
+            .eraseToAnyPublisher()
+
         var totalImages: [UIImage] = note?
             .images
             .map { UIImage(data: $0.data) }
@@ -103,26 +123,13 @@ class T05NoteViewModel: BaseViewModel {
         let images = Publishers.Merge(allImages, deleteImageAction)
             .eraseToAnyPublisher()
 
-        let titleSyncAction = input.titleTextInputAction
-            .handleEvents(receiveOutput: { string in
-                title.send(string)
-            })
-            .map { _ in }
-            .eraseToAnyPublisher()
-        
-        let contentSyncAction = input.contentTextInputAction
-            .handleEvents(receiveOutput: { string in
-                content.send(string)
-            })
-            .map { _ in }
-            .eraseToAnyPublisher()
-
         let willResignActiveNotification = NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)
             .map { _ in }
             .eraseToAnyPublisher()
         
-        let saveActionTriggered = Publishers.Merge(willResignActiveNotification,
-                                                   input.saveButtonAction)
+        let saveActionTriggered = Publishers.Merge3(willResignActiveNotification,
+                                                   input.saveButtonAction,
+                                                   input.viewDidDisappear)
             .map { _ -> Note in
                 let dataImages = totalImages
                     .map { $0.pngData() }
@@ -139,14 +146,13 @@ class T05NoteViewModel: BaseViewModel {
                 
                 return noteToSave
             }
-            .handleEvents(receiveOutput: { newNote in
-                note = newNote
-            })
             .map { [weak self] newNote -> Result in
                 guard let self = self else { return Result.failure(error: "Unexpected Error") }
                 if let _ = note {
+                    note = newNote
                     return self.useCase.update(note: newNote)
                 } else {
+                    note = newNote
                     return self.useCase.save(note: newNote)
                 }
             }
@@ -182,7 +188,8 @@ class T05NoteViewModel: BaseViewModel {
                       actionResponse: saveActionTriggered,
                       state: state,
                       initialNote: Just(note).eraseToAnyPublisher(),
-                      displayDate: changeDisplayDateAction.eraseToAnyPublisher())
+                      displayDate: changeDisplayDateAction.eraseToAnyPublisher(),
+                      isSaveButtonEnable: saveButtonState)
     }
 }
 
@@ -198,6 +205,7 @@ extension T05NoteViewModel {
         let contentTextInputAction: AnyPublisher<String?, Never>
         let textActiveAction: AnyPublisher<Void, Never>
         let datePickerAction: AnyPublisher<Date, Never>
+        let viewDidDisappear: AnyPublisher<Void, Never>
     }
     
     struct  Output {
@@ -209,6 +217,7 @@ extension T05NoteViewModel {
         let state: AnyPublisher<State, Never>
         let initialNote: AnyPublisher<Note?, Never>
         let displayDate: AnyPublisher<Date, Never>
+        let isSaveButtonEnable: AnyPublisher<Bool, Never>
     }
     
     enum State {
