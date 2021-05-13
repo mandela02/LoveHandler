@@ -47,9 +47,23 @@ extension CDNote: ModelConvertibleType {
                     createDate: createDate,
                     updateDate: updateDate,
                     displayDate: displayDate,
-                    content: wrappedContent,
-                    title: wrappedTitle,
+                    content: content,
+                    title: title,
                     images: wrappedImages.map { $0.asModel() })
+    }
+    
+    func updateCoreData(with model: Note, context: NSManagedObjectContext) {
+        self.displayDate = model.displayDate
+        self.updateDate = model.updateDate
+        self.content = model.content
+        self.title = model.title
+        
+        if let images = images {
+            removeFromImages(images)
+        }
+        
+        let dataImages = model.images.map { $0.asCoreData(context: context) }
+        addToImages(NSSet(array: dataImages))
     }
 }
 

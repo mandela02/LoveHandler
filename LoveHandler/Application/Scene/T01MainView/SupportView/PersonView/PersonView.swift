@@ -26,8 +26,8 @@ class PersonView: UIView, NibLoadable {
         }
     }
 
-    private var pickerController: UIImagePickerController?
-
+    private var picker: ImagePickerHelper?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -57,6 +57,11 @@ class PersonView: UIView, NibLoadable {
         let nameTap = UITapGestureRecognizer(target: self, action: #selector(self.handleNameTap(_:)))
         nameLabel.isUserInteractionEnabled = true
         nameLabel.addGestureRecognizer(nameTap)
+        
+        picker = ImagePickerHelper(title: LocalizedString.t01ImagePickerTitle,
+                                       message: LocalizedString.t01ImagePickerSubTitle)
+        
+        picker?.delegate = self
     }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -95,11 +100,7 @@ class PersonView: UIView, NibLoadable {
     
     
     @objc private func handleImageTap(_ sender: UITapGestureRecognizer? = nil) {
-        UIAlertController.showActionSheet(source: ImageAction.self,
-                                          title: LocalizedString.t01ImagePickerTitle,
-                                          message: LocalizedString.t01ImagePickerSubTitle) {[weak self] action in
-            self?.imagePickerTapped(action: action)
-        }
+        picker?.showActionSheet()
     }
         
     private func loadPerson(from person: Person) {
@@ -122,18 +123,6 @@ class PersonView: UIView, NibLoadable {
 }
 
 extension PersonView {
-    private func imagePickerTapped(action: ImageAction) {
-        pickerController = UIImagePickerController()
-        
-        guard let pickerController = pickerController else { return }
-        
-        pickerController.delegate = self
-        pickerController.allowsEditing = true
-        pickerController.sourceType = action == .camera ? .camera : .photoLibrary
-        
-        UIApplication.topViewController()?.present(pickerController, animated: true, completion: nil)
-    }
-    
     private func datePickerTapped() {
         let dialog = DatePickerDialog(locale: Locale(identifier: Strings.localeIdentifier))
         dialog.overrideUserInterfaceStyle = .light
@@ -161,22 +150,12 @@ extension PersonView {
     }
 }
 
-extension PersonView: UIImagePickerControllerDelegate {
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController,
-                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        guard let image = info[.editedImage] as? UIImage else {
-            picker.dismiss(animated: true, completion: nil)
-            return
-        }
-        picker.dismiss(animated: true, completion: nil)
+extension PersonView: ImagePickerDelegate {
+    func cameraHandle(image: UIImage) {
         self.person?.image = image
     }
-}
-
-extension PersonView: UINavigationControllerDelegate {
     
+    func libraryHandle(images: [UIImage]) {
+        self.person?.image = images.first
+    }
 }

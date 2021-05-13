@@ -14,6 +14,7 @@ enum Result {
 
 protocol T05NoteUseCaseType {
     func save(note: Note) -> Result
+    func update(note: Note) -> Result
 }
 
 
@@ -27,6 +28,16 @@ class T05NoteUseCase: T05NoteUseCaseType {
     func save(note: Note) -> Result {
         do {
             try repository.save(model: note)
+            return .success
+        } catch let error {
+            return .failure(error: error.localizedDescription)
+        }
+    }
+    
+    func update(note: Note) -> Result {
+        let id = note.id
+        do {
+            try repository.update(model: note, at: id)
             return .success
         } catch let error {
             return .failure(error: error.localizedDescription)

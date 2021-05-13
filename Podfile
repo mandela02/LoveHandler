@@ -10,5 +10,6 @@ target 'LoveHandler' do
   pod "WaveAnimationView"
   pod 'DatePickerDialog'
   pod 'CombineCocoa'
+  pod 'Fusuma'
 
 end

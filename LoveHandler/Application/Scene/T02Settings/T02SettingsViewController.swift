@@ -18,12 +18,14 @@ class T02SettingsViewController: BaseViewController {
                                           style: .plain,
                                           target: nil,
                                           action: nil)
+        closeButton.tintColor = UIColor.white
         return closeButton
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = UIColor.white
         return label
     }()
     

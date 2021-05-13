@@ -14,6 +14,7 @@ protocol RepositoryType {
     func countAll() throws -> Int
     func fetchAllData() -> [T]
     func save(model: T) throws
+    func update(model: T, at id: UUID) throws
 }
 
 class Repository<T: CoreDataRepresentable>: RepositoryType where T == T.CoreDataType.Model, T.CoreDataType: NSManagedObject  {
@@ -45,5 +46,17 @@ class Repository<T: CoreDataRepresentable>: RepositoryType where T == T.CoreData
     func save(model: T) throws {
         let _ = model.asCoreData(context: container.viewContext)
         try container.viewContext.save()
+    }
+    
+    func update(model: T, at id: UUID) throws {
+        let fetchRequest = NSFetchRequest<T.CoreDataType>(entityName: entityName)
+        let commitPredicate = NSPredicate(format: "id == %@", id as CVarArg)
+        fetchRequest.predicate = commitPredicate
+        let result = try container.viewContext.fetch(fetchRequest)
+        if let data = result.first {
+            data.updateCoreData(with: model, context: container.viewContext)
+            try container.viewContext.save()
+        }
+
     }
 }

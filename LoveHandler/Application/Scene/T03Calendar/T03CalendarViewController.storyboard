@@ -19,6 +19,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="yQk-lX-kOU">
+                                <rect key="frame" x="0.0" y="244" width="414" height="618"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="T03CalendarNoteTableViewCell" rowHeight="87" id="c4u-fZ-XUH" customClass="T03CalendarNoteTableViewCell" customModule="LoveHandler" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="55.5" width="374" height="87"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c4u-fZ-XUH" id="o2t-uw-rgR">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="87"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YK4-6d-ZOp">
+                                                    <rect key="frame" x="292" y="5" width="77" height="77"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="YK4-6d-ZOp" secondAttribute="height" multiplier="1:1" id="bvb-c6-4ed"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSW-R9-bpg">
+                                                    <rect key="frame" x="25" y="16" width="262" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOL-hT-BMt">
+                                                    <rect key="frame" x="25" y="42" width="262" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="YK4-6d-ZOp" secondAttribute="bottom" constant="5" id="CSL-9C-HW9"/>
+                                                <constraint firstItem="yOL-hT-BMt" firstAttribute="top" secondItem="FSW-R9-bpg" secondAttribute="bottom" constant="5" id="Nyu-93-H62"/>
+                                                <constraint firstItem="yOL-hT-BMt" firstAttribute="leading" secondItem="o2t-uw-rgR" secondAttribute="leadingMargin" constant="5" id="YLW-EU-eMa"/>
+                                                <constraint firstAttribute="trailing" secondItem="YK4-6d-ZOp" secondAttribute="trailing" constant="5" id="gaq-5v-OJD"/>
+                                                <constraint firstItem="YK4-6d-ZOp" firstAttribute="leading" secondItem="FSW-R9-bpg" secondAttribute="trailing" constant="5" id="i1G-AN-WnK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="yOL-hT-BMt" secondAttribute="bottom" constant="5" id="i8J-l2-SJs"/>
+                                                <constraint firstItem="YK4-6d-ZOp" firstAttribute="top" secondItem="o2t-uw-rgR" secondAttribute="top" constant="5" id="jee-xz-Q2y"/>
+                                                <constraint firstItem="YK4-6d-ZOp" firstAttribute="leading" secondItem="yOL-hT-BMt" secondAttribute="trailing" constant="5" id="nq4-e7-Ahh"/>
+                                                <constraint firstItem="FSW-R9-bpg" firstAttribute="leading" secondItem="o2t-uw-rgR" secondAttribute="leadingMargin" constant="5" id="oLG-Mj-LEg"/>
+                                                <constraint firstItem="FSW-R9-bpg" firstAttribute="top" secondItem="o2t-uw-rgR" secondAttribute="topMargin" constant="5" id="q6i-x3-lWJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImageView" destination="YK4-6d-ZOp" id="ke0-Tv-tfh"/>
+                                            <outlet property="noteLabel" destination="yOL-hT-BMt" id="jZp-v5-0Fn"/>
+                                            <outlet property="titleLabel" destination="FSW-R9-bpg" id="Uq4-s6-IgF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n2c-OX-y0Q">
                                 <rect key="frame" x="0.0" y="44" width="414" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -35,7 +90,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="T03CalendarCollectionViewCell" id="Nyk-9N-R5C" customClass="T03CalendarCollectionViewCell" customModule="LoveHandler" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Zlj-Yw-MmC">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5N6-G4-VgS">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -63,9 +118,9 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="UzO-a4-VIk" firstAttribute="top" secondItem="Zlj-Yw-MmC" secondAttribute="top" constant="10" id="KTt-2J-Qij"/>
-                                                <constraint firstItem="UzO-a4-VIk" firstAttribute="leading" secondItem="Zlj-Yw-MmC" secondAttribute="leading" constant="10" id="UJB-vM-lNZ"/>
-                                                <constraint firstItem="UzO-a4-VIk" firstAttribute="width" secondItem="Zlj-Yw-MmC" secondAttribute="width" multiplier="1/2" id="ySd-F6-fDL"/>
+                                                <constraint firstItem="UzO-a4-VIk" firstAttribute="top" secondItem="5N6-G4-VgS" secondAttribute="top" constant="10" id="KTt-2J-Qij"/>
+                                                <constraint firstItem="UzO-a4-VIk" firstAttribute="leading" secondItem="5N6-G4-VgS" secondAttribute="leading" constant="10" id="UJB-vM-lNZ"/>
+                                                <constraint firstItem="UzO-a4-VIk" firstAttribute="width" secondItem="5N6-G4-VgS" secondAttribute="width" multiplier="1/2" id="ySd-F6-fDL"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
@@ -75,6 +130,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKh-Hz-2dN">
+                                <rect key="frame" x="0.0" y="244" width="414" height="618"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXe-Jp-p6i">
+                                        <rect key="frame" x="186" y="298.5" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="GXe-Jp-p6i" firstAttribute="centerY" secondItem="zKh-Hz-2dN" secondAttribute="centerY" id="MTb-vZ-clm"/>
+                                    <constraint firstItem="GXe-Jp-p6i" firstAttribute="centerX" secondItem="zKh-Hz-2dN" secondAttribute="centerX" id="YyG-rQ-mkQ"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZG-G7-QYI" customClass="RoundButton" customModule="LoveHandler" customModuleProvider="target">
                                 <rect key="frame" x="337" y="785" width="62" height="62"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -91,22 +162,33 @@
                         <viewLayoutGuide key="safeArea" id="62a-wx-PSy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yQk-lX-kOU" firstAttribute="leading" secondItem="62a-wx-PSy" secondAttribute="leading" id="KOc-Ug-Hqe"/>
                             <constraint firstItem="62a-wx-PSy" firstAttribute="trailing" secondItem="n2c-OX-y0Q" secondAttribute="trailing" id="L5e-qd-9IJ"/>
                             <constraint firstItem="62a-wx-PSy" firstAttribute="trailing" secondItem="XZG-G7-QYI" secondAttribute="trailing" constant="15" id="Mrg-7B-T4N"/>
+                            <constraint firstItem="zKh-Hz-2dN" firstAttribute="leading" secondItem="62a-wx-PSy" secondAttribute="leading" id="OG7-rH-ZNX"/>
+                            <constraint firstItem="62a-wx-PSy" firstAttribute="bottom" secondItem="zKh-Hz-2dN" secondAttribute="bottom" id="RfL-Nd-wMy"/>
                             <constraint firstItem="n2c-OX-y0Q" firstAttribute="top" secondItem="62a-wx-PSy" secondAttribute="top" id="VhC-CS-BQq"/>
+                            <constraint firstItem="zKh-Hz-2dN" firstAttribute="top" secondItem="n2c-OX-y0Q" secondAttribute="bottom" id="XHM-Bj-izX"/>
+                            <constraint firstItem="62a-wx-PSy" firstAttribute="trailing" secondItem="yQk-lX-kOU" secondAttribute="trailing" id="XRE-Lb-oDD"/>
                             <constraint firstItem="n2c-OX-y0Q" firstAttribute="leading" secondItem="62a-wx-PSy" secondAttribute="leading" id="cdC-OU-T91"/>
+                            <constraint firstItem="62a-wx-PSy" firstAttribute="trailing" secondItem="zKh-Hz-2dN" secondAttribute="trailing" id="ctX-tn-t9o"/>
                             <constraint firstItem="62a-wx-PSy" firstAttribute="bottom" secondItem="XZG-G7-QYI" secondAttribute="bottom" constant="15" id="eCz-Dz-vPe"/>
+                            <constraint firstItem="yQk-lX-kOU" firstAttribute="top" secondItem="n2c-OX-y0Q" secondAttribute="bottom" id="eFB-50-v7S"/>
+                            <constraint firstItem="62a-wx-PSy" firstAttribute="bottom" secondItem="yQk-lX-kOU" secondAttribute="bottom" id="jpG-Aq-vgt"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addButtonView" destination="XZG-G7-QYI" id="0ai-Nl-fmr"/>
+                        <outlet property="addNoteButton" destination="XZG-G7-QYI" id="0ai-Nl-fmr"/>
                         <outlet property="calendarCollectionView" destination="n2c-OX-y0Q" id="QGU-dz-V5j"/>
                         <outlet property="calendarCollectionViewHeightConstraint" destination="lyr-kL-dU7" id="aWG-ik-DGG"/>
+                        <outlet property="noDataLabel" destination="GXe-Jp-p6i" id="PdU-OI-bsO"/>
+                        <outlet property="noDataView" destination="zKh-Hz-2dN" id="1e0-zf-mfL"/>
+                        <outlet property="noteTableView" destination="yQk-lX-kOU" id="PJZ-8e-mSP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8hK-67-xrw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63" y="95"/>
+            <point key="canvasLocation" x="62.318840579710148" y="94.419642857142847"/>
         </scene>
     </scenes>
     <resources>

@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol T04ListNoteUseCaseType {
+protocol T03CalendarUseCaseType {
     func getAllNote() -> [Note]
 }
 
-class T04ListNoteUseCase: T04ListNoteUseCaseType {
+class T03CalendarUseCase: T03CalendarUseCaseType {
     private let repository: Repository<Note>
     
     init(repository: Repository<Note>) {
