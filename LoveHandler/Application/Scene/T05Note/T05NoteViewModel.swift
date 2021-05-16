@@ -36,6 +36,8 @@ class T05NoteViewModel: BaseViewModel {
         
         if let note = note {
             displayDate.send(Date(timeIntervalSince1970: TimeInterval(note.displayDate)))
+            content.send(note.content)
+            title.send(note.title)
         }
         
         let titleSyncAction = input.titleTextInputAction

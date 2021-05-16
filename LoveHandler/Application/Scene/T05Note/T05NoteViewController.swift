@@ -228,7 +228,7 @@ class T05NoteViewController: BaseViewController {
                 guard let self = self else { return }
                 guard let note = note else { return }
                 
-                self.titleTextField.text = note.title
+                self.titleTextField.insertText(note.title ?? "")
                 self.contentTextView.text = note.content
             }
             .store(in: &cancellables)

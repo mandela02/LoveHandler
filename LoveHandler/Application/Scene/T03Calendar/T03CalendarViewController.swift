@@ -108,6 +108,9 @@ class T03CalendarViewController: BaseViewController {
             leftGesture.swipePublisher.map { _ in T03CalendarViewModel.Direction.left }.eraseToAnyPublisher(),
             rightGesture.swipePublisher.map { _ in T03CalendarViewModel.Direction.right }.eraseToAnyPublisher()
         )
+        .handleEvents(receiveOutput: { [weak self] _ in
+            self?.selectedDateIndexPath.send(nil)
+        })
         .eraseToAnyPublisher()
                 
         let input = T03CalendarViewModel.Input(backButtonPressed: closeButton.tapPublisher,
