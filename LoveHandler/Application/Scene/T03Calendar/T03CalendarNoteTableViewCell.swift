@@ -31,7 +31,7 @@ class T03CalendarNoteTableViewCell: UITableViewCell {
     func setupCell(with note: Note) {
         titleLabel.text = note.title
         noteLabel.text = note.content
-        if let data = note.images.first?.data {
+        if let data = note.images.filter({ $0.isAvatar }).first?.data {
             avatarImageView.image = UIImage(data: data)
         }
     }

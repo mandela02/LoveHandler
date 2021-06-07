@@ -18,6 +18,7 @@ extension CDImage {
 
     @NSManaged public var data: Data?
     @NSManaged public var id: UUID?
+    @NSManaged public var isAvatar: NSNumber
     @NSManaged public var origin: CDNote?
 
     var wrappedData: Data {
@@ -27,12 +28,22 @@ extension CDImage {
     var wrappedId: UUID {
         return id ?? UUID()
     }
+    
+    var isAvatarValue: Bool {
+        get {
+            return Bool(truncating: isAvatar)
+        }
+        set {
+            isAvatar = NSNumber(value: newValue)
+        }
+    }
 }
 
 extension CDImage: ModelConvertibleType {
     func asModel() -> Image {
         return Image(data: wrappedData,
-                     id: wrappedId)
+                     id: wrappedId,
+                     isAvatar: isAvatarValue)
     }
     
     func updateCoreData(with model: Image, context: NSManagedObjectContext) {

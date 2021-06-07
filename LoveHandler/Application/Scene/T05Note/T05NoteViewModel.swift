@@ -38,6 +38,10 @@ class T05NoteViewModel: BaseViewModel {
             displayDate.send(Date(timeIntervalSince1970: TimeInterval(note.displayDate)))
             content.send(note.content)
             title.send(note.title)
+            
+            if let image = note.images.filter({ $0.isAvatar }).first {
+                bigImage.send(UIImage(data: image.data))
+            }
         }
         
         let titleSyncAction = input.titleTextInputAction
@@ -136,7 +140,8 @@ class T05NoteViewModel: BaseViewModel {
                 let dataImages = totalImages
                     .map { $0.pngData() }
                     .compactMap { $0 }
-                    .map { Image(data: $0, id: UUID()) }
+                    .map { Image(data: $0, id: UUID(),
+                                 isAvatar: $0 == bigImage.value?.pngData()) }
                 
                 let noteToSave = Note(id: note?.id ?? UUID(),
                                       createDate: note?.createDate ?? Double(Date().timeIntervalSince1970),

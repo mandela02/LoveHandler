@@ -11,11 +11,13 @@ import CoreData
 class Image {
     var data: Data
     var id: UUID
+    var isAvatar: Bool
     var origin: Note? = nil
     
-    init(data: Data, id: UUID, origin: Note? = nil) {
+    init(data: Data, id: UUID, isAvatar: Bool, origin: Note? = nil) {
         self.data = data
         self.id = id
+        self.isAvatar = isAvatar
         self.origin = origin
     }
 }
@@ -29,6 +31,7 @@ extension Image: CoreDataRepresentable {
         return CDImage.build(context: context) { image in
             image.data = data
             image.id = id
+            image.isAvatarValue = isAvatar
         }
     }
 }

@@ -3,6 +3,7 @@
     <entity name="CDImage" representedClassName="CDImage" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isAvatar" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDNote" inverseName="images" inverseEntity="CDNote"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -25,7 +26,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="CDImage" positionX="-54" positionY="18" width="128" height="74"/>
+        <element name="CDImage" positionX="-54" positionY="18" width="128" height="14"/>
         <element name="CDNote" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>
