@@ -8,7 +8,7 @@
 import UIKit
 import DatePickerDialog
 
-class PersonView: UIView, NibLoadable {
+class PersonView: BaseView, NibLoadable {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarImageView: RoundImageView!
     @IBOutlet weak var genderContainerView: UIView!
@@ -46,10 +46,7 @@ class PersonView: UIView, NibLoadable {
         
         let genderTap = UITapGestureRecognizer(target: self, action: #selector(self.handleGenderTap(_:)))
         genderContainerView.addGestureRecognizer(genderTap)
-        
-        genderContainerView.backgroundColor = Colors.pink
-        zodiacContanerView.backgroundColor = Colors.deepPink
-        
+                
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(self.handleImageTap(_:)))
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(imageTap)
@@ -120,13 +117,29 @@ class PersonView: UIView, NibLoadable {
             avatarImageView.contentMode = .scaleAspectFit
         }
     }
+    
+    override func setupTheme() {
+        super.setupTheme()
+        avatarImageView.tintColor = Colors.lightPink
+
+        nameLabel.textColor = Colors.pink
+        genderLabel.textColor = Colors.mediumVioletRed
+        zodiacLabel.textColor = UIColor.white
+        
+        genderContainerView.backgroundColor = Colors.pink
+        zodiacContanerView.backgroundColor = Colors.hotPink
+    }
 }
 
 extension PersonView {
     private func datePickerTapped() {
-        let dialog = DatePickerDialog(locale: Locale(identifier: Strings.localeIdentifier))
+        let dialog = DatePickerDialog(textColor: Colors.paleVioletRed,
+                                      buttonColor: Colors.mediumVioletRed,
+                                      locale: Locale(identifier: Strings.localeIdentifier))
+        
         dialog.overrideUserInterfaceStyle = .light
         dialog.datePicker.overrideUserInterfaceStyle = .light
+        
         dialog.show(LocalizedString.t01DatePickerTitleTitle,
                     doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
                     cancelButtonTitle: LocalizedString.t01CancelButtonTitle,

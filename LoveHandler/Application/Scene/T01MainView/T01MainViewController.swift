@@ -62,6 +62,11 @@ class T01MainViewController: BaseViewController {
     
     override func setupTheme() {
         titleLabel.textColor = UIColor.black
+        settingButton.tintColor = Colors.mediumVioletRed
+        diaryButton.tintColor = Colors.mediumVioletRed
+        loveButton.tintColor = Colors.lightPink
+        
+        titleLabel.textColor = Colors.mediumVioletRed
     }
     
     override func bindViewModel() {

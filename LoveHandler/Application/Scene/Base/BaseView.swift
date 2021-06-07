@@ -23,6 +23,7 @@ class BaseView: UIView {
     override func layoutSubviews() {
         if !didLoad {
             setupLocalizedStrings()
+            setupTheme()
             didLoad.toggle()
         }
     }
@@ -43,4 +44,6 @@ class BaseView: UIView {
     }
     
     func setupLocalizedStrings() {}
+    
+    func setupTheme() {}
 }

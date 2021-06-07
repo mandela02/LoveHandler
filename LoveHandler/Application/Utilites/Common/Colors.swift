@@ -12,4 +12,6 @@ struct Colors {
     static var deepPink = UIColor(hexString: "FF69B4")
     static var pink = UIColor(hexString: "FFC0CB")
     static var lightPink = UIColor(hexString: "FFB6C1")
+    static var mediumVioletRed = UIColor(hexString: "#C71585")
+    static var paleVioletRed = UIColor(hexString: "#DB7093")
 }

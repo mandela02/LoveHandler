@@ -38,7 +38,15 @@ class LoveProgressView: BaseView, NibLoadable {
     }
     
     override func setupLocalizedStrings() {
+        super.setupLocalizedStrings()
         dayCountTitleLabel.text = LocalizedString.t01HeartTitle
         dayCountSubtitleLabel.text = LocalizedString.t01HeartSubTitle
+    }
+    
+    override func setupTheme() {
+        super.setupTheme()
+        dayCountTitleLabel.textColor = Colors.mediumVioletRed
+        dayCountSubtitleLabel.textColor = Colors.mediumVioletRed
+        numberOfDayLabel.textColor = Colors.mediumVioletRed
     }
 }
