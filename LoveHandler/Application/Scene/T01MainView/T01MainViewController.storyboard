@@ -117,6 +117,27 @@
                                             <constraint firstItem="Dt1-Qf-aVJ" firstAttribute="width" secondItem="RiA-2W-D0j" secondAttribute="width" id="uJI-cC-0lM"/>
                                         </constraints>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Jf-6q-1Zx" customClass="Floater" customModule="LoveHandler" customModuleProvider="target">
+                                        <rect key="frame" x="157" y="200" width="100" height="291"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="zhf-oj-dOO"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="removeAtEnd" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="FloatingUp" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="density">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="floaterImage4" value="red_heart"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="alphaAtStart">
+                                                <real key="value" value="0.69999999999999996"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="alphaAtEnd">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -124,6 +145,8 @@
                                     <constraint firstAttribute="bottom" secondItem="3N2-eE-h16" secondAttribute="bottom" id="3HX-ff-PZq"/>
                                     <constraint firstItem="WW4-Hb-DyL" firstAttribute="top" secondItem="nlH-YC-YKT" secondAttribute="bottom" constant="100" id="442-GZ-PWw"/>
                                     <constraint firstItem="nlH-YC-YKT" firstAttribute="top" secondItem="qYI-ge-FWB" secondAttribute="top" id="5oX-kn-YuX"/>
+                                    <constraint firstItem="7Jf-6q-1Zx" firstAttribute="top" secondItem="nlH-YC-YKT" secondAttribute="bottom" constant="100" id="6z0-i1-kEj"/>
+                                    <constraint firstItem="7Jf-6q-1Zx" firstAttribute="bottom" secondItem="2rY-2B-kVW" secondAttribute="top" constant="-50" id="Gg6-WX-ilv"/>
                                     <constraint firstAttribute="trailing" secondItem="3N2-eE-h16" secondAttribute="trailing" id="Nnb-Fn-zqa"/>
                                     <constraint firstAttribute="trailing" secondItem="WW4-Hb-DyL" secondAttribute="trailing" constant="100" id="SwL-yX-dZB"/>
                                     <constraint firstAttribute="trailing" secondItem="nlH-YC-YKT" secondAttribute="trailing" constant="10" id="T7o-cJ-XXb"/>
@@ -132,6 +155,7 @@
                                     <constraint firstItem="WW4-Hb-DyL" firstAttribute="centerX" secondItem="qYI-ge-FWB" secondAttribute="centerX" id="fu9-Bv-SG0"/>
                                     <constraint firstItem="3N2-eE-h16" firstAttribute="top" secondItem="8qt-ZT-fzN" secondAttribute="bottom" constant="20" id="rPm-eF-nOn"/>
                                     <constraint firstItem="3N2-eE-h16" firstAttribute="leading" secondItem="qYI-ge-FWB" secondAttribute="leading" id="tkX-5z-QGD"/>
+                                    <constraint firstItem="7Jf-6q-1Zx" firstAttribute="centerX" secondItem="qYI-ge-FWB" secondAttribute="centerX" id="zMN-SL-KFB"/>
                                     <constraint firstItem="8qt-ZT-fzN" firstAttribute="leading" secondItem="qYI-ge-FWB" secondAttribute="leading" constant="10" id="zRu-eg-Brh"/>
                                 </constraints>
                             </view>
@@ -153,6 +177,7 @@
                         <outlet property="defaultBackgroundView" destination="6vS-JJ-lvf" id="war-sV-sMb"/>
                         <outlet property="diaryButton" destination="8Xr-EM-15X" id="Tvb-Ol-s5k"/>
                         <outlet property="firstLoverView" destination="Dt1-Qf-aVJ" id="pYS-S5-dlw"/>
+                        <outlet property="floaterHeartView" destination="7Jf-6q-1Zx" id="hXX-Od-gOC"/>
                         <outlet property="heartView" destination="WW4-Hb-DyL" id="6mf-kf-BvL"/>
                         <outlet property="imageBackgroundView" destination="hw1-67-dJD" id="FxV-Ub-2PU"/>
                         <outlet property="loveButton" destination="2rY-2B-kVW" id="ON4-wP-hMA"/>
@@ -170,6 +195,7 @@
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="rectangle.and.pencil.and.ellipsis.rtl" catalog="system" width="128" height="92"/>
+        <image name="red_heart" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

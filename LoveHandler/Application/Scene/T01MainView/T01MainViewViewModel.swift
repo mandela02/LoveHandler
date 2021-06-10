@@ -51,7 +51,8 @@ class T01MainViewViewModel: BaseViewModel {
         return Output(noResponser: navigation,
                       progress: progress,
                       numberOfDay: numberOfDay,
-                      isShowingWaveBackground: isShowingWaveBackground)
+                      isShowingWaveBackground: isShowingWaveBackground,
+                      heartButtonTapped: input.onHeartButtonTap)
     }
     
     private func calculate() -> (progress: Float, numberOfDay: Int) {
@@ -72,6 +73,7 @@ extension T01MainViewViewModel {
         let onButtonTap: AnyPublisher<T01MainButtonType, Never>
         let viewDidAppear: AnyPublisher<Void, Never>
         let onSettingChange: AnyPublisher<Void, Never>
+        let onHeartButtonTap: AnyPublisher<Void, Never>
     }
     
     struct Output {
@@ -79,5 +81,6 @@ extension T01MainViewViewModel {
         let progress: AnyPublisher<Float, Never>
         let numberOfDay: AnyPublisher<Int, Never>
         let isShowingWaveBackground: AnyPublisher<Bool, Never>
+        let heartButtonTapped: AnyPublisher<Void, Never>
     }
 }

@@ -24,6 +24,8 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var firstLoverView: PersonView!
     @IBOutlet weak var secondLoverView: PersonView!
     @IBOutlet weak var loveButton: UIButton!
+        
+    @IBOutlet weak var floaterHeartView: Floater!
     
     private var wave: WaveAnimationView?
     private var cancellables = Set<AnyCancellable>()
@@ -44,6 +46,7 @@ class T01MainViewController: BaseViewController {
         super.setupView()
         setupBackground()
         setUpLover()
+        setupHeartFloatView()
     }
     
     override func refreshView() {
@@ -90,7 +93,8 @@ class T01MainViewController: BaseViewController {
         
         let input = T01MainViewViewModel.Input(onButtonTap: onButtonTap,
                                                viewDidAppear: viewDidAppearSignal.eraseToAnyPublisher(),
-                                               onSettingChange: onSettingChange)
+                                               onSettingChange: onSettingChange,
+                                               onHeartButtonTap: loveButton.tapPublisher)
         let output = viewModel.transform(input)
         
         output.noResponser
@@ -119,7 +123,26 @@ class T01MainViewController: BaseViewController {
             .sink(receiveValue: { [weak self] isHidden in
                 self?.defaultBackgroundView.isHidden = isHidden
             })
-            .store(in: &cancellables)    }
+            .store(in: &cancellables)
+        
+        var isAnimating = false
+        
+        output
+            .heartButtonTapped
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                if !isAnimating {
+                    isAnimating = true
+                
+                    self?.floaterHeartView.startAnimation()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        self?.floaterHeartView.stopAnimation()
+                        isAnimating = false;
+                    })
+                }
+            })
+            .store(in: &cancellables)
+    }
 }
 
 extension T01MainViewController {
@@ -143,5 +166,13 @@ extension T01MainViewController {
         if let wave = wave {
             self.defaultBackgroundView.addSubview(wave)
         }
+    }
+    
+    private func setupHeartFloatView() {
+        floaterHeartView.floaterImage1 = ImageNames.heart.image?.tintColor(with: Colors.deepPink)
+        floaterHeartView.floaterImage2 = ImageNames.heart.image?.tintColor(with: Colors.lightPink)
+        floaterHeartView.floaterImage3 = ImageNames.heart.image?.tintColor(with: Colors.pink)
+        floaterHeartView.floaterImage4 = ImageNames.heart.image?.tintColor(with: Colors.hotPink)
+
     }
 }
