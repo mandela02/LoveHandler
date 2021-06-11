@@ -84,9 +84,12 @@ class T01MainViewController: BaseViewController {
         let onButtonTap = Publishers.Merge(settingButtonTap, diaryButtonTap)
             .eraseToAnyPublisher()
         
-        let onSettingChange = Publishers.Merge3(SettingsHelper.marryDate.map { _ in }.eraseToAnyPublisher(),
-                                                SettingsHelper.relationshipStartDate.map { _ in }.eraseToAnyPublisher(),
-                                                SettingsHelper.isShowingBackgroundWave.map { _ in }.eraseToAnyPublisher())
+        let onSettingChange = Publishers.Merge3(SettingsHelper.marryDate
+                                                    .map { _ in }.eraseToAnyPublisher(),
+                                                SettingsHelper.relationshipStartDate
+                                                    .map { _ in }.eraseToAnyPublisher(),
+                                                SettingsHelper.isShowingBackgroundWave
+                                                    .map { _ in }.eraseToAnyPublisher())
             .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
             .map { _ in }
             .eraseToAnyPublisher()
@@ -169,10 +172,10 @@ extension T01MainViewController {
     }
     
     private func setupHeartFloatView() {
-        floaterHeartView.floaterImage1 = ImageNames.heart.image?.tintColor(with: Colors.deepPink)
-        floaterHeartView.floaterImage2 = ImageNames.heart.image?.tintColor(with: Colors.lightPink)
-        floaterHeartView.floaterImage3 = ImageNames.heart.image?.tintColor(with: Colors.pink)
-        floaterHeartView.floaterImage4 = ImageNames.heart.image?.tintColor(with: Colors.hotPink)
+        floaterHeartView.floaterImage1 = SystemImage.roundHeart.image?.tintColor(with: Colors.deepPink)
+        floaterHeartView.floaterImage2 = SystemImage.roundHeart.image?.tintColor(with: Colors.lightPink)
+        floaterHeartView.floaterImage3 = SystemImage.roundHeart.image?.tintColor(with: Colors.pink)
+        floaterHeartView.floaterImage4 = SystemImage.roundHeart.image?.tintColor(with: Colors.hotPink)
 
     }
 }

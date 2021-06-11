@@ -7,25 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84096DB626413DE200605068 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84096DB526413DE200605068 /* UseCaseProvider.swift */; };
-		8423D188263B173300106030 /* CDNote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D184263B173300106030 /* CDNote+CoreDataClass.swift */; };
-		8423D189263B173300106030 /* CDNote+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D185263B173300106030 /* CDNote+CoreDataProperties.swift */; };
-		8423D18A263B173300106030 /* CDImage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D186263B173300106030 /* CDImage+CoreDataClass.swift */; };
-		8423D18B263B173300106030 /* CDImage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D187263B173300106030 /* CDImage+CoreDataProperties.swift */; };
-		8423D18E263B183E00106030 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D18D263B183E00106030 /* Image.swift */; };
-		8423D191263B192100106030 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D190263B192100106030 /* Note.swift */; };
-		8423D19B263B257100106030 /* T03CalendarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D19A263B257100106030 /* T03CalendarUseCase.swift */; };
-		8423D19F263B2FF200106030 /* T05NoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D19E263B2FF200106030 /* T05NoteUseCase.swift */; };
 		8423D1A2263B31D800106030 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1A1263B31D800106030 /* RoundButton.swift */; };
-		8423D1A5263B327C00106030 /* T03CalendarNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1A4263B327C00106030 /* T03CalendarNavigator.swift */; };
-		8423D1A8263B32D200106030 /* T03CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1A7263B32D200106030 /* T03CalendarViewModel.swift */; };
-		8423D1D1263BACAA00106030 /* T05NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1D0263BACAA00106030 /* T05NoteViewController.swift */; };
-		8423D1D5263BACCA00106030 /* T05NoteViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8423D1D4263BACCA00106030 /* T05NoteViewController.storyboard */; };
-		8423D1D9263BB53900106030 /* T05ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1D8263BB53900106030 /* T05ImageCollectionViewCell.swift */; };
 		8423D1DC263BD1B200106030 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */; };
-		8423D210263C5F0D00106030 /* T05NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D20F263C5F0D00106030 /* T05NoteViewModel.swift */; };
 		846F3E10266E6F8200BB9D3B /* heart-button.json in Resources */ = {isa = PBXBuildFile; fileRef = 846F3E0F266E6F8100BB9D3B /* heart-button.json */; };
 		8472980E267262AE00DFB3ED /* FloaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472980D267262AE00DFB3ED /* FloaterView.swift */; };
+		8472981826726E7E00DFB3ED /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472981726726E7E00DFB3ED /* Memory.swift */; };
+		84729820267271C800DFB3ED /* CDMemory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472981E267271C800DFB3ED /* CDMemory+CoreDataClass.swift */; };
+		84729821267271C800DFB3ED /* CDMemory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472981F267271C800DFB3ED /* CDMemory+CoreDataProperties.swift */; };
+		847298262672721000DFB3ED /* Repositoy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847298252672721000DFB3ED /* Repositoy.swift */; };
+		8472982A267278EF00DFB3ED /* T03MemoryListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84729829267278EF00DFB3ED /* T03MemoryListUseCase.swift */; };
+		8472982F26727A5000DFB3ED /* T03MemoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472982E26727A5000DFB3ED /* T03MemoryListViewModel.swift */; };
+		8472983326727A7200DFB3ED /* T03MemoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472983226727A7200DFB3ED /* T03MemoryListViewController.swift */; };
+		8472983626727A8800DFB3ED /* T03MemoryListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8472983526727A8800DFB3ED /* T03MemoryListViewController.storyboard */; };
+		8472983D26727B8500DFB3ED /* T03MemoryListNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472983C26727B8500DFB3ED /* T03MemoryListNavigator.swift */; };
+		847298402673B42E00DFB3ED /* SystemImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472983F2673B42E00DFB3ED /* SystemImage.swift */; };
 		84AB1F052628B38C00A01F9E /* UIBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F042628B38C00A01F9E /* UIBezierPath+Extension.swift */; };
 		84AB1F092628B3C100A01F9E /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F082628B3C100A01F9E /* Int+Extension.swift */; };
 		84AB1F112628B41C00A01F9E /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB1F102628B41C00A01F9E /* HeartView.swift */; };
@@ -91,16 +86,9 @@
 		84AB2041262E904E00A01F9E /* T2SettingsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2040262E904D00A01F9E /* T2SettingsNavigator.swift */; };
 		84AB2044262F513A00A01F9E /* SettingWithSubTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2043262F513900A01F9E /* SettingWithSubTitleTableViewCell.swift */; };
 		84AB2052262FDC3100A01F9E /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2051262FDC3000A01F9E /* SettingsHelper.swift */; };
-		84AB207F26308EA800A01F9E /* T03CalendarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84AB207E26308EA800A01F9E /* T03CalendarViewController.storyboard */; };
-		84AB208226308F6400A01F9E /* T03CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB208126308F6400A01F9E /* T03CalendarViewController.swift */; };
-		84AB20852630941E00A01F9E /* T03CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB20842630941E00A01F9E /* T03CalendarCollectionViewCell.swift */; };
 		84AB20882630A04200A01F9E /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB20872630A04200A01F9E /* PaddingLabel.swift */; };
-		84AB208C263400FB00A01F9E /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB208B263400FB00A01F9E /* RoundView.swift */; };
 		84AB211C263AFF7500A01F9E /* LoveMemoryDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84AB211A263AFF7500A01F9E /* LoveMemoryDataModel.xcdatamodeld */; };
-		84AB211F263AFF8800A01F9E /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB211E263AFF8800A01F9E /* Repository.swift */; };
 		84AB212B263B06F500A01F9E /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB212A263B06F400A01F9E /* PersistenceManager.swift */; };
-		84AB2143263B0C4700A01F9E /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2142263B0C4700A01F9E /* Converter.swift */; };
-		84CF42102645AD9A0044B137 /* T03CalendarNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF420F2645AD9A0044B137 /* T03CalendarNoteTableViewCell.swift */; };
 		84D21F152628B0A5007D43F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D21F142628B0A5007D43F2 /* AppDelegate.swift */; };
 		84D21F1E2628B0A7007D43F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1D2628B0A7007D43F2 /* Assets.xcassets */; };
 		84D21F212628B0A7007D43F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1F2628B0A7007D43F2 /* LaunchScreen.storyboard */; };
@@ -111,25 +99,20 @@
 /* Begin PBXFileReference section */
 		6585D8F41DDF493DF1847E7C /* Pods-LoveHandler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveHandler.debug.xcconfig"; path = "Target Support Files/Pods-LoveHandler/Pods-LoveHandler.debug.xcconfig"; sourceTree = "<group>"; };
 		6A6D23C89F3B893C3664717C /* Pods-LoveHandler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveHandler.release.xcconfig"; path = "Target Support Files/Pods-LoveHandler/Pods-LoveHandler.release.xcconfig"; sourceTree = "<group>"; };
-		84096DB526413DE200605068 /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
-		8423D184263B173300106030 /* CDNote+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDNote+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8423D185263B173300106030 /* CDNote+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDNote+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8423D186263B173300106030 /* CDImage+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDImage+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8423D187263B173300106030 /* CDImage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8423D18D263B183E00106030 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		8423D190263B192100106030 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		8423D19A263B257100106030 /* T03CalendarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03CalendarUseCase.swift; sourceTree = "<group>"; };
-		8423D19E263B2FF200106030 /* T05NoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T05NoteUseCase.swift; sourceTree = "<group>"; };
 		8423D1A1263B31D800106030 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
-		8423D1A4263B327C00106030 /* T03CalendarNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03CalendarNavigator.swift; sourceTree = "<group>"; };
-		8423D1A7263B32D200106030 /* T03CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03CalendarViewModel.swift; sourceTree = "<group>"; };
-		8423D1D0263BACAA00106030 /* T05NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T05NoteViewController.swift; sourceTree = "<group>"; };
-		8423D1D4263BACCA00106030 /* T05NoteViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T05NoteViewController.storyboard; sourceTree = "<group>"; };
-		8423D1D8263BB53900106030 /* T05ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T05ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
-		8423D20F263C5F0D00106030 /* T05NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T05NoteViewModel.swift; sourceTree = "<group>"; };
 		846F3E0F266E6F8100BB9D3B /* heart-button.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "heart-button.json"; sourceTree = "<group>"; };
 		8472980D267262AE00DFB3ED /* FloaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloaterView.swift; sourceTree = "<group>"; };
+		8472981726726E7E00DFB3ED /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		8472981E267271C800DFB3ED /* CDMemory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDMemory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8472981F267271C800DFB3ED /* CDMemory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDMemory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		847298252672721000DFB3ED /* Repositoy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositoy.swift; sourceTree = "<group>"; };
+		84729829267278EF00DFB3ED /* T03MemoryListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03MemoryListUseCase.swift; sourceTree = "<group>"; };
+		8472982E26727A5000DFB3ED /* T03MemoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03MemoryListViewModel.swift; sourceTree = "<group>"; };
+		8472983226727A7200DFB3ED /* T03MemoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03MemoryListViewController.swift; sourceTree = "<group>"; };
+		8472983526727A8800DFB3ED /* T03MemoryListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T03MemoryListViewController.storyboard; sourceTree = "<group>"; };
+		8472983C26727B8500DFB3ED /* T03MemoryListNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03MemoryListNavigator.swift; sourceTree = "<group>"; };
+		8472983F2673B42E00DFB3ED /* SystemImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImage.swift; sourceTree = "<group>"; };
 		84AB1F042628B38C00A01F9E /* UIBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extension.swift"; sourceTree = "<group>"; };
 		84AB1F082628B3C100A01F9E /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		84AB1F102628B41C00A01F9E /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
@@ -196,16 +179,9 @@
 		84AB2040262E904D00A01F9E /* T2SettingsNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T2SettingsNavigator.swift; sourceTree = "<group>"; };
 		84AB2043262F513900A01F9E /* SettingWithSubTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWithSubTitleTableViewCell.swift; sourceTree = "<group>"; };
 		84AB2051262FDC3000A01F9E /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
-		84AB207E26308EA800A01F9E /* T03CalendarViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T03CalendarViewController.storyboard; sourceTree = "<group>"; };
-		84AB208126308F6400A01F9E /* T03CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03CalendarViewController.swift; sourceTree = "<group>"; };
-		84AB20842630941E00A01F9E /* T03CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		84AB20872630A04200A01F9E /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
-		84AB208B263400FB00A01F9E /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		84AB211B263AFF7500A01F9E /* LoveMemoryDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LoveMemoryDataModel.xcdatamodel; sourceTree = "<group>"; };
-		84AB211E263AFF8800A01F9E /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		84AB212A263B06F400A01F9E /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
-		84AB2142263B0C4700A01F9E /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
-		84CF420F2645AD9A0044B137 /* T03CalendarNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T03CalendarNoteTableViewCell.swift; sourceTree = "<group>"; };
 		84D21F112628B0A5007D43F2 /* LoveHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D21F142628B0A5007D43F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D21F1D2628B0A7007D43F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -236,33 +212,31 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		8423D193263B252000106030 /* Repository */ = {
+		84729824267271F600DFB3ED /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				84AB211E263AFF8800A01F9E /* Repository.swift */,
+				847298252672721000DFB3ED /* Repositoy.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		8423D199263B254600106030 /* UseCase */ = {
+		84729828267278BF00DFB3ED /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				8423D19A263B257100106030 /* T03CalendarUseCase.swift */,
-				8423D19E263B2FF200106030 /* T05NoteUseCase.swift */,
-				84096DB526413DE200605068 /* UseCaseProvider.swift */,
+				84729829267278EF00DFB3ED /* T03MemoryListUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
 		};
-		8423D1CF263BAC8400106030 /* T05Note */ = {
+		8472982D26727A3600DFB3ED /* T03MemoryList */ = {
 			isa = PBXGroup;
 			children = (
-				8423D1D0263BACAA00106030 /* T05NoteViewController.swift */,
-				8423D1D4263BACCA00106030 /* T05NoteViewController.storyboard */,
-				8423D1D8263BB53900106030 /* T05ImageCollectionViewCell.swift */,
-				8423D20F263C5F0D00106030 /* T05NoteViewModel.swift */,
+				8472982E26727A5000DFB3ED /* T03MemoryListViewModel.swift */,
+				8472983226727A7200DFB3ED /* T03MemoryListViewController.swift */,
+				8472983526727A8800DFB3ED /* T03MemoryListViewController.storyboard */,
+				8472983C26727B8500DFB3ED /* T03MemoryListNavigator.swift */,
 			);
-			path = T05Note;
+			path = T03MemoryList;
 			sourceTree = "<group>";
 		};
 		84AB1F032628B37300A01F9E /* Extension */ = {
@@ -323,8 +297,7 @@
 		84AB1F612629F21500A01F9E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				8423D1CF263BAC8400106030 /* T05Note */,
-				84AB207D26308E7100A01F9E /* T03Calendar */,
+				8472982D26727A3600DFB3ED /* T03MemoryList */,
 				84AB2030262DF65E00A01F9E /* T02Settings */,
 				84AB1F692629F5CD00A01F9E /* Base */,
 				84AB1F622629F21F00A01F9E /* T01MainView */,
@@ -379,8 +352,7 @@
 				84AB1FA8262A06A500A01F9E /* Gender.swift */,
 				84AB1FAC262A090500A01F9E /* Person.swift */,
 				84AB1FAF262A09A800A01F9E /* Zodiac.swift */,
-				8423D18D263B183E00106030 /* Image.swift */,
-				8423D190263B192100106030 /* Note.swift */,
+				8472981726726E7E00DFB3ED /* Memory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -405,6 +377,7 @@
 				84AB1FF1262B1CBD00A01F9E /* DefaultDateFormatter.swift */,
 				84AB1FF4262B1CDC00A01F9E /* Constant.swift */,
 				84AB1FFD262B33E600A01F9E /* NibLoadable.swift */,
+				8472983F2673B42E00DFB3ED /* SystemImage.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -477,25 +450,11 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		84AB207D26308E7100A01F9E /* T03Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				84AB207E26308EA800A01F9E /* T03CalendarViewController.storyboard */,
-				84AB208126308F6400A01F9E /* T03CalendarViewController.swift */,
-				84AB20842630941E00A01F9E /* T03CalendarCollectionViewCell.swift */,
-				84AB208B263400FB00A01F9E /* RoundView.swift */,
-				8423D1A4263B327C00106030 /* T03CalendarNavigator.swift */,
-				8423D1A7263B32D200106030 /* T03CalendarViewModel.swift */,
-				84CF420F2645AD9A0044B137 /* T03CalendarNoteTableViewCell.swift */,
-			);
-			path = T03Calendar;
-			sourceTree = "<group>";
-		};
 		84AB2118263AFF4F00A01F9E /* Platform */ = {
 			isa = PBXGroup;
 			children = (
-				8423D199263B254600106030 /* UseCase */,
-				8423D193263B252000106030 /* Repository */,
+				84729828267278BF00DFB3ED /* UseCase */,
+				84729824267271F600DFB3ED /* Repository */,
 				84AB212D263B0B1800A01F9E /* Entities */,
 				84AB2119263AFF5600A01F9E /* Database */,
 			);
@@ -514,21 +473,10 @@
 		84AB212D263B0B1800A01F9E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				8423D184263B173300106030 /* CDNote+CoreDataClass.swift */,
-				8423D185263B173300106030 /* CDNote+CoreDataProperties.swift */,
-				8423D186263B173300106030 /* CDImage+CoreDataClass.swift */,
-				8423D187263B173300106030 /* CDImage+CoreDataProperties.swift */,
-				84AB2141263B0C2700A01F9E /* Converter */,
+				8472981E267271C800DFB3ED /* CDMemory+CoreDataClass.swift */,
+				8472981F267271C800DFB3ED /* CDMemory+CoreDataProperties.swift */,
 			);
 			path = Entities;
-			sourceTree = "<group>";
-		};
-		84AB2141263B0C2700A01F9E /* Converter */ = {
-			isa = PBXGroup;
-			children = (
-				84AB2142263B0C4700A01F9E /* Converter.swift */,
-			);
-			path = Converter;
 			sourceTree = "<group>";
 		};
 		84D21F082628B0A5007D43F2 = {
@@ -653,15 +601,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D21F2C2628B162007D43F2 /* wave.json in Resources */,
-				8423D1D5263BACCA00106030 /* T05NoteViewController.storyboard in Resources */,
 				846F3E10266E6F8200BB9D3B /* heart-button.json in Resources */,
 				84AB2032262DF6B900A01F9E /* T02SettingsViewController.storyboard in Resources */,
 				84D21F212628B0A7007D43F2 /* LaunchScreen.storyboard in Resources */,
 				84D21F1E2628B0A7007D43F2 /* Assets.xcassets in Resources */,
+				8472983626727A8800DFB3ED /* T03MemoryListViewController.storyboard in Resources */,
 				84AB1FF8262B265A00A01F9E /* LoveProgressView.xib in Resources */,
 				84AB1F152628BCB600A01F9E /* heart_wave.json in Resources */,
 				84AB1F642629F27B00A01F9E /* T01MainViewController.storyboard in Resources */,
-				84AB207F26308EA800A01F9E /* T03CalendarViewController.storyboard in Resources */,
 				84AB1FCB262ABCE600A01F9E /* Localizable.strings in Resources */,
 				84AB1F9C2629FC8000A01F9E /* PersonView.xib in Resources */,
 			);
@@ -719,11 +666,10 @@
 				84AB1F092628B3C100A01F9E /* Int+Extension.swift in Sources */,
 				84AB2041262E904E00A01F9E /* T2SettingsNavigator.swift in Sources */,
 				8472980E267262AE00DFB3ED /* FloaterView.swift in Sources */,
-				8423D1A5263B327C00106030 /* T03CalendarNavigator.swift in Sources */,
 				84AB1F962629F6EB00A01F9E /* AppNavigator.swift in Sources */,
 				84AB2016262BEC6D00A01F9E /* GenderAndAgeButtonAction.swift in Sources */,
 				84AB1F9F2629FD5C00A01F9E /* RoundImageView.swift in Sources */,
-				8423D18B263B173300106030 /* CDImage+CoreDataProperties.swift in Sources */,
+				8472983326727A7200DFB3ED /* T03MemoryListViewController.swift in Sources */,
 				8423D1A2263B31D800106030 /* RoundButton.swift in Sources */,
 				84AB1F3E2628C88900A01F9E /* Calendar+Extension.swift in Sources */,
 				84AB2044262F513A00A01F9E /* SettingWithSubTitleTableViewCell.swift in Sources */,
@@ -733,14 +679,15 @@
 				84AB1FAD262A090500A01F9E /* Person.swift in Sources */,
 				84AB212B263B06F500A01F9E /* PersistenceManager.swift in Sources */,
 				84AB1FBE262AB95200A01F9E /* Strings.swift in Sources */,
+				8472982F26727A5000DFB3ED /* T03MemoryListViewModel.swift in Sources */,
 				84AB203E262DFAF900A01F9E /* SettingWithSwitchTableViewCell.swift in Sources */,
+				847298262672721000DFB3ED /* Repositoy.swift in Sources */,
 				84AB1FA9262A06A500A01F9E /* Gender.swift in Sources */,
-				84AB20852630941E00A01F9E /* T03CalendarCollectionViewCell.swift in Sources */,
 				84AB1FFE262B33E600A01F9E /* NibLoadable.swift in Sources */,
 				84AB211C263AFF7500A01F9E /* LoveMemoryDataModel.xcdatamodeld in Sources */,
 				84AB20882630A04200A01F9E /* PaddingLabel.swift in Sources */,
+				847298402673B42E00DFB3ED /* SystemImage.swift in Sources */,
 				84AB1F442628C88900A01F9E /* UILabel+Extension.swift in Sources */,
-				84AB2143263B0C4700A01F9E /* Converter.swift in Sources */,
 				84AB1F482628C88900A01F9E /* String+Extension.swift in Sources */,
 				84AB1F452628C88900A01F9E /* NSObject+Extension.swift in Sources */,
 				84AB1F992629F7AE00A01F9E /* BaseNavigationController.swift in Sources */,
@@ -748,13 +695,9 @@
 				84AB1F462628C88900A01F9E /* UIColor+Extension.swift in Sources */,
 				84AB1F112628B41C00A01F9E /* HeartView.swift in Sources */,
 				84AB1F3D2628C88900A01F9E /* DateFormatter+Extension.swift in Sources */,
-				8423D18A263B173300106030 /* CDImage+CoreDataClass.swift in Sources */,
 				84AB1F492628C88900A01F9E /* Collection+Extension.swift in Sources */,
-				8423D18E263B183E00106030 /* Image.swift in Sources */,
 				84AB1FFB262B270600A01F9E /* LoveProgressView.swift in Sources */,
 				84AB201C262DD1D200A01F9E /* T01MainViewNavigator.swift in Sources */,
-				84AB211F263AFF8800A01F9E /* Repository.swift in Sources */,
-				8423D191263B192100106030 /* Note.swift in Sources */,
 				84AB1FF5262B1CDC00A01F9E /* Constant.swift in Sources */,
 				84AB1FB8262AB89D00A01F9E /* Settings.swift in Sources */,
 				84AB1F3F2628C88900A01F9E /* Date+Extension.swift in Sources */,
@@ -763,42 +706,35 @@
 				84AB1F502628C88900A01F9E /* UIButton+Extension.swift in Sources */,
 				84AB1F402628C88900A01F9E /* UITableViewCell+Extension.swift in Sources */,
 				84AB1FDB262ACA0B00A01F9E /* Colors.swift in Sources */,
+				8472983D26727B8500DFB3ED /* T03MemoryListNavigator.swift in Sources */,
+				84729820267271C800DFB3ED /* CDMemory+CoreDataClass.swift in Sources */,
 				84AB1F472628C88900A01F9E /* UITableView+Extension.swift in Sources */,
-				8423D1D9263BB53900106030 /* T05ImageCollectionViewCell.swift in Sources */,
 				84AB2008262BEB2D00A01F9E /* UIAlertController+Extension.swift in Sources */,
+				8472981826726E7E00DFB3ED /* Memory.swift in Sources */,
 				84D21F152628B0A5007D43F2 /* AppDelegate.swift in Sources */,
-				84CF42102645AD9A0044B137 /* T03CalendarNoteTableViewCell.swift in Sources */,
 				84AB201F262DE9D400A01F9E /* BaseViewModel.swift in Sources */,
 				84AB1F422628C88900A01F9E /* UIPickerView+Extension.swift in Sources */,
 				84AB1FA2262A02DD00A01F9E /* PersonView.swift in Sources */,
 				84AB1FDF262AD25300A01F9E /* ImageAction.swift in Sources */,
-				8423D19B263B257100106030 /* T03CalendarUseCase.swift in Sources */,
 				84AB1FF2262B1CBE00A01F9E /* DefaultDateFormatter.swift in Sources */,
 				84AB1F542628C88900A01F9E /* UIStackView+Extension.swift in Sources */,
+				84729821267271C800DFB3ED /* CDMemory+CoreDataProperties.swift in Sources */,
+				8472982A267278EF00DFB3ED /* T03MemoryListUseCase.swift in Sources */,
 				84AB1F4D2628C88900A01F9E /* FileManager+Extension.swift in Sources */,
 				84AB1F052628B38C00A01F9E /* UIBezierPath+Extension.swift in Sources */,
 				84AB2038262DF85100A01F9E /* NormalSettingTableViewCell.swift in Sources */,
-				8423D189263B173300106030 /* CDNote+CoreDataProperties.swift in Sources */,
 				84AB2005262B3C9A00A01F9E /* BaseLabel.swift in Sources */,
-				84AB208C263400FB00A01F9E /* RoundView.swift in Sources */,
 				84AB1F4C2628C88900A01F9E /* UISegmentedControl+Extension.swift in Sources */,
 				84AB1FB0262A09A800A01F9E /* Zodiac.swift in Sources */,
-				8423D210263C5F0D00106030 /* T05NoteViewModel.swift in Sources */,
 				84AB203B262DF8B900A01F9E /* T02SettingsViewModel.swift in Sources */,
 				84AB1F4A2628C88900A01F9E /* UIViewController+Extension.swift in Sources */,
-				8423D1A8263B32D200106030 /* T03CalendarViewModel.swift in Sources */,
 				84AB2052262FDC3100A01F9E /* SettingsHelper.swift in Sources */,
 				84AB1FD8262AC9EB00A01F9E /* LocalizedStrings.swift in Sources */,
-				8423D1D1263BACAA00106030 /* T05NoteViewController.swift in Sources */,
 				84AB1F3B2628C88900A01F9E /* UITextView+Extension.swift in Sources */,
 				84AB2035262DF7F000A01F9E /* T02SettingsViewController.swift in Sources */,
 				84AB1F532628C88900A01F9E /* UIImage+Extension.swift in Sources */,
-				84AB208226308F6400A01F9E /* T03CalendarViewController.swift in Sources */,
-				84096DB626413DE200605068 /* UseCaseProvider.swift in Sources */,
 				84AB2022262DE9E500A01F9E /* T01MainViewViewModel.swift in Sources */,
-				8423D19F263B2FF200106030 /* T05NoteUseCase.swift in Sources */,
 				84AB1F522628C88900A01F9E /* UIApplication+Extension.swift in Sources */,
-				8423D188263B173300106030 /* CDNote+CoreDataClass.swift in Sources */,
 				84AB1F432628C88900A01F9E /* NSAttributedString+Extension.swift in Sources */,
 				84AB1F672629F5C900A01F9E /* BaseViewController.swift in Sources */,
 				84AB2002262B39F300A01F9E /* BaseView.swift in Sources */,

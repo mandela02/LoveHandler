@@ -11,7 +11,7 @@ import Combine
 class T02SettingsViewModel: BaseViewModel {    
     private var navigator: T2SettingsNavigatorType
     
-    init(navigator: T2SettingsNavigator) {
+    init(navigator: T2SettingsNavigatorType) {
         self.navigator = navigator
     }
     

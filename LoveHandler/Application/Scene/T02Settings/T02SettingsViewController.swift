@@ -13,22 +13,6 @@ class T02SettingsViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private lazy var closeButton: UIBarButtonItem = {
-        let closeButton = UIBarButtonItem(title: "Back",
-                                          style: .plain,
-                                          target: nil,
-                                          action: nil)
-        closeButton.tintColor = UIColor.white
-        return closeButton
-    }()
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = UIColor.white
-        return label
-    }()
-    
     private lazy var tableFooterViewLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -66,24 +50,13 @@ class T02SettingsViewController: BaseViewController {
     
     override func setupLocalizedString() {
         super.setupLocalizedString()
-        titleLabel.text = LocalizedString.t03SettingsTitle
+        navigationTitle = LocalizedString.t03SettingsTitle
         tableFooterViewLabel.text = getFooter()
     }
     
     private func setupNavigationBar() {
-        let view = UIView()
-        view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        view.layoutIfNeeded()
-        view.sizeToFit()
-        
-        navigationItem.titleView = view
-        navigationItem.leftBarButtonItem = closeButton
+        isTitleVisible = true
+        isBackButtonVisible = true
     }
     
     override func bindViewModel() {
@@ -116,8 +89,6 @@ class T02SettingsViewController: BaseViewController {
     
     override func setupTheme() {
         super.setupTheme()
-        self.overrideUserInterfaceStyle = .light
-        self.navigationController?.overrideUserInterfaceStyle = .light
     }
     
     private func getFooter() -> String {
