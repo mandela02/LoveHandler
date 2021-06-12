@@ -10,9 +10,11 @@ import Combine
 
 class T03MemoryListViewModel: BaseViewModel {
     private var navigator: T03MemoryListNavigatorType
-    
-    init(navigator: T03MemoryListNavigatorType) {
+    private var useCase: T03MemoryListUseCaseType
+
+    init(navigator: T03MemoryListNavigatorType, useCase: T03MemoryListUseCaseType) {
         self.navigator = navigator
+        self.useCase = useCase
     }
     
     func transform(_ input: Input) -> Output {
@@ -23,10 +25,18 @@ class T03MemoryListViewModel: BaseViewModel {
         let toMemory = input.addButtonTrigger.handleEvents(receiveOutput: navigator.toMemory)
             .map { _ in }
             .eraseToAnyPublisher()
+        
+        let memories = input.viewWillAppear
+            .map { [weak self] _ -> [CDMemory] in
+                guard let self = self else { return [] }
+                return self.useCase.getAllMemory()
+            }
+            .eraseToAnyPublisher()
 
         let noResponse = Publishers.MergeMany([dismiss, toMemory]).eraseToAnyPublisher()
         
-        return Output(noRespone: noResponse)
+        return Output(noRespone: noResponse,
+                      memories: memories)
     }
     
 
@@ -38,5 +48,6 @@ class T03MemoryListViewModel: BaseViewModel {
     
     struct Output {
         let noRespone: AnyPublisher<Void, Never>
+        let memories: AnyPublisher<[CDMemory], Never>
     }
 }

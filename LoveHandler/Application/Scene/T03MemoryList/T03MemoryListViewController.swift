@@ -20,6 +20,8 @@ class T03MemoryListViewController: BaseViewController {
     
     private var onViewWillAppearSignal = PassthroughSubject<Void, Never>()
 
+    private var memories: [CDMemory] = []
+    
     deinit {
         onViewWillAppearSignal.send(completion: .finished)
         
@@ -36,6 +38,7 @@ class T03MemoryListViewController: BaseViewController {
     
     override func refreshView() {
         super.refreshView()
+        onViewWillAppearSignal.send(Void());
     }
     
     override func setupLocalizedString() {
@@ -54,6 +57,12 @@ class T03MemoryListViewController: BaseViewController {
         
         let output = viewModel.transform(input)
         
+        output.memories.sink(receiveValue: { [weak self] list in
+            guard let self = self else { return }
+            self.memories = list
+            self.collectionView.reloadData()
+        }).store(in: &cancellables)
+
         output.noRespone.sink(receiveValue: {}).store(in: &cancellables)
     }
     
@@ -90,7 +99,10 @@ class T03MemoryListViewController: BaseViewController {
 extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout  {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: Int.random(in: 250..<500), height: Int.random(in: 250..<500))
+        guard let memory = memories[safe: indexPath.item],
+              let data = memory.image,
+              let image = UIImage(data: data) else { return CGSize.zero }
+        return image.size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, columnCountFor section: Int) -> Int {
@@ -103,11 +115,12 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemoryCollectionViewCell.className, for: indexPath) as? MemoryCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.imageView.backgroundColor = UIColor.red
+        guard let memory = memories[safe: indexPath.item] else { return UICollectionViewCell() }
+        cell.setupContent(memory: memory)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 500
+        return memories.count
     }
 }

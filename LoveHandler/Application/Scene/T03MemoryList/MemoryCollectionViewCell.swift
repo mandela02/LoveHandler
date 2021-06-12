@@ -17,6 +17,13 @@ class MemoryCollectionViewCell: UICollectionViewCell {
     
     let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        titleLabel.text = nil
+        dateLabel.text = nil
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         textContentView.backgroundColor = UIColor.clear
@@ -32,5 +39,15 @@ class MemoryCollectionViewCell: UICollectionViewCell {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         textContentView.addSubview(blurEffectView)
         textContentView.bringSubviewToFront(titleLabel)
+    }
+    
+    func setupContent(memory: CDMemory) {
+        if let data = memory.image,
+        let image = UIImage(data: data) {
+            imageView.image = image
+        }
+        
+        dateLabel.text = Date(timeIntervalSince1970: TimeInterval(memory.displayedDate)).dayMonthYearString
+        titleLabel.text = memory.title
     }
 }
