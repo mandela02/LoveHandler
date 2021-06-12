@@ -63,6 +63,8 @@ class BaseViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = Colors.deepPink
         self.overrideUserInterfaceStyle = .light
         self.navigationController?.overrideUserInterfaceStyle = .light
+        self.navigationController?.hero.isEnabled = true
+        self.hero.isEnabled = true
 
         setupView()
         setupLocalizedString()
