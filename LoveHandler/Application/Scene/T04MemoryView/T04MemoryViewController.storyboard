@@ -39,7 +39,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="da3-QK-DOv">
                                                             <rect key="frame" x="0.0" y="0.0" width="314" height="1040"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XTh-Hw-wyl">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XTh-Hw-wyl">
                                                                     <rect key="frame" x="0.0" y="0.0" width="314" height="150"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="150" id="gYU-jw-09I"/>
@@ -77,9 +77,29 @@
                                                                         <constraint firstAttribute="height" constant="30" id="vPL-Ff-iSX"/>
                                                                     </constraints>
                                                                 </stackView>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5l-62-yV6">
+                                                                    <rect key="frame" x="0.0" y="100" width="314" height="50"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fbH-AJ-4Uj">
+                                                                            <rect key="frame" x="142" y="10.5" width="30" height="28"/>
+                                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="fbH-AJ-4Uj" secondAttribute="height" multiplier="1:1" id="4xs-5p-VoM"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" systemColor="labelColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="fbH-AJ-4Uj" firstAttribute="top" secondItem="G5l-62-yV6" secondAttribute="top" constant="10" id="dGA-9N-Goa"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="knV-RM-IXF"/>
+                                                                        <constraint firstItem="fbH-AJ-4Uj" firstAttribute="centerY" secondItem="G5l-62-yV6" secondAttribute="centerY" id="lGv-Hx-d12"/>
+                                                                        <constraint firstItem="fbH-AJ-4Uj" firstAttribute="centerX" secondItem="G5l-62-yV6" secondAttribute="centerX" id="puq-i2-iBu"/>
+                                                                    </constraints>
+                                                                </view>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="G5l-62-yV6" secondAttribute="trailing" id="0PF-Wg-6sO"/>
                                                                 <constraint firstItem="XTh-Hw-wyl" firstAttribute="leading" secondItem="da3-QK-DOv" secondAttribute="leading" id="C1c-aN-o1B"/>
                                                                 <constraint firstItem="BYf-xV-kNw" firstAttribute="top" secondItem="XTh-Hw-wyl" secondAttribute="bottom" constant="15" id="FVX-71-xDn"/>
                                                                 <constraint firstAttribute="trailing" secondItem="BYf-xV-kNw" secondAttribute="trailing" constant="5" id="IAR-w1-dCv"/>
@@ -88,7 +108,9 @@
                                                                 <constraint firstItem="fjE-A8-AJt" firstAttribute="leading" secondItem="da3-QK-DOv" secondAttribute="leading" constant="5" id="Vz2-ih-0Mr"/>
                                                                 <constraint firstItem="XTh-Hw-wyl" firstAttribute="top" secondItem="da3-QK-DOv" secondAttribute="top" id="ZET-FD-0nP"/>
                                                                 <constraint firstItem="fjE-A8-AJt" firstAttribute="top" secondItem="BYf-xV-kNw" secondAttribute="bottom" constant="5" id="aL2-mV-p2G"/>
+                                                                <constraint firstItem="XTh-Hw-wyl" firstAttribute="bottom" secondItem="G5l-62-yV6" secondAttribute="bottom" id="e5o-vl-Fg6"/>
                                                                 <constraint firstAttribute="trailing" secondItem="XTh-Hw-wyl" secondAttribute="trailing" id="elr-rb-LJf"/>
+                                                                <constraint firstItem="G5l-62-yV6" firstAttribute="leading" secondItem="da3-QK-DOv" secondAttribute="leading" id="nex-oi-LJv"/>
                                                                 <constraint firstItem="BYf-xV-kNw" firstAttribute="leading" secondItem="da3-QK-DOv" secondAttribute="leading" constant="5" id="rlS-9Z-YVB"/>
                                                             </constraints>
                                                         </view>
@@ -149,6 +171,7 @@
                         <outlet property="contentTextView" destination="fjE-A8-AJt" id="aV9-PV-HtI"/>
                         <outlet property="dateLabel" destination="sSj-DH-vHO" id="Vhr-Ua-dhF"/>
                         <outlet property="imageHeightConstraint" destination="gYU-jw-09I" id="5ys-it-hjR"/>
+                        <outlet property="imagePickButtonView" destination="G5l-62-yV6" id="jZl-cF-XYb"/>
                         <outlet property="imageView" destination="XTh-Hw-wyl" id="hdl-7J-TId"/>
                         <outlet property="saveButton" destination="Ehx-sJ-5Fi" id="n0o-zk-PjG"/>
                         <outlet property="scrollView" destination="Inx-Rg-nUB" id="Opb-ae-Zwp"/>
@@ -162,6 +185,7 @@
     </scenes>
     <resources>
         <image name="calendar" width="512" height="512"/>
+        <image name="camera" catalog="system" width="128" height="94"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

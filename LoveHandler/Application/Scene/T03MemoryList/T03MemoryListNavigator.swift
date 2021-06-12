@@ -25,9 +25,11 @@ class T03MemoryListNavigator: T03MemoryListNavigatorType {
     
     func toMemory() {
         let viewController = T04MemoryViewController.instantiateFromStoryboard()
-        viewController.viewPurpose = Purpose.new
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.hero.isEnabled = true
+        
+        viewController.viewModel = T04MemoryViewModel(navigator: T04MemoryNavigator(controller: viewController),
+                                                      useCase: UseCaseProvider.defaultProvider.getMemoryUseCase())
 
         navigationController.present(viewController,animated: true, completion: nil)
     }

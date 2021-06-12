@@ -6,11 +6,7 @@
 //
 
 import UIKit
-
-enum Purpose {
-    case new
-    case update
-}
+import Combine
 
 class T04MemoryViewController: BaseViewController {
     @IBOutlet weak var bigContainerView: UIView!
@@ -23,33 +19,77 @@ class T04MemoryViewController: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollableContentView: UIView!
     @IBOutlet weak var backgroundContentView: UIView!
-
-    var backgroundTap: UITapGestureRecognizer?
+    @IBOutlet weak var imagePickButtonView: UIView!
     
-    var viewPurpose: Purpose?
+    private var picker: ImagePickerHelper?
+    private var currentConstraint: CGFloat = 0
+    private var backgroundTap: UITapGestureRecognizer?
+    private var imageTap: UITapGestureRecognizer?
     
-    var titlePlaceHolder: String {
+    private var image = PassthroughSubject<UIImage, Never>()
+    private var cancellables = Set<AnyCancellable>()
+    
+    private var titlePlaceHolder: String {
         return "Nhập nhật ký tại đây"
     }
     
+    var viewModel: T04MemoryViewModel?
+
+    deinit {
+        image.send(completion: .finished)
+        cancellables.forEach { $0.cancel() }
+    }
+    
     override func setupView() {
+        self.scrollView.delegate = self
         contentTextView.viewCornerRadius = 10
         
         setupTransitionAnimation()
         setupTapBackground()
-        setupViewBaseOnPerpose()
+        addGesture()
+        addPicker()
     }
-    
-    private func setupViewBaseOnPerpose() {
-        if viewPurpose == Purpose.new {
-            imageView.image = SystemImage.camera.image?
-                .withAlignmentRectInsets(UIEdgeInsets(top: -10, left: 0, bottom: -10, right: 0))
-            dateLabel.text = "Chọn ngày tại đây"
-            contentTextView.text = "Nhập nhật ký tại đây"
-            contentTextView.viewBorderWidth = 1
-            contentTextView.viewBorderColor = Colors.pink
+        
+    override func bindViewModel() {
+        let chooseDateTap = UITapGestureRecognizer()
+        dateLabel.isUserInteractionEnabled = true
+        dateLabel.addGestureRecognizer(chooseDateTap)
+        
+        
+        guard let viewModel = viewModel else { return }
+        
+        let input = T04MemoryViewModel.Input(textFieldString: contentTextView.textPublisher.compactMap { $0 }.eraseToAnyPublisher(),
+                                             saveButtonTrigger: saveButton.tapPublisher,
+                                             chooseDateTrigger: chooseDateTap.tapPublisher.map { _ in }.eraseToAnyPublisher(),
+                                             selectedImageTrigger: image.eraseToAnyPublisher())
+        
+        let output = viewModel.transform(input)
+        
+        output.date.sink { [weak self] date in
+            guard let self = self else { return }
+            self.dateLabel.text = date.dayMonthYearString
+        }.store(in: &cancellables)
+        
+        output.image.sink { [weak self] image in
+            guard let self = self else { return }
+            self.imageView.image = image
+            self.imageView.contentMode = .scaleAspectFill
 
-        }
+            self.imagePickButtonView.isHidden = false
+            
+            let width = self.bigContainerView.width
+            let ratio = image.size.height / image.size.width
+            self.imageHeightConstraint.constant = width * ratio
+            
+            self.addGestureToImageViewIfNeeded(isNeeded: false)
+            
+            self.currentConstraint = self.imageHeightConstraint.constant
+        }.store(in: &cancellables)
+        
+        output.viewPurpose.sink { [weak self] purpose in
+            guard let self = self else { return }
+            self.setupViewBaseOnPerpose(viewPurpose: purpose)
+        }.store(in: &cancellables)
     }
     
     override func setupTheme() {
@@ -57,37 +97,14 @@ class T04MemoryViewController: BaseViewController {
         imageView.tintColor = Colors.pink
         saveButton.backgroundColor = Colors.hotPink
         saveButton.setTitleColor(UIColor.white, for: .normal)
+        imagePickButtonView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
     }
-    
     
     override func setupLocalizedString() {
         super.setupLocalizedString()
         saveButton.setTitle("Save", for: .normal)
     }
     
-    private func setupTransitionAnimation() {
-        saveButton.hero.id = HeroIdentifier.addButtonIdentifier
-        bigContainerView.hero.modifiers = [.cornerRadius(10),
-                                           .forceAnimate,
-                                           .spring(stiffness: 250, damping: 25)]
-        backgroundView.hero.modifiers = [.fade]
-    }
-    
-    private func setupTapBackground() {
-        backgroundTap = UITapGestureRecognizer(target: self, action: #selector(onTap))
-        backgroundContentView.isUserInteractionEnabled = true
-        backgroundContentView.addGestureRecognizer(backgroundTap!)
-        backgroundTap?.delegate = self
-    }
-    
-    @objc private func onTap() {
-        if contentTextView.isFirstResponder {
-            contentTextView.resignFirstResponder()
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
-    }
-        
     override func keyboarDidShow(keyboardHeight: CGFloat) {
         var contentInset: UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardHeight > 100 ? keyboardHeight - 100 : keyboardHeight
@@ -110,11 +127,123 @@ class T04MemoryViewController: BaseViewController {
 
 }
 
+// MARK: - Obj C
+extension T04MemoryViewController {
+    @objc private func onTap() {
+        if contentTextView.isFirstResponder {
+            contentTextView.resignFirstResponder()
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @objc private func handleImageTap(_ sender: UITapGestureRecognizer? = nil) {
+        picker?.showActionSheet()
+    }
+}
+// MARK: - Private function
+extension T04MemoryViewController {
+    private func setupViewBaseOnPerpose(viewPurpose: Purpose) {
+        if viewPurpose == Purpose.new {
+            imageView.image = SystemImage.camera.image?
+                .withAlignmentRectInsets(UIEdgeInsets(top: -10, left: 0, bottom: -10, right: 0))
+            imageView.contentMode = .scaleAspectFit
+            dateLabel.text = "Chọn ngày tại đây"
+            contentTextView.text = "Nhập nhật ký tại đây"
+            contentTextView.viewBorderWidth = 1
+            contentTextView.viewBorderColor = Colors.pink
+            
+            imagePickButtonView.isHidden = true
+        } else {
+        }
+    }
+
+    private func setupTransitionAnimation() {
+        saveButton.hero.id = HeroIdentifier.addButtonIdentifier
+        bigContainerView.hero.modifiers = [.cornerRadius(10),
+                                           .forceAnimate,
+                                           .spring(stiffness: 250, damping: 25)]
+        backgroundView.hero.modifiers = [.fade]
+    }
+    
+    private func setupTapBackground() {
+        backgroundTap = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        backgroundContentView.isUserInteractionEnabled = true
+        backgroundContentView.addGestureRecognizer(backgroundTap!)
+        backgroundTap?.delegate = self
+    }
+    
+    
+    private func addGesture() {
+        imageTap = UITapGestureRecognizer(target: self, action: #selector(self.handleImageTap(_:)))
+        addGestureToImageViewIfNeeded(isNeeded: true)
+    }
+    
+    private func addGestureToImageViewIfNeeded(isNeeded: Bool) {
+        guard let imageTap = imageTap else { return }
+        if isNeeded {
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(imageTap)
+        } else {
+            imageView.removeGestureRecognizer(imageTap)
+            imagePickButtonView.addGestureRecognizer(imageTap)
+        }
+    }
+    
+    private func addPicker() {
+        picker = ImagePickerHelper(title: LocalizedString.t01ImagePickerTitle,
+                                   message: LocalizedString.t01ImagePickerSubTitle)
+        
+        picker?.delegate = self
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
 extension T04MemoryViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if gestureRecognizer == backgroundTap && (touch.view == backgroundContentView || contentTextView.isFirstResponder)  {
             return true
         }
         return false;
+    }
+}
+
+
+// MARK: - ImagePickerDelegate
+extension T04MemoryViewController: ImagePickerDelegate {
+    func cameraHandle(image: UIImage) {
+        self.image.send(image)
+    }
+    
+    func libraryHandle(images: [UIImage]) {
+        if !images.isEmpty {
+            self.image.send(images.first!)
+        }
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension T04MemoryViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            self.imageHeightConstraint.constant -= scrollView.contentOffset.y
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        resetHeightConstraint()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if (!decelerate) {
+            resetHeightConstraint()
+        }
+    }
+    
+    private func resetHeightConstraint() {
+        self.imageHeightConstraint.constant = currentConstraint
+        UIView.animate(withDuration: 0.4) {
+            self.view.layoutIfNeeded()
+        }
     }
 }
