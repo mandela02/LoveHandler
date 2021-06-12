@@ -79,6 +79,17 @@ class T03MemoryListViewController: BaseViewController {
         layout.minimumInteritemSpacing = 3.0
         collectionView.collectionViewLayout = layout
     }
+    
+    @IBAction func onAddButtonPress(_ sender: Any) {
+        addButton.hero.id = "addButton"
+        
+        let viewController = T04MemoryViewController.instantiateFromStoryboard()
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.hero.isEnabled = true
+
+        self.present(viewController,animated: true, completion: nil)
+    }
+    
 }
 
 extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout  {

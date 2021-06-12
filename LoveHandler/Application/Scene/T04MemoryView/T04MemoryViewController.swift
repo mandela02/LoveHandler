@@ -16,7 +16,37 @@ class T04MemoryViewController: BaseViewController {
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var backgroundView: UIVisualEffectView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var scrollableContentView: UIView!
+    
     override func setupView() {
-        bigContainerView.viewCornerRadius = 10
+        setupTransitionAnimation()
+        setupTapBackground()
+    }
+    
+    override func setupTheme() {
+        super.setupTheme()
+        saveButton.backgroundColor = Colors.hotPink
+        saveButton.setTitleColor(UIColor.white, for: .normal)
+    }
+    
+    private func setupTransitionAnimation() {
+        saveButton.hero.id = HeroIdentifier.addButtonIdentifier
+        bigContainerView.hero.modifiers = [.cornerRadius(10),
+                                           .forceAnimate,
+                                           .spring(stiffness: 250, damping: 25)]
+        backgroundView.hero.modifiers = [.fade]
+    }
+    
+    private func setupTapBackground() {
+        backgroundView.isUserInteractionEnabled = true
+        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+    }
+    
+    @objc private func onTap() {
+        dismiss(animated: true, completion: nil)
     }
 }

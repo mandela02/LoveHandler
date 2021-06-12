@@ -34,6 +34,7 @@ class T01MainViewNavigator: T01MainViewNavigatorType {
         let navigationController = BaseNavigationController(rootViewController: viewController)
         let navigator = T03MemoryListNavigator(navigationController: navigationController)
         viewController.viewModel = T03MemoryListViewModel(navigator: navigator)
+        navigationController.modalPresentationStyle = .fullScreen
         self.navigationController.present(navigationController,
                                           animated: true, completion: nil)
     }

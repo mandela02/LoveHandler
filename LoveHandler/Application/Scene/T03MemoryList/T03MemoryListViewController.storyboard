@@ -43,6 +43,9 @@
                                         <state key="normal">
                                             <imageReference key="image" image="plus" catalog="system" symbolScale="medium" renderingMode="template"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onAddButtonPress:" destination="1Zd-7h-VUF" eventType="touchUpInside" id="1Ko-Am-PeC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
