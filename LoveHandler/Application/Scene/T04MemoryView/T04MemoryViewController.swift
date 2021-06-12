@@ -58,9 +58,15 @@ class T04MemoryViewController: BaseViewController {
         
         guard let viewModel = viewModel else { return }
         
+        let chooseDateAction = chooseDateTap.tapPublisher
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.contentTextView.resignFirstResponder()
+            })
+            .map { _ in }.eraseToAnyPublisher()
+        
         let input = T04MemoryViewModel.Input(textFieldString: contentTextView.textPublisher.compactMap { $0 }.eraseToAnyPublisher(),
                                              saveButtonTrigger: saveButton.tapPublisher,
-                                             chooseDateTrigger: chooseDateTap.tapPublisher.map { _ in }.eraseToAnyPublisher(),
+                                             chooseDateTrigger: chooseDateAction,
                                              selectedImageTrigger: image.eraseToAnyPublisher())
         
         let output = viewModel.transform(input)
@@ -90,6 +96,26 @@ class T04MemoryViewController: BaseViewController {
             guard let self = self else { return }
             self.setupViewBaseOnPerpose(viewPurpose: purpose)
         }.store(in: &cancellables)
+        
+        output.initialContent.sink { [weak self] memory in
+            guard let self = self else { return }
+            guard let data = memory?.image,
+                  let text = memory?.title,
+                  let date = memory?.displayedDate else {
+                return
+            }
+            self.imageView.image = UIImage(data: data)
+            self.contentTextView.text = ""
+            self.contentTextView.insertText(text)
+            self.dateLabel.text = Date(timeIntervalSince1970: TimeInterval(date)).dayMonthYearString
+        }.store(in: &cancellables)
+        
+        output.isSaveButtonEnable.sink { [weak self] isEnable in
+            guard let self = self else { return }
+            self.saveButton.isEnabled = isEnable
+        }.store(in: &cancellables)
+
+        output.noResponse.sink { _ in }.store(in: &cancellables)
     }
     
     override func setupTheme() {
@@ -97,6 +123,8 @@ class T04MemoryViewController: BaseViewController {
         imageView.tintColor = Colors.pink
         saveButton.backgroundColor = Colors.hotPink
         saveButton.setTitleColor(UIColor.white, for: .normal)
+        saveButton.setTitleColor(UIColor.gray, for: .disabled)
+        
         imagePickButtonView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
     }
     
@@ -138,6 +166,7 @@ extension T04MemoryViewController {
     }
     
     @objc private func handleImageTap(_ sender: UITapGestureRecognizer? = nil) {
+        contentTextView.resignFirstResponder()
         picker?.showActionSheet()
     }
 }
@@ -148,7 +177,7 @@ extension T04MemoryViewController {
             imageView.image = SystemImage.camera.image?
                 .withAlignmentRectInsets(UIEdgeInsets(top: -10, left: 0, bottom: -10, right: 0))
             imageView.contentMode = .scaleAspectFit
-            dateLabel.text = "Chọn ngày tại đây"
+            dateLabel.text = Date().dayMonthYearString
             contentTextView.text = "Nhập nhật ký tại đây"
             contentTextView.viewBorderWidth = 1
             contentTextView.viewBorderColor = Colors.pink
