@@ -2,6 +2,7 @@ PODS:
   - CombineCocoa (0.2.2)
   - DatePickerDialog (4.0)
   - Fusuma (1.3.3)
+  - Hero (1.6.1)
   - lottie-ios (3.2.1)
   - WaveAnimationView (1.0.2)
 
@@ -9,6 +10,7 @@ DEPENDENCIES:
   - CombineCocoa
   - DatePickerDialog
   - Fusuma
+  - Hero
   - lottie-ios
   - WaveAnimationView
 
@@ -17,6 +19,7 @@ SPEC REPOS:
     - CombineCocoa
     - DatePickerDialog
     - Fusuma
+    - Hero
     - lottie-ios
     - WaveAnimationView
 
@@ -24,9 +27,10 @@ SPEC CHECKSUMS:
   CombineCocoa: 66c79441761907c096ecbd0021cefd8566acaf06
   DatePickerDialog: ccff2f91ff7a018057a4d72fa5ad6de49c8cb0cd
   Fusuma: 3bd08c8c5341ec60c0074fa28570fea8765966f0
+  Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
   lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
   WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
 
-PODFILE CHECKSUM: a0785ffe0fa700979f775a06bbdd0d446e98b627
+PODFILE CHECKSUM: 5a70daa67ed611ea68cf96cdd21a636f82d86ae6
 
 COCOAPODS: 1.10.1

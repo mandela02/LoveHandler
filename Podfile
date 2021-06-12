@@ -11,5 +11,6 @@ target 'LoveHandler' do
   pod 'DatePickerDialog'
   pod 'CombineCocoa'
   pod 'Fusuma'
+  pod 'Hero'
 
 end

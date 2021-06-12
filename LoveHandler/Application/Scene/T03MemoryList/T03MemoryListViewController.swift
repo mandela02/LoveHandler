@@ -32,6 +32,10 @@ class T03MemoryListViewController: BaseViewController {
         setupCollectionView()
     }
     
+    override func refreshView() {
+        super.refreshView()
+    }
+    
     override func setupLocalizedString() {
         super.setupLocalizedString()
         navigationTitle = "Memory"
@@ -60,6 +64,7 @@ class T03MemoryListViewController: BaseViewController {
         collectionView.dataSource = self
         setupCollectionViewCell()
         setupCollectionViewLayout()
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     private func setupCollectionViewCell() {
@@ -71,18 +76,18 @@ class T03MemoryListViewController: BaseViewController {
         let layout = CHTCollectionViewWaterfallLayout()
         layout.minimumColumnSpacing = 3.0
         layout.minimumInteritemSpacing = 3.0
-        self.collectionView.collectionViewLayout = layout
+        collectionView.collectionViewLayout = layout
     }
 }
 
 extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout  {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: Int.random(in: 250..<500))
+        return CGSize(width: Int.random(in: 250..<500), height: Int.random(in: 250..<500))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, columnCountFor section: Int) -> Int {
-        return 3
+        return 2
     }
 }
 

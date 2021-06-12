@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TL-Pt-Ecn">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6kX-St-t4I">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ftL-1s-ACh">
                                             <size key="itemSize" width="128" height="128"/>
@@ -33,7 +33,7 @@
                                         <cells/>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHh-9C-dBT" customClass="RoundButton" customModule="LoveHandler" customModuleProvider="target">
-                                        <rect key="frame" x="332" y="736" width="62" height="62"/>
+                                        <rect key="frame" x="332" y="770" width="62" height="62"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="pHh-9C-dBT" secondAttribute="height" multiplier="1:1" id="FSM-GZ-5Ie"/>
@@ -61,7 +61,7 @@
                         <constraints>
                             <constraint firstItem="4TL-Pt-Ecn" firstAttribute="leading" secondItem="4gC-MB-zvO" secondAttribute="leading" id="4U2-wr-8c4"/>
                             <constraint firstItem="4TL-Pt-Ecn" firstAttribute="top" secondItem="4gC-MB-zvO" secondAttribute="top" id="82M-WA-fmr"/>
-                            <constraint firstItem="4gC-MB-zvO" firstAttribute="bottom" secondItem="4TL-Pt-Ecn" secondAttribute="bottom" id="LrS-YP-kAl"/>
+                            <constraint firstAttribute="bottom" secondItem="4TL-Pt-Ecn" secondAttribute="bottom" id="LrS-YP-kAl"/>
                             <constraint firstItem="4gC-MB-zvO" firstAttribute="trailing" secondItem="4TL-Pt-Ecn" secondAttribute="trailing" id="U9e-kt-ncW"/>
                         </constraints>
                     </view>
