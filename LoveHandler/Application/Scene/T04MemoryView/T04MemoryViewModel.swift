@@ -20,13 +20,10 @@ class T04MemoryViewModel: BaseViewModel {
         self.memory = memory
     }
     
-    
-    
     func transform(_ input: Input) -> Output {
-        let viewPurpose = CurrentValueSubject<Purpose, Never>(memory == nil ? .new : .update)
+        let viewPurpose = CurrentValueSubject<Purpose, Never>(memory == nil ? .new : .update(memory: memory!))
         
         let isSaveButtonEnable = CurrentValueSubject<Bool, Never>(false)
-        let isSaveButtonHidden = CurrentValueSubject<Bool, Never>(true)
 
         var image: UIImage = UIImage()
         var date: Date = Date()
@@ -51,11 +48,21 @@ class T04MemoryViewModel: BaseViewModel {
             .map { [weak self]  _ -> DatabaseResponse? in
                 guard let self = self else { return nil }
                 guard let data = image.pngData() else { return nil }
-                let result = self.useCase.save(id: id!,
-                                               image: data,
-                                               title: content,
-                                               displayDate: date)
-                return result
+                
+                switch viewPurpose.value {
+                case .new:
+                    let result = self.useCase.save(id: id!,
+                                                   image: data,
+                                                   title: content,
+                                                   displayDate: date)
+                    return result
+                case .update(memory: let memory):
+                    memory.image = data
+                    memory.title = content
+                    memory.displayedDate = date.timeIntervalSince1970
+                    memory.updatedDate = Date().timeIntervalSince1970
+                    return self.useCase.update(memory: memory)
+                }
             }
             .map { _ in }
             .handleEvents(receiveOutput: navigator.dismiss)
@@ -84,7 +91,6 @@ class T04MemoryViewModel: BaseViewModel {
                       viewPurpose: viewPurpose.eraseToAnyPublisher(),
                       initialContent: Just(memory).eraseToAnyPublisher(),
                       isSaveButtonEnable: isSaveButtonEnable.eraseToAnyPublisher(),
-                      isSaveButtonHidden: isSaveButtonHidden.eraseToAnyPublisher(),
                       noResponse: noResponse)
     }
     
@@ -101,12 +107,11 @@ class T04MemoryViewModel: BaseViewModel {
         let viewPurpose: AnyPublisher<Purpose, Never>
         let initialContent: AnyPublisher<CDMemory?, Never>
         let isSaveButtonEnable: AnyPublisher<Bool, Never>
-        let isSaveButtonHidden: AnyPublisher<Bool, Never>
         let noResponse: AnyPublisher<Void, Never>
     }
 }
 
 enum Purpose {
     case new
-    case update
+    case update(memory: CDMemory)
 }

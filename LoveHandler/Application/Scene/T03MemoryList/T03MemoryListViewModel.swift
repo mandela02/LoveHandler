@@ -26,6 +26,10 @@ class T03MemoryListViewModel: BaseViewModel {
             .map { _ in }
             .eraseToAnyPublisher()
         
+        let toSelectMemory = input.selectedMemoryTrigger.handleEvents(receiveOutput: navigator.toMemory)
+            .map { _ in }
+            .eraseToAnyPublisher()
+
         let memories = input.viewWillAppear
             .map { [weak self] _ -> [CDMemory] in
                 guard let self = self else { return [] }
@@ -33,7 +37,9 @@ class T03MemoryListViewModel: BaseViewModel {
             }
             .eraseToAnyPublisher()
 
-        let noResponse = Publishers.MergeMany([dismiss, toMemory]).eraseToAnyPublisher()
+        let noResponse = Publishers.MergeMany([dismiss,
+                                               toMemory,
+                                               toSelectMemory]).eraseToAnyPublisher()
         
         return Output(noRespone: noResponse,
                       memories: memories)
@@ -44,6 +50,7 @@ class T03MemoryListViewModel: BaseViewModel {
         let viewWillAppear: AnyPublisher<Void, Never>
         let dismissTrigger: AnyPublisher<Void, Never>
         let addButtonTrigger: AnyPublisher<Void, Never>
+        let selectedMemoryTrigger: AnyPublisher<CDMemory, Never>
     }
     
     struct Output {

@@ -9,6 +9,7 @@ import Foundation
 
 protocol T04MemoryUseCaseType {
     func save(id: UUID, image: Data, title: String, displayDate: Date) -> DatabaseResponse
+    func update(memory: CDMemory) -> DatabaseResponse
 }
 
 class T04MemoryUseCase: T04MemoryUseCaseType {
@@ -29,5 +30,9 @@ class T04MemoryUseCase: T04MemoryUseCaseType {
         }
         
         return repository.save(model: model)
+    }
+    
+    func update(memory: CDMemory) -> DatabaseResponse {
+        return repository.save(model: memory)
     }
 }

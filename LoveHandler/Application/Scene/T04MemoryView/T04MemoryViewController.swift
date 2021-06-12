@@ -34,7 +34,7 @@ class T04MemoryViewController: BaseViewController {
     }
     
     var viewModel: T04MemoryViewModel?
-
+    
     deinit {
         image.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
@@ -49,7 +49,7 @@ class T04MemoryViewController: BaseViewController {
         addGesture()
         addPicker()
     }
-        
+    
     override func bindViewModel() {
         let chooseDateTap = UITapGestureRecognizer()
         dateLabel.isUserInteractionEnabled = true
@@ -70,7 +70,9 @@ class T04MemoryViewController: BaseViewController {
                                              selectedImageTrigger: image.eraseToAnyPublisher())
         
         let output = viewModel.transform(input)
-        
+
+        output.noResponse.sink { _ in }.store(in: &cancellables)
+
         output.date.sink { [weak self] date in
             guard let self = self else { return }
             self.dateLabel.text = date.dayMonthYearString
@@ -80,7 +82,7 @@ class T04MemoryViewController: BaseViewController {
             guard let self = self else { return }
             self.imageView.image = image
             self.imageView.contentMode = .scaleAspectFill
-
+            
             self.imagePickButtonView.isHidden = false
             
             let width = self.bigContainerView.width
@@ -96,26 +98,11 @@ class T04MemoryViewController: BaseViewController {
             guard let self = self else { return }
             self.setupViewBaseOnPerpose(viewPurpose: purpose)
         }.store(in: &cancellables)
-        
-        output.initialContent.sink { [weak self] memory in
-            guard let self = self else { return }
-            guard let data = memory?.image,
-                  let text = memory?.title,
-                  let date = memory?.displayedDate else {
-                return
-            }
-            self.imageView.image = UIImage(data: data)
-            self.contentTextView.text = ""
-            self.contentTextView.insertText(text)
-            self.dateLabel.text = Date(timeIntervalSince1970: TimeInterval(date)).dayMonthYearString
-        }.store(in: &cancellables)
-        
+                
         output.isSaveButtonEnable.sink { [weak self] isEnable in
             guard let self = self else { return }
             self.saveButton.isEnabled = isEnable
         }.store(in: &cancellables)
-
-        output.noResponse.sink { _ in }.store(in: &cancellables)
     }
     
     override func setupTheme() {
@@ -152,7 +139,7 @@ class T04MemoryViewController: BaseViewController {
             contentTextView.insertText(titlePlaceHolder)
         }
     }
-
+    
 }
 
 // MARK: - Obj C
@@ -173,7 +160,8 @@ extension T04MemoryViewController {
 // MARK: - Private function
 extension T04MemoryViewController {
     private func setupViewBaseOnPerpose(viewPurpose: Purpose) {
-        if viewPurpose == Purpose.new {
+        switch viewPurpose {
+        case .new:
             imageView.image = SystemImage.camera.image?
                 .withAlignmentRectInsets(UIEdgeInsets(top: -10, left: 0, bottom: -10, right: 0))
             imageView.contentMode = .scaleAspectFit
@@ -183,10 +171,28 @@ extension T04MemoryViewController {
             contentTextView.viewBorderColor = Colors.pink
             
             imagePickButtonView.isHidden = true
-        } else {
+        case .update(memory: let memory):
+            guard let data = memory.image,
+                  let text = memory.title else {
+                return
+            }
+            
+            if let image = UIImage(data: data) {
+                self.image.send(image)
+                self.imageView.image = image
+                let width = self.bigContainerView.width
+                let ratio = image.size.height / image.size.width
+                self.imageHeightConstraint.constant = width * ratio
+                self.addGestureToImageViewIfNeeded(isNeeded: false)
+                self.currentConstraint = self.imageHeightConstraint.constant
+            }
+            
+            self.contentTextView.text = ""
+            self.contentTextView.insertText(text)
+            self.dateLabel.text = Date(timeIntervalSince1970: TimeInterval(memory.displayedDate)).dayMonthYearString
         }
     }
-
+    
     private func setupTransitionAnimation() {
         saveButton.hero.id = HeroIdentifier.addButtonIdentifier
         bigContainerView.hero.modifiers = [.cornerRadius(10),

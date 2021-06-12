@@ -19,12 +19,13 @@ class T03MemoryListViewController: BaseViewController {
     private var cancellables = Set<AnyCancellable>()
     
     private var onViewWillAppearSignal = PassthroughSubject<Void, Never>()
+    private var onSelectedMemory = PassthroughSubject<CDMemory, Never>()
 
     private var memories: [CDMemory] = []
     
     deinit {
         onViewWillAppearSignal.send(completion: .finished)
-        
+        onSelectedMemory.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }
 
@@ -53,7 +54,8 @@ class T03MemoryListViewController: BaseViewController {
         
         let input = T03MemoryListViewModel.Input(viewWillAppear: onViewWillAppearSignal.eraseToAnyPublisher(),
                                                  dismissTrigger: closeButton.tapPublisher,
-                                                 addButtonTrigger: addButton.tapPublisher)
+                                                 addButtonTrigger: addButton.tapPublisher,
+                                                 selectedMemoryTrigger: onSelectedMemory.eraseToAnyPublisher())
         
         let output = viewModel.transform(input)
         
@@ -102,7 +104,8 @@ extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout 
         guard let memory = memories[safe: indexPath.item],
               let data = memory.image,
               let image = UIImage(data: data) else { return CGSize.zero }
-        return image.size
+        let size = image.size
+        return CGSize(width: size.width / 10, height: size.height / 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, columnCountFor section: Int) -> Int {
@@ -122,5 +125,10 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memories.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let memory = memories[safe: indexPath.item] else { return }
+        onSelectedMemory.send(memory)
     }
 }
