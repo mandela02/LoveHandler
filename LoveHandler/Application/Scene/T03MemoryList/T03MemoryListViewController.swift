@@ -31,6 +31,7 @@ class T03MemoryListViewController: BaseViewController {
         isBackButtonVisible = true
         isTitleVisible = true
         setupCollectionView()
+        setupTransitionAnimation()
     }
     
     override func refreshView() {
@@ -48,7 +49,8 @@ class T03MemoryListViewController: BaseViewController {
         guard let viewModel = viewModel else { return }
         
         let input = T03MemoryListViewModel.Input(viewWillAppear: onViewWillAppearSignal.eraseToAnyPublisher(),
-                                                 dismissTrigger: closeButton.tapPublisher)
+                                                 dismissTrigger: closeButton.tapPublisher,
+                                                 addButtonTrigger: addButton.tapPublisher)
         
         let output = viewModel.transform(input)
         
@@ -80,16 +82,9 @@ class T03MemoryListViewController: BaseViewController {
         collectionView.collectionViewLayout = layout
     }
     
-    @IBAction func onAddButtonPress(_ sender: Any) {
-        addButton.hero.id = "addButton"
-        
-        let viewController = T04MemoryViewController.instantiateFromStoryboard()
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.hero.isEnabled = true
-
-        self.present(viewController,animated: true, completion: nil)
+    private func setupTransitionAnimation() {
+        addButton.hero.id = HeroIdentifier.addButtonIdentifier
     }
-    
 }
 
 extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout  {

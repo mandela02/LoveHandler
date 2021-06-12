@@ -10,6 +10,7 @@ import UIKit
 enum SystemImage: String {
     case roundHeart = "suit.heart.fill"
     case xMark = "xmark"
+    case camera = "camera.circle"
 }
 
 extension SystemImage {

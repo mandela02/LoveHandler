@@ -66,6 +66,9 @@ class BaseViewController: UIViewController {
         self.navigationController?.hero.isEnabled = true
         self.hero.isEnabled = true
 
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+
         setupView()
         setupLocalizedString()
         setupTheme()
@@ -93,4 +96,20 @@ class BaseViewController: UIViewController {
     func setupTheme() {}
     
     func bindViewModel() {}
+    
+    func keyboarDidShow(keyboardHeight: CGFloat) {}
+    
+    func keyboarDidHide() {}
+
+    @objc private func keyboardWillShow(notification:NSNotification) {
+
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        keyboarDidShow(keyboardHeight: keyboardFrame.size.height + 20)
+    }
+
+    @objc private func keyboardWillHide(notification:NSNotification) {
+        keyboarDidHide()
+    }
 }

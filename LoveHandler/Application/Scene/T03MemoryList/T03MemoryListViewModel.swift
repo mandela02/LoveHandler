@@ -20,13 +20,20 @@ class T03MemoryListViewModel: BaseViewModel {
             .map { _ in }
             .eraseToAnyPublisher()
         
-        return Output(noRespone: dismiss)
+        let toMemory = input.addButtonTrigger.handleEvents(receiveOutput: navigator.toMemory)
+            .map { _ in }
+            .eraseToAnyPublisher()
+
+        let noResponse = Publishers.MergeMany([dismiss, toMemory]).eraseToAnyPublisher()
+        
+        return Output(noRespone: noResponse)
     }
     
 
     struct Input {
         let viewWillAppear: AnyPublisher<Void, Never>
         let dismissTrigger: AnyPublisher<Void, Never>
+        let addButtonTrigger: AnyPublisher<Void, Never>
     }
     
     struct Output {

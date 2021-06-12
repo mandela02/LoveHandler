@@ -9,6 +9,7 @@ import UIKit
 
 protocol T03MemoryListNavigatorType {
     func dismiss()
+    func toMemory()
 }
 
 class T03MemoryListNavigator: T03MemoryListNavigatorType {
@@ -20,5 +21,14 @@ class T03MemoryListNavigator: T03MemoryListNavigatorType {
     
     func dismiss() {
         navigationController.dismiss(animated: true, completion: nil)
+    }
+    
+    func toMemory() {
+        let viewController = T04MemoryViewController.instantiateFromStoryboard()
+        viewController.viewPurpose = Purpose.new
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.hero.isEnabled = true
+
+        navigationController.present(viewController,animated: true, completion: nil)
     }
 }

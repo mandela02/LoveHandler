@@ -8,12 +8,17 @@
 import Foundation
 import CoreData
 
+enum DatabaseResponse {
+    case success(data: Any?)
+    case error(error: Error)
+}
+
 protocol RepositoryType {
     associatedtype T
     var entityName : String { get }
-    func countAll() -> Int
-    func fetchAllData() -> [T]
-    func save(model: T) throws
+    func countAll() -> DatabaseResponse
+    func fetchAllData() -> DatabaseResponse
+    func save(model: T) -> DatabaseResponse
 }
 
 class Repository<T: NSManagedObject>: RepositoryType {
@@ -25,26 +30,33 @@ class Repository<T: NSManagedObject>: RepositoryType {
         return NSStringFromClass(T.self).components(separatedBy: ".").last ?? "Unknown"
     }
     
-    func countAll() -> Int {
+    func countAll() -> DatabaseResponse {
         do {
             let request = NSFetchRequest<T>(entityName: entityName)
-            return try container.viewContext.count(for: request)
-        } catch {
-            return 0
+            let result = try container.viewContext.count(for: request)
+            return .success(data: result)
+        } catch let error {
+            return .error(error: error)
         }
     }
     
-    func fetchAllData() -> [T] {
+    func fetchAllData() -> DatabaseResponse {
         let fetchRequest = NSFetchRequest<T>(entityName: entityName)
         do {
             let result = try container.viewContext.fetch(fetchRequest)
-            return result
-        } catch {
-            return []
+            return .success(data: result)
+        } catch let error {
+            return .error(error: error)
         }
     }
     
-    func save(model: T) throws {
-        try container.viewContext.save()
+    func save(model: T) -> DatabaseResponse {
+        do {
+            try container.viewContext.save()
+            return .success(data: nil)
+        } catch let error {
+            return .error(error: error)
+        }
+
     }
 }

@@ -19,6 +19,16 @@ class T03MemoryListUseCase: T03MemoryListUseCaseType {
     }
 
     func getAllMemory() -> [CDMemory] {
-        return repository.fetchAllData()
+        let response = repository.fetchAllData()
+        switch response {
+        case .success(data: let data):
+            if let data = data as? [CDMemory] {
+                return data
+            } else {
+                return []
+            }
+        case .error(error: let error):
+            return []
+        }
     }
 }

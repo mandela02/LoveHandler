@@ -98,6 +98,9 @@
 		84D21F1E2628B0A7007D43F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1D2628B0A7007D43F2 /* Assets.xcassets */; };
 		84D21F212628B0A7007D43F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1F2628B0A7007D43F2 /* LaunchScreen.storyboard */; };
 		84D21F2C2628B162007D43F2 /* wave.json in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F2B2628B162007D43F2 /* wave.json */; };
+		84DDAB722674A62300132A18 /* T04MemoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDAB712674A62300132A18 /* T04MemoryViewModel.swift */; };
+		84DDAB752674A6D500132A18 /* T04MemoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDAB742674A6D500132A18 /* T04MemoryUseCase.swift */; };
+		84DDAB782674A93B00132A18 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDAB772674A93B00132A18 /* UseCaseProvider.swift */; };
 		A58B088E50493D34567788CF /* Pods_LoveHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */; };
 /* End PBXBuildFile section */
 
@@ -198,6 +201,9 @@
 		84D21F202628B0A7007D43F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84D21F222628B0A7007D43F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84D21F2B2628B162007D43F2 /* wave.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wave.json; sourceTree = "<group>"; };
+		84DDAB712674A62300132A18 /* T04MemoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T04MemoryViewModel.swift; sourceTree = "<group>"; };
+		84DDAB742674A6D500132A18 /* T04MemoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T04MemoryUseCase.swift; sourceTree = "<group>"; };
+		84DDAB772674A93B00132A18 /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -234,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				84729829267278EF00DFB3ED /* T03MemoryListUseCase.swift */,
+				84DDAB742674A6D500132A18 /* T04MemoryUseCase.swift */,
+				84DDAB772674A93B00132A18 /* UseCaseProvider.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -257,6 +265,7 @@
 			children = (
 				847298772674880B00DFB3ED /* T04MemoryViewController.swift */,
 				8472987A2674887C00DFB3ED /* T04MemoryViewController.storyboard */,
+				84DDAB712674A62300132A18 /* T04MemoryViewModel.swift */,
 			);
 			path = T04MemoryView;
 			sourceTree = "<group>";
@@ -692,6 +701,7 @@
 				84AB2041262E904E00A01F9E /* T2SettingsNavigator.swift in Sources */,
 				8472980E267262AE00DFB3ED /* FloaterView.swift in Sources */,
 				84AB1F962629F6EB00A01F9E /* AppNavigator.swift in Sources */,
+				84DDAB722674A62300132A18 /* T04MemoryViewModel.swift in Sources */,
 				847298782674880B00DFB3ED /* T04MemoryViewController.swift in Sources */,
 				84AB2016262BEC6D00A01F9E /* GenderAndAgeButtonAction.swift in Sources */,
 				84AB1F9F2629FD5C00A01F9E /* RoundImageView.swift in Sources */,
@@ -730,6 +740,8 @@
 				84AB1F3F2628C88900A01F9E /* Date+Extension.swift in Sources */,
 				8423D1DC263BD1B200106030 /* ImagePickerHelper.swift in Sources */,
 				84AB1F412628C88900A01F9E /* UIView+Extension.swift in Sources */,
+				84DDAB782674A93B00132A18 /* UseCaseProvider.swift in Sources */,
+				84DDAB752674A6D500132A18 /* T04MemoryUseCase.swift in Sources */,
 				84AB1F502628C88900A01F9E /* UIButton+Extension.swift in Sources */,
 				84AB1F402628C88900A01F9E /* UITableViewCell+Extension.swift in Sources */,
 				84AB1FDB262ACA0B00A01F9E /* Colors.swift in Sources */,
