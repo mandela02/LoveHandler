@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 enum DatabaseResponse {
     case success(data: Any?)
@@ -19,7 +20,7 @@ protocol RepositoryType {
     func countAll() -> DatabaseResponse
     func fetchAllData() -> DatabaseResponse
     func save(model: T) -> DatabaseResponse
-}
+    func publisher() -> AnyPublisher<Void, Never>}
 
 class Repository<T: NSManagedObject>: RepositoryType {
     var container: NSPersistentContainer{
@@ -57,6 +58,20 @@ class Repository<T: NSManagedObject>: RepositoryType {
         } catch let error {
             return .error(error: error)
         }
+    }
+        
+    func publisher() -> AnyPublisher<Void, Never> {
+        var notification: Notification.Name = Notification.Name(rawValue: "")
+        if #available(iOS 14.0, *) {
+            notification = NSManagedObjectContext.didSaveObjectsNotification
+        } else {
+            notification = Notification.Name.NSManagedObjectContextDidSave
+        }
+        
+        let context = PersistenceManager.shared.persistentContainer.viewContext
 
+      return NotificationCenter.default.publisher(for: notification, object: context)
+        .map { _ in Void() }
+        .eraseToAnyPublisher()
     }
 }

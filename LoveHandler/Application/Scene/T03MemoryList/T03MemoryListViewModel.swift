@@ -30,7 +30,12 @@ class T03MemoryListViewModel: BaseViewModel {
             .map { _ in }
             .eraseToAnyPublisher()
 
-        let memories = input.viewWillAppear
+        let onDatabaseChange = useCase.onDatabaseUpdated()
+            .map { _ in }
+            .eraseToAnyPublisher()
+
+
+        let memories = Publishers.Merge(input.viewWillAppear, onDatabaseChange)
             .map { [weak self] _ -> [CDMemory] in
                 guard let self = self else { return [] }
                 return self.useCase.getAllMemory()
@@ -39,7 +44,9 @@ class T03MemoryListViewModel: BaseViewModel {
 
         let noResponse = Publishers.MergeMany([dismiss,
                                                toMemory,
-                                               toSelectMemory]).eraseToAnyPublisher()
+                                               toSelectMemory,
+                                               onDatabaseChange])
+            .eraseToAnyPublisher()
         
         return Output(noRespone: noResponse,
                       memories: memories)

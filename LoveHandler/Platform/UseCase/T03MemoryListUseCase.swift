@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 protocol T03MemoryListUseCaseType {
     func getAllMemory() -> [CDMemory]
+    func  onDatabaseUpdated() -> AnyPublisher<Void, Never>
 }
 
 class T03MemoryListUseCase: T03MemoryListUseCaseType {
@@ -30,5 +32,9 @@ class T03MemoryListUseCase: T03MemoryListUseCaseType {
         case .error(error: let error):
             return []
         }
+    }
+    
+    func onDatabaseUpdated() -> AnyPublisher<Void, Never> {
+        return repository.publisher()
     }
 }
