@@ -223,7 +223,8 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
         unionRects = []
         allItemAttributes = []
         sectionItemAttributes = []
-        columnHeights = (0 ..< numberOfSections).map { section in
+        columnHeights = (0 ..< numberOfSections).map { [weak self] section in
+            guard let self = self else { return  [] }
             let columnCount = self.columnCount(forSection: section)
             let sectionColumnHeights = (0 ..< columnCount).map { CGFloat($0) }
             return sectionColumnHeights

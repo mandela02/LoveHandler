@@ -14,37 +14,39 @@ protocol T03MemoryListNavigatorType {
 }
 
 class T03MemoryListNavigator: T03MemoryListNavigatorType {
-    private let navigationController: UINavigationController
+    private weak var navigationController: UINavigationController?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func dismiss() {
-        navigationController.dismiss(animated: true, completion: nil)
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     func toMemory() {
         let viewController = T04MemoryViewController.instantiateFromStoryboard()
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.hero.isEnabled = true
+        let navigator = T04MemoryNavigator(controller: viewController)
         
-        viewController.viewModel = T04MemoryViewModel(navigator: T04MemoryNavigator(controller: viewController),
+        viewController.viewModel = T04MemoryViewModel(navigator: navigator,
                                                       useCase: UseCaseProvider.defaultProvider.getMemoryUseCase())
 
-        navigationController.present(viewController,animated: true, completion: nil)
+        navigationController?.present(viewController,animated: true, completion: nil)
     }
     
     func toMemory(model: CDMemory) {
         let viewController = T04MemoryViewController.instantiateFromStoryboard()
         viewController.modalPresentationStyle = .overCurrentContext
         viewController.hero.isEnabled = true
+        let navigator = T04MemoryNavigator(controller: viewController)
         
-        viewController.viewModel = T04MemoryViewModel(navigator: T04MemoryNavigator(controller: viewController),
+        viewController.viewModel = T04MemoryViewModel(navigator: navigator,
                                                       useCase: UseCaseProvider.defaultProvider.getMemoryUseCase(),
                                                       memory: model)
 
-        navigationController.present(viewController,animated: true, completion: nil)
+        navigationController?.present(viewController,animated: true, completion: nil)
     }
 
 }

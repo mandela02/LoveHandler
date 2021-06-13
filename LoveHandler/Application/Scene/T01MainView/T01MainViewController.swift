@@ -32,7 +32,7 @@ class T01MainViewController: BaseViewController {
     private var viewDidAppearSignal = PassthroughSubject<Void, Never>()
     var viewModel: T01MainViewViewModel?
     
-    deinit {
+    override func deinitView() {
         viewDidAppearSignal.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }

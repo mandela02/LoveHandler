@@ -18,13 +18,13 @@ class T03MemoryListViewController: BaseViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
-    private var onViewWillAppearSignal = PassthroughSubject<Void, Never>()
+    private var onViewDidAppearSignal = PassthroughSubject<Void, Never>()
     private var onSelectedMemory = PassthroughSubject<CDMemory, Never>()
 
     private var memories: [CDMemory] = []
     
-    deinit {
-        onViewWillAppearSignal.send(completion: .finished)
+    override func deinitView() {
+        onViewDidAppearSignal.send(completion: .finished)
         onSelectedMemory.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }
@@ -39,7 +39,11 @@ class T03MemoryListViewController: BaseViewController {
     
     override func refreshView() {
         super.refreshView()
-        onViewWillAppearSignal.send(Void());
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        onViewDidAppearSignal.send(Void());
     }
     
     override func setupLocalizedString() {
@@ -52,7 +56,7 @@ class T03MemoryListViewController: BaseViewController {
         
         guard let viewModel = viewModel else { return }
         
-        let input = T03MemoryListViewModel.Input(viewWillAppear: onViewWillAppearSignal.eraseToAnyPublisher(),
+        let input = T03MemoryListViewModel.Input(viewDidAppear: onViewDidAppearSignal.eraseToAnyPublisher(),
                                                  dismissTrigger: closeButton.tapPublisher,
                                                  addButtonTrigger: addButton.tapPublisher,
                                                  selectedMemoryTrigger: onSelectedMemory.eraseToAnyPublisher())

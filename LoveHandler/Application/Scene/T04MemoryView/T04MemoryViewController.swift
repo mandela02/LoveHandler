@@ -35,7 +35,7 @@ class T04MemoryViewController: BaseViewController {
     
     var viewModel: T04MemoryViewModel?
     
-    deinit {
+    override func deinitView() {
         image.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }
@@ -54,21 +54,21 @@ class T04MemoryViewController: BaseViewController {
         let chooseDateTap = UITapGestureRecognizer()
         dateLabel.isUserInteractionEnabled = true
         dateLabel.addGestureRecognizer(chooseDateTap)
-        
-        
+
+
         guard let viewModel = viewModel else { return }
-        
+
         let chooseDateAction = chooseDateTap.tapPublisher
             .handleEvents(receiveOutput: { [weak self] _ in
                 self?.contentTextView.resignFirstResponder()
             })
             .map { _ in }.eraseToAnyPublisher()
-        
+
         let input = T04MemoryViewModel.Input(textFieldString: contentTextView.textPublisher.compactMap { $0 }.eraseToAnyPublisher(),
                                              saveButtonTrigger: saveButton.tapPublisher,
                                              chooseDateTrigger: chooseDateAction,
                                              selectedImageTrigger: image.eraseToAnyPublisher())
-        
+
         let output = viewModel.transform(input)
 
         output.noResponse.sink { _ in }.store(in: &cancellables)
@@ -77,28 +77,28 @@ class T04MemoryViewController: BaseViewController {
             guard let self = self else { return }
             self.dateLabel.text = date.dayMonthYearString
         }.store(in: &cancellables)
-        
+
         output.image.sink { [weak self] image in
             guard let self = self else { return }
             self.imageView.image = image
             self.imageView.contentMode = .scaleAspectFill
-            
+
             self.imagePickButtonView.isHidden = false
-            
+
             let width = self.bigContainerView.width
             let ratio = image.size.height / image.size.width
             self.imageHeightConstraint.constant = width * ratio
-            
+
             self.addGestureToImageViewIfNeeded(isNeeded: false)
-            
+
             self.currentConstraint = self.imageHeightConstraint.constant
         }.store(in: &cancellables)
-        
+
         output.viewPurpose.sink { [weak self] purpose in
             guard let self = self else { return }
             self.setupViewBaseOnPerpose(viewPurpose: purpose)
         }.store(in: &cancellables)
-                
+
         output.isSaveButtonEnable.sink { [weak self] isEnable in
             guard let self = self else { return }
             self.saveButton.isEnabled = isEnable
@@ -124,13 +124,13 @@ class T04MemoryViewController: BaseViewController {
         var contentInset: UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardHeight > 100 ? keyboardHeight - 100 : keyboardHeight
         scrollView.contentInset = contentInset
-        
+
         if contentTextView.text.trimmingCharacters(in: .whitespacesAndNewlines) == titlePlaceHolder {
             contentTextView.text = ""
             contentTextView.insertText("")
         }
     }
-    
+
     override func keyboarDidHide() {
         let contentInset: UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
@@ -139,7 +139,6 @@ class T04MemoryViewController: BaseViewController {
             contentTextView.insertText(titlePlaceHolder)
         }
     }
-    
 }
 
 // MARK: - Obj C
@@ -179,17 +178,17 @@ extension T04MemoryViewController {
             
             if let image = UIImage(data: data) {
                 self.image.send(image)
-                self.imageView.image = image
-                let width = self.bigContainerView.width
+                imageView.image = image
+                let width = bigContainerView.width
                 let ratio = image.size.height / image.size.width
-                self.imageHeightConstraint.constant = width * ratio
-                self.addGestureToImageViewIfNeeded(isNeeded: false)
-                self.currentConstraint = self.imageHeightConstraint.constant
+                imageHeightConstraint.constant = width * ratio
+                addGestureToImageViewIfNeeded(isNeeded: false)
+                currentConstraint = imageHeightConstraint.constant
             }
             
-            self.contentTextView.text = ""
-            self.contentTextView.insertText(text)
-            self.dateLabel.text = Date(timeIntervalSince1970: TimeInterval(memory.displayedDate)).dayMonthYearString
+            contentTextView.text = ""
+            contentTextView.insertText(text)
+            dateLabel.text = Date(timeIntervalSince1970: TimeInterval(memory.displayedDate)).dayMonthYearString
         }
     }
     
@@ -210,7 +209,7 @@ extension T04MemoryViewController {
     
     
     private func addGesture() {
-        imageTap = UITapGestureRecognizer(target: self, action: #selector(self.handleImageTap(_:)))
+        imageTap = UITapGestureRecognizer(target: self, action: #selector(handleImageTap(_:)))
         addGestureToImageViewIfNeeded(isNeeded: true)
     }
     
@@ -261,7 +260,7 @@ extension T04MemoryViewController: ImagePickerDelegate {
 extension T04MemoryViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < 0 {
-            self.imageHeightConstraint.constant -= scrollView.contentOffset.y
+            imageHeightConstraint.constant -= scrollView.contentOffset.y
         }
     }
     
@@ -276,9 +275,9 @@ extension T04MemoryViewController: UIScrollViewDelegate {
     }
     
     private func resetHeightConstraint() {
-        self.imageHeightConstraint.constant = currentConstraint
-        UIView.animate(withDuration: 0.4) {
-            self.view.layoutIfNeeded()
+        imageHeightConstraint.constant = currentConstraint
+        UIView.animate(withDuration: 0.4) { [weak self] in
+            self?.view.layoutIfNeeded()
         }
     }
 }

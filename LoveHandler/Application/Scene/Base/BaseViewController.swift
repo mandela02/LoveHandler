@@ -58,16 +58,23 @@ class BaseViewController: UIViewController {
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        deinitView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = Colors.deepPink
         self.overrideUserInterfaceStyle = .light
         self.navigationController?.overrideUserInterfaceStyle = .light
-        self.navigationController?.hero.isEnabled = true
-        self.hero.isEnabled = true
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name:UIResponder.keyboardWillHideNotification, object: nil)
 
         setupView()
         setupLocalizedString()
@@ -101,15 +108,16 @@ class BaseViewController: UIViewController {
     
     func keyboarDidHide() {}
 
-    @objc private func keyboardWillShow(notification:NSNotification) {
-
+    func deinitView() {}
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         keyboarDidShow(keyboardHeight: keyboardFrame.size.height + 20)
     }
 
-    @objc private func keyboardWillHide(notification:NSNotification) {
+    @objc private func keyboardWillHide(notification: NSNotification) {
         keyboarDidHide()
     }
 }

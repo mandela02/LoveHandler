@@ -65,7 +65,9 @@ class T04MemoryViewModel: BaseViewModel {
                 }
             }
             .map { _ in }
-            .handleEvents(receiveOutput: navigator.dismiss)
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.navigator.dismiss()
+            })
             .eraseToAnyPublisher()
         
         let progressInputImage = input.selectedImageTrigger

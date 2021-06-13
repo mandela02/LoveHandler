@@ -15,14 +15,14 @@ protocol T2SettingsNavigatorType {
 }
 
 class T2SettingsNavigator: T2SettingsNavigatorType {
-    private let navigationController: UINavigationController
+    private weak var navigationController: UINavigationController?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
     func dismiss() {
-        navigationController.dismiss(animated: true, completion: nil)
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never> {

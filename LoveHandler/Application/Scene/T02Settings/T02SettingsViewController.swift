@@ -28,7 +28,7 @@ class T02SettingsViewController: BaseViewController {
     private var onCellSelected = PassthroughSubject<IndexPath, Never>()
     private var onViewWillAppearSignal = PassthroughSubject<Void, Never>()
 
-    deinit {
+    override func deinitView() {
         onCellSelected.send(completion: .finished)
         onViewWillAppearSignal.send(completion: .finished)
         

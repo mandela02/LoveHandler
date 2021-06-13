@@ -16,14 +16,14 @@ protocol T04MemoryNavigatorType {
 }
 
 class T04MemoryNavigator: T04MemoryNavigatorType {
-    private let controller: UIViewController
+    private weak var controller: UIViewController?
     
     init(controller: UIViewController) {
         self.controller = controller
     }
-
+    
     func dismiss() {
-        controller.dismiss(animated: true, completion: nil)
+        controller?.dismiss(animated: true, completion: nil)
     }
     
     func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never> {
