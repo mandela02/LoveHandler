@@ -45,7 +45,6 @@ class T03MemoryListNavigator: T03MemoryListNavigatorType {
         viewController.viewModel = T04MemoryViewModel(navigator: navigator,
                                                       useCase: UseCaseProvider.defaultProvider.getMemoryUseCase(),
                                                       memory: model)
-
         navigationController?.present(viewController,animated: true, completion: nil)
     }
 

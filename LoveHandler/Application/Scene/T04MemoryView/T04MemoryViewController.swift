@@ -43,7 +43,7 @@ class T04MemoryViewController: BaseViewController {
     override func setupView() {
         self.scrollView.delegate = self
         contentTextView.viewCornerRadius = 10
-        
+
         setupTransitionAnimation()
         setupTapBackground()
         addGesture()

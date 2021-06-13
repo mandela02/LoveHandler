@@ -12,7 +12,10 @@ import DatePickerDialog
 
 protocol T04MemoryNavigatorType {
     func dismiss()
-    func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never>
+    func datePicker(title: String,
+                    date: Date,
+                    minDate: Date,
+                    maxDate: Date) -> Future<Date?, Never>
 }
 
 class T04MemoryNavigator: T04MemoryNavigatorType {

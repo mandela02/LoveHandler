@@ -47,7 +47,7 @@ class T04MemoryViewModel: BaseViewModel {
         let save = input.saveButtonTrigger
             .map { [weak self]  _ -> DatabaseResponse? in
                 guard let self = self else { return nil }
-                guard let data = image.pngData() else { return nil }
+                guard let data = image.jpeg(.low) else { return nil }
                 
                 switch viewPurpose.value {
                 case .new:
