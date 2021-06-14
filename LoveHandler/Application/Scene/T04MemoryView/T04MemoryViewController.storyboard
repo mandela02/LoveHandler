@@ -145,7 +145,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="l40-a3-VyH" firstAttribute="centerY" secondItem="RM4-wo-z5H" secondAttribute="centerY" id="LVD-hP-qjZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="l40-a3-VyH" secondAttribute="bottom" constant="150" id="72g-g5-69n"/>
                                         <constraint firstItem="l40-a3-VyH" firstAttribute="top" secondItem="RM4-wo-z5H" secondAttribute="top" constant="150" id="Nr1-7h-mNV"/>
                                         <constraint firstItem="l40-a3-VyH" firstAttribute="centerX" secondItem="RM4-wo-z5H" secondAttribute="centerX" id="eLI-3h-10x"/>
                                         <constraint firstItem="l40-a3-VyH" firstAttribute="leading" secondItem="RM4-wo-z5H" secondAttribute="leading" constant="50" id="rFm-Wp-ja7"/>
@@ -168,6 +168,7 @@
                         <outlet property="backgroundContentView" destination="RM4-wo-z5H" id="vOu-ad-MYJ"/>
                         <outlet property="backgroundView" destination="mwT-58-OyF" id="nVH-r5-gQt"/>
                         <outlet property="bigContainerView" destination="l40-a3-VyH" id="Hgg-GB-aB4"/>
+                        <outlet property="bigContainerViewBottomConstraint" destination="72g-g5-69n" id="wQo-DO-3Yu"/>
                         <outlet property="contentTextView" destination="fjE-A8-AJt" id="aV9-PV-HtI"/>
                         <outlet property="dateContainerStackView" destination="BYf-xV-kNw" id="qrJ-v2-WjJ"/>
                         <outlet property="dateLabel" destination="sSj-DH-vHO" id="Vhr-Ua-dhF"/>

@@ -20,8 +20,8 @@ class T04MemoryViewController: BaseViewController {
     @IBOutlet weak var scrollableContentView: UIView!
     @IBOutlet weak var backgroundContentView: UIView!
     @IBOutlet weak var imagePickButtonView: UIView!
-    
     @IBOutlet weak var dateContainerStackView: UIStackView!
+    @IBOutlet weak var bigContainerViewBottomConstraint: NSLayoutConstraint!
     
     private var picker: ImagePickerHelper?
     private var currentConstraint: CGFloat = 0
@@ -38,8 +38,10 @@ class T04MemoryViewController: BaseViewController {
     var viewModel: T04MemoryViewModel?
     
     var imageHeroId = ""
-    
     var isInEditMode = false
+    
+    private var isDoneInitAnimation = false
+    private var limitConstaints: CGFloat = 150
     
     override func deinitView() {
         image.send(completion: .finished)
@@ -59,16 +61,7 @@ class T04MemoryViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if isInEditMode {
-            self.imagePickButtonView.alpha = 0.0
-            self.imagePickButtonView.isHidden = false
-
-            UIView.animate(withDuration: 0.6,
-                           animations: { [weak self] in
-                            self?.imagePickButtonView.alpha = 1.0
-                           })
-        }
+        configureSlideAnimation()
     }
     
     override func bindViewModel() {
@@ -104,7 +97,9 @@ class T04MemoryViewController: BaseViewController {
             self.imageView.image = image
             self.imageView.contentMode = .scaleAspectFill
             
-            self.imagePickButtonView.isHidden = false
+            if self.isDoneInitAnimation {
+                self.imagePickButtonView.isHidden = false
+            }
             
             let width = self.bigContainerView.width
             let ratio = image.size.height / image.size.width
@@ -113,6 +108,11 @@ class T04MemoryViewController: BaseViewController {
             self.addGestureToImageViewIfNeeded(isNeeded: false)
             
             self.currentConstraint = self.imageHeightConstraint.constant
+            
+            if !self.isDoneInitAnimation {
+                self.bigContainerViewBottomConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - self.imageHeightConstraint.constant - 50
+            }
+            
         }.store(in: &cancellables)
         
         output.viewPurpose.sink { [weak self] purpose in
@@ -185,6 +185,35 @@ extension T04MemoryViewController {
 }
 // MARK: - Private function
 extension T04MemoryViewController {
+    private func configureSlideAnimation() {
+        if !isInEditMode {
+            isDoneInitAnimation = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self = self else { return }
+            if !self.isDoneInitAnimation {
+                self.bigContainerViewBottomConstraint.constant = self.limitConstaints
+                UIView.animate(withDuration: 0.3) { [weak self] in
+                    self?.view.layoutIfNeeded()
+                }
+                self.isDoneInitAnimation = true
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+            guard let self = self else { return }
+            if self.isInEditMode {
+                self.imagePickButtonView.alpha = 0.0
+                self.imagePickButtonView.isHidden = false
+                
+                UIView.animate(withDuration: 0.6,
+                               animations: { [weak self] in
+                                self?.imagePickButtonView.alpha = 1.0
+                               })
+            }
+        }
+    }
+    
     private func setupViewBaseOnPerpose(viewPurpose: Purpose) {
         switch viewPurpose {
         case .new:
@@ -226,7 +255,7 @@ extension T04MemoryViewController {
             bigContainerView.hero.modifiers =  [.cornerRadius(10), .forceAnimate]
             backgroundView.hero.modifiers = [.fade]
             saveButton.hero.modifiers =  [.cornerRadius(10), .forceAnimate]
-
+            
         } else {
             saveButton.hero.id = HeroIdentifier.addButtonIdentifier
             bigContainerView.hero.modifiers = [.cornerRadius(10), .forceAnimate]
