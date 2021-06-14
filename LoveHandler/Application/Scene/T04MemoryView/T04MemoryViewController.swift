@@ -21,6 +21,8 @@ class T04MemoryViewController: BaseViewController {
     @IBOutlet weak var backgroundContentView: UIView!
     @IBOutlet weak var imagePickButtonView: UIView!
     
+    @IBOutlet weak var dateContainerStackView: UIStackView!
+    
     private var picker: ImagePickerHelper?
     private var currentConstraint: CGFloat = 0
     private var backgroundTap: UITapGestureRecognizer?
@@ -35,70 +37,89 @@ class T04MemoryViewController: BaseViewController {
     
     var viewModel: T04MemoryViewModel?
     
+    var imageHeroId = ""
+    
+    var isInEditMode = false
+    
     override func deinitView() {
         image.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }
     
     override func setupView() {
+        self.imagePickButtonView.isHidden = true
         self.scrollView.delegate = self
         contentTextView.viewCornerRadius = 10
-
+        
         setupTransitionAnimation()
         setupTapBackground()
         addGesture()
         addPicker()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if isInEditMode {
+            self.imagePickButtonView.alpha = 0.0
+            self.imagePickButtonView.isHidden = false
+
+            UIView.animate(withDuration: 0.6,
+                           animations: { [weak self] in
+                            self?.imagePickButtonView.alpha = 1.0
+                           })
+        }
+    }
+    
     override func bindViewModel() {
         let chooseDateTap = UITapGestureRecognizer()
         dateLabel.isUserInteractionEnabled = true
         dateLabel.addGestureRecognizer(chooseDateTap)
-
-
+        
+        
         guard let viewModel = viewModel else { return }
-
+        
         let chooseDateAction = chooseDateTap.tapPublisher
             .handleEvents(receiveOutput: { [weak self] _ in
                 self?.contentTextView.resignFirstResponder()
             })
             .map { _ in }.eraseToAnyPublisher()
-
+        
         let input = T04MemoryViewModel.Input(textFieldString: contentTextView.textPublisher.compactMap { $0 }.eraseToAnyPublisher(),
                                              saveButtonTrigger: saveButton.tapPublisher,
                                              chooseDateTrigger: chooseDateAction,
                                              selectedImageTrigger: image.eraseToAnyPublisher())
-
+        
         let output = viewModel.transform(input)
-
+        
         output.noResponse.sink { _ in }.store(in: &cancellables)
-
+        
         output.date.sink { [weak self] date in
             guard let self = self else { return }
             self.dateLabel.text = date.dayMonthYearString
         }.store(in: &cancellables)
-
+        
         output.image.sink { [weak self] image in
             guard let self = self else { return }
             self.imageView.image = image
             self.imageView.contentMode = .scaleAspectFill
-
+            
             self.imagePickButtonView.isHidden = false
-
+            
             let width = self.bigContainerView.width
             let ratio = image.size.height / image.size.width
             self.imageHeightConstraint.constant = width * ratio
-
+            
             self.addGestureToImageViewIfNeeded(isNeeded: false)
-
+            
             self.currentConstraint = self.imageHeightConstraint.constant
         }.store(in: &cancellables)
-
+        
         output.viewPurpose.sink { [weak self] purpose in
             guard let self = self else { return }
             self.setupViewBaseOnPerpose(viewPurpose: purpose)
         }.store(in: &cancellables)
-
+        
         output.isSaveButtonEnable.sink { [weak self] isEnable in
             guard let self = self else { return }
             self.saveButton.isEnabled = isEnable
@@ -124,13 +145,16 @@ class T04MemoryViewController: BaseViewController {
         var contentInset: UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardHeight > 100 ? keyboardHeight - 100 : keyboardHeight
         scrollView.contentInset = contentInset
-
+        
         if contentTextView.text.trimmingCharacters(in: .whitespacesAndNewlines) == titlePlaceHolder {
             contentTextView.text = ""
             contentTextView.insertText("")
         }
+        
+        contentTextView.viewBorderWidth = 1
+        contentTextView.viewBorderColor = Colors.pink
     }
-
+    
     override func keyboarDidHide() {
         let contentInset: UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
@@ -138,6 +162,9 @@ class T04MemoryViewController: BaseViewController {
             contentTextView.text = ""
             contentTextView.insertText(titlePlaceHolder)
         }
+        
+        contentTextView.viewBorderWidth = 0
+        contentTextView.viewBorderColor = UIColor.clear
     }
 }
 
@@ -193,11 +220,19 @@ extension T04MemoryViewController {
     }
     
     private func setupTransitionAnimation() {
-        saveButton.hero.id = HeroIdentifier.addButtonIdentifier
-        bigContainerView.hero.modifiers = [.cornerRadius(10),
-                                           .forceAnimate,
-                                           .spring(stiffness: 250, damping: 25)]
-        backgroundView.hero.modifiers = [.fade]
+        if isInEditMode {
+            imageView.hero.id = imageHeroId
+            imageView.hero.modifiers =  [.cornerRadius(10), .forceAnimate]
+            bigContainerView.hero.modifiers =  [.cornerRadius(10), .forceAnimate]
+            backgroundView.hero.modifiers = [.fade]
+            saveButton.hero.modifiers =  [.cornerRadius(10), .forceAnimate]
+
+        } else {
+            saveButton.hero.id = HeroIdentifier.addButtonIdentifier
+            bigContainerView.hero.modifiers = [.cornerRadius(10), .forceAnimate]
+            backgroundView.hero.modifiers = [.fade]
+            
+        }
     }
     
     private func setupTapBackground() {

@@ -32,6 +32,7 @@ class T03MemoryListNavigator: T03MemoryListNavigatorType {
         
         viewController.viewModel = T04MemoryViewModel(navigator: navigator,
                                                       useCase: UseCaseProvider.defaultProvider.getMemoryUseCase())
+        viewController.isInEditMode = false
 
         navigationController?.present(viewController,animated: true, completion: nil)
     }
@@ -39,12 +40,16 @@ class T03MemoryListNavigator: T03MemoryListNavigatorType {
     func toMemory(model: CDMemory) {
         let viewController = T04MemoryViewController.instantiateFromStoryboard()
         viewController.modalPresentationStyle = .overCurrentContext
-        viewController.hero.isEnabled = true
         let navigator = T04MemoryNavigator(controller: viewController)
         
         viewController.viewModel = T04MemoryViewModel(navigator: navigator,
                                                       useCase: UseCaseProvider.defaultProvider.getMemoryUseCase(),
                                                       memory: model)
+        viewController.hero.isEnabled = true
+        viewController.imageHeroId = model.id?.uuidString ?? "" + "-image"
+
+        viewController.isInEditMode = true
+        
         navigationController?.present(viewController,animated: true, completion: nil)
     }
 

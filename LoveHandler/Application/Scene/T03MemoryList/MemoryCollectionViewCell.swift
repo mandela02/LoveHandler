@@ -14,7 +14,8 @@ class MemoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var textContentView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
+    @IBOutlet weak var dateContainerView: UIStackView!
+
     var isAnimated = false
     
     private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
@@ -51,5 +52,9 @@ class MemoryCollectionViewCell: UICollectionViewCell {
         
         dateLabel.text = Date(timeIntervalSince1970: TimeInterval(memory.displayedDate)).dayMonthYearString
         titleLabel.text = memory.title
+        
+        hero.isEnabled = true
+        self.hero.id = memory.id?.uuidString ?? "" + "-image"
+        self.hero.modifiers  = [.cornerRadius(10), .forceAnimate]
     }
 }

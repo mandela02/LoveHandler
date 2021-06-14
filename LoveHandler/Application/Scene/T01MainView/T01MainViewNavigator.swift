@@ -36,6 +36,10 @@ class T01MainViewNavigator: T01MainViewNavigatorType {
         viewController.viewModel = T03MemoryListViewModel(navigator: navigator,
                                                           useCase: UseCaseProvider.defaultProvider.getMemoryListUseCase())
         navigationController.modalPresentationStyle = .fullScreen
+        navigationController.isHeroEnabled = true
+        navigationController.hero.modalAnimationType = .selectBy(presenting: .pageIn(direction: .up),
+                                                                 dismissing: .pageOut(direction: .down))
+
         self.navigationController.present(navigationController,
                                           animated: true, completion: nil)
     }
