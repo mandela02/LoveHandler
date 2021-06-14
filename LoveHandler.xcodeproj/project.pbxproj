@@ -108,6 +108,7 @@
 /* Begin PBXFileReference section */
 		6585D8F41DDF493DF1847E7C /* Pods-LoveHandler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveHandler.debug.xcconfig"; path = "Target Support Files/Pods-LoveHandler/Pods-LoveHandler.debug.xcconfig"; sourceTree = "<group>"; };
 		6A6D23C89F3B893C3664717C /* Pods-LoveHandler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveHandler.release.xcconfig"; path = "Target Support Files/Pods-LoveHandler/Pods-LoveHandler.release.xcconfig"; sourceTree = "<group>"; };
+		8410F730267659A600846442 /* LoveHandler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveHandler.entitlements; sourceTree = "<group>"; };
 		8423D1A1263B31D800106030 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
 		846F3E0F266E6F8100BB9D3B /* heart-button.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "heart-button.json"; sourceTree = "<group>"; };
@@ -535,6 +536,7 @@
 		84D21F132628B0A5007D43F2 /* LoveHandler */ = {
 			isa = PBXGroup;
 			children = (
+				8410F730267659A600846442 /* LoveHandler.entitlements */,
 				84AB2118263AFF4F00A01F9E /* Platform */,
 				84AB1FA5262A068600A01F9E /* Domain */,
 				84AB1F602629F20700A01F9E /* Application */,
@@ -932,6 +934,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LoveHandler/LoveHandler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J243X8N8UC;
 				INFOPLIST_FILE = LoveHandler/Info.plist;
@@ -953,6 +956,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LoveHandler/LoveHandler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J243X8N8UC;
 				INFOPLIST_FILE = LoveHandler/Info.plist;

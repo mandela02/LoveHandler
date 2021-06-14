@@ -11,7 +11,7 @@ import UIKit
 
 struct DatabaseConstants {
     static var name = "LoveMemoryDataModel"
-    static var urlPath = "com.qtcorp.LoveHandler"
+    static var urlPath = "group.com.qtcorp.LoveHandler"
 }
 
 class PersistenceManager {

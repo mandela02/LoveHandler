@@ -20,7 +20,7 @@ class T03MemoryListViewController: BaseViewController {
     
     private var onViewDidAppearSignal = PassthroughSubject<Void, Never>()
     private var onSelectedMemory = PassthroughSubject<CDMemory, Never>()
-
+    
     private var memories: [CDMemory] = []
     
     override func deinitView() {
@@ -28,7 +28,7 @@ class T03MemoryListViewController: BaseViewController {
         onSelectedMemory.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }
-
+    
     override func setupView() {
         super.setupView()
         isBackButtonVisible = true
@@ -68,7 +68,7 @@ class T03MemoryListViewController: BaseViewController {
             self.memories = list
             self.collectionView.reloadData()
         }).store(in: &cancellables)
-
+        
         output.noRespone.sink(receiveValue: {}).store(in: &cancellables)
     }
     
@@ -124,6 +124,19 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
         }
         guard let memory = memories[safe: indexPath.item] else { return UICollectionViewCell() }
         cell.setupContent(memory: memory)
+        
+        if !cell.isAnimated {
+            UIView.animate(withDuration: 0.5,
+                           delay: 0.5 * Double(indexPath.row),
+                           usingSpringWithDamping: 1,
+                           initialSpringVelocity: 0.5,
+                           options: indexPath.row % 2 == 0 ? .transitionFlipFromLeft : .transitionFlipFromRight,
+                           animations: {
+                            AnimationUtility.viewSlideInFromBottom(toTop: cell)
+                           }, completion: { (done) in
+                            cell.isAnimated = true
+                           })
+        }
         return cell
     }
     
@@ -134,5 +147,50 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let memory = memories[safe: indexPath.item] else { return }
         onSelectedMemory.send(memory)
+    }
+}
+
+class AnimationUtility: UIViewController, CAAnimationDelegate {
+    
+    static let kSlideAnimationDuration: CFTimeInterval = 0.4
+    
+    static func viewSlideInFromRight(toLeft views: UIView) {
+        var transition: CATransition? = nil
+        transition = CATransition.init()
+        transition?.duration = kSlideAnimationDuration
+        transition?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition?.type = CATransitionType.push
+        transition?.subtype = CATransitionSubtype.fromRight
+        views.layer.add(transition!, forKey: nil)
+    }
+    
+    static func viewSlideInFromLeft(toRight views: UIView) {
+        var transition: CATransition? = nil
+        transition = CATransition.init()
+        transition?.duration = kSlideAnimationDuration
+        transition?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition?.type = CATransitionType.push
+        transition?.subtype = CATransitionSubtype.fromLeft
+        views.layer.add(transition!, forKey: nil)
+    }
+    
+    static func viewSlideInFromTop(toBottom views: UIView) {
+        var transition: CATransition? = nil
+        transition = CATransition.init()
+        transition?.duration = kSlideAnimationDuration
+        transition?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition?.type = CATransitionType.push
+        transition?.subtype = CATransitionSubtype.fromBottom
+        views.layer.add(transition!, forKey: nil)
+    }
+    
+    static func viewSlideInFromBottom(toTop views: UIView) {
+        var transition: CATransition? = nil
+        transition = CATransition.init()
+        transition?.duration = kSlideAnimationDuration
+        transition?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition?.type = CATransitionType.push
+        transition?.subtype = CATransitionSubtype.fromTop
+        views.layer.add(transition!, forKey: nil)
     }
 }

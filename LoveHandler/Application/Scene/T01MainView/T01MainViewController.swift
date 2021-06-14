@@ -160,14 +160,20 @@ extension T01MainViewController {
     }
     
     private func animationInitial() {
-        wave = WaveAnimationView(frame: defaultBackgroundView.bounds, color: UIColor.red.withAlphaComponent(0.75))
+        wave = WaveAnimationView(frame: defaultBackgroundView.frame,
+                                 color: UIColor.red.withAlphaComponent(0.75))
         wave?.backgroundColor = UIColor.clear
-        wave?.startAnimation()
         wave?.frontColor = UIColor.red.withAlphaComponent(0.25)
         wave?.backColor = UIColor.red.withAlphaComponent(0.15)
         
         if let wave = wave {
             self.defaultBackgroundView.addSubview(wave)
+            wave.translatesAutoresizingMaskIntoConstraints = false
+            wave.leadingAnchor.constraint(equalTo: defaultBackgroundView.leadingAnchor).isActive = true
+            wave.trailingAnchor.constraint(equalTo: defaultBackgroundView.trailingAnchor).isActive = true
+            wave.topAnchor.constraint(equalTo: defaultBackgroundView.topAnchor).isActive = true
+            wave.bottomAnchor.constraint(equalTo: defaultBackgroundView.bottomAnchor).isActive = true
+            wave.startAnimation()
         }
     }
     

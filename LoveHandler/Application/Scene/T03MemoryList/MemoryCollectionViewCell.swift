@@ -15,7 +15,9 @@ class MemoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    var isAnimated = false
+    
+    private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     
     override func prepareForReuse() {
         super.prepareForReuse()
