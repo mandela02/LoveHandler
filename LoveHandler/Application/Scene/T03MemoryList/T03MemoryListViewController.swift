@@ -18,14 +18,19 @@ class T03MemoryListViewController: BaseViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
+    private let searchController = UISearchController(searchResultsController: nil)
+
     private var onViewDidAppearSignal = PassthroughSubject<Void, Never>()
     private var onSelectedMemory = PassthroughSubject<CDMemory, Never>()
-    
+    private var onSearchStringChange = PassthroughSubject<String, Never>()
+
     private var memories: [CDMemory] = []
+
     
     override func deinitView() {
         onViewDidAppearSignal.send(completion: .finished)
         onSelectedMemory.send(completion: .finished)
+        onSearchStringChange.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }
     
@@ -35,6 +40,7 @@ class T03MemoryListViewController: BaseViewController {
         isTitleVisible = true
         setupCollectionView()
         setupTransitionAnimation()
+        setupSearchBarController()
     }
     
     override func refreshView() {
@@ -44,6 +50,7 @@ class T03MemoryListViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         onViewDidAppearSignal.send(Void());
+        onSearchStringChange.send("")
     }
     
     override func setupLocalizedString() {
@@ -59,7 +66,8 @@ class T03MemoryListViewController: BaseViewController {
         let input = T03MemoryListViewModel.Input(viewDidAppear: onViewDidAppearSignal.eraseToAnyPublisher(),
                                                  dismissTrigger: closeButton.tapPublisher,
                                                  addButtonTrigger: addButton.tapPublisher,
-                                                 selectedMemoryTrigger: onSelectedMemory.eraseToAnyPublisher())
+                                                 selectedMemoryTrigger: onSelectedMemory.eraseToAnyPublisher(),
+                                                 searchString: onSearchStringChange.eraseToAnyPublisher())
         
         let output = viewModel.transform(input)
         
@@ -75,6 +83,17 @@ class T03MemoryListViewController: BaseViewController {
     override func setupTheme() {
         super.setupTheme()
         addButton.backgroundColor = Colors.hotPink
+    }
+    
+    
+    override func keyboarDidShow(keyboardHeight: CGFloat) {
+        super.keyboarDidShow(keyboardHeight: keyboardHeight)
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: keyboardHeight + 10, right: 10)
+    }
+
+    override func keyboarDidHide() {
+        super.keyboarDidHide()
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     private func setupCollectionView() {
@@ -145,7 +164,28 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        searchController.searchBar.resignFirstResponder()
         guard let memory = memories[safe: indexPath.item] else { return }
         onSelectedMemory.send(memory)
+    }
+}
+
+// MARK: - SearchBar
+extension T03MemoryListViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        onSearchStringChange.send(searchController.searchBar.text ?? "")
+    }
+        
+    private func setupSearchBarController() {
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Tìm kiếm kỉ niệm"
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.tintColor = UIColor.white
+        
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationController?.navigationBar.sizeToFit()
+
     }
 }

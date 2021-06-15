@@ -43,10 +43,21 @@ class T03MemoryListViewModel: BaseViewModel {
             .map { _ in }
             .eraseToAnyPublisher()
         
-        let memories = Publishers.Merge(input.viewDidAppear, onDatabaseChange)
-            .map { [weak self] _ -> [CDMemory] in
+        let refreshDataTrigger = Publishers.Merge(input.viewDidAppear, onDatabaseChange)
+        let searchTrigger = input.searchString.debounce(for: 0.25,
+                                                        scheduler: DispatchQueue.main)
+            .eraseToAnyPublisher()
+        
+        
+        let memories = Publishers.CombineLatest(refreshDataTrigger, searchTrigger)
+            .map { [weak self] _, searchString -> [CDMemory] in
                 guard let self = self else { return [] }
-                return self.useCase.getAllMemory()
+                
+                if searchString.isEmpty {
+                    return self.useCase.getAllMemory()
+                } else {
+                    return self.useCase.search(value: searchString)
+                }
             }
             .eraseToAnyPublisher()
         
@@ -66,6 +77,7 @@ class T03MemoryListViewModel: BaseViewModel {
         let dismissTrigger: AnyPublisher<Void, Never>
         let addButtonTrigger: AnyPublisher<Void, Never>
         let selectedMemoryTrigger: AnyPublisher<CDMemory, Never>
+        let searchString: AnyPublisher<String, Never>
     }
     
     struct Output {
