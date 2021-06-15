@@ -10,4 +10,5 @@ import Foundation
 struct ImageNames {
     static var defaultBackground = "dream_background"
     static var heart = "red_heart"
+    static var placeholderImage = "placeholder_image"
 }

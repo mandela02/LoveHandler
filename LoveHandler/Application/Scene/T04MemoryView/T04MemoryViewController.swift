@@ -22,7 +22,7 @@ class T04MemoryViewController: BaseViewController {
     @IBOutlet weak var imagePickButtonView: UIView!
     @IBOutlet weak var dateContainerStackView: UIStackView!
     @IBOutlet weak var bigContainerViewBottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var placeHolderImage: UIImageView!
     private var picker: ImagePickerHelper?
     private var currentConstraint: CGFloat = 0
     private var backgroundTap: UITapGestureRecognizer?
@@ -96,6 +96,7 @@ class T04MemoryViewController: BaseViewController {
             guard let self = self else { return }
             self.imageView.image = image
             self.imageView.contentMode = .scaleAspectFill
+            self.placeHolderImage.isHidden = true
             
             if self.isDoneInitAnimation {
                 self.imagePickButtonView.isHidden = false
@@ -217,8 +218,6 @@ extension T04MemoryViewController {
     private func setupViewBaseOnPerpose(viewPurpose: Purpose) {
         switch viewPurpose {
         case .new:
-            imageView.image = SystemImage.camera.image?
-                .withAlignmentRectInsets(UIEdgeInsets(top: -10, left: 0, bottom: -10, right: 0))
             imageView.contentMode = .scaleAspectFit
             dateLabel.text = Date().dayMonthYearString
             contentTextView.text = "Nhập nhật ký tại đây"
@@ -226,6 +225,9 @@ extension T04MemoryViewController {
             contentTextView.viewBorderColor = Colors.pink
             
             imagePickButtonView.isHidden = true
+            
+            setupPlaceHolderImage()
+            
         case .update(memory: let memory):
             guard let data = memory.image,
                   let text = memory.title else {
@@ -293,6 +295,23 @@ extension T04MemoryViewController {
                                    message: LocalizedString.t01ImagePickerSubTitle)
         
         picker?.delegate = self
+    }
+    
+    private func setupPlaceHolderImage() {
+        guard let image = ImageNames.placeholderImage.image else {
+            return
+        }
+    
+        imageView.image = SystemImage.camera.image?
+            .withAlignmentRectInsets(UIEdgeInsets(top: -20, left: 0, bottom: -20, right: 0))
+        
+        imageView.backgroundColor = UIColor.clear
+        
+        placeHolderImage.image = image
+
+        let width = self.bigContainerView.width
+        let ratio = image.size.height / image.size.width
+        self.imageHeightConstraint.constant = width * ratio
     }
 }
 
