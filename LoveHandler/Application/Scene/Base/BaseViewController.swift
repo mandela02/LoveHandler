@@ -9,9 +9,72 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
+    lazy var closeButton: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(image: SystemImage.xMark.image,
+                                          style: .plain,
+                                          target: nil,
+                                          action: nil)
+        closeButton.tintColor = UIColor.white
+        return closeButton
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = UIColor.white
+        return label
+    }()
+
+    private lazy var titleView: UIView = {
+        let view = UIView()
+        view.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        view.layoutIfNeeded()
+        view.sizeToFit()
+        
+        return view
+    }()
+    
+    var isTitleVisible: Bool = true {
+        didSet {
+            navigationItem.titleView = titleView
+        }
+    }
+    
+    var isBackButtonVisible: Bool = true {
+        didSet {
+            navigationItem.leftBarButtonItem = closeButton
+        }
+    }
+    
+    var navigationTitle: String = "" {
+        didSet {
+            titleLabel.text = navigationTitle
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        deinitView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = Colors.deepPink
+        self.overrideUserInterfaceStyle = .light
+        self.navigationController?.overrideUserInterfaceStyle = .light
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name:UIResponder.keyboardWillHideNotification, object: nil)
 
         setupView()
         setupLocalizedString()
@@ -40,4 +103,21 @@ class BaseViewController: UIViewController {
     func setupTheme() {}
     
     func bindViewModel() {}
+    
+    func keyboarDidShow(keyboardHeight: CGFloat) {}
+    
+    func keyboarDidHide() {}
+
+    func deinitView() {}
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        keyboarDidShow(keyboardHeight: keyboardFrame.size.height + 20)
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        keyboarDidHide()
+    }
 }

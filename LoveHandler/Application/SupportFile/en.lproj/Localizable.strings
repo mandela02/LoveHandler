@@ -55,14 +55,18 @@
 "t01NamePlaceholder" = "Enter name here";
 "t01NameSubmitButtonTitle" = "Submit";
 
-"t03PremiumTitle" = "Premium";
+"t02PremiumTitle" = "Premium";
 "t02WaveBackgroundTitle" = "Wave Background";
-"t03StartDateTitle" = "Start dating at";
-"t03EndDateTitle" = "Wedding day";
-"t03StartDatingDatePickerTitle" = "Your start dating at";
-"t03WeddingDayDatePickerTitle" = "Your Wedding day is";
+"t02StartDateTitle" = "Start dating at";
+"t02EndDateTitle" = "Wedding day";
+"t02StartDatingDatePickerTitle" = "Your start dating at";
+"t02WeddingDayDatePickerTitle" = "Your Wedding day is";
 
-"t03SettingsTitle" = "Settings";
-"t03PremiumHeaderitle" = "Premium";
-"t03ViewHeaderitle" = "Theme";
-"t03DataHeaderTitle" = "Love Settings";
+"t02SettingsTitle" = "Settings";
+"t02PremiumHeaderitle" = "Premium";
+"t02ViewHeaderitle" = "Theme";
+"t02DataHeaderTitle" = "Love Settings";
+
+"t03NavigationTitle" = "Memory";
+"t04MemoryDatePickerTitle" = "Choose a date";
+"t04MemoryContentPlaceHolder" = "Enter diary here";

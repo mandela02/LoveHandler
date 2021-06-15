@@ -55,14 +55,18 @@
 "t01NamePlaceholder" = "Nhập tên vào đây";
 "t01NameSubmitButtonTitle" = "Xác nhận";
 
-"t03PremiumTitle" = "Phiên bản Premium";
+"t02PremiumTitle" = "Phiên bản Premium";
 "t02WaveBackgroundTitle" = "Bật hình nền sóng";
-"t03StartDateTitle" = "Ngày bắt đầu hẹn hò";
-"t03EndDateTitle" = "Ngày cưới";
-"t03StartDatingDatePickerTitle" = "Chọn ngày bắt đầu hẹn hò";
-"t03WeddingDayDatePickerTitle" = "Chọn ngày cưới";
+"t02StartDateTitle" = "Ngày bắt đầu hẹn hò";
+"t02EndDateTitle" = "Ngày cưới";
+"t02StartDatingDatePickerTitle" = "Chọn ngày bắt đầu hẹn hò";
+"t02WeddingDayDatePickerTitle" = "Chọn ngày cưới";
 
-"t03SettingsTitle" = "Cài đặt";
-"t03PremiumHeaderitle" = "Premium";
-"t03ViewHeaderitle" = "Giao diện";
-"t03DataHeaderTitle" = "Tình yêu";
+"t02SettingsTitle" = "Cài đặt";
+"t02PremiumHeaderitle" = "Premium";
+"t02ViewHeaderitle" = "Giao diện";
+"t02DataHeaderTitle" = "Tình yêu";
+
+"t03NavigationTitle" = "Kỷ niệm đôi ta";
+"t04MemoryDatePickerTitle" = "Chọn ngày kỉ niệm";
+"t04MemoryContentPlaceHolder" = "Nhập nhật ký ở đây";

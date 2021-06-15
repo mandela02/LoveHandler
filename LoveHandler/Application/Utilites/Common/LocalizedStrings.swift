@@ -58,15 +58,19 @@ struct LocalizedString {
     static var t01NamePlaceholder: String { return String(localizedKey: "t01NamePlaceholder") }
     static var t01NameSubmitButtonTitle: String { return String(localizedKey: "t01NameSubmitButtonTitle") }
     
-    static var t03PremiumTitle: String { return String(localizedKey: "t03PremiumTitle") }
+    static var t02PremiumTitle: String { return String(localizedKey: "t02PremiumTitle") }
     static var t02WaveBackgroundTitle: String { return String(localizedKey: "t02WaveBackgroundTitle") }
-    static var t03StartDateTitle: String { return String(localizedKey: "t03StartDateTitle") }
-    static var t03EndDateTitle: String { return String(localizedKey: "t03EndDateTitle") }
-    static var t03StartDatingDatePickerTitle: String { return String(localizedKey: "t03StartDatingDatePickerTitle") }
-    static var t03WeddingDayDatePickerTitle: String { return String(localizedKey: "t03WeddingDayDatePickerTitle") }
+    static var t02StartDateTitle: String { return String(localizedKey: "t02StartDateTitle") }
+    static var t02EndDateTitle: String { return String(localizedKey: "t02EndDateTitle") }
+    static var t02StartDatingDatePickerTitle: String { return String(localizedKey: "t02StartDatingDatePickerTitle") }
+    static var t02WeddingDayDatePickerTitle: String { return String(localizedKey: "t02WeddingDayDatePickerTitle") }
+
+    static var t02SettingsTitle: String { return String(localizedKey: "t02SettingsTitle") }
+    static var t02PremiumHeaderitle: String { return String(localizedKey: "t02PremiumHeaderitle") }
+    static var t02ViewHeaderitle: String { return String(localizedKey: "t02ViewHeaderitle") }
+    static var t02DataHeaderTitle: String { return String(localizedKey: "t02DataHeaderTitle") }
     
-    static var t03SettingsTitle: String { return String(localizedKey: "t03SettingsTitle") }
-    static var t03PremiumHeaderitle: String { return String(localizedKey: "t03PremiumHeaderitle") }
-    static var t03ViewHeaderitle: String { return String(localizedKey: "t03ViewHeaderitle") }
-    static var t03DataHeaderTitle: String { return String(localizedKey: "t03DataHeaderTitle") }
+    static var t03NavigationTitle: String { return String(localizedKey: "t03NavigationTitle") }
+    static var t04MemoryDatePickerTitle: String { return String(localizedKey: "t04MemoryDatePickerTitle") }
+    static var t04MemoryContentPlaceHolder: String { return String(localizedKey: "t04MemoryContentPlaceHolder") }
 }

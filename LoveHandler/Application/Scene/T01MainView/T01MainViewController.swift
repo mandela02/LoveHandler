@@ -32,7 +32,7 @@ class T01MainViewController: BaseViewController {
     private var viewDidAppearSignal = PassthroughSubject<Void, Never>()
     var viewModel: T01MainViewViewModel?
     
-    deinit {
+    override func deinitView() {
         viewDidAppearSignal.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }
@@ -84,9 +84,12 @@ class T01MainViewController: BaseViewController {
         let onButtonTap = Publishers.Merge(settingButtonTap, diaryButtonTap)
             .eraseToAnyPublisher()
         
-        let onSettingChange = Publishers.Merge3(SettingsHelper.marryDate.map { _ in }.eraseToAnyPublisher(),
-                                                SettingsHelper.relationshipStartDate.map { _ in }.eraseToAnyPublisher(),
-                                                SettingsHelper.isShowingBackgroundWave.map { _ in }.eraseToAnyPublisher())
+        let onSettingChange = Publishers.Merge3(SettingsHelper.marryDate
+                                                    .map { _ in }.eraseToAnyPublisher(),
+                                                SettingsHelper.relationshipStartDate
+                                                    .map { _ in }.eraseToAnyPublisher(),
+                                                SettingsHelper.isShowingBackgroundWave
+                                                    .map { _ in }.eraseToAnyPublisher())
             .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
             .map { _ in }
             .eraseToAnyPublisher()
@@ -157,22 +160,28 @@ extension T01MainViewController {
     }
     
     private func animationInitial() {
-        wave = WaveAnimationView(frame: defaultBackgroundView.bounds, color: UIColor.red.withAlphaComponent(0.75))
+        wave = WaveAnimationView(frame: defaultBackgroundView.frame,
+                                 color: UIColor.red.withAlphaComponent(0.75))
         wave?.backgroundColor = UIColor.clear
-        wave?.startAnimation()
         wave?.frontColor = UIColor.red.withAlphaComponent(0.25)
         wave?.backColor = UIColor.red.withAlphaComponent(0.15)
         
         if let wave = wave {
             self.defaultBackgroundView.addSubview(wave)
+            wave.translatesAutoresizingMaskIntoConstraints = false
+            wave.leadingAnchor.constraint(equalTo: defaultBackgroundView.leadingAnchor).isActive = true
+            wave.trailingAnchor.constraint(equalTo: defaultBackgroundView.trailingAnchor).isActive = true
+            wave.topAnchor.constraint(equalTo: defaultBackgroundView.topAnchor).isActive = true
+            wave.bottomAnchor.constraint(equalTo: defaultBackgroundView.bottomAnchor).isActive = true
+            wave.startAnimation()
         }
     }
     
     private func setupHeartFloatView() {
-        floaterHeartView.floaterImage1 = ImageNames.heart.image?.tintColor(with: Colors.deepPink)
-        floaterHeartView.floaterImage2 = ImageNames.heart.image?.tintColor(with: Colors.lightPink)
-        floaterHeartView.floaterImage3 = ImageNames.heart.image?.tintColor(with: Colors.pink)
-        floaterHeartView.floaterImage4 = ImageNames.heart.image?.tintColor(with: Colors.hotPink)
+        floaterHeartView.floaterImage1 = SystemImage.roundHeart.image?.tintColor(with: Colors.deepPink)
+        floaterHeartView.floaterImage2 = SystemImage.roundHeart.image?.tintColor(with: Colors.lightPink)
+        floaterHeartView.floaterImage3 = SystemImage.roundHeart.image?.tintColor(with: Colors.pink)
+        floaterHeartView.floaterImage4 = SystemImage.roundHeart.image?.tintColor(with: Colors.hotPink)
 
     }
 }

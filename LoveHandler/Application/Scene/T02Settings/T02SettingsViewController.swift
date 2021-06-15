@@ -13,22 +13,6 @@ class T02SettingsViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private lazy var closeButton: UIBarButtonItem = {
-        let closeButton = UIBarButtonItem(title: "Back",
-                                          style: .plain,
-                                          target: nil,
-                                          action: nil)
-        closeButton.tintColor = UIColor.white
-        return closeButton
-    }()
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = UIColor.white
-        return label
-    }()
-    
     private lazy var tableFooterViewLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +28,7 @@ class T02SettingsViewController: BaseViewController {
     private var onCellSelected = PassthroughSubject<IndexPath, Never>()
     private var onViewWillAppearSignal = PassthroughSubject<Void, Never>()
 
-    deinit {
+    override func deinitView() {
         onCellSelected.send(completion: .finished)
         onViewWillAppearSignal.send(completion: .finished)
         
@@ -66,24 +50,13 @@ class T02SettingsViewController: BaseViewController {
     
     override func setupLocalizedString() {
         super.setupLocalizedString()
-        titleLabel.text = LocalizedString.t03SettingsTitle
+        navigationTitle = LocalizedString.t02SettingsTitle
         tableFooterViewLabel.text = getFooter()
     }
     
     private func setupNavigationBar() {
-        let view = UIView()
-        view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        view.layoutIfNeeded()
-        view.sizeToFit()
-        
-        navigationItem.titleView = view
-        navigationItem.leftBarButtonItem = closeButton
+        isTitleVisible = true
+        isBackButtonVisible = true
     }
     
     override func bindViewModel() {
@@ -116,8 +89,6 @@ class T02SettingsViewController: BaseViewController {
     
     override func setupTheme() {
         super.setupTheme()
-        self.overrideUserInterfaceStyle = .light
-        self.navigationController?.overrideUserInterfaceStyle = .light
     }
     
     private func getFooter() -> String {
@@ -155,9 +126,6 @@ extension T02SettingsViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(SettingWithSwitchTableViewCell.self, for: indexPath)
             cell.bind(icon: icon, title: title, isOn: isOn)
             cell.didValueChange = { value in
-                if row == .showProgressWaveBackground {
-                    Settings.isShowingBackgroundWave.value = value
-                }
             }
             return cell
         case .withSubTitle(icon: let icon, title: let title, subTitle: let subTitle):
@@ -180,11 +148,7 @@ extension T02SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         let cell = dataSource[indexPath.section].cells[indexPath.row]
-        if cell == .showProgressWaveBackground {
-            return false
-        } else {
-            return true
-        }
+        return true
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

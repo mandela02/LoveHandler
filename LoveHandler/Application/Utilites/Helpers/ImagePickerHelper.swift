@@ -10,7 +10,7 @@ import UIKit
 import Fusuma
 import Photos
 
-protocol ImagePickerDelegate {
+protocol ImagePickerDelegate: AnyObject {
     func cameraHandle(image: UIImage)
     func libraryHandle(images: [UIImage])
 }
@@ -21,7 +21,7 @@ class ImagePickerHelper: NSObject {
     var isMultiplePick: Bool
     
     private var pickerController: UIImagePickerController?
-    var delegate: ImagePickerDelegate?
+    weak var delegate: ImagePickerDelegate?
 
     init(title: String, message: String, isMultiplePick: Bool = false) {
         self.title = title
@@ -52,7 +52,6 @@ extension ImagePickerHelper {
             fusuma.photoSelectionLimit = 15
         }
         UIApplication.topViewController()?.present(fusuma, animated: true, completion: nil)
-
     }
 }
 

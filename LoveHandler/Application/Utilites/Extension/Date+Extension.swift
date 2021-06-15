@@ -241,6 +241,12 @@ extension Date {
         formatter.locale = Locale(identifier: Strings.localeIdentifier)
         return formatter.string(from: self)
     }
+    
+    var dayMonthYearString: String {
+        let formatter = DateFormatter(dateFormat: "d/M/y (EEEE)")
+        formatter.locale = Locale(identifier: Strings.localeIdentifier)
+        return formatter.string(from: self)
+    }
 }
 
 extension Date {

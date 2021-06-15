@@ -30,11 +30,16 @@ class T01MainViewNavigator: T01MainViewNavigatorType {
     }
     
     func toDiaries() {
-        let viewController = T03CalendarViewController.instantiateFromStoryboard()
+        let viewController = T03MemoryListViewController.instantiateFromStoryboard()
         let navigationController = BaseNavigationController(rootViewController: viewController)
-        let navigator = T03CalendarNavigator(navigationController: navigationController)
-        viewController.viewModel = T03CalendarViewModel(navigator: navigator,
-                                                        useCase: UseCaseProvider.defaultProvider.getCalendarUseCase())
+        let navigator = T03MemoryListNavigator(navigationController: navigationController)
+        viewController.viewModel = T03MemoryListViewModel(navigator: navigator,
+                                                          useCase: UseCaseProvider.defaultProvider.getMemoryListUseCase())
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.isHeroEnabled = true
+        navigationController.hero.modalAnimationType = .selectBy(presenting: .pageIn(direction: .up),
+                                                                 dismissing: .pageOut(direction: .down))
+
         self.navigationController.present(navigationController,
                                           animated: true, completion: nil)
     }

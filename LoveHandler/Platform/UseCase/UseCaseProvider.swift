@@ -2,7 +2,7 @@
 //  UseCaseProvider.swift
 //  LoveHandler
 //
-//  Created by LanNTH on 04/05/2021.
+//  Created by LanNTH on 12/06/2021.
 //
 
 import Foundation
@@ -10,18 +10,18 @@ import Foundation
 class UseCaseProvider {
     static let defaultProvider = UseCaseProvider()
     
-    private lazy var noteRepository = Repository<Note>(container: PersistenceManager.shared.persistentContainer)
+    private lazy var memoryRepository = Repository<CDMemory>()
     
-    private lazy var noteUseCase = T05NoteUseCase(repository: noteRepository)
-    private lazy var calendarUseCase = T03CalendarUseCase(repository: noteRepository)
+    private lazy var memoryUseCase = T04MemoryUseCase(repository: memoryRepository)
+    private lazy var memoryListUseCase = T03MemoryListUseCase(repository: memoryRepository)
 
     private init() {}
     
-    func getNotesUseCase() -> T05NoteUseCaseType {
-        return noteUseCase
+    func getMemoryUseCase() -> T04MemoryUseCaseType {
+        return memoryUseCase
     }
     
-    func getCalendarUseCase() -> T03CalendarUseCaseType {
-        return calendarUseCase
+    func getMemoryListUseCase() -> T03MemoryListUseCaseType {
+        return memoryListUseCase
     }
 }
