@@ -22,6 +22,8 @@ class T04MemoryViewController: BaseViewController {
     @IBOutlet weak var imagePickButtonView: UIView!
     @IBOutlet weak var dateContainerStackView: UIStackView!
     @IBOutlet weak var bigContainerViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bigContainerViewTopConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var placeHolderImage: UIImageView!
     private var picker: ImagePickerHelper?
     private var currentConstraint: CGFloat = 0
@@ -58,6 +60,10 @@ class T04MemoryViewController: BaseViewController {
         setupTapBackground()
         addGesture()
         addPicker()
+        
+        if (!isInEditMode) {
+            bigContainerViewTopConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - 50
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -193,12 +199,19 @@ extension T04MemoryViewController {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             guard let self = self else { return }
-            if !self.isDoneInitAnimation {
-                self.bigContainerViewBottomConstraint.constant = self.limitConstaints
+            if self.isInEditMode {
+                if !self.isDoneInitAnimation {
+                    self.bigContainerViewBottomConstraint.constant = self.limitConstaints
+                    UIView.animate(withDuration: 0.3) { [weak self] in
+                        self?.view.layoutIfNeeded()
+                    }
+                    self.isDoneInitAnimation = true
+                }
+            } else {
+                self.bigContainerViewTopConstraint.constant = self.limitConstaints
                 UIView.animate(withDuration: 0.3) { [weak self] in
                     self?.view.layoutIfNeeded()
                 }
-                self.isDoneInitAnimation = true
             }
         }
         
@@ -258,10 +271,8 @@ extension T04MemoryViewController {
             bigContainerView.hero.modifiers =  [.cornerRadius(10), .forceAnimate]
             backgroundView.hero.modifiers = [.fade]
             saveButton.hero.modifiers =  [.cornerRadius(10), .forceAnimate]
-            
         } else {
-            saveButton.hero.id = HeroIdentifier.addButtonIdentifier
-            bigContainerView.hero.modifiers = [.cornerRadius(10), .forceAnimate]
+            bigContainerView.hero.id = HeroIdentifier.addButtonIdentifier
             backgroundView.hero.modifiers = [.fade]
             
         }

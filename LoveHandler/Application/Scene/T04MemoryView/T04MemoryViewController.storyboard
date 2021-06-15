@@ -176,6 +176,7 @@
                         <outlet property="backgroundView" destination="mwT-58-OyF" id="nVH-r5-gQt"/>
                         <outlet property="bigContainerView" destination="l40-a3-VyH" id="Hgg-GB-aB4"/>
                         <outlet property="bigContainerViewBottomConstraint" destination="72g-g5-69n" id="wQo-DO-3Yu"/>
+                        <outlet property="bigContainerViewTopConstraint" destination="Nr1-7h-mNV" id="wX9-cT-OmW"/>
                         <outlet property="contentTextView" destination="fjE-A8-AJt" id="aV9-PV-HtI"/>
                         <outlet property="dateContainerStackView" destination="BYf-xV-kNw" id="qrJ-v2-WjJ"/>
                         <outlet property="dateLabel" destination="sSj-DH-vHO" id="Vhr-Ua-dhF"/>
