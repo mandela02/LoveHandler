@@ -30,13 +30,13 @@ class T02SettingsViewModel: BaseViewModel {
                 guard let self = self else { return Empty(completeImmediately: false).eraseToAnyPublisher()}
                 switch cell {
                 case .marryDateSelection:
-                    return self.navigator.datePicker(title: LocalizedString.t03WeddingDayDatePickerTitle,
+                    return self.navigator.datePicker(title: LocalizedString.t02WeddingDayDatePickerTitle,
                                                      date: Settings.marryDate.value,
                                                      minDate: Settings.relationshipStartDate.value,
                                                      maxDate: Constant.maxDate)
                         .eraseToAnyPublisher()
                 case .startDatingDateSelection:
-                    return self.navigator.datePicker(title: LocalizedString.t03StartDatingDatePickerTitle,
+                    return self.navigator.datePicker(title: LocalizedString.t02StartDatingDatePickerTitle,
                                                      date: Settings.relationshipStartDate.value,
                                                      minDate: Constant.minDate,
                                                      maxDate: Date())
@@ -95,29 +95,23 @@ class T02SettingsViewModel: BaseViewModel {
     enum Cell {
         case startDatingDateSelection
         case marryDateSelection
-        case showProgressWaveBackground
         case premium
         
         var info: CellInfo {
             switch self {
             case .startDatingDateSelection:
                 return CellInfo(type: .withSubTitle(icon: "",
-                                                    title: LocalizedString.t03StartDateTitle,
+                                                    title: LocalizedString.t02StartDateTitle,
                                                     subTitle: DefaultDateFormatter.string(from: Settings.relationshipStartDate.value,
                                                                                           dateFormat: "d/M/y")))
             case .marryDateSelection:
                 return CellInfo(type: .withSubTitle(icon: "",
-                                                    title: LocalizedString.t03EndDateTitle,
+                                                    title: LocalizedString.t02EndDateTitle,
                                                     subTitle: DefaultDateFormatter.string(from: Settings.marryDate.value,
-                                                                                          dateFormat: "d/M/y")))
-            case .showProgressWaveBackground:
-                return CellInfo(type: .withSwitch(icon: "",
-                                                  title: LocalizedString.t02WaveBackgroundTitle,
-                                                  isOn: Settings.isShowingBackgroundWave.value))
-                
+                                                                                          dateFormat: "d/M/y")))                
             case .premium:
                 return CellInfo(type: .normal(icon: "",
-                                              title: LocalizedString.t03PremiumTitle,
+                                              title: LocalizedString.t02PremiumTitle,
                                               isDisable: false))
             }
         }
@@ -134,14 +128,14 @@ class T02SettingsViewModel: BaseViewModel {
         var info: SectionInfo {
             switch self {
             case .dates:
-                return SectionInfo(title: LocalizedString.t03DataHeaderTitle,
+                return SectionInfo(title: LocalizedString.t02DataHeaderTitle,
                                    cells: [.startDatingDateSelection,
                                            .marryDateSelection])
             case .ui:
-                return SectionInfo(title: LocalizedString.t03ViewHeaderitle,
-                                   cells: [.showProgressWaveBackground])
+                return SectionInfo(title: LocalizedString.t02ViewHeaderitle,
+                                   cells: [])
             case .premium:
-                return SectionInfo(title: LocalizedString.t03PremiumHeaderitle,
+                return SectionInfo(title: LocalizedString.t02PremiumHeaderitle,
                                    cells: [.premium])
             }
         }

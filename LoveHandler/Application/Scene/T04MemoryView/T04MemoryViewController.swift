@@ -32,7 +32,8 @@ class T04MemoryViewController: BaseViewController {
     private var cancellables = Set<AnyCancellable>()
     
     private var titlePlaceHolder: String {
-        return "Nhập nhật ký tại đây"
+        return LocalizedString.t04MemoryContentPlaceHolder
+
     }
     
     var viewModel: T04MemoryViewModel?
@@ -66,8 +67,8 @@ class T04MemoryViewController: BaseViewController {
     
     override func bindViewModel() {
         let chooseDateTap = UITapGestureRecognizer()
-        dateLabel.isUserInteractionEnabled = true
-        dateLabel.addGestureRecognizer(chooseDateTap)
+        dateContainerStackView.isUserInteractionEnabled = true
+        dateContainerStackView.addGestureRecognizer(chooseDateTap)
         
         
         guard let viewModel = viewModel else { return }

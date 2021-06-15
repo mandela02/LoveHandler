@@ -48,7 +48,7 @@ class T03MemoryListViewController: BaseViewController {
     
     override func setupLocalizedString() {
         super.setupLocalizedString()
-        navigationTitle = "Memory"
+        navigationTitle = LocalizedString.t03NavigationTitle
     }
     
     override func bindViewModel() {

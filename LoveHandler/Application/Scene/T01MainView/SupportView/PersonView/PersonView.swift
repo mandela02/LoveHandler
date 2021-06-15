@@ -17,7 +17,7 @@ class PersonView: BaseView, NibLoadable {
     @IBOutlet weak var zodiacLabel: UILabel!
     
     var contentView: UIView?
-
+    
     var person: Person? {
         didSet {
             if let person = person {
@@ -27,6 +27,7 @@ class PersonView: BaseView, NibLoadable {
     }
 
     private var picker: ImagePickerHelper?
+    private var isImageSet = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,6 +60,8 @@ class PersonView: BaseView, NibLoadable {
                                        message: LocalizedString.t01ImagePickerSubTitle)
         
         picker?.delegate = self
+        
+        avatarImageView.backgroundColor = .white
     }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -115,6 +118,7 @@ class PersonView: BaseView, NibLoadable {
             avatarImageView.contentMode = .scaleAspectFill
         } else {
             avatarImageView.contentMode = .scaleAspectFit
+            avatarImageView.image = person.gender.defaultImage
         }
     }
     
@@ -158,7 +162,11 @@ extension PersonView {
         UIAlertController.showActionSheet(source: Gender.self,
                                           title: LocalizedString.t01ChooseGenderTitle,
                                           message: LocalizedString.t01ChooseGenderSubTitle) { [weak self] gender in
-            self?.person?.gender = gender
+            guard let self = self else { return }
+            self.person?.gender = gender
+            if self.person?.image == nil {
+                self.avatarImageView.image = gender.defaultImage
+            }
         }
     }
 }

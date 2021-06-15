@@ -11,4 +11,9 @@ struct ImageNames {
     static var defaultBackground = "dream_background"
     static var heart = "red_heart"
     static var placeholderImage = "placeholder_image"
+    
+    static var man = "man"
+    static var woman = "woman"
+    static var bigender = "bigender"
+
 }

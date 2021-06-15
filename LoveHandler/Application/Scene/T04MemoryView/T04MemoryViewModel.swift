@@ -34,9 +34,9 @@ class T04MemoryViewModel: BaseViewModel {
         let chooseDateTrigger = input.chooseDateTrigger
             .flatMap { [weak self] _ -> AnyPublisher<Date?, Never> in
                 guard let self = self else { return Empty(completeImmediately: false).eraseToAnyPublisher()}
-                return self.navigator.datePicker(title: LocalizedString.t03WeddingDayDatePickerTitle,
-                                                 date: Settings.marryDate.value,
-                                                 minDate: Settings.relationshipStartDate.value,
+                return self.navigator.datePicker(title: LocalizedString.t04MemoryDatePickerTitle,
+                                                 date: Date(),
+                                                 minDate: Constant.minDate,
                                                  maxDate: Constant.maxDate)
                     .eraseToAnyPublisher()
             }

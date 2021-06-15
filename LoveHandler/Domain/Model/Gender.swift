@@ -5,7 +5,7 @@
 //  Created by LanNTH on 17/04/2021.
 //
 
-import Foundation
+import UIKit
 
 enum Gender: CaseIterable, EnumName {
     case female
@@ -36,6 +36,17 @@ enum Gender: CaseIterable, EnumName {
             return LocalizedString.intersexual
         case .neutral:
             return LocalizedString.neutral
+        }
+    }
+    
+    var defaultImage: UIImage {
+        switch self {
+        case .male:
+            return ImageNames.man.image ?? UIImage()
+        case .female:
+            return ImageNames.woman.image ?? UIImage()
+        default:
+            return ImageNames.bigender.image ?? UIImage()
         }
     }
     

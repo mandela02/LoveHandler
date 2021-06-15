@@ -50,7 +50,7 @@ class T02SettingsViewController: BaseViewController {
     
     override func setupLocalizedString() {
         super.setupLocalizedString()
-        navigationTitle = LocalizedString.t03SettingsTitle
+        navigationTitle = LocalizedString.t02SettingsTitle
         tableFooterViewLabel.text = getFooter()
     }
     
@@ -126,9 +126,6 @@ extension T02SettingsViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(SettingWithSwitchTableViewCell.self, for: indexPath)
             cell.bind(icon: icon, title: title, isOn: isOn)
             cell.didValueChange = { value in
-                if row == .showProgressWaveBackground {
-                    Settings.isShowingBackgroundWave.value = value
-                }
             }
             return cell
         case .withSubTitle(icon: let icon, title: let title, subTitle: let subTitle):
@@ -151,11 +148,7 @@ extension T02SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         let cell = dataSource[indexPath.section].cells[indexPath.row]
-        if cell == .showProgressWaveBackground {
-            return false
-        } else {
-            return true
-        }
+        return true
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

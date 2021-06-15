@@ -59,5 +59,5 @@ struct Settings {
     static var marryDate = UserDefault<Date>(key: .marryDate,
                                                defaultValue: Date().nextYear)
     static var isShowingBackgroundWave = UserDefault<Bool>(key: .isShowingBackgroundWave,
-                                               defaultValue: true)
+                                               defaultValue: false)
 }
