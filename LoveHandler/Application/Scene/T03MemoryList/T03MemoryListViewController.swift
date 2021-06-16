@@ -13,8 +13,8 @@ class T03MemoryListViewController: BaseViewController {
     
     @IBOutlet weak var addButton: RoundButton!
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var toTopButton: RoundButton!
+    @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     
     var viewModel: T03MemoryListViewModel?
     
@@ -42,7 +42,6 @@ class T03MemoryListViewController: BaseViewController {
         super.setupView()
         isBackButtonVisible = true
         isTitleVisible = true
-        toTopButton.isHidden = true
         toTopButton.alpha = 0.0
 
         setupCollectionView()
@@ -102,6 +101,7 @@ class T03MemoryListViewController: BaseViewController {
     
     override func keyboarDidShow(keyboardHeight: CGFloat) {
         super.keyboarDidShow(keyboardHeight: keyboardHeight)
+        collectionView.setContentOffset(collectionView.contentOffset, animated: false)
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: keyboardHeight + 10, right: 10)
     }
 
@@ -136,7 +136,6 @@ class T03MemoryListViewController: BaseViewController {
     
     private func setupTapBackground() {
         backgroundTap = UITapGestureRecognizer(target: self, action: #selector(onTap))
-        backgroundTap?.delegate = self
         backgroundTap?.cancelsTouchesInView = false
         collectionView.isUserInteractionEnabled = true
         collectionView.addGestureRecognizer(backgroundTap!)
@@ -152,12 +151,8 @@ class T03MemoryListViewController: BaseViewController {
     }
 }
 
-extension T03MemoryListViewController: UIGestureRecognizerDelegate {
-}
-
 
 extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout  {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let memory = memories[safe: indexPath.item],
               let data = memory.image,
@@ -218,9 +213,7 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
         if scrollView.contentOffset.y > Utilities.getWindowBound().height {
             if !isToTopButtonShow {
                 isToTopButtonShow = true
-
-                self.toTopButton.isHidden = false
-                
+            
                 UIView.animate(withDuration: 0.3,
                                animations: { [weak self] in
                                 self?.toTopButton.alpha = 1.0
@@ -229,7 +222,11 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
         } else {
             if isToTopButtonShow {
                 isToTopButtonShow = false
-                self.toTopButton.isHidden = true
+                
+                UIView.animate(withDuration: 0.3,
+                               animations: { [weak self] in
+                                self?.toTopButton.alpha = 0.0
+                })
             }
         }
     }

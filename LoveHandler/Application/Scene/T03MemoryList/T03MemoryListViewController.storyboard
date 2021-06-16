@@ -94,6 +94,7 @@
                     <connections>
                         <outlet property="addButton" destination="pHh-9C-dBT" id="8Vj-P3-j6u"/>
                         <outlet property="collectionView" destination="6kX-St-t4I" id="uFb-5T-UCZ"/>
+                        <outlet property="collectionViewBottomConstraint" destination="72I-Lr-6lf" id="FbK-Qc-AJA"/>
                         <outlet property="toTopButton" destination="Gbk-vU-pd0" id="mOj-Ea-5dG"/>
                     </connections>
                 </viewController>
