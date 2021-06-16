@@ -19,13 +19,13 @@ class T03MemoryListViewController: BaseViewController {
     private var cancellables = Set<AnyCancellable>()
     
     private let searchController = UISearchController(searchResultsController: nil)
+    private var backgroundTap: UITapGestureRecognizer?
 
     private var onViewDidAppearSignal = PassthroughSubject<Void, Never>()
     private var onSelectedMemory = PassthroughSubject<CDMemory, Never>()
     private var onSearchStringChange = PassthroughSubject<String, Never>()
 
     private var memories: [CDMemory] = []
-
     
     override func deinitView() {
         onViewDidAppearSignal.send(completion: .finished)
@@ -41,6 +41,7 @@ class T03MemoryListViewController: BaseViewController {
         setupCollectionView()
         setupTransitionAnimation()
         setupSearchBarController()
+        //setupTapBackground()
     }
     
     override func refreshView() {
@@ -119,7 +120,23 @@ class T03MemoryListViewController: BaseViewController {
     private func setupTransitionAnimation() {
         addButton.hero.id = HeroIdentifier.addButtonIdentifier
     }
+    
+    private func setupTapBackground() {
+        backgroundTap = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        backgroundTap?.delegate = self
+        backgroundTap?.cancelsTouchesInView = false
+        collectionView.isUserInteractionEnabled = true
+        collectionView.addGestureRecognizer(backgroundTap!)
+    }
+    
+    @objc private func onTap() {
+        searchController.searchBar.resignFirstResponder()
+    }
 }
+
+extension T03MemoryListViewController: UIGestureRecognizerDelegate {
+}
+
 
 extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout  {
     
@@ -164,9 +181,21 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let memory = self.memories[safe: indexPath.item] else { return }
+
+        
+        if isKeyboardShow {
+            searchController.searchBar.resignFirstResponder()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
+                self?.onSelectedMemory.send(memory)
+            }
+        } else {
+            self.onSelectedMemory.send(memory)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         searchController.searchBar.resignFirstResponder()
-        guard let memory = memories[safe: indexPath.item] else { return }
-        onSelectedMemory.send(memory)
     }
 }
 
@@ -186,6 +215,10 @@ extension T03MemoryListViewController: UISearchResultsUpdating, UISearchBarDeleg
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.sizeToFit()
+        
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+
+        textFieldInsideSearchBar?.textColor = UIColor.white
 
     }
 }

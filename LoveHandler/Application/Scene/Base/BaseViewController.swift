@@ -58,6 +58,8 @@ class BaseViewController: UIViewController {
         }
     }
     
+    var isKeyboardShow = false
+
     deinit {
         NotificationCenter.default.removeObserver(self)
         deinitView()
@@ -115,9 +117,11 @@ class BaseViewController: UIViewController {
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         keyboarDidShow(keyboardHeight: keyboardFrame.size.height + 20)
+        isKeyboardShow = true
     }
 
     @objc private func keyboardWillHide(notification: NSNotification) {
         keyboarDidHide()
+        isKeyboardShow = false
     }
 }
