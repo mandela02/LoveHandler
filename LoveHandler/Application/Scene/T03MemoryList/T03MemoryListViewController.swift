@@ -14,6 +14,8 @@ class T03MemoryListViewController: BaseViewController {
     @IBOutlet weak var addButton: RoundButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var toTopButton: RoundButton!
+    
     var viewModel: T03MemoryListViewModel?
     
     private var cancellables = Set<AnyCancellable>()
@@ -27,6 +29,8 @@ class T03MemoryListViewController: BaseViewController {
 
     private var memories: [CDMemory] = []
     
+    private var isToTopButtonShow = false
+    
     override func deinitView() {
         onViewDidAppearSignal.send(completion: .finished)
         onSelectedMemory.send(completion: .finished)
@@ -38,10 +42,13 @@ class T03MemoryListViewController: BaseViewController {
         super.setupView()
         isBackButtonVisible = true
         isTitleVisible = true
+        toTopButton.isHidden = true
+        toTopButton.alpha = 0.0
+
         setupCollectionView()
         setupTransitionAnimation()
         setupSearchBarController()
-        //setupTapBackground()
+        setupTapBackground()
     }
     
     override func refreshView() {
@@ -84,6 +91,12 @@ class T03MemoryListViewController: BaseViewController {
     override func setupTheme() {
         super.setupTheme()
         addButton.backgroundColor = Colors.hotPink
+        searchController.searchBar.tintColor = UIColor.white
+        
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+
+        textFieldInsideSearchBar?.textColor = UIColor.white
+        textFieldInsideSearchBar?.backgroundColor = Colors.pink
     }
     
     
@@ -132,6 +145,11 @@ class T03MemoryListViewController: BaseViewController {
     @objc private func onTap() {
         searchController.searchBar.resignFirstResponder()
     }
+    
+    
+    @IBAction func toTopButtonAction(_ sender: Any) {
+        collectionView.setContentOffset(CGPoint(x: -10, y: -10), animated: true)
+    }
 }
 
 extension T03MemoryListViewController: UIGestureRecognizerDelegate {
@@ -166,7 +184,7 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
                            delay: 0.5 * Double(indexPath.row),
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0.5,
-                           options: indexPath.row % 2 == 0 ? .transitionFlipFromLeft : .transitionFlipFromRight,
+                           options: .transitionCurlUp,
                            animations: {
                             AnimationUtility.viewSlideInFromBottom(toTop: cell)
                            }, completion: { (done) in
@@ -196,6 +214,24 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         searchController.searchBar.resignFirstResponder()
+    
+        if scrollView.contentOffset.y > Utilities.getWindowBound().height {
+            if !isToTopButtonShow {
+                isToTopButtonShow = true
+
+                self.toTopButton.isHidden = false
+                
+                UIView.animate(withDuration: 0.3,
+                               animations: { [weak self] in
+                                self?.toTopButton.alpha = 1.0
+                })
+            }
+        } else {
+            if isToTopButtonShow {
+                isToTopButtonShow = false
+                self.toTopButton.isHidden = true
+            }
+        }
     }
 }
 
@@ -210,15 +246,9 @@ extension T03MemoryListViewController: UISearchResultsUpdating, UISearchBarDeleg
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Tìm kiếm kỉ niệm"
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.tintColor = UIColor.white
-        
+
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.sizeToFit()
-        
-        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
-
-        textFieldInsideSearchBar?.textColor = UIColor.white
-
     }
 }
