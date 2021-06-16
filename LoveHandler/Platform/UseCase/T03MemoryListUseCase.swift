@@ -10,7 +10,8 @@ import Combine
 
 protocol T03MemoryListUseCaseType {
     func getAllMemory() -> [CDMemory]
-    func  onDatabaseUpdated() -> AnyPublisher<Void, Never>
+    func search(value: String) -> [CDMemory]
+    func onDatabaseUpdated() -> AnyPublisher<Void, Never>
 }
 
 class T03MemoryListUseCase: T03MemoryListUseCaseType {
@@ -22,6 +23,20 @@ class T03MemoryListUseCase: T03MemoryListUseCaseType {
 
     func getAllMemory() -> [CDMemory] {
         let response = repository.fetchAllData()
+        switch response {
+        case .success(data: let data):
+            if let data = data as? [CDMemory] {
+                return data
+            } else {
+                return []
+            }
+        case .error(error: let error):
+            return []
+        }
+    }
+    
+    func search(value: String) -> [CDMemory] {
+        let response = repository.fetchRequest(predicate: "title", value: value)
         switch response {
         case .success(data: let data):
             if let data = data as? [CDMemory] {

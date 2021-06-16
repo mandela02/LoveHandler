@@ -13,19 +13,28 @@ class T03MemoryListViewController: BaseViewController {
     
     @IBOutlet weak var addButton: RoundButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var toTopButton: RoundButton!
+    @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     
     var viewModel: T03MemoryListViewModel?
     
     private var cancellables = Set<AnyCancellable>()
     
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var backgroundTap: UITapGestureRecognizer?
+
     private var onViewDidAppearSignal = PassthroughSubject<Void, Never>()
     private var onSelectedMemory = PassthroughSubject<CDMemory, Never>()
-    
+    private var onSearchStringChange = PassthroughSubject<String, Never>()
+
     private var memories: [CDMemory] = []
+    
+    private var isToTopButtonShow = false
     
     override func deinitView() {
         onViewDidAppearSignal.send(completion: .finished)
         onSelectedMemory.send(completion: .finished)
+        onSearchStringChange.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }
     
@@ -33,8 +42,12 @@ class T03MemoryListViewController: BaseViewController {
         super.setupView()
         isBackButtonVisible = true
         isTitleVisible = true
+        toTopButton.alpha = 0.0
+
         setupCollectionView()
         setupTransitionAnimation()
+        setupSearchBarController()
+        setupTapBackground()
     }
     
     override func refreshView() {
@@ -44,6 +57,7 @@ class T03MemoryListViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         onViewDidAppearSignal.send(Void());
+        onSearchStringChange.send("")
     }
     
     override func setupLocalizedString() {
@@ -59,7 +73,8 @@ class T03MemoryListViewController: BaseViewController {
         let input = T03MemoryListViewModel.Input(viewDidAppear: onViewDidAppearSignal.eraseToAnyPublisher(),
                                                  dismissTrigger: closeButton.tapPublisher,
                                                  addButtonTrigger: addButton.tapPublisher,
-                                                 selectedMemoryTrigger: onSelectedMemory.eraseToAnyPublisher())
+                                                 selectedMemoryTrigger: onSelectedMemory.eraseToAnyPublisher(),
+                                                 searchString: onSearchStringChange.eraseToAnyPublisher())
         
         let output = viewModel.transform(input)
         
@@ -75,6 +90,24 @@ class T03MemoryListViewController: BaseViewController {
     override func setupTheme() {
         super.setupTheme()
         addButton.backgroundColor = Colors.hotPink
+        searchController.searchBar.tintColor = UIColor.white
+        
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+
+        textFieldInsideSearchBar?.textColor = UIColor.white
+        textFieldInsideSearchBar?.backgroundColor = Colors.pink
+    }
+    
+    
+    override func keyboarDidShow(keyboardHeight: CGFloat) {
+        super.keyboarDidShow(keyboardHeight: keyboardHeight)
+        collectionView.setContentOffset(collectionView.contentOffset, animated: false)
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: keyboardHeight + 10, right: 10)
+    }
+
+    override func keyboarDidHide() {
+        super.keyboarDidHide()
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     private func setupCollectionView() {
@@ -100,10 +133,26 @@ class T03MemoryListViewController: BaseViewController {
     private func setupTransitionAnimation() {
         addButton.hero.id = HeroIdentifier.addButtonIdentifier
     }
+    
+    private func setupTapBackground() {
+        backgroundTap = UITapGestureRecognizer(target: self, action: #selector(onTap))
+        backgroundTap?.cancelsTouchesInView = false
+        collectionView.isUserInteractionEnabled = true
+        collectionView.addGestureRecognizer(backgroundTap!)
+    }
+    
+    @objc private func onTap() {
+        searchController.searchBar.resignFirstResponder()
+    }
+    
+    
+    @IBAction func toTopButtonAction(_ sender: Any) {
+        collectionView.setContentOffset(CGPoint(x: -10, y: -10), animated: true)
+    }
 }
 
+
 extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout  {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let memory = memories[safe: indexPath.item],
               let data = memory.image,
@@ -130,7 +179,7 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
                            delay: 0.5 * Double(indexPath.row),
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0.5,
-                           options: indexPath.row % 2 == 0 ? .transitionFlipFromLeft : .transitionFlipFromRight,
+                           options: .transitionCurlUp,
                            animations: {
                             AnimationUtility.viewSlideInFromBottom(toTop: cell)
                            }, completion: { (done) in
@@ -145,7 +194,58 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let memory = memories[safe: indexPath.item] else { return }
-        onSelectedMemory.send(memory)
+        guard let memory = self.memories[safe: indexPath.item] else { return }
+
+        
+        if isKeyboardShow {
+            searchController.searchBar.resignFirstResponder()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
+                self?.onSelectedMemory.send(memory)
+            }
+        } else {
+            self.onSelectedMemory.send(memory)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        searchController.searchBar.resignFirstResponder()
+    
+        if scrollView.contentOffset.y > Utilities.getWindowBound().height {
+            if !isToTopButtonShow {
+                isToTopButtonShow = true
+            
+                UIView.animate(withDuration: 0.3,
+                               animations: { [weak self] in
+                                self?.toTopButton.alpha = 1.0
+                })
+            }
+        } else {
+            if isToTopButtonShow {
+                isToTopButtonShow = false
+                
+                UIView.animate(withDuration: 0.3,
+                               animations: { [weak self] in
+                                self?.toTopButton.alpha = 0.0
+                })
+            }
+        }
+    }
+}
+
+// MARK: - SearchBar
+extension T03MemoryListViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        onSearchStringChange.send(searchController.searchBar.text ?? "")
+    }
+        
+    private func setupSearchBarController() {
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Tìm kiếm kỉ niệm"
+        searchController.obscuresBackgroundDuringPresentation = false
+
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationController?.navigationBar.sizeToFit()
     }
 }

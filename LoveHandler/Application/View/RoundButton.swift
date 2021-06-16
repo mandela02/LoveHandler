@@ -8,24 +8,38 @@
 import UIKit
 
 class RoundButton: UIButton {
+    @IBInspectable var isShadowSet: Bool = false
+
     override init(frame: CGRect) {
-        // 1. setup any properties here
-        // 2. call super.init(frame:)
         super.init(frame: frame)
-        // 3. Setup view from .xib file
     }
     
     required init?(coder aDecoder: NSCoder) {
-        // 1. setup any properties here
-        // 2. call super.init(coder:)
         super.init(coder: aDecoder)
-        // 3. Setup view from .xib file
     }
     
+    private var shadowLayer: CAShapeLayer!
+
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.masksToBounds = false
         self.layer.cornerRadius = self.frame.size.width/2
         self.clipsToBounds = true
+        
+        if isShadowSet {
+            if shadowLayer == nil {
+                shadowLayer = CAShapeLayer()
+                shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: 12).cgPath
+                shadowLayer.fillColor = self.backgroundColor?.cgColor
+
+                shadowLayer.shadowColor = UIColor.darkGray.cgColor
+                shadowLayer.shadowPath = shadowLayer.path
+                shadowLayer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+                shadowLayer.shadowOpacity = 0.8
+                shadowLayer.shadowRadius = 2
+
+                layer.insertSublayer(shadowLayer, at: 0)
+            }
+        }
     }
 }

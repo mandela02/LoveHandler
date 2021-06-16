@@ -45,7 +45,8 @@ class T04MemoryViewController: BaseViewController {
     
     private var isDoneInitAnimation = false
     private var limitConstaints: CGFloat = 150
-    
+    private var animateDuration = 0.3
+
     override func deinitView() {
         image.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
@@ -182,7 +183,20 @@ extension T04MemoryViewController {
         if contentTextView.isFirstResponder {
             contentTextView.resignFirstResponder()
         } else {
-            dismiss(animated: true, completion: nil)
+            if isInEditMode {
+                self.bigContainerViewBottomConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - self.imageHeightConstraint.constant - 50
+            } else {
+                bigContainerViewTopConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - 50
+            }
+            
+            UIView.animate(withDuration: animateDuration) {  [weak self] in
+                self?.view.layoutIfNeeded()
+            } completion: { [weak self] isFinish in
+                if isFinish {
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            }
+
         }
     }
     
@@ -191,6 +205,7 @@ extension T04MemoryViewController {
         picker?.showActionSheet()
     }
 }
+        
 // MARK: - Private function
 extension T04MemoryViewController {
     private func configureSlideAnimation() {
@@ -202,20 +217,20 @@ extension T04MemoryViewController {
             if self.isInEditMode {
                 if !self.isDoneInitAnimation {
                     self.bigContainerViewBottomConstraint.constant = self.limitConstaints
-                    UIView.animate(withDuration: 0.3) { [weak self] in
+                    UIView.animate(withDuration: self.animateDuration) { [weak self] in
                         self?.view.layoutIfNeeded()
                     }
                     self.isDoneInitAnimation = true
                 }
             } else {
                 self.bigContainerViewTopConstraint.constant = self.limitConstaints
-                UIView.animate(withDuration: 0.3) { [weak self] in
+                UIView.animate(withDuration: self.animateDuration) { [weak self] in
                     self?.view.layoutIfNeeded()
                 }
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + animateDuration) { [weak self] in
             guard let self = self else { return }
             if self.isInEditMode {
                 self.imagePickButtonView.alpha = 0.0
@@ -371,7 +386,7 @@ extension T04MemoryViewController: UIScrollViewDelegate {
     
     private func resetHeightConstraint() {
         imageHeightConstraint.constant = currentConstraint
-        UIView.animate(withDuration: 0.4) { [weak self] in
+        UIView.animate(withDuration: animateDuration) { [weak self] in
             self?.view.layoutIfNeeded()
         }
     }
