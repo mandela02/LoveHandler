@@ -132,6 +132,10 @@ extension T02SettingsViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(SettingWithSubTitleTableViewCell.self, for: indexPath)
             cell.bind(icon: icon, title: title, subTitle: subTitle)
             return cell
+        case .plain(title: let title, isDisable: let isDisable):
+            let cell = T02PlainTableViewCell()
+            cell.setupCell(title: title)
+            return cell
         }
         
     }

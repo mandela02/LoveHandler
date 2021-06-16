@@ -178,10 +178,10 @@ extension T01MainViewController {
     }
     
     private func setupHeartFloatView() {
-        floaterHeartView.floaterImage1 = SystemImage.roundHeart.image?.tintColor(with: Colors.deepPink)
-        floaterHeartView.floaterImage2 = SystemImage.roundHeart.image?.tintColor(with: Colors.lightPink)
-        floaterHeartView.floaterImage3 = SystemImage.roundHeart.image?.tintColor(with: Colors.pink)
-        floaterHeartView.floaterImage4 = SystemImage.roundHeart.image?.tintColor(with: Colors.hotPink)
+        floaterHeartView.floaterImage1 = SystemImage.roundHeart.image.tintColor(with: Colors.deepPink)
+        floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: Colors.lightPink)
+        floaterHeartView.floaterImage3 = SystemImage.roundHeart.image.tintColor(with: Colors.pink)
+        floaterHeartView.floaterImage4 = SystemImage.roundHeart.image.tintColor(with: Colors.hotPink)
 
     }
 }

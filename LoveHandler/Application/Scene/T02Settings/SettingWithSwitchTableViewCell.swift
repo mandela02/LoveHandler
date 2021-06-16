@@ -20,8 +20,8 @@ class SettingWithSwitchTableViewCell: UITableViewCell {
     
     var didValueChange: ((Bool) -> Void)?
     
-    func bind(icon: String, title: String, isOn: Bool) {
-        iconImageView.image = UIImage(named: icon)
+    func bind(icon: UIImage, title: String, isOn: Bool) {
+        iconImageView.image = icon
         titleLabel.text = title
         switchButton.isOn = isOn
         switchButton.addTarget(self, action: #selector(didSwitchChange), for: .valueChanged)

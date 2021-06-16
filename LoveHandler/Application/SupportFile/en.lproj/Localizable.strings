@@ -64,8 +64,15 @@
 
 "t02SettingsTitle" = "Settings";
 "t02PremiumHeaderitle" = "Premium";
-"t02ViewHeaderitle" = "Theme";
-"t02DataHeaderTitle" = "Love Settings";
+"t02ViewHeaderitle" = "Theme Setting";
+"t02DataHeaderTitle" = "Love memories";
+
+"t02ThemeCellTitle" = "Theme";
+"t02LanguageCellTitle" = "Language";
+"t02BackgroundCellTitle" = "Love Background";
+"t02HeartAnimationCellTitle" = "Animation";
+"t02PasscodeCellTitle" = "Passcode";
+"t02DeleteAllCellTitle" = "Delete Everything";
 
 "t03NavigationTitle" = "Memory";
 "t04MemoryDatePickerTitle" = "Choose a date";

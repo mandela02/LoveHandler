@@ -17,8 +17,8 @@ class SettingWithSubTitleTableViewCell: UITableViewCell {
         iconImageView.tintColor = titleLabel.textColor
     }
 
-    func bind(icon: String, title: String, subTitle: String) {
-        iconImageView.image = UIImage(named: icon)
+    func bind(icon: UIImage, title: String, subTitle: String) {
+        iconImageView.image = icon
         titleLabel.text = title
         subTitleLabel.text = subTitle
         iconImageView.tintColor = titleLabel.textColor

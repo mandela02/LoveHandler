@@ -16,10 +16,9 @@ class NormalSettingTableViewCell: UITableViewCell {
         iconImageView.tintColor = titleLabel.textColor
     }
 
-    func bind(icon: String, title: String) {
-        iconImageView.image = UIImage(named: icon)
+    func bind(icon: UIImage, title: String) {
+        iconImageView.image = icon
         titleLabel.text = title
         iconImageView.tintColor = titleLabel.textColor
     }
-    
 }

@@ -11,10 +11,21 @@ enum SystemImage: String {
     case roundHeart = "suit.heart.fill"
     case xMark = "xmark"
     case camera = "camera.circle"
+    case background = "photo.on.rectangle.angled"
+    case language = "globe"
+    case heartCircleFill = "heart.circle.fill"
+    case faceDashFill = "face.dashed.fill"
+    case lockOpenFill = "lock.open.fill"
+    case lockFill = "lock.fill"
+    case handThumsUpFill = "hand.thumbsup.fill"
+    case clapSparklesFill = "hands.sparkles.fill"
+    case trashFill = "trash.fill"
+    case dollarsignCircleFill = "dollarsign.circle.fill"
+    case sunMinFill = "sun.min.fill"
 }
 
 extension SystemImage {
-    var image: UIImage? {
-        return self.rawValue.sysImage
+    var image: UIImage {
+        return self.rawValue.sysImage ?? UIImage()
     }
 }
