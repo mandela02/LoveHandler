@@ -44,20 +44,15 @@ class T01MainViewViewModel: BaseViewModel {
         let numberOfDay = recalculate.map { $0.numberOfDay }
             .eraseToAnyPublisher()
 
-        let isShowingWaveBackground = onSettingChange
-            .map { _ in Settings.isShowingBackgroundWave.value }
-            .eraseToAnyPublisher()
-
         return Output(noResponser: navigation,
                       progress: progress,
                       numberOfDay: numberOfDay,
-                      isShowingWaveBackground: isShowingWaveBackground,
                       heartButtonTapped: input.onHeartButtonTap)
     }
     
     private func calculate() -> (progress: Float, numberOfDay: Int) {
         let dayStartDating = Settings.relationshipStartDate.value
-        let dayGettingMarry = Settings.marryDate.value
+        let dayGettingMarry = Settings.weddingDate.value
         let today = Date()
         
         let totalDateDay = Date.countBetweenDate(component: .day, start: dayStartDating, end: dayGettingMarry)
@@ -80,7 +75,6 @@ extension T01MainViewViewModel {
         let noResponser: AnyPublisher<Void, Never>
         let progress: AnyPublisher<Float, Never>
         let numberOfDay: AnyPublisher<Int, Never>
-        let isShowingWaveBackground: AnyPublisher<Bool, Never>
         let heartButtonTapped: AnyPublisher<Void, Never>
     }
 }

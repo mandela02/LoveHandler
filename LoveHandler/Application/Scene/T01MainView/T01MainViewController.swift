@@ -19,7 +19,6 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var heartView: LoveProgressView!
     
     @IBOutlet weak var imageBackgroundView: UIImageView!
-    @IBOutlet weak var defaultBackgroundView: UIView!
     
     @IBOutlet weak var firstLoverView: PersonView!
     @IBOutlet weak var secondLoverView: PersonView!
@@ -27,7 +26,6 @@ class T01MainViewController: BaseViewController {
         
     @IBOutlet weak var floaterHeartView: Floater!
     
-    private var wave: WaveAnimationView?
     private var cancellables = Set<AnyCancellable>()
     private var viewDidAppearSignal = PassthroughSubject<Void, Never>()
     var viewModel: T01MainViewViewModel?
@@ -56,7 +54,6 @@ class T01MainViewController: BaseViewController {
     
     override func dismissView() {
         navigationController?.setNavigationBarHidden(false, animated: true)
-        wave?.stopAnimation()
     }
     
     override func setupLocalizedString() {
@@ -64,7 +61,6 @@ class T01MainViewController: BaseViewController {
     }
     
     override func setupTheme() {
-        titleLabel.textColor = UIColor.black
         settingButton.tintColor = Colors.mediumVioletRed
         diaryButton.tintColor = Colors.mediumVioletRed
         loveButton.tintColor = Colors.lightPink
@@ -84,11 +80,9 @@ class T01MainViewController: BaseViewController {
         let onButtonTap = Publishers.Merge(settingButtonTap, diaryButtonTap)
             .eraseToAnyPublisher()
         
-        let onSettingChange = Publishers.Merge3(SettingsHelper.marryDate
+        let onSettingChange = Publishers.Merge(SettingsHelper.weddingDate
                                                     .map { _ in }.eraseToAnyPublisher(),
                                                 SettingsHelper.relationshipStartDate
-                                                    .map { _ in }.eraseToAnyPublisher(),
-                                                SettingsHelper.isShowingBackgroundWave
                                                     .map { _ in }.eraseToAnyPublisher())
             .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
             .map { _ in }
@@ -107,7 +101,6 @@ class T01MainViewController: BaseViewController {
         output.progress
             .receive(on: DispatchQueue.main)
             .sink(receiveValue:  { [weak self] in
-                self?.wave?.setProgress($0)
                 self?.heartView.progress = $0
             })
             .store(in: &cancellables)
@@ -118,16 +111,7 @@ class T01MainViewController: BaseViewController {
                 self?.heartView.numberOfDay = $0
             })
             .store(in: &cancellables)
-        
-        output
-            .isShowingWaveBackground
-            .receive(on: DispatchQueue.main)
-            .map { !$0 }
-            .sink(receiveValue: { [weak self] isHidden in
-                self?.defaultBackgroundView.isHidden = isHidden
-            })
-            .store(in: &cancellables)
-        
+                
         var isAnimating = false
         
         output
@@ -155,28 +139,9 @@ extension T01MainViewController {
     }
     
     private func setupBackground() {
-        imageBackgroundView.image = ImageNames.defaultBackground.image
-        animationInitial()
+        imageBackgroundView.image = Settings.background.value.image
     }
-    
-    private func animationInitial() {
-        wave = WaveAnimationView(frame: defaultBackgroundView.frame,
-                                 color: UIColor.red.withAlphaComponent(0.75))
-        wave?.backgroundColor = UIColor.clear
-        wave?.frontColor = UIColor.red.withAlphaComponent(0.25)
-        wave?.backColor = UIColor.red.withAlphaComponent(0.15)
         
-        if let wave = wave {
-            self.defaultBackgroundView.addSubview(wave)
-            wave.translatesAutoresizingMaskIntoConstraints = false
-            wave.leadingAnchor.constraint(equalTo: defaultBackgroundView.leadingAnchor).isActive = true
-            wave.trailingAnchor.constraint(equalTo: defaultBackgroundView.trailingAnchor).isActive = true
-            wave.topAnchor.constraint(equalTo: defaultBackgroundView.topAnchor).isActive = true
-            wave.bottomAnchor.constraint(equalTo: defaultBackgroundView.bottomAnchor).isActive = true
-            wave.startAnimation()
-        }
-    }
-    
     private func setupHeartFloatView() {
         floaterHeartView.floaterImage1 = SystemImage.roundHeart.image.tintColor(with: Colors.deepPink)
         floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: Colors.lightPink)

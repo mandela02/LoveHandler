@@ -96,6 +96,11 @@
 		84AB212B263B06F500A01F9E /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB212A263B06F400A01F9E /* PersistenceManager.swift */; };
 		84C1A4282677B44E001D18E5 /* AnimationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A4272677B44E001D18E5 /* AnimationUtility.swift */; };
 		84C1A42A267A5587001D18E5 /* T02PlainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A429267A5586001D18E5 /* T02PlainTableViewCell.swift */; };
+		84C1A42D267A6AF8001D18E5 /* T05BackgroundViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C1A42C267A6AF8001D18E5 /* T05BackgroundViewController.storyboard */; };
+		84C1A42F267B9500001D18E5 /* T05BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A42E267B9500001D18E5 /* T05BackgroundViewController.swift */; };
+		84C1A432267B96CD001D18E5 /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A431267B96CD001D18E5 /* CustomPageControl.swift */; };
+		84C1A434267B974E001D18E5 /* T05ImageControllerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A433267B974E001D18E5 /* T05ImageControllerViewCell.swift */; };
+		84C1A436267B97C3001D18E5 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C1A435267B97C3001D18E5 /* UIDevice+Extension.swift */; };
 		84D21F152628B0A5007D43F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D21F142628B0A5007D43F2 /* AppDelegate.swift */; };
 		84D21F1E2628B0A7007D43F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1D2628B0A7007D43F2 /* Assets.xcassets */; };
 		84D21F212628B0A7007D43F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D21F1F2628B0A7007D43F2 /* LaunchScreen.storyboard */; };
@@ -201,6 +206,11 @@
 		84AB212A263B06F400A01F9E /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		84C1A4272677B44E001D18E5 /* AnimationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtility.swift; sourceTree = "<group>"; };
 		84C1A429267A5586001D18E5 /* T02PlainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T02PlainTableViewCell.swift; sourceTree = "<group>"; };
+		84C1A42C267A6AF8001D18E5 /* T05BackgroundViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T05BackgroundViewController.storyboard; sourceTree = "<group>"; };
+		84C1A42E267B9500001D18E5 /* T05BackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T05BackgroundViewController.swift; sourceTree = "<group>"; };
+		84C1A431267B96CD001D18E5 /* CustomPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
+		84C1A433267B974E001D18E5 /* T05ImageControllerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T05ImageControllerViewCell.swift; sourceTree = "<group>"; };
+		84C1A435267B97C3001D18E5 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		84D21F112628B0A5007D43F2 /* LoveHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D21F142628B0A5007D43F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D21F1D2628B0A7007D43F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -307,6 +317,7 @@
 				84AB1F042628B38C00A01F9E /* UIBezierPath+Extension.swift */,
 				84AB1F082628B3C100A01F9E /* Int+Extension.swift */,
 				84AB2007262BEB2D00A01F9E /* UIAlertController+Extension.swift */,
+				84C1A435267B97C3001D18E5 /* UIDevice+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -314,6 +325,7 @@
 		84AB1F0F2628B40F00A01F9E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84C1A431267B96CD001D18E5 /* CustomPageControl.swift */,
 				84AB1F9E2629FD5C00A01F9E /* RoundImageView.swift */,
 				84AB20872630A04200A01F9E /* PaddingLabel.swift */,
 				8423D1A1263B31D800106030 /* RoundButton.swift */,
@@ -337,6 +349,7 @@
 		84AB1F612629F21500A01F9E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				84C1A42B267A6AC8001D18E5 /* T05BackgroundView */,
 				8472987326747F0200DFB3ED /* T04MemoryView */,
 				8472982D26727A3600DFB3ED /* T03MemoryList */,
 				84AB2030262DF65E00A01F9E /* T02Settings */,
@@ -521,6 +534,16 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		84C1A42B267A6AC8001D18E5 /* T05BackgroundView */ = {
+			isa = PBXGroup;
+			children = (
+				84C1A42C267A6AF8001D18E5 /* T05BackgroundViewController.storyboard */,
+				84C1A42E267B9500001D18E5 /* T05BackgroundViewController.swift */,
+				84C1A433267B974E001D18E5 /* T05ImageControllerViewCell.swift */,
+			);
+			path = T05BackgroundView;
+			sourceTree = "<group>";
+		};
 		84D21F082628B0A5007D43F2 = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +677,7 @@
 				84AB1F642629F27B00A01F9E /* T01MainViewController.storyboard in Resources */,
 				8472985E2673BF0500DFB3ED /* MemoryCollectionViewCell.xib in Resources */,
 				84AB1FCB262ABCE600A01F9E /* Localizable.strings in Resources */,
+				84C1A42D267A6AF8001D18E5 /* T05BackgroundViewController.storyboard in Resources */,
 				84AB1F9C2629FC8000A01F9E /* PersonView.xib in Resources */,
 				8472987B2674887C00DFB3ED /* T04MemoryViewController.storyboard in Resources */,
 			);
@@ -728,16 +752,20 @@
 				84AB1FBE262AB95200A01F9E /* Strings.swift in Sources */,
 				8472982F26727A5000DFB3ED /* T03MemoryListViewModel.swift in Sources */,
 				84AB203E262DFAF900A01F9E /* SettingWithSwitchTableViewCell.swift in Sources */,
+				84C1A434267B974E001D18E5 /* T05ImageControllerViewCell.swift in Sources */,
 				847298262672721000DFB3ED /* Repositoy.swift in Sources */,
 				84AB1FA9262A06A500A01F9E /* Gender.swift in Sources */,
 				84AB1FFE262B33E600A01F9E /* NibLoadable.swift in Sources */,
 				84AB211C263AFF7500A01F9E /* LoveMemoryDataModel.xcdatamodeld in Sources */,
+				84C1A436267B97C3001D18E5 /* UIDevice+Extension.swift in Sources */,
 				84AB20882630A04200A01F9E /* PaddingLabel.swift in Sources */,
+				84C1A42F267B9500001D18E5 /* T05BackgroundViewController.swift in Sources */,
 				847298402673B42E00DFB3ED /* SystemImage.swift in Sources */,
 				84AB1F442628C88900A01F9E /* UILabel+Extension.swift in Sources */,
 				84C1A42A267A5587001D18E5 /* T02PlainTableViewCell.swift in Sources */,
 				84AB1F482628C88900A01F9E /* String+Extension.swift in Sources */,
 				84AB1F452628C88900A01F9E /* NSObject+Extension.swift in Sources */,
+				84C1A432267B96CD001D18E5 /* CustomPageControl.swift in Sources */,
 				84AB1F992629F7AE00A01F9E /* BaseNavigationController.swift in Sources */,
 				8472985A2673BDC800DFB3ED /* WaterfallLayout.swift in Sources */,
 				84AB1F6C2629F63D00A01F9E /* T01MainViewController.swift in Sources */,

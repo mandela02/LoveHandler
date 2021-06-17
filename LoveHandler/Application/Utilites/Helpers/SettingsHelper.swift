@@ -10,6 +10,5 @@ import Foundation
 
 struct SettingsHelper {
     static let relationshipStartDate = CurrentValueSubject<Date, Never>(Settings.relationshipStartDate.value)
-    static let marryDate = CurrentValueSubject<Date, Never>( Settings.marryDate.value)
-    static let isShowingBackgroundWave = CurrentValueSubject<Bool, Never>(Settings.isShowingBackgroundWave.value)
+    static let weddingDate = CurrentValueSubject<Date, Never>( Settings.weddingDate.value)
 }

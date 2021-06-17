@@ -12,5 +12,5 @@ target 'LoveHandler' do
   pod 'CombineCocoa'
   pod 'Fusuma'
   pod 'Hero'
-
+  pod 'DeviceKit'
 end

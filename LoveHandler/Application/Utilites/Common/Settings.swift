@@ -33,10 +33,8 @@ struct UserDefault<T> {
             switch value {
             case let relationshipStartDate as Date where key == Keys.relationshipStartDate.rawValue:
                 SettingsHelper.relationshipStartDate.send(relationshipStartDate)
-            case let marryDate as Date where key == Keys.marryDate.rawValue:
-                SettingsHelper.relationshipStartDate.send(marryDate)
-            case let isShowingBackgroundWave as Bool where key == Keys.isShowingBackgroundWave.rawValue:
-                SettingsHelper.isShowingBackgroundWave.send(isShowingBackgroundWave)
+            case let marryDate as Date where key == Keys.weddingDate.rawValue:
+                SettingsHelper.weddingDate.send(marryDate)
             default:
                 break
             }
@@ -47,8 +45,8 @@ struct UserDefault<T> {
 enum Keys: String {
     case appLanguage
     case relationshipStartDate
-    case marryDate
-    case isShowingBackgroundWave
+    case weddingDate
+    case background
 }
 
 struct Settings {
@@ -56,8 +54,8 @@ struct Settings {
                                                  defaultValue: LanguageCode.vietnamese.rawValue)
     static var relationshipStartDate = UserDefault<Date>(key: .relationshipStartDate,
                                                          defaultValue: DefaultDateFormatter.date(from: "2020/7/5") ?? Date())
-    static var marryDate = UserDefault<Date>(key: .marryDate,
+    static var weddingDate = UserDefault<Date>(key: .weddingDate,
                                                defaultValue: Date().nextYear)
-    static var isShowingBackgroundWave = UserDefault<Bool>(key: .isShowingBackgroundWave,
-                                               defaultValue: false)
+    static var background = UserDefault<String>(key: .background,
+                                                defaultValue: ImageNames.love1)
 }

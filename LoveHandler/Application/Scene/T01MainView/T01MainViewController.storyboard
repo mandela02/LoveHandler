@@ -20,24 +20,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eo-IX-vCW">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hw1-67-dJD">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hw1-67-dJD">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vS-JJ-lvf">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="6vS-JJ-lvf" secondAttribute="bottom" id="0IL-Zk-oyW"/>
-                                    <constraint firstAttribute="trailing" secondItem="6vS-JJ-lvf" secondAttribute="trailing" id="12W-6t-UR6"/>
                                     <constraint firstItem="hw1-67-dJD" firstAttribute="leading" secondItem="9eo-IX-vCW" secondAttribute="leading" id="jWd-5T-n1m"/>
                                     <constraint firstAttribute="bottom" secondItem="hw1-67-dJD" secondAttribute="bottom" id="jmb-zY-9bR"/>
                                     <constraint firstAttribute="trailing" secondItem="hw1-67-dJD" secondAttribute="trailing" id="juN-gs-Pb6"/>
                                     <constraint firstItem="hw1-67-dJD" firstAttribute="top" secondItem="9eo-IX-vCW" secondAttribute="top" id="nOG-WV-9yJ"/>
-                                    <constraint firstItem="6vS-JJ-lvf" firstAttribute="top" secondItem="9eo-IX-vCW" secondAttribute="top" id="oin-mg-oFD"/>
-                                    <constraint firstItem="6vS-JJ-lvf" firstAttribute="leading" secondItem="9eo-IX-vCW" secondAttribute="leading" id="u5r-v7-Nk9"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYI-ge-FWB">
@@ -174,7 +166,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="defaultBackgroundView" destination="6vS-JJ-lvf" id="war-sV-sMb"/>
                         <outlet property="diaryButton" destination="8Xr-EM-15X" id="Tvb-Ol-s5k"/>
                         <outlet property="firstLoverView" destination="Dt1-Qf-aVJ" id="pYS-S5-dlw"/>
                         <outlet property="floaterHeartView" destination="7Jf-6q-1Zx" id="hXX-Od-gOC"/>

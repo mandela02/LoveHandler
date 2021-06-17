@@ -23,7 +23,6 @@ class T02SettingsViewModel: BaseViewModel {
                 selectedCell = $0
             }).share()
             
-            
         let dateCellSelected = cellSelected
             .filter { Cell.dateSelectionCell.contains($0) }
             .flatMap { [weak self] cell -> AnyPublisher<Date?, Never> in
@@ -31,7 +30,7 @@ class T02SettingsViewModel: BaseViewModel {
                 switch cell {
                 case .marryDateSelection:
                     return self.navigator.datePicker(title: LocalizedString.t02WeddingDayDatePickerTitle,
-                                                     date: Settings.marryDate.value,
+                                                     date: Settings.weddingDate.value,
                                                      minDate: Settings.relationshipStartDate.value,
                                                      maxDate: Constant.maxDate)
                         .eraseToAnyPublisher()
@@ -49,7 +48,7 @@ class T02SettingsViewModel: BaseViewModel {
                 guard let date = date, let cell = selectedCell else { return }
                 switch cell {
                 case .marryDateSelection:
-                    Settings.marryDate.value = date
+                    Settings.weddingDate.value = date
                 case .startDatingDateSelection:
                     Settings.relationshipStartDate.value = date
                 default:
@@ -62,17 +61,35 @@ class T02SettingsViewModel: BaseViewModel {
         
         let viewWillAppear = input.viewWillAppear
         
+        let onSelectCell = cellSelected
+            .handleEvents(receiveOutput: { [weak self] cell in
+                guard let self = self else {
+                    return
+                }
+                switch cell {
+                case .background:
+                    self.navigator.toBackgroundView()
+                default:
+                    return
+                }
+            })
+            .map { _ in }
+            .eraseToAnyPublisher()
+        
         let dataSource = Publishers.Merge(viewWillAppear,
                                           dateCellSelected)
             .map { _ in  Section.generateData() }
             .eraseToAnyPublisher()
-        
+                
         let dissmiss = input.dismissTrigger.handleEvents(receiveOutput: navigator.dismiss)
             .map { _ in }
             .eraseToAnyPublisher()
 
+        let noReponse = Publishers.MergeMany([dissmiss, onSelectCell])
+            .eraseToAnyPublisher()
+
         return Output(dataSource: dataSource,
-                      noRespone: dissmiss)
+                      noRespone: noReponse)
     }
     
     enum CellType {
@@ -113,7 +130,7 @@ class T02SettingsViewModel: BaseViewModel {
             case .marryDateSelection:
                 return CellInfo(type: .withSubTitle(icon: SystemImage.faceDashFill.image,
                                                     title: LocalizedString.t02EndDateTitle,
-                                                    subTitle: DefaultDateFormatter.string(from: Settings.marryDate.value,
+                                                    subTitle: DefaultDateFormatter.string(from: Settings.weddingDate.value,
                                                                                           dateFormat: "d/M/y")))                
             case .premium:
                 return CellInfo(type: .normal(icon: SystemImage.dollarsignCircleFill.image,

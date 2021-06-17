@@ -12,6 +12,7 @@ import Combine
 protocol T2SettingsNavigatorType {
     func dismiss()
     func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never>
+    func toBackgroundView()
 }
 
 class T2SettingsNavigator: T2SettingsNavigatorType {
@@ -42,5 +43,10 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
                 promise(.success(selectedDate))
             }
         }
+    }
+    
+    func toBackgroundView() {
+        let viewController = T05BackgroundViewController.instantiateFromStoryboard()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
