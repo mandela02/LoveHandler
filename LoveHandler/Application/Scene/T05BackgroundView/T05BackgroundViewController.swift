@@ -28,16 +28,18 @@ class T05BackgroundViewController: BaseViewController {
     
     private let defaultDividerSize: CGFloat = 10
     
-    private var selectedImageIndexPath = CurrentValueSubject<Int, Never>(0)
-    private var cancellables = Set<AnyCancellable>()
-    
     private var aspectRatio: CGFloat {
         let size = Utilities.getWindowBound()
         return size.width / size.height
     }
     
     private var cellSize: CGSize = CGSize.zero
+    private var isContextMenuOn = false
     
+    private var selectedImageIndexPath = CurrentValueSubject<Int, Never>(0)
+    private var cancellables = Set<AnyCancellable>()
+    
+
     override func deinitView() {
         selectedImageIndexPath.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
@@ -54,6 +56,11 @@ class T05BackgroundViewController: BaseViewController {
         
     }
     
+    override func refreshView() {
+        super.refreshView()
+        imageCollectionView.reloadData()
+    }
+    
     override func bindViewModel() {
         super.bindViewModel()
         selectedImageIndexPath
@@ -62,6 +69,7 @@ class T05BackgroundViewController: BaseViewController {
                 guard let image = self.images[safe: index] else { return }
                 self.bigImageVIew.image = image
                 self.pageController.currentPage = index
+                self.imageCollectionView.reloadData()
             }.store(in: &cancellables)
     }
     
@@ -69,7 +77,6 @@ class T05BackgroundViewController: BaseViewController {
         super.viewDidLayoutSubviews()
         setupBigImageView()
         calculateCellSize(aspectRatio: self.aspectRatio)
-        imageCollectionView.reloadData()
     }
     
     override func setupLocalizedString() {
@@ -157,6 +164,38 @@ extension T05BackgroundViewController: UICollectionViewDelegateFlowLayout {
 extension T05BackgroundViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedImageIndexPath.send(indexPath.item)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
+                                 point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] suggestedActions in
+            guard let self = self else {
+                return UIMenu(title: "", children: [])
+            }
+            let saveAction =
+                UIAction(title: NSLocalizedString("Save", comment: ""),
+                         image: UIImage(systemName: "arrow.up.square"),
+                         attributes: .destructive) { action in
+                    self.performShare(at: indexPath)
+                    
+                }
+            let deleteAction =
+                UIAction(title: NSLocalizedString("Delete", comment: ""),
+                         image: UIImage(systemName: "trash"),
+                         attributes: .destructive) { action in
+                    self.performDelete(at: indexPath)
+                }
+            return UIMenu(title: "", children: [saveAction, deleteAction])
+        }
+    }
+    
+    private func performDelete(at indexPath: IndexPath) {
+        
+    }
+    
+    private func performShare(at indexPath: IndexPath) {
+        
     }
 }
 
