@@ -30,7 +30,7 @@ class T05BackgroundViewController: BaseViewController {
     
     private var selectedImageIndexPath = CurrentValueSubject<Int, Never>(0)
     private var cancellables = Set<AnyCancellable>()
-
+    
     private var aspectRatio: CGFloat {
         let size = Utilities.getWindowBound()
         return size.width / size.height
@@ -47,8 +47,8 @@ class T05BackgroundViewController: BaseViewController {
         super.setupView()
         setupCollectionView()
         setupPageController()
+        addGestureRecognizers()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
         isBackButtonVisible = false
         isTitleVisible = true
         
@@ -71,10 +71,15 @@ class T05BackgroundViewController: BaseViewController {
         calculateCellSize(aspectRatio: self.aspectRatio)
         imageCollectionView.reloadData()
     }
-        
+    
     override func setupLocalizedString() {
         super.setupLocalizedString()
         navigationTitle = LocalizedString.t02BackgroundCellTitle
+    }
+    
+    override func setupTheme() {
+        super.setupTheme()
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
     }
 }
 
@@ -151,5 +156,40 @@ extension T05BackgroundViewController: UICollectionViewDelegateFlowLayout {
 extension T05BackgroundViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedImageIndexPath.send(indexPath.item)
+    }
+}
+
+extension T05BackgroundViewController {
+    private func swipeDownToDismiss(isEnabled: Bool) {
+        navigationController?.presentationController?.presentedView?.gestureRecognizers?.forEach({$0.isEnabled = isEnabled})
+    }
+
+    private func addGestureRecognizers() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        swipeLeft.direction = .left
+        swipeRight.direction = .right
+        view.addGestureRecognizer(swipeLeft)
+        view.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc private func handleSwipe(sender: UISwipeGestureRecognizer) {
+        if sender.state == .began {
+            swipeDownToDismiss(isEnabled: false)
+        }
+        switch sender.direction {
+        case UISwipeGestureRecognizer.Direction.left:
+            pageController.move(to: .left)
+        case UISwipeGestureRecognizer.Direction.right:
+            pageController.move(to: .right)
+        default:
+            break
+        }
+        
+        selectedImageIndexPath.send(pageController.currentPage)
+        
+        if sender.state == .ended {
+            swipeDownToDismiss(isEnabled: true)
+        }
     }
 }
