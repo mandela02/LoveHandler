@@ -130,7 +130,8 @@ extension T05BackgroundViewController: UICollectionViewDataSource {
                                height: cell.bounds.size.height)
         
         cell.setupCell(image: image
-                        .resize(targetSize: imageSize))
+                        .resize(targetSize: imageSize),
+                       isSelected: indexPath.item == selectedImageIndexPath.value)
         return cell
     }
 }
