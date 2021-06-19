@@ -16,5 +16,7 @@ class T05ImageControllerViewCell: UICollectionViewCell {
     
     func setupCell(image: UIImage) {
         self.imageView.image = image
+        imageView.viewCornerRadius = 10
+        imageView.contentMode = .scaleAspectFill
     }
 }

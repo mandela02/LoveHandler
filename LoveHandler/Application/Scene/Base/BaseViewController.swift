@@ -42,13 +42,21 @@ class BaseViewController: UIViewController {
     
     var isTitleVisible: Bool = true {
         didSet {
-            navigationItem.titleView = titleView
+            if isTitleVisible {
+                navigationItem.titleView = titleView
+            } else {
+                navigationItem.titleView = nil
+            }
         }
     }
     
     var isBackButtonVisible: Bool = true {
         didSet {
-            navigationItem.leftBarButtonItem = closeButton
+            if isBackButtonVisible {
+                navigationItem.leftBarButtonItem = closeButton
+            } else {
+                navigationItem.leftBarButtonItem = nil
+            }
         }
     }
     
