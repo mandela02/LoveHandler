@@ -237,6 +237,10 @@ extension T05BackgroundViewController: UICollectionViewDelegate {
     }
     
     private func performShare(at indexPath: Int) {
+        guard let image = images[safe: indexPath] else { return }
+
+        UIActivityViewController.share(image: image,
+                                       at: self.view)
         
     }
 }
