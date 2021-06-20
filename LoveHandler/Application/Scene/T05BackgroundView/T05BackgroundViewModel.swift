@@ -28,9 +28,10 @@ class T05BackgroundViewModel: BaseViewModel {
                                                     onDatabaseChange)
             .map(self.useCase.get)
             .handleEvents(receiveOutput: { models in
-                backgroundImageModels.send(models)
+                let reversedModel = Array(models.reversed())
+                backgroundImageModels.send(reversedModel)
                 if let data = Settings.background.value,
-                   let index = models.map({ $0.image }).firstIndex(of: data) {
+                   let index = reversedModel.map({ $0.image }).firstIndex(of: data) {
                     selectedImageIndexPath.send(index)
                 }
             })
@@ -83,9 +84,18 @@ class T05BackgroundViewModel: BaseViewModel {
             .map { _ in }
             .eraseToAnyPublisher()
                 
+        let onSaveImage = input.savedImage
+            .map(useCase.save)
+            .handleEvents(receiveOutput: { _ in
+                selectedImageIndexPath.send(0)
+            })
+            .map { _ in }
+            .eraseToAnyPublisher()
+
         let noResponse = Publishers.MergeMany ([viewWillAppearHandler,
                                                 selectedImagehandler,
-                                                onDelete])
+                                                onDelete,
+                                                onSaveImage])
             .eraseToAnyPublisher()
         
         return Output(images: images,
@@ -99,6 +109,7 @@ class T05BackgroundViewModel: BaseViewModel {
         let viewWillAppear: AnyPublisher<Void, Never>
         let selectedIndex: AnyPublisher<Int, Never>
         let deletedIndex: AnyPublisher<Int, Never>
+        let savedImage: AnyPublisher<UIImage, Never>
     }
     
     struct Output {

@@ -26,13 +26,16 @@ class T05BackgroundViewController: BaseViewController {
     private var selectedImageIndexPath = CurrentValueSubject<Int, Never>(0)
     private var deletedImageIndexPath = PassthroughSubject<Int, Never>()
     private var viewWillAppear = PassthroughSubject<Void, Never>()
-    
+    private var addImage = PassthroughSubject<UIImage, Never>()
+
     private var cancellables = Set<AnyCancellable>()
     
     var viewModel: T05BackgroundViewModel?
     
     private var images: [UIImage] = []
     private var selectedIndex: Int = 0
+
+    private var picker: ImagePickerHelper?
 
     override func deinitView() {
         selectedImageIndexPath.send(completion: .finished)
@@ -48,6 +51,8 @@ class T05BackgroundViewController: BaseViewController {
         
         setupPageController()
         addGestureRecognizers()
+        
+        addPicker()
         
         isBackButtonVisible = false
         isTitleVisible = true
@@ -72,7 +77,8 @@ class T05BackgroundViewController: BaseViewController {
         let input = T05BackgroundViewModel
             .Input(viewWillAppear: viewWillAppear.eraseToAnyPublisher(),
                    selectedIndex: selectedImageIndexPath.eraseToAnyPublisher(),
-                   deletedIndex: deletedImageIndexPath.eraseToAnyPublisher())
+                   deletedIndex: deletedImageIndexPath.eraseToAnyPublisher(),
+                   savedImage: addImage.eraseToAnyPublisher())
         
         let output = viewModel.transform(input)
         
@@ -117,10 +123,23 @@ class T05BackgroundViewController: BaseViewController {
         super.setupTheme()
         self.navigationController?.navigationBar.tintColor = UIColor.white;
     }
+    
+    
+    @IBAction func onAddImageButtonTapped(_ sender: Any) {
+        picker?.showActionSheet()
+    }
 }
 
 // MARK: - Setting View Controller
 extension T05BackgroundViewController {
+    private func addPicker() {
+        picker = ImagePickerHelper(title: LocalizedString.t01ImagePickerTitle,
+                                   message: LocalizedString.t01ImagePickerSubTitle)
+        
+        picker?.delegate = self
+    }
+    
+
     private func setupPageController() {
         pageController.initView(numberOfPages: images.count,
                                 currentPage: selectedImageIndexPath.value)
@@ -284,5 +303,18 @@ extension T05BackgroundViewController {
 extension T05BackgroundViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return createContextMenu(at: selectedIndex)
+    }
+}
+
+// MARK: - ImagePickerDelegate
+extension T05BackgroundViewController: ImagePickerDelegate {
+    func cameraHandle(image: UIImage) {
+        self.addImage.send(image)
+    }
+    
+    func libraryHandle(images: [UIImage]) {
+        if !images.isEmpty {
+            self.addImage.send(images.first!)
+        }
     }
 }

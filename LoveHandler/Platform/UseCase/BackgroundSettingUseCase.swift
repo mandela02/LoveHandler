@@ -7,8 +7,10 @@
 
 import Foundation
 import Combine
+import UIKit
 
 protocol BackgroundSettingUseCaseType {
+    func save(image: UIImage) -> DatabaseResponse
     func get() -> [CDBackgroundImage]
     func delete(model: CDBackgroundImage)
     func onDatabaseUpdated() -> AnyPublisher<Void, Never>
@@ -19,6 +21,23 @@ class BackgroundSettingUseCase: BackgroundSettingUseCaseType {
     
     init(repository: Repository<CDBackgroundImage>) {
         self.repository = repository
+    }
+    
+    
+    func save(image: UIImage) -> DatabaseResponse {
+        let screenSize = Utilities.getWindowBound().size
+
+        let imageAspectRatio = image.size.width / image.size.height
+        let imageSize = CGSize(width: screenSize.height * imageAspectRatio,
+                               height: screenSize.height)
+        let savedImage = image.resize(targetSize: imageSize)
+
+        let _: CDBackgroundImage = CDBackgroundImage.build(context: PersistenceManager.shared.persistentContainer.viewContext) { object in
+            object.id = UUID()
+            object.image = savedImage.jpeg(.medium)
+        }
+        
+        return repository.save()
     }
     
     func get() -> [CDBackgroundImage] {
