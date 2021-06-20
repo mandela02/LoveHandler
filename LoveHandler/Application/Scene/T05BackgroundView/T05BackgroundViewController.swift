@@ -42,6 +42,8 @@ class T05BackgroundViewController: BaseViewController {
     
     override func setupView() {
         super.setupView()
+        bigImageVIew.isUserInteractionEnabled = true
+        
         setupCollectionView()
         
         setupPageController()
@@ -49,6 +51,9 @@ class T05BackgroundViewController: BaseViewController {
         
         isBackButtonVisible = false
         isTitleVisible = true
+        
+        let interaction = UIContextMenuInteraction(delegate: self)
+        bigImageVIew.addInteraction(interaction)
     }
     
     override func refreshView() {
@@ -201,6 +206,10 @@ extension T05BackgroundViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
+        return createContextMenu(at: indexPath.item)
+    }
+    
+    private func createContextMenu(at indexPath: Int) -> UIContextMenuConfiguration {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] suggestedActions in
             guard let self = self else {
                 return UIMenu(title: "", children: [])
@@ -222,12 +231,12 @@ extension T05BackgroundViewController: UICollectionViewDelegate {
         }
     }
     
-    private func performDelete(at indexPath: IndexPath) {
-        deletedImageIndexPath.send(indexPath.item)
+    private func performDelete(at indexPath: Int) {
+        deletedImageIndexPath.send(indexPath)
         
     }
     
-    private func performShare(at indexPath: IndexPath) {
+    private func performShare(at indexPath: Int) {
         
     }
 }
@@ -265,5 +274,11 @@ extension T05BackgroundViewController {
         if sender.state == .ended {
             swipeDownToDismiss(isEnabled: true)
         }
+    }
+}
+
+extension T05BackgroundViewController: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return createContextMenu(at: selectedIndex)
     }
 }
