@@ -21,7 +21,9 @@ protocol RepositoryType {
     func fetchAllData() -> DatabaseResponse
     func fetchRequest(predicate: String, value: String) -> DatabaseResponse
     func save() -> DatabaseResponse
-    func publisher() -> AnyPublisher<Void, Never>}
+    func delete(model: T) -> Void
+    func publisher() -> AnyPublisher<Void, Never>
+}
 
 class Repository<T: NSManagedObject>: RepositoryType {
     var container: NSPersistentContainer{
@@ -71,6 +73,10 @@ class Repository<T: NSManagedObject>: RepositoryType {
         } catch let error {
             return .error(error: error)
         }
+    }
+    
+    func delete(model: T) {
+        container.viewContext.delete(model)
     }
         
     func publisher() -> AnyPublisher<Void, Never> {

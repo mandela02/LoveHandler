@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol BackgroundSettingUseCaseType {
-    func get() -> [Data]
+    func get() -> [CDBackgroundImage]
 }
 
 class BackgroundSettingUseCase: BackgroundSettingUseCaseType {
@@ -19,14 +19,14 @@ class BackgroundSettingUseCase: BackgroundSettingUseCaseType {
         self.repository = repository
     }
     
-    func get() -> [Data] {
+    func get() -> [CDBackgroundImage] {
         let result = repository.fetchAllData()
         switch result {
         case .success(data: let datas):
             guard let datas = datas as? [CDBackgroundImage] else {
                 return []
             }
-            return datas.compactMap { $0.image }
+            return datas
         default:
             return []
         }

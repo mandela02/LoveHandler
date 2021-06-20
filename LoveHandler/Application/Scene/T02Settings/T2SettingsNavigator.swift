@@ -47,6 +47,7 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
     
     func toBackgroundView() {
         let viewController = T05BackgroundViewController.instantiateFromStoryboard()
+        viewController.viewModel = T05BackgroundViewModel(useCase: UseCaseProvider.defaultProvider.getBackgroundSettingUseCase())
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
