@@ -23,7 +23,7 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var firstLoverView: PersonView!
     @IBOutlet weak var secondLoverView: PersonView!
     @IBOutlet weak var loveButton: UIButton!
-        
+    
     @IBOutlet weak var floaterHeartView: Floater!
     
     private var cancellables = Set<AnyCancellable>()
@@ -42,7 +42,7 @@ class T01MainViewController: BaseViewController {
     
     override func setupView() {
         super.setupView()
-        setupBackground()
+        setupBackground(data: Settings.background.value)
         setUpLover()
         setupHeartFloatView()
     }
@@ -111,7 +111,7 @@ class T01MainViewController: BaseViewController {
                 self?.heartView.numberOfDay = $0
             })
             .store(in: &cancellables)
-                
+        
         var isAnimating = false
         
         output
@@ -120,7 +120,7 @@ class T01MainViewController: BaseViewController {
             .sink(receiveValue: { [weak self] _ in
                 if !isAnimating {
                     isAnimating = true
-                
+                    
                     self?.floaterHeartView.startAnimation()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         self?.floaterHeartView.stopAnimation()
@@ -128,6 +128,12 @@ class T01MainViewController: BaseViewController {
                     })
                 }
             })
+            .store(in: &cancellables)
+        
+        SettingsHelper.backgroundImage
+            .sink { [weak self] data in
+                self?.setupBackground(data: data)
+            }
             .store(in: &cancellables)
     }
 }
@@ -138,15 +144,18 @@ extension T01MainViewController {
         secondLoverView.person = Person(name: "Test person 1", gender: .female, dateOfBirth: Date())
     }
     
-    private func setupBackground() {
-        imageBackgroundView.image = Settings.background.value.image
+    private func setupBackground(data: Data?) {
+        guard let data = data else {
+            return
+        }
+        imageBackgroundView.image = UIImage(data: data)
     }
-        
+    
     private func setupHeartFloatView() {
         floaterHeartView.floaterImage1 = SystemImage.roundHeart.image.tintColor(with: Colors.deepPink)
         floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: Colors.lightPink)
         floaterHeartView.floaterImage3 = SystemImage.roundHeart.image.tintColor(with: Colors.pink)
         floaterHeartView.floaterImage4 = SystemImage.roundHeart.image.tintColor(with: Colors.hotPink)
-
+        
     }
 }

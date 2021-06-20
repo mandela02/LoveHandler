@@ -33,7 +33,6 @@ class T05BackgroundViewController: BaseViewController {
         return size.width / size.height
     }
     
-    private var cellSize: CGSize = CGSize.zero
     private var isContextMenuOn = false
     
     private var selectedImageIndexPath = CurrentValueSubject<Int, Never>(0)
@@ -61,24 +60,28 @@ class T05BackgroundViewController: BaseViewController {
         imageCollectionView.reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupBigImageView()
+    }
+    
     override func bindViewModel() {
         super.bindViewModel()
         selectedImageIndexPath
             .sink { [weak self] index in
                 guard let self = self else { return }
+                self.imageCollectionView.reloadData()
+                self.imageCollectionView.scrollToItem(at: IndexPath(item: index, section: 0),
+                                                      at: .centeredHorizontally,
+                                                      animated: true)
+                
                 guard let image = self.images[safe: index] else { return }
                 self.bigImageVIew.image = image
                 self.pageController.currentPage = index
-                self.imageCollectionView.reloadData()
+                Settings.background.value = image.jpeg(.medium)
             }.store(in: &cancellables)
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupBigImageView()
-        calculateCellSize(aspectRatio: self.aspectRatio)
-    }
-    
+        
     override func setupLocalizedString() {
         super.setupLocalizedString()
         navigationTitle = LocalizedString.t02BackgroundCellTitle
@@ -105,14 +108,14 @@ extension T05BackgroundViewController {
         imageCollectionView.dataSource = self
     }
     
-    private func calculateCellSize(aspectRatio: CGFloat) {
+    private func calculateCellSize(collectionView: UICollectionView, aspectRatio: CGFloat) -> CGSize {
         let marginsAndInsets = defaultDividerSize * 2 +
-            imageCollectionView.safeAreaInsets.top +
-            imageCollectionView.safeAreaInsets.bottom
+            collectionView.safeAreaInsets.top +
+            collectionView.safeAreaInsets.bottom
         
-        let height = imageCollectionView.bounds.size.height - marginsAndInsets
+        let height = collectionView.bounds.size.height - marginsAndInsets
         
-        cellSize = CGSize(width: height * aspectRatio, height: height)
+        return CGSize(width: height * aspectRatio, height: height)
     }
 }
 
@@ -145,7 +148,7 @@ extension T05BackgroundViewController: UICollectionViewDataSource {
 
 extension T05BackgroundViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return cellSize
+        return calculateCellSize(collectionView: collectionView, aspectRatio: aspectRatio)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

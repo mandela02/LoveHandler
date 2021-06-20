@@ -35,6 +35,8 @@ struct UserDefault<T> {
                 SettingsHelper.relationshipStartDate.send(relationshipStartDate)
             case let marryDate as Date where key == Keys.weddingDate.rawValue:
                 SettingsHelper.weddingDate.send(marryDate)
+            case let background as Data? where key == Keys.background.rawValue:
+                SettingsHelper.backgroundImage.send(background)
             default:
                 break
             }
@@ -56,6 +58,6 @@ struct Settings {
                                                          defaultValue: DefaultDateFormatter.date(from: "2020/7/5") ?? Date())
     static var weddingDate = UserDefault<Date>(key: .weddingDate,
                                                defaultValue: Date().nextYear)
-    static var background = UserDefault<String>(key: .background,
-                                                defaultValue: ImageNames.love1)
+    static var background = UserDefault<Data?>(key: .background,
+                                              defaultValue: ImageNames.love1.image?.pngData())
 }
