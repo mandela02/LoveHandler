@@ -20,7 +20,7 @@ class T04MemoryUseCase: T04MemoryUseCaseType {
     }
 
     func save(id: UUID, image: Data, title: String, displayDate: Date) -> DatabaseResponse {
-        let model: CDMemory = CDMemory.build(context: PersistenceManager.shared.persistentContainer.viewContext) { object in
+        let _: CDMemory = CDMemory.build(context: PersistenceManager.shared.persistentContainer.viewContext) { object in
             object.id = id
             object.image = image
             object.title = title
@@ -29,10 +29,10 @@ class T04MemoryUseCase: T04MemoryUseCaseType {
             object.updatedDate = Date().timeIntervalSince1970
         }
         
-        return repository.save(model: model)
+        return repository.save()
     }
     
     func update(memory: CDMemory) -> DatabaseResponse {
-        return repository.save(model: memory)
+        return repository.save()
     }
 }

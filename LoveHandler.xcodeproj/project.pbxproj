@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840B8299267EDDCE007A82F0 /* CDBackgroundImage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B8297267EDDCE007A82F0 /* CDBackgroundImage+CoreDataClass.swift */; };
+		840B829A267EDDCE007A82F0 /* CDBackgroundImage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B8298267EDDCE007A82F0 /* CDBackgroundImage+CoreDataProperties.swift */; };
+		840B829C267EDDF3007A82F0 /* AppUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B829B267EDDF3007A82F0 /* AppUseCase.swift */; };
+		840B829E267EE17A007A82F0 /* BackgroundSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B829D267EE17A007A82F0 /* BackgroundSettingUseCase.swift */; };
 		8423D1A2263B31D800106030 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1A1263B31D800106030 /* RoundButton.swift */; };
 		8423D1DC263BD1B200106030 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */; };
 		846F3E10266E6F8200BB9D3B /* heart-button.json in Resources */ = {isa = PBXBuildFile; fileRef = 846F3E0F266E6F8100BB9D3B /* heart-button.json */; };
@@ -115,6 +119,10 @@
 /* Begin PBXFileReference section */
 		6585D8F41DDF493DF1847E7C /* Pods-LoveHandler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveHandler.debug.xcconfig"; path = "Target Support Files/Pods-LoveHandler/Pods-LoveHandler.debug.xcconfig"; sourceTree = "<group>"; };
 		6A6D23C89F3B893C3664717C /* Pods-LoveHandler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveHandler.release.xcconfig"; path = "Target Support Files/Pods-LoveHandler/Pods-LoveHandler.release.xcconfig"; sourceTree = "<group>"; };
+		840B8297267EDDCE007A82F0 /* CDBackgroundImage+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBackgroundImage+CoreDataClass.swift"; sourceTree = "<group>"; };
+		840B8298267EDDCE007A82F0 /* CDBackgroundImage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBackgroundImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		840B829B267EDDF3007A82F0 /* AppUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUseCase.swift; sourceTree = "<group>"; };
+		840B829D267EE17A007A82F0 /* BackgroundSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSettingUseCase.swift; sourceTree = "<group>"; };
 		8410F730267659A600846442 /* LoveHandler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveHandler.entitlements; sourceTree = "<group>"; };
 		8423D1A1263B31D800106030 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
@@ -259,6 +267,8 @@
 				84729829267278EF00DFB3ED /* T03MemoryListUseCase.swift */,
 				84DDAB742674A6D500132A18 /* T04MemoryUseCase.swift */,
 				84DDAB772674A93B00132A18 /* UseCaseProvider.swift */,
+				840B829B267EDDF3007A82F0 /* AppUseCase.swift */,
+				840B829D267EE17A007A82F0 /* BackgroundSettingUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -528,6 +538,8 @@
 		84AB212D263B0B1800A01F9E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				840B8297267EDDCE007A82F0 /* CDBackgroundImage+CoreDataClass.swift */,
+				840B8298267EDDCE007A82F0 /* CDBackgroundImage+CoreDataProperties.swift */,
 				8472981E267271C800DFB3ED /* CDMemory+CoreDataClass.swift */,
 				8472981F267271C800DFB3ED /* CDMemory+CoreDataProperties.swift */,
 			);
@@ -735,6 +747,7 @@
 				84AB1F092628B3C100A01F9E /* Int+Extension.swift in Sources */,
 				84AB2041262E904E00A01F9E /* T2SettingsNavigator.swift in Sources */,
 				8472980E267262AE00DFB3ED /* FloaterView.swift in Sources */,
+				840B829C267EDDF3007A82F0 /* AppUseCase.swift in Sources */,
 				84AB1F962629F6EB00A01F9E /* AppNavigator.swift in Sources */,
 				84DDAB722674A62300132A18 /* T04MemoryViewModel.swift in Sources */,
 				847298782674880B00DFB3ED /* T04MemoryViewController.swift in Sources */,
@@ -751,6 +764,7 @@
 				84AB212B263B06F500A01F9E /* PersistenceManager.swift in Sources */,
 				84AB1FBE262AB95200A01F9E /* Strings.swift in Sources */,
 				8472982F26727A5000DFB3ED /* T03MemoryListViewModel.swift in Sources */,
+				840B829E267EE17A007A82F0 /* BackgroundSettingUseCase.swift in Sources */,
 				84AB203E262DFAF900A01F9E /* SettingWithSwitchTableViewCell.swift in Sources */,
 				84C1A434267B974E001D18E5 /* T05ImageControllerViewCell.swift in Sources */,
 				847298262672721000DFB3ED /* Repositoy.swift in Sources */,
@@ -786,9 +800,11 @@
 				84AB1F402628C88900A01F9E /* UITableViewCell+Extension.swift in Sources */,
 				84AB1FDB262ACA0B00A01F9E /* Colors.swift in Sources */,
 				8472983D26727B8500DFB3ED /* T03MemoryListNavigator.swift in Sources */,
+				840B829A267EDDCE007A82F0 /* CDBackgroundImage+CoreDataProperties.swift in Sources */,
 				84729820267271C800DFB3ED /* CDMemory+CoreDataClass.swift in Sources */,
 				84AB1F472628C88900A01F9E /* UITableView+Extension.swift in Sources */,
 				84AB2008262BEB2D00A01F9E /* UIAlertController+Extension.swift in Sources */,
+				840B8299267EDDCE007A82F0 /* CDBackgroundImage+CoreDataClass.swift in Sources */,
 				84C1A4282677B44E001D18E5 /* AnimationUtility.swift in Sources */,
 				8472981826726E7E00DFB3ED /* Memory.swift in Sources */,
 				84DDAB7B2674B2C900132A18 /* T04MemoryNavigator.swift in Sources */,

@@ -146,6 +146,7 @@ extension T01MainViewController {
     
     private func setupBackground(data: Data?) {
         guard let data = data else {
+            imageBackgroundView.image = ImageNames.love1.image
             return
         }
         imageBackgroundView.image = UIImage(data: data)

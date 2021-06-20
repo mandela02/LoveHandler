@@ -49,6 +49,7 @@ enum Keys: String {
     case relationshipStartDate
     case weddingDate
     case background
+    case isFirstTimeOpenApp
 }
 
 struct Settings {
@@ -59,5 +60,7 @@ struct Settings {
     static var weddingDate = UserDefault<Date>(key: .weddingDate,
                                                defaultValue: Date().nextYear)
     static var background = UserDefault<Data?>(key: .background,
-                                              defaultValue: ImageNames.love1.image?.pngData())
+                                              defaultValue: nil)
+    static var isFirstTimeOpenApp = UserDefault<Bool>(key: .isFirstTimeOpenApp,
+                                                       defaultValue: true)
 }

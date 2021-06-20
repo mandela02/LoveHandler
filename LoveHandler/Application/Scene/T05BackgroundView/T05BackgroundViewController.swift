@@ -16,15 +16,7 @@ class T05BackgroundViewController: BaseViewController {
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
     
-    private let images = [ImageNames.love1.image,
-                          ImageNames.love2.image,
-                          ImageNames.love3.image,
-                          ImageNames.love4.image,
-                          ImageNames.love5.image,
-                          ImageNames.love6.image,
-                          ImageNames.love7.image,
-                          ImageNames.love8.image]
-        .compactMap { $0 }
+    private var images: [Data] = []
     
     private let defaultDividerSize: CGFloat = 10
     
@@ -38,7 +30,7 @@ class T05BackgroundViewController: BaseViewController {
     private var selectedImageIndexPath = CurrentValueSubject<Int, Never>(0)
     private var cancellables = Set<AnyCancellable>()
     
-
+    
     override func deinitView() {
         selectedImageIndexPath.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
@@ -46,13 +38,24 @@ class T05BackgroundViewController: BaseViewController {
     
     override func setupView() {
         super.setupView()
+        images = UseCaseProvider.defaultProvider.getBackgroundSettingUseCase().get()
+        
+        if let data = Settings.background.value,
+           let index = images.firstIndex(of: data) {
+            selectedImageIndexPath.send(index)
+        }
+        
+
         setupCollectionView()
+        
+        
         setupPageController()
         addGestureRecognizers()
         
         isBackButtonVisible = false
         isTitleVisible = true
         
+        imageCollectionView.reloadData()
     }
     
     override func refreshView() {
@@ -60,8 +63,8 @@ class T05BackgroundViewController: BaseViewController {
         imageCollectionView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setupBigImageView()
     }
     
@@ -75,13 +78,13 @@ class T05BackgroundViewController: BaseViewController {
                                                       at: .centeredHorizontally,
                                                       animated: true)
                 
-                guard let image = self.images[safe: index] else { return }
-                self.bigImageVIew.image = image
+                guard let data = self.images[safe: index] else { return }
+                self.bigImageVIew.image = UIImage(data: data)
                 self.pageController.currentPage = index
-                Settings.background.value = image.jpeg(.medium)
+                Settings.background.value = data
             }.store(in: &cancellables)
     }
-        
+    
     override func setupLocalizedString() {
         super.setupLocalizedString()
         navigationTitle = LocalizedString.t02BackgroundCellTitle
@@ -95,7 +98,8 @@ class T05BackgroundViewController: BaseViewController {
 
 extension T05BackgroundViewController {
     private func setupPageController() {
-        pageController.initView(numberOfPages: images.count, currentPage: 0)
+        pageController.initView(numberOfPages: images.count,
+                                currentPage: selectedImageIndexPath.value)
     }
     
     private func setupBigImageView() {
@@ -131,7 +135,7 @@ extension T05BackgroundViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: T05ImageControllerViewCell.className, for: indexPath) as? T05ImageControllerViewCell else {
             return UICollectionViewCell()
         }
-        guard let image = images[safe: indexPath.item] else {
+        guard let data = images[safe: indexPath.item], let image = UIImage(data: data) else {
             return UICollectionViewCell()
         }
         
@@ -170,8 +174,8 @@ extension T05BackgroundViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView,
-                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
-                                 point: CGPoint) -> UIContextMenuConfiguration? {
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] suggestedActions in
             guard let self = self else {
                 return UIMenu(title: "", children: [])
@@ -206,7 +210,7 @@ extension T05BackgroundViewController {
     private func swipeDownToDismiss(isEnabled: Bool) {
         navigationController?.presentationController?.presentedView?.gestureRecognizers?.forEach({$0.isEnabled = isEnabled})
     }
-
+    
     private func addGestureRecognizers() {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))

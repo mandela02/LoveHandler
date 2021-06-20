@@ -20,7 +20,7 @@ protocol RepositoryType {
     func countAll() -> DatabaseResponse
     func fetchAllData() -> DatabaseResponse
     func fetchRequest(predicate: String, value: String) -> DatabaseResponse
-    func save(model: T) -> DatabaseResponse
+    func save() -> DatabaseResponse
     func publisher() -> AnyPublisher<Void, Never>}
 
 class Repository<T: NSManagedObject>: RepositoryType {
@@ -64,7 +64,7 @@ class Repository<T: NSManagedObject>: RepositoryType {
         }
     }
     
-    func save(model: T) -> DatabaseResponse {
+    func save() -> DatabaseResponse {
         do {
             try container.viewContext.save()
             return .success(data: nil)
