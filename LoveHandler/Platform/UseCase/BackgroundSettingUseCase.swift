@@ -6,10 +6,12 @@
 //
 
 import Foundation
-import UIKit
+import Combine
 
 protocol BackgroundSettingUseCaseType {
     func get() -> [CDBackgroundImage]
+    func delete(model: CDBackgroundImage)
+    func onDatabaseUpdated() -> AnyPublisher<Void, Never>
 }
 
 class BackgroundSettingUseCase: BackgroundSettingUseCaseType {
@@ -30,5 +32,14 @@ class BackgroundSettingUseCase: BackgroundSettingUseCaseType {
         default:
             return []
         }
+    }
+    
+    func delete(model: CDBackgroundImage) {
+        repository.delete(model: model)
+        _ = repository.save()
+    }
+    
+    func onDatabaseUpdated() -> AnyPublisher<Void, Never> {
+        return repository.publisher()
     }
 }

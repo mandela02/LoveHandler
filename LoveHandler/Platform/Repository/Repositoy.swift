@@ -84,7 +84,7 @@ class Repository<T: NSManagedObject>: RepositoryType {
         if #available(iOS 14.0, *) {
             notification = NSManagedObjectContext.didSaveObjectsNotification
         } else {
-            notification = Notification.Name.NSManagedObjectContextDidSave
+            notification = Notification.Name.NSManagedObjectContextDidMergeChangesObjectIDs
         }
         
         let context = PersistenceManager.shared.persistentContainer.viewContext

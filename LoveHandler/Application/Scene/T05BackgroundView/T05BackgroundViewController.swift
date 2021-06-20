@@ -24,6 +24,7 @@ class T05BackgroundViewController: BaseViewController {
     }
         
     private var selectedImageIndexPath = CurrentValueSubject<Int, Never>(0)
+    private var deletedImageIndexPath = PassthroughSubject<Int, Never>()
     private var viewWillAppear = PassthroughSubject<Void, Never>()
     
     private var cancellables = Set<AnyCancellable>()
@@ -65,7 +66,8 @@ class T05BackgroundViewController: BaseViewController {
         guard let viewModel = viewModel else { return }
         let input = T05BackgroundViewModel
             .Input(viewWillAppear: viewWillAppear.eraseToAnyPublisher(),
-                   selectedIndex: selectedImageIndexPath.eraseToAnyPublisher())
+                   selectedIndex: selectedImageIndexPath.eraseToAnyPublisher(),
+                   deletedIndex: deletedImageIndexPath.eraseToAnyPublisher())
         
         let output = viewModel.transform(input)
         
@@ -221,6 +223,7 @@ extension T05BackgroundViewController: UICollectionViewDelegate {
     }
     
     private func performDelete(at indexPath: IndexPath) {
+        deletedImageIndexPath.send(indexPath.item)
         
     }
     
@@ -240,8 +243,8 @@ extension T05BackgroundViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         swipeLeft.direction = .left
         swipeRight.direction = .right
-        view.addGestureRecognizer(swipeLeft)
-        view.addGestureRecognizer(swipeRight)
+        self.bigImageVIew.addGestureRecognizer(swipeLeft)
+        bigImageVIew.addGestureRecognizer(swipeRight)
     }
     
     @objc private func handleSwipe(sender: UISwipeGestureRecognizer) {

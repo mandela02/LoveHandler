@@ -20,7 +20,12 @@ class T05BackgroundViewModel: BaseViewModel {
         let backgroundImageModels = CurrentValueSubject<[CDBackgroundImage], Never>([])
         let selectedImageIndexPath = CurrentValueSubject<Int, Never>(0)
 
-        let viewWillAppearHandle = input.viewWillAppear
+        let onDatabaseChange = useCase.onDatabaseUpdated()
+            .map { _ in }
+            .eraseToAnyPublisher()
+
+        let viewWillAppearHandler = Publishers.Merge(input.viewWillAppear,
+                                                    onDatabaseChange)
             .map(self.useCase.get)
             .handleEvents(receiveOutput: { models in
                 backgroundImageModels.send(models)
@@ -34,8 +39,6 @@ class T05BackgroundViewModel: BaseViewModel {
 
         let selectedImagehandler = input.selectedIndex
             .handleEvents(receiveOutput: { index in
-                guard let model = backgroundImageModels.value[safe: index] else { return }
-                Settings.background.value = model.image
                 selectedImageIndexPath.send(index)
             })
             .map { _ in }
@@ -46,6 +49,10 @@ class T05BackgroundViewModel: BaseViewModel {
             .eraseToAnyPublisher()
         
         let selectedImage = selectedImageIndexPath
+            .handleEvents(receiveOutput: { index in
+                guard let model = backgroundImageModels.value[safe: index] else { return }
+                Settings.background.value = model.image
+            })
             .map { index -> UIImage in
             guard let model = backgroundImageModels.value[safe: index],
                   let data = model.image,
@@ -55,8 +62,30 @@ class T05BackgroundViewModel: BaseViewModel {
         }
         .eraseToAnyPublisher()
         
-        let noResponse = Publishers.MergeMany ([viewWillAppearHandle,
-                                                selectedImagehandler])
+        let onDelete = input.deletedIndex
+            .flatMap { index in
+                UIAlertController.alertDialog(title: "Delete Image",
+                                              message: "Are you sure",
+                                              argument: index)
+                    .eraseToAnyPublisher()
+            }
+            .compactMap { $0 }
+            .handleEvents(receiveOutput: { [weak self] index in
+                guard let self = self else { return }
+                guard let index = index as? Int else { return }
+                if backgroundImageModels.value.count == 1 { return }
+                guard let model = backgroundImageModels.value[safe: index] else { return }
+                self.useCase.delete(model: model)
+                if index == selectedImageIndexPath.value {
+                    selectedImageIndexPath.send(0)
+                }
+            })
+            .map { _ in }
+            .eraseToAnyPublisher()
+                
+        let noResponse = Publishers.MergeMany ([viewWillAppearHandler,
+                                                selectedImagehandler,
+                                                onDelete])
             .eraseToAnyPublisher()
         
         return Output(images: images,
@@ -69,6 +98,7 @@ class T05BackgroundViewModel: BaseViewModel {
     struct Input {
         let viewWillAppear: AnyPublisher<Void, Never>
         let selectedIndex: AnyPublisher<Int, Never>
+        let deletedIndex: AnyPublisher<Int, Never>
     }
     
     struct Output {
