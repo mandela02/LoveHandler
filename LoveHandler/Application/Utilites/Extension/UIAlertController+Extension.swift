@@ -86,4 +86,14 @@ extension UIAlertController {
             UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
         }
     }
+    
+    static func errorDialog(title: String,
+                            message: String)   {
+        let alert = UIAlertController(title: title,
+                                      message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
+        }))
+        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+    }
+
 }

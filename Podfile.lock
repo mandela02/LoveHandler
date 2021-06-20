@@ -5,6 +5,7 @@ PODS:
   - Fusuma (1.3.3)
   - Hero (1.6.1)
   - lottie-ios (3.2.1)
+  - Mantis (1.7.1)
   - WaveAnimationView (1.0.2)
 
 DEPENDENCIES:
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - Fusuma
   - Hero
   - lottie-ios
+  - Mantis (~> 1.7.1)
   - WaveAnimationView
 
 SPEC REPOS:
@@ -24,6 +26,7 @@ SPEC REPOS:
     - Fusuma
     - Hero
     - lottie-ios
+    - Mantis
     - WaveAnimationView
 
 SPEC CHECKSUMS:
@@ -33,8 +36,9 @@ SPEC CHECKSUMS:
   Fusuma: 3bd08c8c5341ec60c0074fa28570fea8765966f0
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
   lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
+  Mantis: 0c6052cf902f7b3b9ede7302ddc1116b64b4effe
   WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
 
-PODFILE CHECKSUM: 7416cdfae035bdce7b8333f6e793c072088f1e6a
+PODFILE CHECKSUM: 999d9e459c5684f727db426cb746590c6125c9ac
 
 COCOAPODS: 1.10.1

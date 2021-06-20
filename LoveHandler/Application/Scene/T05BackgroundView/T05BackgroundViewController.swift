@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Mantis
 
 class T05BackgroundViewController: BaseViewController {
     
@@ -251,6 +252,11 @@ extension T05BackgroundViewController: UICollectionViewDelegate {
     }
     
     private func performDelete(at indexPath: Int) {
+        if images.count == 1 {
+            UIAlertController.errorDialog(title: "Error",
+                                          message: "This is your last image")
+            return
+        }
         deletedImageIndexPath.send(indexPath)
         
     }
@@ -309,12 +315,35 @@ extension T05BackgroundViewController: UIContextMenuInteractionDelegate {
 // MARK: - ImagePickerDelegate
 extension T05BackgroundViewController: ImagePickerDelegate {
     func cameraHandle(image: UIImage) {
-        self.addImage.send(image)
+        cropImage(image: image)
     }
     
     func libraryHandle(images: [UIImage]) {
         if !images.isEmpty {
-            self.addImage.send(images.first!)
+            cropImage(image: images.first!)
         }
     }
+    
+    private func cropImage(image: UIImage) {
+        var config = Mantis.Config()
+        config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: Double(Utilities.getWindowBound().width / Utilities.getWindowBound().height))
+        let cropViewController = Mantis.cropViewController(image: image, config: config)
+        cropViewController.delegate = self
+        self.present(cropViewController, animated: true)
+    }
+}
+
+extension T05BackgroundViewController: CropViewControllerDelegate {
+    func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation) {
+        self.dismiss(animated: true) { [weak self] in
+            self?.addImage.send(cropped)
+        }
+    }
+    
+    func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
+        self.dismiss(animated: true) { [weak self] in
+            self?.addImage.send(original)
+        }
+    }
+    
 }
