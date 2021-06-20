@@ -12,5 +12,6 @@ target 'LoveHandler' do
   pod 'CombineCocoa'
   pod 'Fusuma'
   pod 'Hero'
-
+  pod 'DeviceKit'
+  pod 'Mantis', '~> 1.7.1'
 end

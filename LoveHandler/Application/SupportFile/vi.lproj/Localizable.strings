@@ -64,8 +64,15 @@
 
 "t02SettingsTitle" = "Cài đặt";
 "t02PremiumHeaderitle" = "Premium";
-"t02ViewHeaderitle" = "Giao diện";
-"t02DataHeaderTitle" = "Tình yêu";
+"t02ViewHeaderitle" = "Cài đặt giao diện";
+"t02DataHeaderTitle" = "Kỷ niệm tình yêu";
+
+"t02ThemeCellTitle" = "Màu chủ đề";
+"t02LanguageCellTitle" = "Ngôn ngữ";
+"t02BackgroundCellTitle" = "Hình nền";
+"t02HeartAnimationCellTitle" = "Hoạt hoạ";
+"t02PasscodeCellTitle" = "Mật khẩu";
+"t02DeleteAllCellTitle" = "Xoá tất cả";
 
 "t03NavigationTitle" = "Kỷ niệm đôi ta";
 "t04MemoryDatePickerTitle" = "Chọn ngày kỉ niệm";

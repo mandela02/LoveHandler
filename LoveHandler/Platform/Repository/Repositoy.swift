@@ -20,8 +20,10 @@ protocol RepositoryType {
     func countAll() -> DatabaseResponse
     func fetchAllData() -> DatabaseResponse
     func fetchRequest(predicate: String, value: String) -> DatabaseResponse
-    func save(model: T) -> DatabaseResponse
-    func publisher() -> AnyPublisher<Void, Never>}
+    func save() -> DatabaseResponse
+    func delete(model: T) -> Void
+    func publisher() -> AnyPublisher<Void, Never>
+}
 
 class Repository<T: NSManagedObject>: RepositoryType {
     var container: NSPersistentContainer{
@@ -64,7 +66,7 @@ class Repository<T: NSManagedObject>: RepositoryType {
         }
     }
     
-    func save(model: T) -> DatabaseResponse {
+    func save() -> DatabaseResponse {
         do {
             try container.viewContext.save()
             return .success(data: nil)
@@ -72,13 +74,17 @@ class Repository<T: NSManagedObject>: RepositoryType {
             return .error(error: error)
         }
     }
+    
+    func delete(model: T) {
+        container.viewContext.delete(model)
+    }
         
     func publisher() -> AnyPublisher<Void, Never> {
         var notification: Notification.Name = Notification.Name(rawValue: "")
         if #available(iOS 14.0, *) {
             notification = NSManagedObjectContext.didSaveObjectsNotification
         } else {
-            notification = Notification.Name.NSManagedObjectContextDidSave
+            notification = Notification.Name.NSManagedObjectContextDidMergeChangesObjectIDs
         }
         
         let context = PersistenceManager.shared.persistentContainer.viewContext

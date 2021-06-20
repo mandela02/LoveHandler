@@ -20,7 +20,8 @@ class ImagePickerHelper: NSObject {
     var message: String
     var isMultiplePick: Bool
     
-    private var pickerController: UIImagePickerController?
+    var fusuma: FusumaViewController?
+    
     weak var delegate: ImagePickerDelegate?
 
     init(title: String, message: String, isMultiplePick: Bool = false) {
@@ -41,7 +42,8 @@ class ImagePickerHelper: NSObject {
 
 extension ImagePickerHelper {
     private func imagePickerTapped(action: ImageAction) {
-        let fusuma = FusumaViewController()
+        fusuma = FusumaViewController()
+        guard let fusuma = fusuma else { return }
         fusuma.delegate = self
         switch action {
         case .camera:
@@ -65,14 +67,17 @@ extension ImagePickerHelper: FusumaDelegate {
     }
     
     func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
-        switch source {
-        case .camera:
-            delegate?.cameraHandle(image: image)
-        case .library:
-            delegate?.libraryHandle(images: [image])
-        default:
-            return
-        }
+        fusuma?.dismiss(animated: true, completion: { [weak self] in
+            guard let self = self else { return }
+            switch source {
+            case .camera:
+                self.delegate?.cameraHandle(image: image)
+            case .library:
+                self.delegate?.libraryHandle(images: [image])
+            default:
+                return
+            }
+        })
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {

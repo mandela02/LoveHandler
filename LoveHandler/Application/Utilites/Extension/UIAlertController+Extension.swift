@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 extension UIAlertController {
     static func showActionSheet<T: CaseIterable & EnumName>(source: T.Type,
@@ -21,16 +22,16 @@ extension UIAlertController {
         
         for action in T.allCases {
             let alertAction = UIAlertAction(title: action.getName(),
-                                        style: .default,
-                                        handler: { _ in
-                                            onTap(action)
-                                        })
+                                            style: .default,
+                                            handler: { _ in
+                                                onTap(action)
+                                            })
             actionSheet.addAction(alertAction)
         }
         
         let cancelAlertAction = UIAlertAction(title: cancelButtontTitle,
-                                    style: .cancel,
-                                    handler: {_ in })
+                                              style: .cancel,
+                                              handler: {_ in })
         
         actionSheet.addAction(cancelAlertAction)
         
@@ -47,7 +48,7 @@ extension UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         alert.overrideUserInterfaceStyle = .light
-
+        
         alert.addTextField { (textField) in
             textField.placeholder = placeholder
             textField.text = currentText
@@ -59,14 +60,40 @@ extension UIAlertController {
                 onSubmit(userText)
             }
         }))
-
+        
         
         let cancelAlertAction = UIAlertAction(title: cancelButtontTitle,
-                                    style: .cancel,
-                                    handler: {_ in })
+                                              style: .cancel,
+                                              handler: {_ in })
         
         alert.addAction(cancelAlertAction)
-
+        
         UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
     }
+    
+    static func alertDialog(title: String,
+                            message: String,
+                            argument: Any) -> Future<Any?, Never>  {
+        return Future() { promise in
+            let alert = UIAlertController(title: title,
+                                          message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                promise(.success(argument))
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+                promise(.success(nil))
+            }))
+            UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    static func errorDialog(title: String,
+                            message: String)   {
+        let alert = UIAlertController(title: title,
+                                      message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
+        }))
+        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+    }
+
 }

@@ -329,7 +329,7 @@ extension T04MemoryViewController {
             return
         }
     
-        imageView.image = SystemImage.camera.image?
+        imageView.image = SystemImage.camera.image
             .withAlignmentRectInsets(UIEdgeInsets(top: -20, left: 0, bottom: -20, right: 0))
         
         imageView.backgroundColor = UIColor.clear

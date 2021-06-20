@@ -5,7 +5,7 @@
 //  Created by LanNTH on 20/04/2021.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 class T02SettingsViewModel: BaseViewModel {    
@@ -23,7 +23,6 @@ class T02SettingsViewModel: BaseViewModel {
                 selectedCell = $0
             }).share()
             
-            
         let dateCellSelected = cellSelected
             .filter { Cell.dateSelectionCell.contains($0) }
             .flatMap { [weak self] cell -> AnyPublisher<Date?, Never> in
@@ -31,7 +30,7 @@ class T02SettingsViewModel: BaseViewModel {
                 switch cell {
                 case .marryDateSelection:
                     return self.navigator.datePicker(title: LocalizedString.t02WeddingDayDatePickerTitle,
-                                                     date: Settings.marryDate.value,
+                                                     date: Settings.weddingDate.value,
                                                      minDate: Settings.relationshipStartDate.value,
                                                      maxDate: Constant.maxDate)
                         .eraseToAnyPublisher()
@@ -49,7 +48,7 @@ class T02SettingsViewModel: BaseViewModel {
                 guard let date = date, let cell = selectedCell else { return }
                 switch cell {
                 case .marryDateSelection:
-                    Settings.marryDate.value = date
+                    Settings.weddingDate.value = date
                 case .startDatingDateSelection:
                     Settings.relationshipStartDate.value = date
                 default:
@@ -62,24 +61,42 @@ class T02SettingsViewModel: BaseViewModel {
         
         let viewWillAppear = input.viewWillAppear
         
+        let onSelectCell = cellSelected
+            .handleEvents(receiveOutput: { [weak self] cell in
+                guard let self = self else {
+                    return
+                }
+                switch cell {
+                case .background:
+                    self.navigator.toBackgroundView()
+                default:
+                    return
+                }
+            })
+            .map { _ in }
+            .eraseToAnyPublisher()
+        
         let dataSource = Publishers.Merge(viewWillAppear,
                                           dateCellSelected)
             .map { _ in  Section.generateData() }
             .eraseToAnyPublisher()
-        
+                
         let dissmiss = input.dismissTrigger.handleEvents(receiveOutput: navigator.dismiss)
             .map { _ in }
             .eraseToAnyPublisher()
 
+        let noReponse = Publishers.MergeMany([dissmiss, onSelectCell])
+            .eraseToAnyPublisher()
+
         return Output(dataSource: dataSource,
-                      noRespone: dissmiss)
+                      noRespone: noReponse)
     }
     
     enum CellType {
-        case normal(icon: String, title: String, isDisable: Bool = false)
-        case withSwitch(icon: String, title: String, isOn: Bool = false)
-        case withSubTitle(icon: String, title: String, subTitle: String)
-        
+        case plain(title: String, isDisable: Bool = false)
+        case normal(icon: UIImage, title: String, isDisable: Bool = false)
+        case withSwitch(icon: UIImage, title: String, isOn: Bool = false)
+        case withSubTitle(icon: UIImage, title: String, subTitle: String)
     }
     
     struct CellInfo {
@@ -96,22 +113,51 @@ class T02SettingsViewModel: BaseViewModel {
         case startDatingDateSelection
         case marryDateSelection
         case premium
-        
+        case theme
+        case background
+        case heartAnimation
+        case language
+        case passcode
+        case deleteAll
+
         var info: CellInfo {
             switch self {
             case .startDatingDateSelection:
-                return CellInfo(type: .withSubTitle(icon: "",
+                return CellInfo(type: .withSubTitle(icon: SystemImage.faceDashFill.image,
                                                     title: LocalizedString.t02StartDateTitle,
                                                     subTitle: DefaultDateFormatter.string(from: Settings.relationshipStartDate.value,
                                                                                           dateFormat: "d/M/y")))
             case .marryDateSelection:
-                return CellInfo(type: .withSubTitle(icon: "",
+                return CellInfo(type: .withSubTitle(icon: SystemImage.faceDashFill.image,
                                                     title: LocalizedString.t02EndDateTitle,
-                                                    subTitle: DefaultDateFormatter.string(from: Settings.marryDate.value,
+                                                    subTitle: DefaultDateFormatter.string(from: Settings.weddingDate.value,
                                                                                           dateFormat: "d/M/y")))                
             case .premium:
-                return CellInfo(type: .normal(icon: "",
+                return CellInfo(type: .normal(icon: SystemImage.dollarsignCircleFill.image,
                                               title: LocalizedString.t02PremiumTitle,
+                                              isDisable: false))
+            case .theme:
+                return CellInfo(type: .normal(icon: SystemImage.sunMinFill.image,
+                                              title: LocalizedString.t02ThemeCellTitle,
+                                              isDisable: false))
+            case .language:
+                return CellInfo(type: .normal(icon: SystemImage.language.image,
+                                              title: LocalizedString.t02LanguageCellTitle,
+                                              isDisable: false))
+            case .background:
+                return CellInfo(type: .normal(icon: SystemImage.background.image,
+                                              title: LocalizedString.t02BackgroundCellTitle,
+                                              isDisable: false))
+            case .heartAnimation:
+                return CellInfo(type: .normal(icon: SystemImage.heartCircleFill.image,
+                                              title: LocalizedString.t02HeartAnimationCellTitle,
+                                              isDisable: false))
+            case .passcode:
+                return CellInfo(type: .normal(icon: SystemImage.lockFill.image,
+                                              title: LocalizedString.t02PasscodeCellTitle,
+                                              isDisable: false))
+            case .deleteAll:
+                return CellInfo(type: .plain(title: LocalizedString.t02DeleteAllCellTitle,
                                               isDisable: false))
             }
         }
@@ -124,19 +170,30 @@ class T02SettingsViewModel: BaseViewModel {
         case premium
         case ui
         case dates
+        case utilities
+        case delete
         
         var info: SectionInfo {
             switch self {
             case .dates:
                 return SectionInfo(title: LocalizedString.t02DataHeaderTitle,
                                    cells: [.startDatingDateSelection,
-                                           .marryDateSelection])
+                                           .marryDateSelection,
+                                           .background])
             case .ui:
                 return SectionInfo(title: LocalizedString.t02ViewHeaderitle,
-                                   cells: [])
+                                   cells: [.theme,
+                                           .heartAnimation])
             case .premium:
                 return SectionInfo(title: LocalizedString.t02PremiumHeaderitle,
                                    cells: [.premium])
+            case .utilities:
+                return SectionInfo(title: "",
+                                   cells: [.language,
+                                           .passcode])
+            case .delete:
+                return SectionInfo(title: "",
+                                   cells: [.deleteAll])
             }
         }
         

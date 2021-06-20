@@ -24,6 +24,10 @@ extension AppDelegate {
         window?.makeKeyAndVisible()
         
         navigator = AppNavigator(window: window)
+        if Settings.isFirstTimeOpenApp.value {
+            _ = UseCaseProvider.defaultProvider.getAppUseCase().save();
+            Settings.isFirstTimeOpenApp.value = false
+        }
     }
 }
 
