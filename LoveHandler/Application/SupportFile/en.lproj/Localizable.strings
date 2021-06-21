@@ -77,6 +77,7 @@
 "t03NavigationTitle" = "Memory";
 "t04MemoryDatePickerTitle" = "Choose a date";
 "t04MemoryContentPlaceHolder" = "Enter diary here";
+"t04MemorySaveButtonTitle" = "Save";
 
 "t05ShareButtonTitle" = "Share";
 "t05ShareButtonSubtitle" = "Share this image or save it to your device";

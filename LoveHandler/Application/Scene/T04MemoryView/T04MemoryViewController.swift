@@ -146,7 +146,7 @@ class T04MemoryViewController: BaseViewController {
     
     override func setupLocalizedString() {
         super.setupLocalizedString()
-        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitle(LocalizedString.t04MemorySaveButtonTitle, for: .normal)
     }
     
     override func keyboarDidShow(keyboardHeight: CGFloat) {
@@ -248,7 +248,7 @@ extension T04MemoryViewController {
         case .new:
             imageView.contentMode = .scaleAspectFit
             dateLabel.text = Date().dayMonthYearString
-            contentTextView.text = "Nhập nhật ký tại đây"
+            contentTextView.text = titlePlaceHolder
             contentTextView.viewBorderWidth = 1
             contentTextView.viewBorderColor = Colors.pink
             

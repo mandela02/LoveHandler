@@ -125,7 +125,7 @@ class PersonView: BaseView, NibLoadable {
         super.setupTheme()
         avatarImageView.tintColor = Colors.lightPink
 
-        nameLabel.textColor = Colors.pink
+        nameLabel.textColor = UIColor.white
         genderLabel.textColor = Colors.mediumVioletRed
         zodiacLabel.textColor = UIColor.white
         
