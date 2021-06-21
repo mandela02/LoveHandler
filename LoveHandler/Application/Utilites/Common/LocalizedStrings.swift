@@ -80,4 +80,16 @@ struct LocalizedString {
     static var t02HeartAnimationCellTitle: String { return String(localizedKey: "t02HeartAnimationCellTitle") }
     static var t02PasscodeCellTitle: String { return String(localizedKey: "t02PasscodeCellTitle") }
     static var t02DeleteAllCellTitle: String { return String(localizedKey: "t02DeleteAllCellTitle") }
+    
+    static var t05ShareButtonTitle: String { return String(localizedKey: "t05ShareButtonTitle") }
+    static var t05ShareButtonSubtitle: String { return String(localizedKey: "t05ShareButtonSubtitle") }
+    static var t05DeleteButtonTitle: String { return String(localizedKey: "t05DeleteButtonTitle") }
+    static var t05DeleteButtonSubtitle: String { return String(localizedKey: "t05DeleteButtonSubtitle") }
+    static var t05LastImageErrorTitle: String { return String(localizedKey: "t05LastImageErrorTitle") }
+    static var t05LastImageErrorMessage: String { return String(localizedKey: "t05LastImageErrorMessage") }
+    static var t05DeleteAlertMessage: String { return String(localizedKey: "t05DeleteAlertMessage") }
+    static var t05DeleteAlertTitle: String { return String(localizedKey: "t05DeleteAlertTitle") }
+
+    static var okButton: String { return String(localizedKey: "okButton") }
+    static var cancelButton: String { return String(localizedKey: "t05DeleteAlertTitle") }
 }

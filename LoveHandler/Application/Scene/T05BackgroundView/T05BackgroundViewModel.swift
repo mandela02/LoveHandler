@@ -65,8 +65,8 @@ class T05BackgroundViewModel: BaseViewModel {
         
         let onDelete = input.deletedIndex
             .flatMap { index in
-                UIAlertController.alertDialog(title: "Delete Image",
-                                              message: "Are you sure",
+                UIAlertController.alertDialog(title: LocalizedString.t05DeleteAlertTitle,
+                                              message: LocalizedString.t05DeleteAlertMessage,
                                               argument: index)
                     .eraseToAnyPublisher()
             }

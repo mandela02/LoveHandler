@@ -233,15 +233,15 @@ extension T05BackgroundViewController: UICollectionViewDelegate {
                 return UIMenu(title: "", children: [])
             }
             let saveAction =
-                UIAction(title: NSLocalizedString("Save", comment: ""),
-                         image: UIImage(systemName: "arrow.up.square"),
+                UIAction(title: LocalizedString.t05ShareButtonTitle,
+                         image: SystemImage.arrowUpSquare.image,
                          attributes: .destructive) { action in
                     self.performShare(at: indexPath)
                     
                 }
             let deleteAction =
-                UIAction(title: NSLocalizedString("Delete", comment: ""),
-                         image: UIImage(systemName: "trash"),
+                UIAction(title: LocalizedString.t05DeleteButtonTitle,
+                         image: SystemImage.trash.image,
                          attributes: .destructive) { action in
                     self.performDelete(at: indexPath)
                 }
@@ -251,8 +251,8 @@ extension T05BackgroundViewController: UICollectionViewDelegate {
     
     private func performDelete(at indexPath: Int) {
         if images.count == 1 {
-            UIAlertController.errorDialog(title: "Error",
-                                          message: "This is your last image")
+            UIAlertController.errorDialog(title: LocalizedString.t05LastImageErrorTitle,
+                                          message: LocalizedString.t05LastImageErrorMessage)
             return
         }
         deletedImageIndexPath.send(indexPath)

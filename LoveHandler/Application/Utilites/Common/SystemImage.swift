@@ -23,6 +23,8 @@ enum SystemImage: String {
     case dollarsignCircleFill = "dollarsign.circle.fill"
     case sunMinFill = "sun.min.fill"
     case checkMark = "checkmark.circle.fill"
+    case arrowUpSquare = "arrow.up.square"
+    case trash = "trash"
 }
 
 extension SystemImage {

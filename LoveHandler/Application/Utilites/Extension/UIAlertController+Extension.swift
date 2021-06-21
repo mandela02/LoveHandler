@@ -76,10 +76,12 @@ extension UIAlertController {
         return Future { promise in
             let alert = UIAlertController(title: title,
                                           message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: LocalizedString.okButton,
+                                          style: .default, handler: { _ in
                 promise(.success(argument))
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+            alert.addAction(UIAlertAction(title: LocalizedString.cancelButton,
+                                          style: .destructive, handler: { _ in
                 promise(.success(nil))
             }))
             UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
@@ -90,7 +92,7 @@ extension UIAlertController {
                             message: String) {
         let alert = UIAlertController(title: title,
                                       message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: LocalizedString.okButton, style: .destructive, handler: { _ in
         }))
         UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
     }

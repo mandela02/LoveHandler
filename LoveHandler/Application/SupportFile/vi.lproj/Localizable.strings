@@ -77,3 +77,15 @@
 "t03NavigationTitle" = "Kỷ niệm đôi ta";
 "t04MemoryDatePickerTitle" = "Chọn ngày kỉ niệm";
 "t04MemoryContentPlaceHolder" = "Nhập nhật ký ở đây";
+
+"t05ShareButtonTitle" = "Chia sẻ";
+"t05ShareButtonSubtitle" = "Chia sẻ ảnh hoặc lưu về máy";
+"t05DeleteButtonTitle" = "Xoá";
+"t05DeleteButtonSubtitle" = "Xoá ảnh";
+"t05LastImageErrorTitle" = "Có lỗi xảy ra";
+"t05LastImageErrorMessage" = "Đây là bức ảnh cuối cùng của bạn, đừng xoá nó";
+"t05DeleteAlertTitle" = "Một bức ảnh chuẩn bị xoá";
+"t05DeleteAlertMessage" = " Bạn có chắc muốn xoá nó? Việc này không thể hoàn tác";
+
+"okButton" = "Chấp nhận";
+"cancelButton" = "Huỷ";

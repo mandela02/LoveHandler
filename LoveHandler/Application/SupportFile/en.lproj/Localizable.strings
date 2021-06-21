@@ -77,3 +77,15 @@
 "t03NavigationTitle" = "Memory";
 "t04MemoryDatePickerTitle" = "Choose a date";
 "t04MemoryContentPlaceHolder" = "Enter diary here";
+
+"t05ShareButtonTitle" = "Share";
+"t05ShareButtonSubtitle" = "Share this image or save it to your device";
+"t05DeleteButtonTitle" = "Delete";
+"t05DeleteButtonSubtitle" = "Delete this image forever";
+"t05LastImageErrorTitle" = "An error has occurred";
+"t05LastImageErrorMessage" = "This is your last image. Don't delete it, please";
+"t05DeleteAlertTitle" = "You are about to delete this image";
+"t05DeleteAlertMessage" = "Are you sure? This can not be un done";
+
+"okButton" = "OK";
+"cancelButton" = "Cancel";
