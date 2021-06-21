@@ -70,7 +70,6 @@ extension Zodiac {
         }
     }
     
-    
     var dateRangeString: String {
         let df = DateFormatter()
         df.dateFormat = "MMM d"

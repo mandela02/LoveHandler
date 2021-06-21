@@ -122,9 +122,8 @@ class T05BackgroundViewController: BaseViewController {
     
     override func setupTheme() {
         super.setupTheme()
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
-    
     
     @IBAction func onAddImageButtonTapped(_ sender: Any) {
         picker?.showActionSheet()
@@ -140,7 +139,6 @@ extension T05BackgroundViewController {
         picker?.delegate = self
     }
     
-
     private func setupPageController() {
         pageController.initView(numberOfPages: images.count,
                                 currentPage: selectedImageIndexPath.value)

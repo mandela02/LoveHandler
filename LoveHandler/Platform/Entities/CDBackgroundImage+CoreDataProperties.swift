@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension CDBackgroundImage {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CDBackgroundImage> {
@@ -21,6 +20,6 @@ extension CDBackgroundImage {
 
 }
 
-extension CDBackgroundImage : Identifiable {
+extension CDBackgroundImage: Identifiable {
 
 }

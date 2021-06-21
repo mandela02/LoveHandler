@@ -45,6 +45,6 @@ class AppUseCase: AppUseCaseType {
             }
         
         let result = repository.save()
-        return result;
+        return result
     }
 }

@@ -636,6 +636,7 @@
 				84D21F0E2628B0A5007D43F2 /* Frameworks */,
 				84D21F0F2628B0A5007D43F2 /* Resources */,
 				3BB1EE07FF378B5DCD4DAC68 /* [CP] Embed Pods Frameworks */,
+				840B82A6267F9C5A007A82F0 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -720,6 +721,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LoveHandler/Pods-LoveHandler-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		840B82A6267F9C5A007A82F0 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		C6DC5935B4C5394466605D3C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

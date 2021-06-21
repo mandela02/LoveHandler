@@ -44,7 +44,6 @@ class CustomPageControl: UIView {
         setupView()
     }
     
-    
     func initView(numberOfPages: Int, currentPage: Int) {
         self.numberOfPages = numberOfPages
         self.currentPage = currentPage

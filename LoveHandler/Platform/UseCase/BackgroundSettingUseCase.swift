@@ -23,7 +23,6 @@ class BackgroundSettingUseCase: BackgroundSettingUseCaseType {
         self.repository = repository
     }
     
-    
     func save(image: UIImage) -> DatabaseResponse {
         let screenSize = Utilities.getWindowBound().size
 

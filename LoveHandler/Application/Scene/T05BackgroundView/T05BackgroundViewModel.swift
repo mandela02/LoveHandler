@@ -19,13 +19,13 @@ class T05BackgroundViewModel: BaseViewModel {
     func transform(_ input: Input) -> Output {
         let backgroundImageModels = CurrentValueSubject<[CDBackgroundImage], Never>([])
         let selectedImageIndexPath = CurrentValueSubject<Int, Never>(0)
-
+        
         let onDatabaseChange = useCase.onDatabaseUpdated()
             .map { _ in }
             .eraseToAnyPublisher()
-
+        
         let viewWillAppearHandler = Publishers.Merge(input.viewWillAppear,
-                                                    onDatabaseChange)
+                                                     onDatabaseChange)
             .map(self.useCase.get)
             .handleEvents(receiveOutput: { models in
                 let reversedModel = Array(models.reversed())
@@ -37,14 +37,14 @@ class T05BackgroundViewModel: BaseViewModel {
             })
             .map { _ in }
             .eraseToAnyPublisher()
-
+        
         let selectedImagehandler = input.selectedIndex
             .handleEvents(receiveOutput: { index in
                 selectedImageIndexPath.send(index)
             })
             .map { _ in }
             .eraseToAnyPublisher()
-
+        
         let images = backgroundImageModels
             .map { $0.compactMap { $0.image }.map { UIImage(data: $0) }.compactMap { $0 } }
             .eraseToAnyPublisher()
@@ -55,13 +55,13 @@ class T05BackgroundViewModel: BaseViewModel {
                 Settings.background.value = model.image
             })
             .map { index -> UIImage in
-            guard let model = backgroundImageModels.value[safe: index],
-                  let data = model.image,
-                  let image = UIImage(data: data)
-            else { return UIImage() }
-            return image
-        }
-        .eraseToAnyPublisher()
+                guard let model = backgroundImageModels.value[safe: index],
+                      let data = model.image,
+                      let image = UIImage(data: data)
+                else { return UIImage() }
+                return image
+            }
+            .eraseToAnyPublisher()
         
         let onDelete = input.deletedIndex
             .flatMap { index in
@@ -83,7 +83,7 @@ class T05BackgroundViewModel: BaseViewModel {
             })
             .map { _ in }
             .eraseToAnyPublisher()
-                
+        
         let onSaveImage = input.savedImage
             .map(useCase.save)
             .handleEvents(receiveOutput: { _ in
@@ -91,11 +91,11 @@ class T05BackgroundViewModel: BaseViewModel {
             })
             .map { _ in }
             .eraseToAnyPublisher()
-
-        let noResponse = Publishers.MergeMany ([viewWillAppearHandler,
-                                                selectedImagehandler,
-                                                onDelete,
-                                                onSaveImage])
+        
+        let noResponse = Publishers.MergeMany([viewWillAppearHandler,
+                                               selectedImagehandler,
+                                               onDelete,
+                                               onSaveImage])
             .eraseToAnyPublisher()
         
         return Output(images: images,

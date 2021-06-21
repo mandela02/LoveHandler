@@ -6,6 +6,7 @@ PODS:
   - Hero (1.6.1)
   - lottie-ios (3.2.1)
   - Mantis (1.7.1)
+  - SwiftLint (0.43.1)
   - WaveAnimationView (1.0.2)
 
 DEPENDENCIES:
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - Hero
   - lottie-ios
   - Mantis (~> 1.7.1)
+  - SwiftLint
   - WaveAnimationView
 
 SPEC REPOS:
@@ -27,6 +29,7 @@ SPEC REPOS:
     - Hero
     - lottie-ios
     - Mantis
+    - SwiftLint
     - WaveAnimationView
 
 SPEC CHECKSUMS:
@@ -37,8 +40,9 @@ SPEC CHECKSUMS:
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
   lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
   Mantis: 0c6052cf902f7b3b9ede7302ddc1116b64b4effe
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
 
-PODFILE CHECKSUM: 999d9e459c5684f727db426cb746590c6125c9ac
+PODFILE CHECKSUM: 9f0f719bb9198e03900d9223ecd4abb03bde2ceb
 
 COCOAPODS: 1.10.1

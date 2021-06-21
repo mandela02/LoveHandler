@@ -56,7 +56,7 @@ class T03MemoryListViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        onViewDidAppearSignal.send(Void());
+        onViewDidAppearSignal.send(Void())
         onSearchStringChange.send("")
     }
     
@@ -97,7 +97,6 @@ class T03MemoryListViewController: BaseViewController {
         textFieldInsideSearchBar?.textColor = UIColor.white
         textFieldInsideSearchBar?.backgroundColor = Colors.pink
     }
-    
     
     override func keyboarDidShow(keyboardHeight: CGFloat) {
         super.keyboarDidShow(keyboardHeight: keyboardHeight)
@@ -145,14 +144,12 @@ class T03MemoryListViewController: BaseViewController {
         searchController.searchBar.resignFirstResponder()
     }
     
-    
     @IBAction func toTopButtonAction(_ sender: Any) {
         collectionView.setContentOffset(CGPoint(x: -10, y: -10), animated: true)
     }
 }
 
-
-extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout  {
+extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let memory = memories[safe: indexPath.item],
               let data = memory.image,
@@ -196,7 +193,6 @@ extension T03MemoryListViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let memory = self.memories[safe: indexPath.item] else { return }
 
-        
         if isKeyboardShow {
             searchController.searchBar.resignFirstResponder()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in

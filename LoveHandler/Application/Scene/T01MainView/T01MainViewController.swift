@@ -100,14 +100,14 @@ class T01MainViewController: BaseViewController {
         
         output.progress
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue:  { [weak self] in
+            .sink(receiveValue: { [weak self] in
                 self?.heartView.progress = $0
             })
             .store(in: &cancellables)
         
         output.numberOfDay
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue:  { [weak self] in
+            .sink(receiveValue: { [weak self] in
                 self?.heartView.numberOfDay = $0
             })
             .store(in: &cancellables)
@@ -124,7 +124,7 @@ class T01MainViewController: BaseViewController {
                     self?.floaterHeartView.startAnimation()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         self?.floaterHeartView.stopAnimation()
-                        isAnimating = false;
+                        isAnimating = false
                     })
                 }
             })

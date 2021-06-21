@@ -14,4 +14,5 @@ target 'LoveHandler' do
   pod 'Hero'
   pod 'DeviceKit'
   pod 'Mantis', '~> 1.7.1'
+  pod 'SwiftLint'
 end

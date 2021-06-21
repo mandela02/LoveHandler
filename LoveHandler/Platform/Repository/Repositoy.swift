@@ -16,17 +16,17 @@ enum DatabaseResponse {
 
 protocol RepositoryType {
     associatedtype T
-    var entityName : String { get }
+    var entityName: String { get }
     func countAll() -> DatabaseResponse
     func fetchAllData() -> DatabaseResponse
     func fetchRequest(predicate: String, value: String) -> DatabaseResponse
     func save() -> DatabaseResponse
-    func delete(model: T) -> Void
+    func delete(model: T)
     func publisher() -> AnyPublisher<Void, Never>
 }
 
 class Repository<T: NSManagedObject>: RepositoryType {
-    var container: NSPersistentContainer{
+    var container: NSPersistentContainer {
         PersistenceManager.shared.persistentContainer
     }
     

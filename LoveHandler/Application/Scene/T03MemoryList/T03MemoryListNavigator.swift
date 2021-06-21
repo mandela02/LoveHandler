@@ -34,7 +34,7 @@ class T03MemoryListNavigator: T03MemoryListNavigatorType {
                                                       useCase: UseCaseProvider.defaultProvider.getMemoryUseCase())
         viewController.isInEditMode = false
 
-        navigationController?.present(viewController,animated: true, completion: nil)
+        navigationController?.present(viewController, animated: true, completion: nil)
     }
     
     func toMemory(model: CDMemory) {
@@ -50,7 +50,7 @@ class T03MemoryListNavigator: T03MemoryListNavigatorType {
 
         viewController.isInEditMode = true
         
-        navigationController?.present(viewController,animated: true, completion: nil)
+        navigationController?.present(viewController, animated: true, completion: nil)
     }
 
 }

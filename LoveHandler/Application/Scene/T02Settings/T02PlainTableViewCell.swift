@@ -36,7 +36,6 @@ class T02PlainTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-     
     func setupCell(title: String) {
         label.text = title
     }

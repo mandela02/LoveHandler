@@ -98,7 +98,6 @@ class PersonView: BaseView, NibLoadable {
         }
     }
     
-    
     @objc private func handleImageTap(_ sender: UITapGestureRecognizer? = nil) {
         picker?.showActionSheet()
     }

@@ -30,7 +30,7 @@ class T03MemoryListUseCase: T03MemoryListUseCaseType {
             } else {
                 return []
             }
-        case .error(error: let error):
+        case .error(error: _):
             return []
         }
     }
@@ -44,7 +44,7 @@ class T03MemoryListUseCase: T03MemoryListUseCaseType {
             } else {
                 return []
             }
-        case .error(error: let error):
+        case .error(error: _):
             return []
         }
     }

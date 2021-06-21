@@ -37,7 +37,6 @@ struct Strings {
         return languageCode.rawValue
     }
     
-    
     static var localeIdentifier: String {
         return Settings.appLanguage.value
     }

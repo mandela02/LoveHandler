@@ -21,7 +21,6 @@ class T05ImageControllerViewCell: UICollectionViewCell {
         imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
         
-        
         imageView.contentMode = .scaleAspectFit
         imageView.image = SystemImage.checkMark.image
         imageView.tintColor = UIColor.white
@@ -33,8 +32,6 @@ class T05ImageControllerViewCell: UICollectionViewCell {
         imageView.image = nil
         checkMarkImageView.isHidden = true
     }
-    
-    
     
     func setupCell(image: UIImage, isSelected: Bool = false) {
         self.imageView.image = image

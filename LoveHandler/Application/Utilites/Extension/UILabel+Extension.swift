@@ -68,7 +68,7 @@ extension UILabel {
     
     func getFontSize() -> CGFloat {
         let text: NSMutableAttributedString = NSMutableAttributedString(attributedString: self.attributedText!)
-        text.setAttributes([NSAttributedString.Key.font: self.font],
+        text.setAttributes([NSAttributedString.Key.font: self.font as Any],
                            range: NSRange(location: 0, length: text.length))
         
         let context: NSStringDrawingContext = NSStringDrawingContext()

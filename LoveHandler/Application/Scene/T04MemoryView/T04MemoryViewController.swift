@@ -62,7 +62,7 @@ class T04MemoryViewController: BaseViewController {
         addGesture()
         addPicker()
         
-        if (!isInEditMode) {
+        if !isInEditMode {
             bigContainerViewTopConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - 50
         }
     }
@@ -76,7 +76,6 @@ class T04MemoryViewController: BaseViewController {
         let chooseDateTap = UITapGestureRecognizer()
         dateContainerStackView.isUserInteractionEnabled = true
         dateContainerStackView.addGestureRecognizer(chooseDateTap)
-        
         
         guard let viewModel = viewModel else { return }
         
@@ -300,7 +299,6 @@ extension T04MemoryViewController {
         backgroundTap?.delegate = self
     }
     
-    
     private func addGesture() {
         imageTap = UITapGestureRecognizer(target: self, action: #selector(handleImageTap(_:)))
         addGestureToImageViewIfNeeded(isNeeded: true)
@@ -345,13 +343,12 @@ extension T04MemoryViewController {
 // MARK: - UIGestureRecognizerDelegate
 extension T04MemoryViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if gestureRecognizer == backgroundTap && (touch.view == backgroundContentView || contentTextView.isFirstResponder)  {
+        if gestureRecognizer == backgroundTap && (touch.view == backgroundContentView || contentTextView.isFirstResponder) {
             return true
         }
-        return false;
+        return false
     }
 }
-
 
 // MARK: - ImagePickerDelegate
 extension T04MemoryViewController: ImagePickerDelegate {
@@ -379,7 +376,7 @@ extension T04MemoryViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if (!decelerate) {
+        if !decelerate {
             resetHeightConstraint()
         }
     }

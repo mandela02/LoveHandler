@@ -1,4 +1,3 @@
-
 //
 //  floater.swift
 //  floaters
@@ -10,7 +9,6 @@
 import UIKit
 
 @IBDesignable public class Floater: UIView {
-    
     
     var image1: UIImage?
     var image2: UIImage?
@@ -129,7 +127,6 @@ import UIKit
     }
     
     func startAnimation() {
-        
         if !isAnimating {
             print("Start Animating")
             isAnimating = true
@@ -149,10 +146,8 @@ import UIKit
             }
             imagesArray += [image1, image2, image3, image4]
             if !imagesArray.isEmpty {
-                for i in imagesArray {
-                    if i != nil {
-                        actualImages.append(i!)
-                    }
+                for i in imagesArray where i != nil {
+                    actualImages.append(i!)
                 }
             }
             
@@ -219,7 +214,7 @@ import UIKit
             print("Already Animating")
         }
     }
-    
+
     func stopAnimation() {
         print("Stop Animating")
         views = []
@@ -231,11 +226,11 @@ import UIKit
         }
     }
     
-    func randomFloatBetweenNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat{
+    func randomFloatBetweenNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
     }
     
-    func randomIntBetweenNumbers(firstNum: Int, secondNum: Int) -> Int{
+    func randomIntBetweenNumbers(firstNum: Int, secondNum: Int) -> Int {
         return firstNum + Int(arc4random_uniform(UInt32(secondNum - firstNum + 1)))
     }
 }

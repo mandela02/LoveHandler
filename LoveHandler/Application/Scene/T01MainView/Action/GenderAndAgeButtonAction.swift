@@ -12,7 +12,6 @@ enum GenderAndAgeButtonAction: CaseIterable, EnumName {
     case chooseDateOfBirth
     case chooseColor
     
-
     func getName() -> String {
         switch self {
         case .chooseGender:

@@ -61,7 +61,6 @@ extension UIAlertController {
             }
         }))
         
-        
         let cancelAlertAction = UIAlertAction(title: cancelButtontTitle,
                                               style: .cancel,
                                               handler: {_ in })
@@ -73,8 +72,8 @@ extension UIAlertController {
     
     static func alertDialog(title: String,
                             message: String,
-                            argument: Any) -> Future<Any?, Never>  {
-        return Future() { promise in
+                            argument: Any) -> Future<Any?, Never> {
+        return Future { promise in
             let alert = UIAlertController(title: title,
                                           message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -88,7 +87,7 @@ extension UIAlertController {
     }
     
     static func errorDialog(title: String,
-                            message: String)   {
+                            message: String) {
         let alert = UIAlertController(title: title,
                                       message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in

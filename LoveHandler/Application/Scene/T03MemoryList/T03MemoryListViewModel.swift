@@ -48,7 +48,6 @@ class T03MemoryListViewModel: BaseViewModel {
                                                         scheduler: DispatchQueue.main)
             .eraseToAnyPublisher()
         
-        
         let memories = Publishers.CombineLatest(refreshDataTrigger, searchTrigger)
             .map { [weak self] _, searchString -> [CDMemory] in
                 guard let self = self else { return [] }
@@ -70,7 +69,6 @@ class T03MemoryListViewModel: BaseViewModel {
         return Output(noRespone: noResponse,
                       memories: memories)
     }
-    
     
     struct Input {
         let viewDidAppear: AnyPublisher<Void, Never>

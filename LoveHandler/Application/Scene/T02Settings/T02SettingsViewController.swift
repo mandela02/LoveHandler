@@ -118,7 +118,7 @@ extension T02SettingsViewController: UITableViewDataSource {
         else { return UITableViewCell() }
         let row = sectionInfo.cells[indexPath.row]
         switch row.info.type {
-        case .normal(let icon, let title, let isDisable):
+        case .normal(let icon, let title, _):
             let cell = tableView.dequeueReusableCell(NormalSettingTableViewCell.self, for: indexPath)
             cell.bind(icon: icon, title: title)
             return cell
@@ -132,7 +132,7 @@ extension T02SettingsViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(SettingWithSubTitleTableViewCell.self, for: indexPath)
             cell.bind(icon: icon, title: title, subTitle: subTitle)
             return cell
-        case .plain(title: let title, isDisable: let isDisable):
+        case .plain(title: let title, isDisable: _):
             let cell = T02PlainTableViewCell()
             cell.setupCell(title: title)
             return cell
@@ -151,7 +151,6 @@ extension T02SettingsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        let cell = dataSource[indexPath.section].cells[indexPath.row]
         return true
     }
     

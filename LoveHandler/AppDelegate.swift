@@ -9,7 +9,7 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window:UIWindow?
+    var window: UIWindow?
     var navigator: AppNavigator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -25,9 +25,8 @@ extension AppDelegate {
         
         navigator = AppNavigator(window: window)
         if Settings.isFirstTimeOpenApp.value {
-            _ = UseCaseProvider.defaultProvider.getAppUseCase().save();
+            _ = UseCaseProvider.defaultProvider.getAppUseCase().save()
             Settings.isFirstTimeOpenApp.value = false
         }
     }
 }
-

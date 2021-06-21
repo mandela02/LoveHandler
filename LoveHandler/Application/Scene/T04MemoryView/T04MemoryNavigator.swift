@@ -30,7 +30,7 @@ class T04MemoryNavigator: T04MemoryNavigatorType {
     }
     
     func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never> {
-        return Future() { promise in
+        return Future { promise in
             let dialog = DatePickerDialog(textColor: Colors.paleVioletRed,
                                           buttonColor: Colors.mediumVioletRed,
                                           locale: Locale(identifier: Strings.localeIdentifier))

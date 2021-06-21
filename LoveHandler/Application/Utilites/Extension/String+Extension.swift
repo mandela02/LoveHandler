@@ -72,7 +72,6 @@ extension String {
         return UIImage(systemName: self)
     }
     
-
     func getFont(fontSize: CGFloat, isBold: Bool = false) -> UIFont {
         if let font = UIFont(name: self, size: fontSize) {
             return font

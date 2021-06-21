@@ -12,7 +12,7 @@ class AnimationUtility: UIViewController, CAAnimationDelegate {
     static let kSlideAnimationDuration: CFTimeInterval = 0.4
     
     static func viewSlideInFromRight(toLeft views: UIView) {
-        var transition: CATransition? = nil
+        var transition: CATransition?
         transition = CATransition.init()
         transition?.duration = kSlideAnimationDuration
         transition?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -22,7 +22,7 @@ class AnimationUtility: UIViewController, CAAnimationDelegate {
     }
     
     static func viewSlideInFromLeft(toRight views: UIView) {
-        var transition: CATransition? = nil
+        var transition: CATransition?
         transition = CATransition.init()
         transition?.duration = kSlideAnimationDuration
         transition?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -32,7 +32,7 @@ class AnimationUtility: UIViewController, CAAnimationDelegate {
     }
     
     static func viewSlideInFromTop(toBottom views: UIView) {
-        var transition: CATransition? = nil
+        var transition: CATransition?
         transition = CATransition.init()
         transition?.duration = kSlideAnimationDuration
         transition?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -42,7 +42,7 @@ class AnimationUtility: UIViewController, CAAnimationDelegate {
     }
     
     static func viewSlideInFromBottom(toTop views: UIView) {
-        var transition: CATransition? = nil
+        var transition: CATransition?
         transition = CATransition.init()
         transition?.duration = kSlideAnimationDuration
         transition?.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)

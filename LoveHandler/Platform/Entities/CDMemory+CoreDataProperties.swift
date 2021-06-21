@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension CDMemory {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CDMemory> {
@@ -25,7 +24,7 @@ extension CDMemory {
 
 }
 
-extension CDMemory : Identifiable {
+extension CDMemory: Identifiable {
 
 }
 
