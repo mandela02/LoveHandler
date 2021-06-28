@@ -51,7 +51,7 @@ extension Person {
         self.dateOfBirth = object.dateOfBirth
         self.image = UIImage(data: object.image)
     }
-    
+        
     func toObject() -> JsonObjectPerson {
         return JsonObjectPerson(name: self.name ?? "",
                                  gender: self.gender?.rawValue ?? 0,
@@ -60,7 +60,21 @@ extension Person {
     }
     
     func save(forKey key: Target) {
-        let savedObject = self.toObject()
+        var savedPerson: Person
+        switch key {
+        case .you:
+            savedPerson = Person(name: self.name ?? "You",
+                                 gender: .female,
+                                 dateOfBirth: DefaultDateFormatter.date(from: "2001/5/23")?.timeIntervalSince1970,
+                                 image: Gender.female.defaultImage)
+        case .soulmate:
+            savedPerson = Person(name: self.name ?? "Your Soulmate",
+                                 gender: .male,
+                                 dateOfBirth: DefaultDateFormatter.date(from: "1996/6/18")?.timeIntervalSince1970,
+                                 image: Gender.male.defaultImage)
+        }
+        
+        let savedObject = savedPerson.toObject()
         
         let encoder = JSONEncoder()
         let defaults = UserDefaults.standard

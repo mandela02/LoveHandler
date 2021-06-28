@@ -50,6 +50,7 @@ enum Keys: String {
     case weddingDate
     case background
     case isFirstTimeOpenApp
+    case isCompleteSetting
 }
 
 struct Settings {
@@ -63,4 +64,6 @@ struct Settings {
                                               defaultValue: nil)
     static var isFirstTimeOpenApp = UserDefault<Bool>(key: .isFirstTimeOpenApp,
                                                        defaultValue: true)
+    static var isCompleteSetting = UserDefault<Bool>(key: .isCompleteSetting,
+                                                       defaultValue: false)
 }

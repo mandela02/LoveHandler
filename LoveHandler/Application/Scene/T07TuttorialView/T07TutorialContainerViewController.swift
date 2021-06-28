@@ -27,14 +27,28 @@ class T07TutorialContainerViewController: BaseViewController {
         super.setupView()
         navigationController?.setNavigationBarHidden(true, animated: true)
         backgroundImageView.image = ImageNames.love1.image
-
     }
     
     override func bindViewModel() {
         super.bindViewModel()
         nextButton.tapPublisher.sink { [weak self] _ in
-            self?.pageViewController?.goToNextPage()
+            guard let self = self else { return }
+            self.pageViewController?.goToNextPage()
         }
+        .store(in: &cancellables)
+
+        skipButton.tapPublisher.flatMap { _ in
+            UIAlertController.alertDialog(title: "Your sure?",
+                                          message: "last chance",
+                                          argument: 0)
+        }
+        .sink(receiveValue: { _ in
+            Person().save(forKey: .you)
+            Person().save(forKey: .soulmate)
+            Settings.isCompleteSetting.value = true
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            appDelegate.navigator?.setRootViewController()
+        })
         .store(in: &cancellables)
     }
     

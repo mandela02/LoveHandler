@@ -44,6 +44,10 @@ class T07TuttorialViewController: BaseViewController {
 
     private var person = CurrentValueSubject<Person, Never>(Person())
     var tutorialStep: TutorialStep?
+    
+    var savedPerson: Person {
+        return self.person.value
+    }
 
     private var isSettingViewController = true
     
@@ -87,7 +91,7 @@ class T07TuttorialViewController: BaseViewController {
         .store(in: &cancellables)
 
         nameTextField.textPublisher.sink { [weak self] value in
-            self?.person.value.name = value
+            self?.person.value.name = value == "" ? nil : value
         }
         .store(in: &cancellables)
                 
