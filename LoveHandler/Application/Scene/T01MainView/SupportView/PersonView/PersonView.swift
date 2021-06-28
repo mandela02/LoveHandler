@@ -104,7 +104,7 @@ class PersonView: BaseView, NibLoadable {
         
     private func loadPerson(from person: Person) {
         nameLabel.text = person.name
-        genderLabel.text = "\(person.gender.symbol) \(person.age) "
+        genderLabel.text = "\(person.gender?.symbol ?? "") \(person.age) "
         
         if let zodiac = person.zodiacSign {
             zodiacLabel.text = "\(zodiac.symbol) \(zodiac.name)"
@@ -117,7 +117,7 @@ class PersonView: BaseView, NibLoadable {
             avatarImageView.contentMode = .scaleAspectFill
         } else {
             avatarImageView.contentMode = .scaleAspectFit
-            avatarImageView.image = person.gender.defaultImage
+            avatarImageView.image = person.gender?.defaultImage
         }
     }
     

@@ -22,9 +22,9 @@ class AppNavigator: AppNavigatorType {
     
     func setRootViewController() {
         let navigationController = BaseNavigationController()
-        let mainViewController = T01MainViewController.instantiateFromStoryboard()
-        let navigator = T01MainViewNavigator(navigationController: navigationController)
-        mainViewController.viewModel = T01MainViewViewModel(navigator: navigator)
+        let mainViewController = T07TuttorialViewController.instantiateFromStoryboard()
+        // let navigator = T01MainViewNavigator(navigationController: navigationController)
+        // mainViewController.viewModel = T01MainViewViewModel(navigator: navigator)
         
         navigationController.setViewControllers([mainViewController], animated: false)
             
