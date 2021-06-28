@@ -64,14 +64,14 @@ extension Person {
         switch key {
         case .you:
             savedPerson = Person(name: self.name ?? "You",
-                                 gender: .female,
-                                 dateOfBirth: DefaultDateFormatter.date(from: "2001/5/23")?.timeIntervalSince1970,
-                                 image: Gender.female.defaultImage)
+                                 gender: self.gender ?? .female,
+                                 dateOfBirth: self.dateOfBirth ?? DefaultDateFormatter.date(from: "2001/5/23")?.timeIntervalSince1970,
+                                 image: self.image ?? Gender.female.defaultImage)
         case .soulmate:
             savedPerson = Person(name: self.name ?? "Your Soulmate",
-                                 gender: .male,
-                                 dateOfBirth: DefaultDateFormatter.date(from: "1996/6/18")?.timeIntervalSince1970,
-                                 image: Gender.male.defaultImage)
+                                 gender: self.gender ?? .male,
+                                 dateOfBirth: self.dateOfBirth ?? DefaultDateFormatter.date(from: "1996/6/18")?.timeIntervalSince1970,
+                                 image: self.image ?? Gender.male.defaultImage)
         }
         
         let savedObject = savedPerson.toObject()

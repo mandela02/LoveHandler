@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Mantis
 
 enum TutorialStep {
     case firstStep
@@ -41,8 +42,9 @@ class T07TuttorialViewController: BaseViewController {
     let tapGesture = UITapGestureRecognizer(target: self, action: nil)
 
     private var cancellables = Set<AnyCancellable>()
-
+    private var picker: ImagePickerHelper?
     private var person = CurrentValueSubject<Person, Never>(Person())
+    
     var tutorialStep: TutorialStep?
     
     var savedPerson: Person {
@@ -61,6 +63,8 @@ class T07TuttorialViewController: BaseViewController {
         dateTextField.isUserInteractionEnabled = false
         person.value.gender = tutorialStep == .firstStep ? .female : .male
         setupDatePicker()
+        addPicker()
+        setupAvatarUserInteraction()
         if let step = tutorialStep {
             setupPlaceholder(step: step)
         }
@@ -95,7 +99,8 @@ class T07TuttorialViewController: BaseViewController {
         }
         .store(in: &cancellables)
                 
-        tapGesture.tapPublisher.sink { _ in
+        tapGesture.tapPublisher.sink { [weak self] _ in
+            self?.picker?.showActionSheet()
         }
         .store(in: &cancellables)
         
@@ -122,6 +127,10 @@ class T07TuttorialViewController: BaseViewController {
             if let dateOfBirth = person.dateOfBirth {
                 self.dateTextField.text = Date(timeIntervalSince1970: dateOfBirth).dayMonthYearString
             }
+            
+            if let image = person.image {
+                self.avatarImageView.image = image
+            }
         }
         .store(in: &cancellables)
     }
@@ -143,5 +152,49 @@ extension T07TuttorialViewController {
     
     private func setupAvatarUserInteraction() {
         avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.addGestureRecognizer(tapGesture)
     }
+    
+    private func addPicker() {
+        picker = ImagePickerHelper(title: LocalizedString.t01ImagePickerTitle,
+                                   message: LocalizedString.t01ImagePickerSubTitle)
+        
+        picker?.delegate = self
+    }
+}
+
+// MARK: - ImagePickerDelegate
+extension T07TuttorialViewController: ImagePickerDelegate {
+    func cameraHandle(image: UIImage) {
+        cropImage(image: image)
+    }
+    
+    func libraryHandle(images: [UIImage]) {
+        if !images.isEmpty {
+            cropImage(image: images.first!)
+        }
+    }
+    
+    private func cropImage(image: UIImage) {
+        var config = Mantis.Config()
+        config.cropShapeType = .circle(maskOnly: true)
+        let cropViewController = Mantis.cropViewController(image: image, config: config)
+        cropViewController.delegate = self
+        self.present(cropViewController, animated: true)
+    }
+}
+
+extension T07TuttorialViewController: CropViewControllerDelegate {
+    func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation) {
+        self.dismiss(animated: true) { [weak self] in
+            self?.person.value.image = cropped
+        }
+    }
+    
+    func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
+        self.dismiss(animated: true) { [weak self] in
+            self?.person.value.image = original
+        }
+    }
+    
 }
