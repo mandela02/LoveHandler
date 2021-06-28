@@ -29,15 +29,6 @@ enum TutorialStep {
             return "your parter birthday"
         }
     }
-    
-    var genderHolder: String {
-        switch self {
-        case .firstStep:
-            return "your gender"
-        case .secondStep:
-            return "your parter gender"
-        }
-    }
 }
 
 class T07TuttorialViewController: BaseViewController {
@@ -54,6 +45,8 @@ class T07TuttorialViewController: BaseViewController {
     private var person = CurrentValueSubject<Person, Never>(Person())
     var tutorialStep: TutorialStep?
 
+    private var isSettingViewController = true
+    
     override func refreshView() {
         super.refreshView()
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -61,8 +54,12 @@ class T07TuttorialViewController: BaseViewController {
 
     override func setupView() {
         avatarImageView.image = Gender.female.defaultImage
-        
         dateTextField.isUserInteractionEnabled = false
+        person.value.gender = tutorialStep == .firstStep ? .female : .male
+        setupDatePicker()
+        if let step = tutorialStep {
+            setupPlaceholder(step: step)
+        }
     }
     
     override func setupTheme() {
@@ -79,8 +76,13 @@ class T07TuttorialViewController: BaseViewController {
         super.bindViewModel()
         
         datePicker.datePublisher.sink { [weak self] date in
-            self?.person.value.dateOfBirth = date
-            self?.datePicker.date = date
+            guard let self = self else { return }
+            if self.isSettingViewController {
+                self.isSettingViewController = false
+            } else {
+                self.person.value.dateOfBirth = date.timeIntervalSince1970
+            }
+            self.datePicker.date = date
         }
         .store(in: &cancellables)
 
@@ -114,7 +116,7 @@ class T07TuttorialViewController: BaseViewController {
             }
             
             if let dateOfBirth = person.dateOfBirth {
-                self.dateTextField.text = dateOfBirth.dayMonthYearString
+                self.dateTextField.text = Date(timeIntervalSince1970: dateOfBirth).dayMonthYearString
             }
         }
         .store(in: &cancellables)
@@ -122,11 +124,9 @@ class T07TuttorialViewController: BaseViewController {
 }
 
 extension T07TuttorialViewController {
-    
     func setupPlaceholder(step: TutorialStep) {
         nameTextField.placeholder = step.namePlaceHolder
         dateTextField.placeholder = step.datePlaceHolder
-        genderButton.setTitle(step.genderHolder, for: .normal)
     }
     
     private func setupDatePicker() {

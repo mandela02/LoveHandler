@@ -140,8 +140,8 @@ class T01MainViewController: BaseViewController {
 
 extension T01MainViewController {
     private func setUpLover() {
-        firstLoverView.person = Person(name: "Test person 1", gender: .male, dateOfBirth: Date())
-        secondLoverView.person = Person(name: "Test person 1", gender: .female, dateOfBirth: Date())
+        firstLoverView.person = Person(name: "Test person 1", gender: .male, dateOfBirth: Date().timeIntervalSince1970)
+        secondLoverView.person = Person(name: "Test person 1", gender: .female, dateOfBirth: Date().timeIntervalSince1970)
     }
     
     private func setupBackground(data: Data?) {

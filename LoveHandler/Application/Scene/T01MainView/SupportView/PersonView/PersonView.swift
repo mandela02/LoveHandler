@@ -140,19 +140,23 @@ extension PersonView {
                                       buttonColor: Colors.mediumVioletRed,
                                       locale: Locale(identifier: Strings.localeIdentifier))
         
+        guard let date = person?.dateOfBirth else {
+            return
+        }
+        
         dialog.overrideUserInterfaceStyle = .light
         dialog.datePicker.overrideUserInterfaceStyle = .light
         
         dialog.show(LocalizedString.t01DatePickerTitleTitle,
                     doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
                     cancelButtonTitle: LocalizedString.t01CancelButtonTitle,
-                    defaultDate: person?.dateOfBirth ?? Date(),
+                    defaultDate: Date(timeIntervalSince1970: date),
                     minimumDate: Constant.minDate,
                     maximumDate: Date(),
                     datePickerMode: .date) { [weak self] date in
             guard let self = self else { return }
             if let date = date {
-                self.person?.dateOfBirth = date
+                self.person?.dateOfBirth = date.timeIntervalSince1970
             }
         }
     }

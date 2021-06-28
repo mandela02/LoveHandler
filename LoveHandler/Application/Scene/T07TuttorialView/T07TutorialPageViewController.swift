@@ -31,6 +31,24 @@ class T07TutorialPageViewController: UIPageViewController {
                                 direction: .forward,
                                 animated: true,
                                 completion: nil)
+        
+        for view in self.view.subviews where view is UIScrollView {
+            if let view = view as? UIScrollView {
+                view.isScrollEnabled = false
+            }
+        }
+    }
+    
+    func goToNextPage() {
+        self.setViewControllers([secondViewController],
+                                direction: .forward,
+                                animated: true,
+                                completion: nil)
+        for view in self.view.subviews where view is UIScrollView {
+            if let view = view as? UIScrollView {
+                view.isScrollEnabled = true
+            }
+        }
     }
 }
 

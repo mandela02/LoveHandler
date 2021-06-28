@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Gender: CaseIterable, EnumName {
+enum Gender: Int, CaseIterable, EnumName {
     case female
     case male
     case intersexual
@@ -52,5 +52,9 @@ enum Gender: CaseIterable, EnumName {
     
     func getName() -> String {
         return "\(symbol) \(name)"
+    }
+    
+    static func getGender(from index: Int) -> Gender {
+        return allCases[safe: index] ?? .female
     }
 }
