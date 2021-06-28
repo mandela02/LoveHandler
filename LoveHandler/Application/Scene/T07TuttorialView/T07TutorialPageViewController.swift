@@ -8,15 +8,16 @@
 import UIKit
 
 class T07TutorialPageViewController: UIPageViewController {
-    
     lazy var firstViewController: UIViewController = {
-        let mainViewController = T07TuttorialViewController.instantiateFromStoryboard()
-        return mainViewController
+        let viewController = T07TuttorialViewController.instantiateFromStoryboard()
+        viewController.tutorialStep = .firstStep
+        return viewController
     }()
 
     lazy var secondViewController: UIViewController = {
-        let mainViewController = T07TuttorialViewController.instantiateFromStoryboard()
-        return mainViewController
+        let viewController = T07TuttorialViewController.instantiateFromStoryboard()
+        viewController.tutorialStep = .secondStep
+        return viewController
     }()
 
     var index = 1
@@ -47,15 +48,19 @@ extension T07TutorialPageViewController: UIPageViewControllerDelegate {
 extension T07TutorialPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if index == 1 { return nil }
-        index -= 1
-        return firstViewController
+        if let viewController = viewController as? T07TuttorialViewController {
+            if viewController.tutorialStep == .firstStep { return nil }
+            return firstViewController
+        }
+        return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if index == 2 { return nil }
-        index += 1
-        return secondViewController
+        if let viewController = viewController as? T07TuttorialViewController {
+            if viewController.tutorialStep == .secondStep { return nil }
+            return secondViewController
+        }
+        return nil
     }
 }

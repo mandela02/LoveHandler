@@ -12,10 +12,17 @@ class T07TutorialContainerViewController: BaseViewController {
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var backgroundImageView: UIImageView!
+    
     override func setupView() {
         super.setupView()
         navigationController?.setNavigationBarHidden(true, animated: true)
         backgroundImageView.image = ImageNames.love1.image
+
+    }
+    
+    override func dismissView() {
+        super.dismissView()
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func setupTheme() {

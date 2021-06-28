@@ -87,7 +87,7 @@
         <!--Tutorial Page View Controller-->
         <scene sceneID="AgV-iJ-086">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="tmU-aG-GKo" customClass="T07TutorialPageViewController" customModule="LoveHandler" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="tmU-aG-GKo" customClass="T07TutorialPageViewController" customModule="LoveHandler" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIc-ei-KjL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="835" y="43"/>
