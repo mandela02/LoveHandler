@@ -141,7 +141,9 @@ class T01MainViewController: BaseViewController {
 extension T01MainViewController {
     private func setUpLover() {
         firstLoverView.person = Person.get(fromKey: .you)
+        firstLoverView.target = .you
         secondLoverView.person = Person.get(fromKey: .soulmate)
+        secondLoverView.target = .soulmate
     }
     
     private func setupBackground(data: Data?) {

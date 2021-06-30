@@ -22,9 +22,14 @@ class PersonView: BaseView, NibLoadable {
         didSet {
             if let person = person {
                 loadPerson(from: person)
+                if let target = target {
+                    person.save(forKey: target)
+                }
             }
         }
     }
+    
+    var target: Target?
 
     private var picker: ImagePickerHelper?
     private var isImageSet = false
