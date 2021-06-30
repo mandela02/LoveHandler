@@ -13,6 +13,11 @@
 		840B829E267EE17A007A82F0 /* BackgroundSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B829D267EE17A007A82F0 /* BackgroundSettingUseCase.swift */; };
 		840B82A2267EEB16007A82F0 /* T05BackgroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B82A1267EEB16007A82F0 /* T05BackgroundViewModel.swift */; };
 		840B82A4267F13AA007A82F0 /* UIActivityViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B82A3267F13AA007A82F0 /* UIActivityViewController+Extension.swift */; };
+		840B82A926839E2D007A82F0 /* T07TuttorialViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840B82A826839E2D007A82F0 /* T07TuttorialViewController.storyboard */; };
+		840B82AB2684EFD0007A82F0 /* T07TuttorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B82AA2684EFCF007A82F0 /* T07TuttorialViewController.swift */; };
+		84183764268A1CA200571008 /* T07TutorialContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84183763268A1CA200571008 /* T07TutorialContainerViewController.storyboard */; };
+		84183766268A1DCC00571008 /* T07TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84183765268A1DCC00571008 /* T07TutorialPageViewController.swift */; };
+		84183768268A1DFC00571008 /* T07TutorialContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84183767268A1DFC00571008 /* T07TutorialContainerViewController.swift */; };
 		8423D1A2263B31D800106030 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1A1263B31D800106030 /* RoundButton.swift */; };
 		8423D1DC263BD1B200106030 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */; };
 		846F3E10266E6F8200BB9D3B /* heart-button.json in Resources */ = {isa = PBXBuildFile; fileRef = 846F3E0F266E6F8100BB9D3B /* heart-button.json */; };
@@ -127,7 +132,12 @@
 		840B829D267EE17A007A82F0 /* BackgroundSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSettingUseCase.swift; sourceTree = "<group>"; };
 		840B82A1267EEB16007A82F0 /* T05BackgroundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T05BackgroundViewModel.swift; sourceTree = "<group>"; };
 		840B82A3267F13AA007A82F0 /* UIActivityViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityViewController+Extension.swift"; sourceTree = "<group>"; };
+		840B82A826839E2D007A82F0 /* T07TuttorialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T07TuttorialViewController.storyboard; sourceTree = "<group>"; };
+		840B82AA2684EFCF007A82F0 /* T07TuttorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T07TuttorialViewController.swift; sourceTree = "<group>"; };
 		8410F730267659A600846442 /* LoveHandler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LoveHandler.entitlements; sourceTree = "<group>"; };
+		84183763268A1CA200571008 /* T07TutorialContainerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T07TutorialContainerViewController.storyboard; sourceTree = "<group>"; };
+		84183765268A1DCC00571008 /* T07TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T07TutorialPageViewController.swift; sourceTree = "<group>"; };
+		84183767268A1DFC00571008 /* T07TutorialContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T07TutorialContainerViewController.swift; sourceTree = "<group>"; };
 		8423D1A1263B31D800106030 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
 		846F3E0F266E6F8100BB9D3B /* heart-button.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "heart-button.json"; sourceTree = "<group>"; };
@@ -257,6 +267,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		840B82A726839E09007A82F0 /* T07TuttorialView */ = {
+			isa = PBXGroup;
+			children = (
+				840B82A826839E2D007A82F0 /* T07TuttorialViewController.storyboard */,
+				840B82AA2684EFCF007A82F0 /* T07TuttorialViewController.swift */,
+				84183763268A1CA200571008 /* T07TutorialContainerViewController.storyboard */,
+				84183765268A1DCC00571008 /* T07TutorialPageViewController.swift */,
+				84183767268A1DFC00571008 /* T07TutorialContainerViewController.swift */,
+			);
+			path = T07TuttorialView;
+			sourceTree = "<group>";
+		};
 		84729824267271F600DFB3ED /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +386,7 @@
 		84AB1F612629F21500A01F9E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				840B82A726839E09007A82F0 /* T07TuttorialView */,
 				84C1A42B267A6AC8001D18E5 /* T05BackgroundView */,
 				8472987326747F0200DFB3ED /* T04MemoryView */,
 				8472982D26727A3600DFB3ED /* T03MemoryList */,
@@ -695,10 +718,12 @@
 				84AB1F152628BCB600A01F9E /* heart_wave.json in Resources */,
 				84AB1F642629F27B00A01F9E /* T01MainViewController.storyboard in Resources */,
 				8472985E2673BF0500DFB3ED /* MemoryCollectionViewCell.xib in Resources */,
+				84183764268A1CA200571008 /* T07TutorialContainerViewController.storyboard in Resources */,
 				84AB1FCB262ABCE600A01F9E /* Localizable.strings in Resources */,
 				84C1A42D267A6AF8001D18E5 /* T05BackgroundViewController.storyboard in Resources */,
 				84AB1F9C2629FC8000A01F9E /* PersonView.xib in Resources */,
 				8472987B2674887C00DFB3ED /* T04MemoryViewController.storyboard in Resources */,
+				840B82A926839E2D007A82F0 /* T07TuttorialViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,6 +797,7 @@
 				84AB1F092628B3C100A01F9E /* Int+Extension.swift in Sources */,
 				84AB2041262E904E00A01F9E /* T2SettingsNavigator.swift in Sources */,
 				8472980E267262AE00DFB3ED /* FloaterView.swift in Sources */,
+				84183768268A1DFC00571008 /* T07TutorialContainerViewController.swift in Sources */,
 				840B829C267EDDF3007A82F0 /* AppUseCase.swift in Sources */,
 				84AB1F962629F6EB00A01F9E /* AppNavigator.swift in Sources */,
 				84DDAB722674A62300132A18 /* T04MemoryViewModel.swift in Sources */,
@@ -786,6 +812,7 @@
 				84AB1FD4262AC92C00A01F9E /* ImageNames.swift in Sources */,
 				84AB1F4B2628C88900A01F9E /* Mirror+Extension.swift in Sources */,
 				84AB1FAD262A090500A01F9E /* Person.swift in Sources */,
+				84183766268A1DCC00571008 /* T07TutorialPageViewController.swift in Sources */,
 				84AB212B263B06F500A01F9E /* PersistenceManager.swift in Sources */,
 				84AB1FBE262AB95200A01F9E /* Strings.swift in Sources */,
 				8472982F26727A5000DFB3ED /* T03MemoryListViewModel.swift in Sources */,
@@ -812,6 +839,7 @@
 				84AB1F112628B41C00A01F9E /* HeartView.swift in Sources */,
 				84AB1F3D2628C88900A01F9E /* DateFormatter+Extension.swift in Sources */,
 				84AB1F492628C88900A01F9E /* Collection+Extension.swift in Sources */,
+				840B82AB2684EFD0007A82F0 /* T07TuttorialViewController.swift in Sources */,
 				840B82A2267EEB16007A82F0 /* T05BackgroundViewModel.swift in Sources */,
 				84AB1FFB262B270600A01F9E /* LoveProgressView.swift in Sources */,
 				84AB201C262DD1D200A01F9E /* T01MainViewNavigator.swift in Sources */,
@@ -941,7 +969,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -997,7 +1025,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

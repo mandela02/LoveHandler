@@ -22,9 +22,14 @@ class PersonView: BaseView, NibLoadable {
         didSet {
             if let person = person {
                 loadPerson(from: person)
+                if let target = target {
+                    person.save(forKey: target)
+                }
             }
         }
     }
+    
+    var target: Target?
 
     private var picker: ImagePickerHelper?
     private var isImageSet = false
@@ -104,7 +109,7 @@ class PersonView: BaseView, NibLoadable {
         
     private func loadPerson(from person: Person) {
         nameLabel.text = person.name
-        genderLabel.text = "\(person.gender.symbol) \(person.age) "
+        genderLabel.text = "\(person.gender?.symbol ?? "") \(person.age) "
         
         if let zodiac = person.zodiacSign {
             zodiacLabel.text = "\(zodiac.symbol) \(zodiac.name)"
@@ -117,7 +122,7 @@ class PersonView: BaseView, NibLoadable {
             avatarImageView.contentMode = .scaleAspectFill
         } else {
             avatarImageView.contentMode = .scaleAspectFit
-            avatarImageView.image = person.gender.defaultImage
+            avatarImageView.image = person.gender?.defaultImage
         }
     }
     
@@ -140,19 +145,23 @@ extension PersonView {
                                       buttonColor: Colors.mediumVioletRed,
                                       locale: Locale(identifier: Strings.localeIdentifier))
         
+        guard let date = person?.dateOfBirth else {
+            return
+        }
+        
         dialog.overrideUserInterfaceStyle = .light
         dialog.datePicker.overrideUserInterfaceStyle = .light
         
         dialog.show(LocalizedString.t01DatePickerTitleTitle,
                     doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
                     cancelButtonTitle: LocalizedString.t01CancelButtonTitle,
-                    defaultDate: person?.dateOfBirth ?? Date(),
+                    defaultDate: Date(timeIntervalSince1970: date),
                     minimumDate: Constant.minDate,
                     maximumDate: Date(),
                     datePickerMode: .date) { [weak self] date in
             guard let self = self else { return }
             if let date = date {
-                self.person?.dateOfBirth = date
+                self.person?.dateOfBirth = date.timeIntervalSince1970
             }
         }
     }

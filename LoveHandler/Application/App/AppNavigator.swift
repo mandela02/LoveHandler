@@ -14,20 +14,33 @@ protocol AppNavigatorType {
 
 class AppNavigator: AppNavigatorType {
     var window: UIWindow?
-        
+    
     init(window: UIWindow?) {
         self.window = window
         setRootViewController()
     }
     
     func setRootViewController() {
-        let navigationController = BaseNavigationController()
-        let mainViewController = T01MainViewController.instantiateFromStoryboard()
-        let navigator = T01MainViewNavigator(navigationController: navigationController)
-        mainViewController.viewModel = T01MainViewViewModel(navigator: navigator)
-        
-        navigationController.setViewControllers([mainViewController], animated: false)
+        if Settings.isCompleteSetting.value {
+            let navigationController = BaseNavigationController()
+            let mainViewController = T01MainViewController.instantiateFromStoryboard()
+            let navigator = T01MainViewNavigator(navigationController: navigationController)
+            mainViewController.viewModel = T01MainViewViewModel(navigator: navigator)
+            navigationController.setViewControllers([mainViewController], animated: false)
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
+            UIView.transition(with: window ?? UIWindow(),
+                              duration: 0.3,
+                              options: .transitionCrossDissolve,
+                              animations: nil, completion: nil)
+        } else {
             
-        window?.rootViewController = navigationController
+            let navigationController = BaseNavigationController()
+            let mainViewController = T07TutorialContainerViewController.instantiateFromStoryboard()
+            
+            navigationController.setViewControllers([mainViewController], animated: false)
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
+        }
     }
 }

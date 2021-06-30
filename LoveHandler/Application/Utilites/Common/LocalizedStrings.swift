@@ -92,5 +92,5 @@ struct LocalizedString {
     static var t05DeleteAlertTitle: String { return String(localizedKey: "t05DeleteAlertTitle") }
 
     static var okButton: String { return String(localizedKey: "okButton") }
-    static var cancelButton: String { return String(localizedKey: "t05DeleteAlertTitle") }
+    static var cancelButton: String { return String(localizedKey: "cancelButton") }
 }
