@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C00-ef-roi">
-                                <rect key="frame" x="50" y="309.5" width="314" height="60"/>
+                                <rect key="frame" x="50" y="304.5" width="314" height="60"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="VX7-uO-4jB">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
@@ -57,7 +57,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fG-vN-SID">
-                                <rect key="frame" x="10" y="99" width="394" height="150"/>
+                                <rect key="frame" x="10" y="94" width="394" height="150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYG-f0-icJ" customClass="SmallPersonView" customModule="LoveHandler" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="83" height="150"/>
@@ -76,7 +76,7 @@
                                     <constraint firstItem="SEx-ly-teH" firstAttribute="height" secondItem="IYG-f0-icJ" secondAttribute="height" multiplier="2/3" id="1yj-m6-Aaf"/>
                                     <constraint firstItem="Zim-vY-pWe" firstAttribute="top" secondItem="5fG-vN-SID" secondAttribute="top" id="7VC-BC-fGz"/>
                                     <constraint firstAttribute="bottom" secondItem="Zim-vY-pWe" secondAttribute="bottom" id="AHN-jc-fsE"/>
-                                    <constraint firstAttribute="height" constant="150" id="Pec-xg-8on"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="Pec-xg-8on"/>
                                     <constraint firstAttribute="bottom" secondItem="IYG-f0-icJ" secondAttribute="bottom" id="SUG-fc-MC9"/>
                                     <constraint firstItem="SEx-ly-teH" firstAttribute="bottom" secondItem="5fG-vN-SID" secondAttribute="top" constant="50" id="ZXv-Uk-bmj"/>
                                     <constraint firstItem="IYG-f0-icJ" firstAttribute="top" secondItem="5fG-vN-SID" secondAttribute="top" id="fch-G8-FYs"/>
@@ -88,19 +88,19 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When did you start datting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43s-8L-dlT" customClass="BaseLabel" customModule="LoveHandler" customModuleProvider="target">
-                                <rect key="frame" x="50" y="274" width="314" height="20.5"/>
+                                <rect key="frame" x="50" y="269" width="314" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When is your wedding plan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuo-6N-xWS" customClass="BaseLabel" customModule="LoveHandler" customModuleProvider="target">
-                                <rect key="frame" x="50" y="394.5" width="314" height="20.5"/>
+                                <rect key="frame" x="50" y="389.5" width="314" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-Sw-0JJ">
-                                <rect key="frame" x="50" y="430" width="314" height="60"/>
+                                <rect key="frame" x="50" y="425" width="314" height="60"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="hN6-5S-8Xy">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
@@ -144,6 +144,7 @@
                             <constraint firstItem="zzb-Sw-0JJ" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="82B-6S-Rw2"/>
                             <constraint firstItem="C00-ef-roi" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="A52-dd-UjW"/>
                             <constraint firstItem="zzb-Sw-0JJ" firstAttribute="top" secondItem="Zuo-6N-xWS" secondAttribute="bottom" constant="15" id="Bze-SF-79U"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zzb-Sw-0JJ" secondAttribute="bottom" constant="50" id="Dru-7a-GkD"/>
                             <constraint firstItem="Zuo-6N-xWS" firstAttribute="top" secondItem="C00-ef-roi" secondAttribute="bottom" constant="25" id="GuL-Md-t7A"/>
                             <constraint firstItem="43s-8L-dlT" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="HLv-ZE-Xfo"/>
                             <constraint firstItem="IYG-f0-icJ" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="1/5" id="IxC-6T-hlr"/>
@@ -153,11 +154,12 @@
                             <constraint firstItem="zzb-Sw-0JJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="PC3-3P-Rob"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4yo-RS-cV5" secondAttribute="trailing" id="SUd-R6-aWy"/>
                             <constraint firstItem="Zuo-6N-xWS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="VTu-sc-x1Q"/>
-                            <constraint firstItem="5fG-vN-SID" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="55" id="alI-xi-qnB"/>
                             <constraint firstItem="5fG-vN-SID" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="eib-jh-6iE"/>
                             <constraint firstItem="Zuo-6N-xWS" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="iw3-BU-xGo"/>
+                            <constraint firstItem="5fG-vN-SID" firstAttribute="top" relation="lessThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="kcT-W5-OlQ"/>
                             <constraint firstItem="43s-8L-dlT" firstAttribute="top" secondItem="5fG-vN-SID" secondAttribute="bottom" constant="25" id="okf-1L-A2l"/>
                             <constraint firstItem="43s-8L-dlT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="vww-wb-yxP"/>
+                            <constraint firstItem="5fG-vN-SID" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" priority="500" constant="50" id="wGL-hc-dEp"/>
                         </constraints>
                     </view>
                     <connections>
