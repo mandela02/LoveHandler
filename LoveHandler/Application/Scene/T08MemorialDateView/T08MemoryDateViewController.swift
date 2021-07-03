@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class T08MemoryDateViewController: BaseViewController {
+class T08MemoryDateViewController: BaseTuttorialViewController {
     @IBOutlet weak var youView: SmallPersonView!
     @IBOutlet weak var soulMateView: SmallPersonView!
     @IBOutlet weak var startDateTitleLabel: UILabel!
@@ -18,7 +18,6 @@ class T08MemoryDateViewController: BaseViewController {
     @IBOutlet weak var weddingDateTextField: UITextField!
     @IBOutlet weak var weddingDatePicker: UIDatePicker!
     
-    let index = 3
     private var cancellables = Set<AnyCancellable>()
 
     override func setupView() {

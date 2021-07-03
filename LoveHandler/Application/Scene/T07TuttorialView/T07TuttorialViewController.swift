@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import Mantis
 
-class T07TuttorialViewController: BaseViewController {
+class T07TuttorialViewController: BaseTuttorialViewController {
     @IBOutlet weak var avatarImageView: RoundImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
@@ -21,9 +21,7 @@ class T07TuttorialViewController: BaseViewController {
     private var cancellables = Set<AnyCancellable>()
     private var picker: ImagePickerHelper?
     private var person = CurrentValueSubject<Person, Never>(Person())
-    
-    var index: Int?
-    
+        
     var namePlaceHolder: String {
         switch index {
         case 1:

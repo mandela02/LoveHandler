@@ -9,25 +9,26 @@ import UIKit
 import Combine
 
 class T07TutorialPageViewController: UIPageViewController {
-    lazy private var firstViewController: UIViewController = {
+    lazy private var firstViewController: BaseTuttorialViewController = {
         let viewController = T07TuttorialViewController.instantiateFromStoryboard()
         viewController.index = 1
         return viewController
     }()
     
-    lazy private var secondViewController: UIViewController = {
+    lazy private var secondViewController: BaseTuttorialViewController = {
         let viewController = T07TuttorialViewController.instantiateFromStoryboard()
         viewController.index = 2
         return viewController
     }()
     
-    lazy private var thirdViewController: UIViewController = {
+    lazy private var thirdViewController: BaseTuttorialViewController = {
         let viewController = T08MemoryDateViewController.instantiateFromStoryboard()
+        viewController.index = 3
         return viewController
     }()
     
     var currentIndex = 1
-    private var currentViewController: UIViewController?
+    private var currentViewController: BaseTuttorialViewController?
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -43,10 +44,40 @@ class T07TutorialPageViewController: UIPageViewController {
         currentViewController = firstViewController
     }
     
+    private func savePerson() {
+        if let firstViewController = firstViewController as? T07TuttorialViewController {
+            firstViewController.savedPerson.save(forKey: .you)
+        }
+        
+        if let secondViewController = secondViewController as? T07TuttorialViewController {
+            secondViewController.savedPerson.save(forKey: .soulmate)
+        }
+    }
+    
     func goToNextPage() {
         currentIndex += 1
+        guard let index = currentViewController?.index else { return }
         
-        if currentViewController is T08MemoryDateViewController {
+        switch index {
+        case 1:
+            self.setViewControllers([secondViewController],
+                                    direction: .forward,
+                                    animated: true,
+                                    completion: nil)
+            self.currentViewController = secondViewController
+            savePerson()
+        case 2:
+            self.setViewControllers([thirdViewController],
+                                    direction: .forward,
+                                    animated: true,
+                                    completion: nil)
+            self.currentViewController = thirdViewController
+            
+            savePerson()
+            if let thirdViewController = thirdViewController as? T08MemoryDateViewController {
+                thirdViewController.setupPerson()
+            }
+        case 3:
             UIAlertController.alertDialog(title: "Your sure?",
                                           message: "last chance",
                                           argument: 0)
@@ -64,34 +95,8 @@ class T07TutorialPageViewController: UIPageViewController {
                     appDelegate.navigator?.setRootViewController()
                 })
                 .store(in: &cancellables)
+        default:
             return
-        }
-        
-        guard let currentViewController = currentViewController as? T07TuttorialViewController else { return }
-        
-        if currentViewController.index == 1 {
-            self.setViewControllers([secondViewController],
-                                    direction: .forward,
-                                    animated: true,
-                                    completion: nil)
-            self.currentViewController = secondViewController
-            if let firstViewController = firstViewController as? T07TuttorialViewController {
-                firstViewController.savedPerson.save(forKey: .you)
-            }
-        } else if currentViewController.index == 2 {
-            self.setViewControllers([thirdViewController],
-                                    direction: .forward,
-                                    animated: true,
-                                    completion: nil)
-            self.currentViewController = thirdViewController
-            
-            if let secondViewController = secondViewController as? T07TuttorialViewController {
-                secondViewController.savedPerson.save(forKey: .soulmate)
-            }
-            
-            if let thirdViewController = thirdViewController as? T08MemoryDateViewController {
-                thirdViewController.setupPerson()
-            }
         }
     }
 }
@@ -107,42 +112,54 @@ extension T07TutorialPageViewController: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-            currentViewController = self.viewControllers?.first
-            if let viewController = currentViewController as? T07TuttorialViewController {
-                self.currentIndex = viewController.index ?? 0
-            } else if let viewController =  currentViewController as? T08MemoryDateViewController {
-                self.currentIndex = viewController.index
+            if let viewController = self.viewControllers?.first as? BaseTuttorialViewController {
+                self.currentViewController = viewController
+            }
+            self.currentIndex = currentViewController?.index ?? 0
+            savePerson()
+            if let viewController =  currentViewController as? T08MemoryDateViewController {
                 viewController.setupPerson()
             }
         }
     }
-    
 }
 
 extension T07TutorialPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let viewController = viewController as? T07TuttorialViewController {
-            if viewController.index == 1 { return nil }
+        guard let viewController = viewController as? BaseTuttorialViewController,
+              let index = viewController.index else {
+            return nil
+        }
+        
+        switch index {
+        case 1:
+            return nil
+        case 2:
             return firstViewController
-        } else if viewController is T08MemoryDateViewController {
+        case 3:
             return secondViewController
-        } else {
+        default:
             return nil
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if viewController is T08MemoryDateViewController {
+        
+        guard let viewController = viewController as? BaseTuttorialViewController,
+              let index = viewController.index else {
             return nil
-        } else if let viewController = viewController as? T07TuttorialViewController {
-            if viewController.index == 2 {
-                return thirdViewController
-            } else if viewController.index == 1 {
-                return secondViewController
-            } else { return secondViewController }
-        } else {
+        }
+        
+        switch index {
+        case 1:
+            return secondViewController
+        case 2:
+            return thirdViewController
+        case 3:
+            return nil
+        default:
             return nil
         }
     }
