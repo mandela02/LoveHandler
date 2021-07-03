@@ -24,7 +24,8 @@ class SmallPersonView: BaseView, NibLoadable {
     }
     
     func setupView(with person: Person) {
-        avatarImageView.image = person.image ?? person.gender?.defaultImage ?? Gender.male.defaultImage
-        nameLabel.text = person.name ?? "hello"
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.text = person.name
+        avatarImageView.image = person.image ?? person.gender?.defaultImage
     }
 }

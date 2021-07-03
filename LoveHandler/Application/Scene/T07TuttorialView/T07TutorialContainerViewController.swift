@@ -42,7 +42,8 @@ class T07TutorialContainerViewController: BaseViewController {
                                           message: "last chance",
                                           argument: 0)
         }
-        .sink(receiveValue: { _ in
+        .sink(receiveValue: { option in
+            if option == nil { return }
             Person().save(forKey: .you)
             Person().save(forKey: .soulmate)
             Settings.isCompleteSetting.value = true

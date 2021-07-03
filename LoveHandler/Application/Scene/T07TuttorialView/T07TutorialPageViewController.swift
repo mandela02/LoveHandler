@@ -85,8 +85,12 @@ class T07TutorialPageViewController: UIPageViewController {
                                     completion: nil)
             self.currentViewController = thirdViewController
             
-            if let firstViewController = secondViewController as? T07TuttorialViewController {
-                firstViewController.savedPerson.save(forKey: .soulmate)
+            if let secondViewController = secondViewController as? T07TuttorialViewController {
+                secondViewController.savedPerson.save(forKey: .soulmate)
+            }
+            
+            if let thirdViewController = thirdViewController as? T08MemoryDateViewController {
+                thirdViewController.setupPerson()
             }
         }
     }
@@ -108,8 +112,8 @@ extension T07TutorialPageViewController: UIPageViewControllerDelegate {
                 self.currentIndex = viewController.index ?? 0
             } else if let viewController =  currentViewController as? T08MemoryDateViewController {
                 self.currentIndex = viewController.index
+                viewController.setupPerson()
             }
-            
         }
     }
     

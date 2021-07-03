@@ -23,7 +23,10 @@ class T08MemoryDateViewController: BaseViewController {
 
     override func setupView() {
         super.setupView()
-        
+        setupDatePicker()
+    }
+    
+    func setupPerson() {
         youView.setupView(with: Person.get(fromKey: .you))
         soulMateView.setupView(with: Person.get(fromKey: .soulmate))
     }
@@ -35,5 +38,34 @@ class T08MemoryDateViewController: BaseViewController {
     
     override func bindViewModel() {
         super.bindViewModel()
+        startDatePicker.datePublisher
+            .sink { [weak self] date in
+                guard let self = self else { return }
+                self.startDateTextField.text = date.dayMonthYearString
+                Settings.relationshipStartDate.value = date
+        }.store(in: &cancellables)
+        
+        weddingDatePicker.datePublisher
+            .sink { [weak self] date in
+                guard let self = self else { return }
+                self.weddingDateTextField.text = date.dayMonthYearString
+                Settings.weddingDate.value = date
+        }.store(in: &cancellables)
+    }
+    
+    private func setupDatePicker() {
+        startDatePicker.locale = Locale(identifier: Strings.localeIdentifier)
+        startDatePicker.calendar = Calendar.gregorian
+        startDatePicker.maximumDate = Constant.maxDate
+        startDatePicker.minimumDate = Constant.minDate
+        startDatePicker.datePickerMode = .date
+        startDatePicker.date = SettingsHelper.relationshipStartDate.value
+        
+        weddingDatePicker.locale = Locale(identifier: Strings.localeIdentifier)
+        weddingDatePicker.calendar = Calendar.gregorian
+        weddingDatePicker.maximumDate = Constant.maxDate
+        weddingDatePicker.minimumDate = Constant.minDate
+        weddingDatePicker.datePickerMode = .date
+        weddingDatePicker.date = SettingsHelper.weddingDate.value
     }
 }
