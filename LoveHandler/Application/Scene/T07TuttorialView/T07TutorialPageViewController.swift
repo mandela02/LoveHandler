@@ -27,7 +27,7 @@ class T07TutorialPageViewController: UIPageViewController {
         return viewController
     }()
     
-    var currentIndex = 1
+    var currentIndex = CurrentValueSubject<Int, Never>(1)
     private var currentViewController: BaseTuttorialViewController?
     
     private var cancellables = Set<AnyCancellable>()
@@ -55,7 +55,7 @@ class T07TutorialPageViewController: UIPageViewController {
     }
     
     func goToNextPage() {
-        currentIndex += 1
+        currentIndex.send(currentIndex.value + 1)
         guard let index = currentViewController?.index else { return }
         
         switch index {
@@ -107,7 +107,7 @@ extension T07TutorialPageViewController: UIPageViewControllerDelegate {
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return currentIndex - 1
+        return currentIndex.value - 1
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -115,7 +115,7 @@ extension T07TutorialPageViewController: UIPageViewControllerDelegate {
             if let viewController = self.viewControllers?.first as? BaseTuttorialViewController {
                 self.currentViewController = viewController
             }
-            self.currentIndex = currentViewController?.index ?? 0
+            self.currentIndex.send(currentViewController?.index ?? 0)
             savePerson()
             if let viewController =  currentViewController as? T08MemoryDateViewController {
                 viewController.setupPerson()

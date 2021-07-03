@@ -31,6 +31,13 @@ class T07TutorialContainerViewController: BaseViewController {
     
     override func bindViewModel() {
         super.bindViewModel()
+        pageViewController?.currentIndex.sink(receiveValue: { [weak self] index in
+            guard let self = self else { return }
+            let title = index == 3 ? "Complete" : "Next"
+            self.nextButton.setTitle(title, for: .normal)
+        })
+        .store(in: &cancellables)
+
         nextButton.tapPublisher.sink { [weak self] _ in
             guard let self = self else { return }
             self.pageViewController?.goToNextPage()
