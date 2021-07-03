@@ -9,29 +9,6 @@ import UIKit
 import Combine
 import Mantis
 
-enum TutorialStep {
-    case firstStep
-    case secondStep
-    
-    var namePlaceHolder: String {
-        switch self {
-        case .firstStep:
-            return "your name"
-        case .secondStep:
-            return "your parter name"
-        }
-    }
-    
-    var datePlaceHolder: String {
-        switch self {
-        case .firstStep:
-            return "your birthday"
-        case .secondStep:
-            return "your parter birthday"
-        }
-    }
-}
-
 class T07TuttorialViewController: BaseViewController {
     @IBOutlet weak var avatarImageView: RoundImageView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -45,8 +22,30 @@ class T07TuttorialViewController: BaseViewController {
     private var picker: ImagePickerHelper?
     private var person = CurrentValueSubject<Person, Never>(Person())
     
-    var tutorialStep: TutorialStep?
+    var index: Int?
     
+    var namePlaceHolder: String {
+        switch index {
+        case 1:
+            return "your name"
+        case 2:
+            return "your parter name"
+        default:
+            return ""
+        }
+    }
+    
+    var datePlaceHolder: String {
+        switch index {
+        case 1:
+            return "your birthday"
+        case 2:
+            return "your parter birthday"
+        default:
+            return ""
+        }
+    }
+
     var savedPerson: Person {
         return self.person.value
     }
@@ -61,11 +60,11 @@ class T07TuttorialViewController: BaseViewController {
     override func setupView() {
         avatarImageView.image = Gender.female.defaultImage
         dateTextField.isUserInteractionEnabled = false
-        person.value.gender = tutorialStep == .firstStep ? .female : .male
+        person.value.gender = index == 1 ? .female : .male
         setupDatePicker()
         addPicker()
         setupAvatarUserInteraction()
-        if let step = tutorialStep {
+        if let step = index {
             setupPlaceholder(step: step)
         }
     }
@@ -137,9 +136,9 @@ class T07TuttorialViewController: BaseViewController {
 }
 
 extension T07TuttorialViewController {
-    func setupPlaceholder(step: TutorialStep) {
-        nameTextField.placeholder = step.namePlaceHolder
-        dateTextField.placeholder = step.datePlaceHolder
+    func setupPlaceholder(step: Int) {
+        nameTextField.placeholder = namePlaceHolder
+        dateTextField.placeholder = datePlaceHolder
     }
     
     private func setupDatePicker() {

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Memory Date View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="T08MemoryDateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="T08MemoryDateViewController" customModule="LoveHandler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4yo-RS-cV5">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C00-ef-roi">
+                                <rect key="frame" x="50" y="309.5" width="314" height="60"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="VX7-uO-4jB">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
+                                    </datePicker>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start dating time" borderStyle="roundedRect" placeholder="Date of birth " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6bW-px-NW3">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="VX7-uO-4jB" firstAttribute="top" secondItem="C00-ef-roi" secondAttribute="top" id="1B6-J8-5cD"/>
+                                    <constraint firstAttribute="bottom" secondItem="VX7-uO-4jB" secondAttribute="bottom" id="33r-PQ-FOo"/>
+                                    <constraint firstAttribute="trailing" secondItem="6bW-px-NW3" secondAttribute="trailing" id="7Uf-YG-eo2"/>
+                                    <constraint firstAttribute="trailing" secondItem="VX7-uO-4jB" secondAttribute="trailing" id="Ebg-0b-vhA"/>
+                                    <constraint firstItem="6bW-px-NW3" firstAttribute="top" secondItem="C00-ef-roi" secondAttribute="top" id="OTI-Cf-WLf"/>
+                                    <constraint firstItem="VX7-uO-4jB" firstAttribute="leading" secondItem="C00-ef-roi" secondAttribute="leading" id="YKW-Ew-cOP"/>
+                                    <constraint firstItem="6bW-px-NW3" firstAttribute="leading" secondItem="C00-ef-roi" secondAttribute="leading" id="avY-Za-gK8"/>
+                                    <constraint firstAttribute="height" constant="60" id="jyd-ZZ-aKn"/>
+                                    <constraint firstAttribute="bottom" secondItem="6bW-px-NW3" secondAttribute="bottom" id="jzO-LI-2TQ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fG-vN-SID">
+                                <rect key="frame" x="10" y="99" width="394" height="150"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYG-f0-icJ" customClass="SmallPersonView" customModule="LoveHandler" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="150"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zim-vY-pWe" customClass="SmallPersonView" customModule="LoveHandler" customModuleProvider="target">
+                                        <rect key="frame" x="311" y="0.0" width="83" height="150"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_line" translatesAutoresizingMaskIntoConstraints="NO" id="SEx-ly-teH">
+                                        <rect key="frame" x="83" y="-50" width="228" height="100"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="SEx-ly-teH" firstAttribute="height" secondItem="IYG-f0-icJ" secondAttribute="height" multiplier="2/3" id="1yj-m6-Aaf"/>
+                                    <constraint firstItem="Zim-vY-pWe" firstAttribute="top" secondItem="5fG-vN-SID" secondAttribute="top" id="7VC-BC-fGz"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zim-vY-pWe" secondAttribute="bottom" id="AHN-jc-fsE"/>
+                                    <constraint firstAttribute="height" constant="150" id="Pec-xg-8on"/>
+                                    <constraint firstAttribute="bottom" secondItem="IYG-f0-icJ" secondAttribute="bottom" id="SUG-fc-MC9"/>
+                                    <constraint firstItem="SEx-ly-teH" firstAttribute="bottom" secondItem="5fG-vN-SID" secondAttribute="top" constant="50" id="ZXv-Uk-bmj"/>
+                                    <constraint firstItem="IYG-f0-icJ" firstAttribute="top" secondItem="5fG-vN-SID" secondAttribute="top" id="fch-G8-FYs"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zim-vY-pWe" secondAttribute="trailing" id="jph-Od-pdx"/>
+                                    <constraint firstItem="Zim-vY-pWe" firstAttribute="leading" secondItem="SEx-ly-teH" secondAttribute="trailing" id="mmz-j9-5mN"/>
+                                    <constraint firstItem="IYG-f0-icJ" firstAttribute="leading" secondItem="5fG-vN-SID" secondAttribute="leading" id="nYu-EY-lYX"/>
+                                    <constraint firstItem="Zim-vY-pWe" firstAttribute="width" secondItem="IYG-f0-icJ" secondAttribute="width" id="qNL-gq-SKu"/>
+                                    <constraint firstItem="SEx-ly-teH" firstAttribute="leading" secondItem="IYG-f0-icJ" secondAttribute="trailing" id="wEv-oa-v9W"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When did you start datting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43s-8L-dlT" customClass="BaseLabel" customModule="LoveHandler" customModuleProvider="target">
+                                <rect key="frame" x="50" y="274" width="314" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When is your wedding plan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuo-6N-xWS" customClass="BaseLabel" customModule="LoveHandler" customModuleProvider="target">
+                                <rect key="frame" x="50" y="394.5" width="314" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-Sw-0JJ">
+                                <rect key="frame" x="50" y="430" width="314" height="60"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="hN6-5S-8Xy">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
+                                    </datePicker>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start dating time" borderStyle="roundedRect" placeholder="Date of birth " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YWu-yg-cFu">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hN6-5S-8Xy" secondAttribute="bottom" id="3sk-pJ-YJR"/>
+                                    <constraint firstAttribute="trailing" secondItem="hN6-5S-8Xy" secondAttribute="trailing" id="3ti-XT-sg0"/>
+                                    <constraint firstItem="hN6-5S-8Xy" firstAttribute="leading" secondItem="zzb-Sw-0JJ" secondAttribute="leading" id="5Vx-y9-R7n"/>
+                                    <constraint firstItem="YWu-yg-cFu" firstAttribute="leading" secondItem="zzb-Sw-0JJ" secondAttribute="leading" id="7OK-PU-HTX"/>
+                                    <constraint firstAttribute="bottom" secondItem="YWu-yg-cFu" secondAttribute="bottom" id="Aw5-Qc-kNj"/>
+                                    <constraint firstAttribute="trailing" secondItem="YWu-yg-cFu" secondAttribute="trailing" id="EuW-8y-mVA"/>
+                                    <constraint firstItem="hN6-5S-8Xy" firstAttribute="top" secondItem="zzb-Sw-0JJ" secondAttribute="top" id="JFD-5D-PTq"/>
+                                    <constraint firstAttribute="height" constant="60" id="Mk1-XP-ZfR"/>
+                                    <constraint firstItem="YWu-yg-cFu" firstAttribute="top" secondItem="zzb-Sw-0JJ" secondAttribute="top" id="NcV-3N-xD0"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="4yo-RS-cV5" secondAttribute="bottom" id="33P-gG-dLO"/>
+                            <constraint firstItem="C00-ef-roi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="3CE-lA-Kzi"/>
+                            <constraint firstItem="4yo-RS-cV5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="49x-sd-CK6"/>
+                            <constraint firstItem="zzb-Sw-0JJ" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="82B-6S-Rw2"/>
+                            <constraint firstItem="C00-ef-roi" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="A52-dd-UjW"/>
+                            <constraint firstItem="zzb-Sw-0JJ" firstAttribute="top" secondItem="Zuo-6N-xWS" secondAttribute="bottom" constant="15" id="Bze-SF-79U"/>
+                            <constraint firstItem="Zuo-6N-xWS" firstAttribute="top" secondItem="C00-ef-roi" secondAttribute="bottom" constant="25" id="GuL-Md-t7A"/>
+                            <constraint firstItem="43s-8L-dlT" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="HLv-ZE-Xfo"/>
+                            <constraint firstItem="IYG-f0-icJ" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="1/5" id="IxC-6T-hlr"/>
+                            <constraint firstItem="4yo-RS-cV5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="JHE-1o-hjI"/>
+                            <constraint firstItem="5fG-vN-SID" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="JtC-BZ-FoB"/>
+                            <constraint firstItem="C00-ef-roi" firstAttribute="top" secondItem="43s-8L-dlT" secondAttribute="bottom" constant="15" id="N2q-4j-xLE"/>
+                            <constraint firstItem="zzb-Sw-0JJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="PC3-3P-Rob"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4yo-RS-cV5" secondAttribute="trailing" id="SUd-R6-aWy"/>
+                            <constraint firstItem="Zuo-6N-xWS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="VTu-sc-x1Q"/>
+                            <constraint firstItem="5fG-vN-SID" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="55" id="alI-xi-qnB"/>
+                            <constraint firstItem="5fG-vN-SID" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="eib-jh-6iE"/>
+                            <constraint firstItem="Zuo-6N-xWS" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="iw3-BU-xGo"/>
+                            <constraint firstItem="43s-8L-dlT" firstAttribute="top" secondItem="5fG-vN-SID" secondAttribute="bottom" constant="25" id="okf-1L-A2l"/>
+                            <constraint firstItem="43s-8L-dlT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="vww-wb-yxP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="soulMateView" destination="Zim-vY-pWe" id="TLt-ad-MfB"/>
+                        <outlet property="startDatePicker" destination="VX7-uO-4jB" id="ouy-vh-U0V"/>
+                        <outlet property="startDateTextField" destination="6bW-px-NW3" id="VGB-tp-ZMn"/>
+                        <outlet property="startDateTitleLabel" destination="43s-8L-dlT" id="tmS-41-DUM"/>
+                        <outlet property="weddingDatePicker" destination="hN6-5S-8Xy" id="Ra0-Dt-9Z5"/>
+                        <outlet property="weddingDateTItleLabel" destination="Zuo-6N-xWS" id="b29-Dl-Y5D"/>
+                        <outlet property="weddingDateTextField" destination="YWu-yg-cFu" id="AJv-z3-aqU"/>
+                        <outlet property="youView" destination="IYG-f0-icJ" id="LWk-OQ-fVH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-65.217391304347828" y="34.821428571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart_line" width="493.5" height="186"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

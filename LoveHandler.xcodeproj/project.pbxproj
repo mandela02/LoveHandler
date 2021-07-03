@@ -18,6 +18,9 @@
 		84183764268A1CA200571008 /* T07TutorialContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84183763268A1CA200571008 /* T07TutorialContainerViewController.storyboard */; };
 		84183766268A1DCC00571008 /* T07TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84183765268A1DCC00571008 /* T07TutorialPageViewController.swift */; };
 		84183768268A1DFC00571008 /* T07TutorialContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84183767268A1DFC00571008 /* T07TutorialContainerViewController.swift */; };
+		8418376B268CCB4C00571008 /* T08MemoryDateViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8418376A268CCB4C00571008 /* T08MemoryDateViewController.storyboard */; };
+		8418376D268CCB6200571008 /* SmallPersonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8418376C268CCB6200571008 /* SmallPersonView.xib */; };
+		8418376F268CCED500571008 /* SmallPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418376E268CCED500571008 /* SmallPersonView.swift */; };
 		8423D1A2263B31D800106030 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1A1263B31D800106030 /* RoundButton.swift */; };
 		8423D1DC263BD1B200106030 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */; };
 		846F3E10266E6F8200BB9D3B /* heart-button.json in Resources */ = {isa = PBXBuildFile; fileRef = 846F3E0F266E6F8100BB9D3B /* heart-button.json */; };
@@ -120,6 +123,7 @@
 		84DDAB752674A6D500132A18 /* T04MemoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDAB742674A6D500132A18 /* T04MemoryUseCase.swift */; };
 		84DDAB782674A93B00132A18 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDAB772674A93B00132A18 /* UseCaseProvider.swift */; };
 		84DDAB7B2674B2C900132A18 /* T04MemoryNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDAB7A2674B2C900132A18 /* T04MemoryNavigator.swift */; };
+		84F039C8269007210069B48C /* T08MemoryDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F039C7269007210069B48C /* T08MemoryDateViewController.swift */; };
 		A58B088E50493D34567788CF /* Pods_LoveHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +142,9 @@
 		84183763268A1CA200571008 /* T07TutorialContainerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T07TutorialContainerViewController.storyboard; sourceTree = "<group>"; };
 		84183765268A1DCC00571008 /* T07TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T07TutorialPageViewController.swift; sourceTree = "<group>"; };
 		84183767268A1DFC00571008 /* T07TutorialContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T07TutorialContainerViewController.swift; sourceTree = "<group>"; };
+		8418376A268CCB4C00571008 /* T08MemoryDateViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T08MemoryDateViewController.storyboard; sourceTree = "<group>"; };
+		8418376C268CCB6200571008 /* SmallPersonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallPersonView.xib; sourceTree = "<group>"; };
+		8418376E268CCED500571008 /* SmallPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallPersonView.swift; sourceTree = "<group>"; };
 		8423D1A1263B31D800106030 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
 		846F3E0F266E6F8100BB9D3B /* heart-button.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "heart-button.json"; sourceTree = "<group>"; };
@@ -243,6 +250,7 @@
 		84DDAB742674A6D500132A18 /* T04MemoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T04MemoryUseCase.swift; sourceTree = "<group>"; };
 		84DDAB772674A93B00132A18 /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		84DDAB7A2674B2C900132A18 /* T04MemoryNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T04MemoryNavigator.swift; sourceTree = "<group>"; };
+		84F039C7269007210069B48C /* T08MemoryDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T08MemoryDateViewController.swift; sourceTree = "<group>"; };
 		A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -277,6 +285,17 @@
 				84183767268A1DFC00571008 /* T07TutorialContainerViewController.swift */,
 			);
 			path = T07TuttorialView;
+			sourceTree = "<group>";
+		};
+		84183769268CCB0B00571008 /* T08MemorialDateView */ = {
+			isa = PBXGroup;
+			children = (
+				8418376A268CCB4C00571008 /* T08MemoryDateViewController.storyboard */,
+				8418376C268CCB6200571008 /* SmallPersonView.xib */,
+				8418376E268CCED500571008 /* SmallPersonView.swift */,
+				84F039C7269007210069B48C /* T08MemoryDateViewController.swift */,
+			);
+			path = T08MemorialDateView;
 			sourceTree = "<group>";
 		};
 		84729824267271F600DFB3ED /* Repository */ = {
@@ -386,6 +405,7 @@
 		84AB1F612629F21500A01F9E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				84183769268CCB0B00571008 /* T08MemorialDateView */,
 				840B82A726839E09007A82F0 /* T07TuttorialView */,
 				84C1A42B267A6AC8001D18E5 /* T05BackgroundView */,
 				8472987326747F0200DFB3ED /* T04MemoryView */,
@@ -713,7 +733,9 @@
 				84AB2032262DF6B900A01F9E /* T02SettingsViewController.storyboard in Resources */,
 				84D21F212628B0A7007D43F2 /* LaunchScreen.storyboard in Resources */,
 				84D21F1E2628B0A7007D43F2 /* Assets.xcassets in Resources */,
+				8418376B268CCB4C00571008 /* T08MemoryDateViewController.storyboard in Resources */,
 				8472983626727A8800DFB3ED /* T03MemoryListViewController.storyboard in Resources */,
+				8418376D268CCB6200571008 /* SmallPersonView.xib in Resources */,
 				84AB1FF8262B265A00A01F9E /* LoveProgressView.xib in Resources */,
 				84AB1F152628BCB600A01F9E /* heart_wave.json in Resources */,
 				84AB1F642629F27B00A01F9E /* T01MainViewController.storyboard in Resources */,
@@ -817,6 +839,7 @@
 				84AB1FBE262AB95200A01F9E /* Strings.swift in Sources */,
 				8472982F26727A5000DFB3ED /* T03MemoryListViewModel.swift in Sources */,
 				840B829E267EE17A007A82F0 /* BackgroundSettingUseCase.swift in Sources */,
+				8418376F268CCED500571008 /* SmallPersonView.swift in Sources */,
 				84AB203E262DFAF900A01F9E /* SettingWithSwitchTableViewCell.swift in Sources */,
 				84C1A434267B974E001D18E5 /* T05ImageControllerViewCell.swift in Sources */,
 				847298262672721000DFB3ED /* Repositoy.swift in Sources */,
@@ -884,6 +907,7 @@
 				84AB1FD8262AC9EB00A01F9E /* LocalizedStrings.swift in Sources */,
 				84AB1F3B2628C88900A01F9E /* UITextView+Extension.swift in Sources */,
 				84AB2035262DF7F000A01F9E /* T02SettingsViewController.swift in Sources */,
+				84F039C8269007210069B48C /* T08MemoryDateViewController.swift in Sources */,
 				847298612673BF7000DFB3ED /* MemoryCollectionViewCell.swift in Sources */,
 				84AB1F532628C88900A01F9E /* UIImage+Extension.swift in Sources */,
 				84AB2022262DE9E500A01F9E /* T01MainViewViewModel.swift in Sources */,
