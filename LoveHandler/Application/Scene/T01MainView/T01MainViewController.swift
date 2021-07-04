@@ -13,7 +13,6 @@ import CombineCocoa
 
 class T01MainViewController: BaseViewController {
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var diaryButton: UIButton!
     @IBOutlet weak var settingButton: UIButton!
     
@@ -49,15 +48,12 @@ class T01MainViewController: BaseViewController {
     }
     
     override func setupLocalizedString() {
-        titleLabel.text = LocalizedString.t01MainScreenTitle
     }
     
     override func setupTheme() {
         settingButton.tintColor = UIColor.white
         diaryButton.tintColor = UIColor.white
         loveButton.tintColor = UIColor.red
-        
-        titleLabel.textColor = UIColor.white
     }
     
     override func bindViewModel() {
