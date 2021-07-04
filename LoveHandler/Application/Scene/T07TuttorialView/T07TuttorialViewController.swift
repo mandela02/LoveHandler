@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import Mantis
 
-class T07TuttorialViewController: BaseTuttorialViewController {
+class T07TuttorialViewController: BasePageViewChildController {
     @IBOutlet weak var avatarImageView: RoundImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!

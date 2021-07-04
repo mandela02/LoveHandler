@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DateCountViewController: BaseViewController {
+class T09DateCountViewController: BasePageViewChildController {
     
     @IBOutlet weak var yearView: NumberDisplayView!
     @IBOutlet weak var monthView: NumberDisplayView!

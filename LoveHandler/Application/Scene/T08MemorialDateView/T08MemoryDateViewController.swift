@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class T08MemoryDateViewController: BaseTuttorialViewController {
+class T08MemoryDateViewController: BasePageViewChildController {
     @IBOutlet weak var youView: SmallPersonView!
     @IBOutlet weak var soulMateView: SmallPersonView!
     @IBOutlet weak var startDateTitleLabel: UILabel!

@@ -16,7 +16,6 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var diaryButton: UIButton!
     @IBOutlet weak var settingButton: UIButton!
-    @IBOutlet weak var heartView: LoveProgressView!
     
     @IBOutlet weak var imageBackgroundView: UIImageView!
     
@@ -27,17 +26,10 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var floaterHeartView: Floater!
     
     private var cancellables = Set<AnyCancellable>()
-    private var viewDidAppearSignal = PassthroughSubject<Void, Never>()
     var viewModel: T01MainViewViewModel?
-    
-    override func deinitView() {
-        viewDidAppearSignal.send(completion: .finished)
-        cancellables.forEach { $0.cancel() }
-    }
-    
+        
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewDidAppearSignal.send(Void())
     }
     
     override func setupView() {
@@ -79,39 +71,15 @@ class T01MainViewController: BaseViewController {
         
         let onButtonTap = Publishers.Merge(settingButtonTap, diaryButtonTap)
             .eraseToAnyPublisher()
-        
-        let onSettingChange = Publishers.Merge(SettingsHelper.weddingDate
-                                                    .map { _ in }.eraseToAnyPublisher(),
-                                                SettingsHelper.relationshipStartDate
-                                                    .map { _ in }.eraseToAnyPublisher())
-            .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
-            .map { _ in }
-            .eraseToAnyPublisher()
-        
+                
         let input = T01MainViewViewModel.Input(onButtonTap: onButtonTap,
-                                               viewDidAppear: viewDidAppearSignal.eraseToAnyPublisher(),
-                                               onSettingChange: onSettingChange,
                                                onHeartButtonTap: loveButton.tapPublisher)
         let output = viewModel.transform(input)
         
         output.noResponser
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: {}).store(in: &cancellables)
-        
-        output.progress
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] in
-                self?.heartView.progress = $0
-            })
-            .store(in: &cancellables)
-        
-        output.numberOfDay
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] in
-                self?.heartView.numberOfDay = $0
-            })
-            .store(in: &cancellables)
-        
+                
         var isAnimating = false
         
         output
@@ -159,6 +127,5 @@ extension T01MainViewController {
         floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: Colors.lightPink)
         floaterHeartView.floaterImage3 = SystemImage.roundHeart.image.tintColor(with: Colors.pink)
         floaterHeartView.floaterImage4 = SystemImage.roundHeart.image.tintColor(with: Colors.hotPink)
-        
     }
 }

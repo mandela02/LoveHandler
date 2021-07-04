@@ -5,14 +5,13 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Date Count View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="DateCountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="DateCountViewController" customModule="LoveHandler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="T09DateCountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="T09DateCountViewController" customModule="LoveHandler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,19 +24,19 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FH2-iQ-3sk" customClass="NumberDisplayView" customModule="LoveHandler" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="93.5"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCm-84-koX" customClass="NumberDisplayView" customModule="LoveHandler" customModuleProvider="target">
                                                 <rect key="frame" x="95" y="0.0" width="89.5" height="93.5"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KMv-4r-728" customClass="NumberDisplayView" customModule="LoveHandler" customModuleProvider="target">
                                                 <rect key="frame" x="189.5" y="0.0" width="90" height="93.5"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUk-hk-4pf" customClass="NumberDisplayView" customModule="LoveHandler" customModuleProvider="target">
                                                 <rect key="frame" x="284.5" y="0.0" width="89.5" height="93.5"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -52,15 +51,15 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fa-Mx-B2o" customClass="NumberDisplayView" customModule="LoveHandler" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="83.5" height="83.5"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69a-An-0b9" customClass="NumberDisplayView" customModule="LoveHandler" customModuleProvider="target">
                                                 <rect key="frame" x="83.5" y="0.0" width="83.5" height="83.5"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lFg-Zk-dRo" customClass="NumberDisplayView" customModule="LoveHandler" customModuleProvider="target">
                                                 <rect key="frame" x="167" y="0.0" width="83.5" height="83.5"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -68,7 +67,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Q9o-Fl-hLb" firstAttribute="top" secondItem="o5H-6h-K3F" secondAttribute="bottom" constant="10" id="8pB-HN-af0"/>
                                     <constraint firstAttribute="width" secondItem="Cst-pr-xuO" secondAttribute="height" multiplier="2:1" id="LcJ-X7-J9E"/>
@@ -86,7 +85,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Cst-pr-xuO" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="1by-zg-I2o"/>
                             <constraint firstItem="Cst-pr-xuO" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="3Vv-Dh-1kl"/>
@@ -94,14 +93,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dayView" destination="QUk-hk-4pf" id="vOj-qL-qE0"/>
-                        <outlet property="hourView" destination="5fa-Mx-B2o" id="sJv-Gb-CE0"/>
-                        <outlet property="minuteView" destination="69a-An-0b9" id="wRX-Ql-gu4"/>
-                        <outlet property="monthView" destination="QCm-84-koX" id="Yc9-TI-EQx"/>
-                        <outlet property="secondView" destination="lFg-Zk-dRo" id="PFL-ri-eQF"/>
-                        <outlet property="todayLabel" destination="Q9o-Fl-hLb" id="Cb2-5f-0m7"/>
-                        <outlet property="weekView" destination="KMv-4r-728" id="7jc-Kz-ETd"/>
-                        <outlet property="yearView" destination="FH2-iQ-3sk" id="bte-jf-Dfq"/>
+                        <outlet property="dayView" destination="QUk-hk-4pf" id="Wkb-l4-EVb"/>
+                        <outlet property="hourView" destination="5fa-Mx-B2o" id="8Su-ro-7VN"/>
+                        <outlet property="minuteView" destination="69a-An-0b9" id="H3Q-Do-iaq"/>
+                        <outlet property="monthView" destination="QCm-84-koX" id="v8e-hB-lHr"/>
+                        <outlet property="secondView" destination="lFg-Zk-dRo" id="dht-rg-qYg"/>
+                        <outlet property="todayLabel" destination="Q9o-Fl-hLb" id="ePo-gY-Wo3"/>
+                        <outlet property="weekView" destination="KMv-4r-728" id="97k-vN-sjr"/>
+                        <outlet property="yearView" destination="FH2-iQ-3sk" id="rj3-JH-eTr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -109,9 +108,4 @@
             <point key="canvasLocation" x="-65.217391304347828" y="55.580357142857139"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
