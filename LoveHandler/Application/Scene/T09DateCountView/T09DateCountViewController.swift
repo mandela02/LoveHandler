@@ -31,15 +31,11 @@ class T09DateCountViewController: BasePageViewChildController {
     
     override func bindViewModel() {
         super.bindViewModel()
-        Publishers.Merge(SettingsHelper.weddingDate
-                            .map { _ in }.eraseToAnyPublisher(),
-                         SettingsHelper.relationshipStartDate
-                            .map { _ in }.eraseToAnyPublisher())
+        SettingsHelper.relationshipStartDate
             .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
-            .map { _ in }
             .eraseToAnyPublisher()
-            .sink { [weak self] _ in
-                self?.todayLabel.text = SettingsHelper.relationshipStartDate.value.dayMonthYearString
+            .sink { [weak self] date in
+                self?.todayLabel.text = date.dayMonthYearString
 
                 self?.timer?.invalidate()
                 self?.timer = nil
