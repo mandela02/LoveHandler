@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class T09DateCountViewController: BasePageViewChildController {
     
@@ -20,11 +21,30 @@ class T09DateCountViewController: BasePageViewChildController {
     
     @IBOutlet weak var todayLabel: BaseLabel!
     
+    private var timer: Timer?
+    private var cancellables = Set<AnyCancellable>()
+    
     override func setupView() {
         super.setupView()
-        calculate()
         todayLabel.text = SettingsHelper.relationshipStartDate.value.dayMonthYearString
         todayLabel.adjustsFontSizeToFitWidth = true
+    }
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        Publishers.Merge(SettingsHelper.weddingDate
+                            .map { _ in }.eraseToAnyPublisher(),
+                         SettingsHelper.relationshipStartDate
+                            .map { _ in }.eraseToAnyPublisher())
+            .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
+            .map { _ in }
+            .eraseToAnyPublisher()
+            .sink { [weak self] _ in
+                self?.timer?.invalidate()
+                self?.timer = nil
+                self?.calculate()
+            }
+            .store(in: &cancellables)
     }
     
     override func setupTheme() {
@@ -47,8 +67,8 @@ class T09DateCountViewController: BasePageViewChildController {
         hourView.setupLabel(with: "\(hour)", size: 15)
         minuteView.setupLabel(with: "\(minute)", size: 15)
         secondView.setupLabel(with: "\(second)", size: 15)
-
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             second += 1
             if second == 60 {
@@ -78,7 +98,7 @@ class T09DateCountViewController: BasePageViewChildController {
         let month = Date.countBetweenDate(component: .month, start: startDate, end: Date())
         let week = Date.countBetweenDate(component: .weekOfYear, start: startDate, end: Date())
         let day = Date.countBetweenDate(component: .day, start: startDate, end: Date())
-
+        
         
         yearView.setupLabel(with: "\(year)", title: "year")
         monthView.setupLabel(with: "\(month)", title: "month")
