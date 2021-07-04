@@ -252,7 +252,7 @@ extension Date {
 extension Date {
     static func countBetweenDate(component: Calendar.Component, start: Date, end: Date) -> Int {
         let components = Calendar.gregorian.dateComponents([component], from: start, to: end)
-        return components.day ?? 0
+        return components.value(for: component) ?? 0
     }
     
     func getAllDateInMonth() -> [Date] {

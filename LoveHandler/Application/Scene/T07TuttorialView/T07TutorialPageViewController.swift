@@ -107,7 +107,7 @@ extension T07TutorialPageViewController: UIPageViewControllerDelegate {
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return currentIndex.value - 1
+        return 0
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
