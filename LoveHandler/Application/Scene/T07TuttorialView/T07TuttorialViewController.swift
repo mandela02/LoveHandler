@@ -124,7 +124,7 @@ class T07TuttorialViewController: BasePageViewChildController {
             }
             
             if let dateOfBirth = person.dateOfBirth {
-                self.dateTextField.text = Date(timeIntervalSince1970: dateOfBirth).dayMonthYearString
+                self.dateTextField.text = Date(timeIntervalSince1970: dateOfBirth).dayMonthYearDayOfWeekString
             }
             
             if let image = person.image {

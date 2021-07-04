@@ -10,7 +10,9 @@ import UIKit
 class NumberDisplayView: UIView, NibLoadable {
     
     @IBOutlet weak var displayLabel: BaseLabel!
-    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleHeightConstraint: NSLayoutConstraint!
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupFromNib()
@@ -25,9 +27,16 @@ class NumberDisplayView: UIView, NibLoadable {
         
     private func setupView() {
         displayLabel.textColor = UIColor.white
+        titleLabel.textColor = UIColor.white
     }
     
-    func setupLabel(with content: String) {
+    func setupLabel(with content: String, title: String? = nil, size: CGFloat = 20) {
         displayLabel.text = content
+        
+        displayLabel.setFontSize(size)
+        
+        titleLabel.text = title
+        titleLabel.isHidden = title == nil
+        titleHeightConstraint.constant = title == nil ? 0 : 30
     }
 }

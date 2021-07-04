@@ -242,8 +242,14 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    var dayMonthYearString: String {
+    var dayMonthYearDayOfWeekString: String {
         let formatter = DateFormatter(dateFormat: "d/M/y (EEEE)")
+        formatter.locale = Locale(identifier: Strings.localeIdentifier)
+        return formatter.string(from: self)
+    }
+    
+    var dayMonthYearString: String {
+        let formatter = DateFormatter(dateFormat: "d MMMM y")
         formatter.locale = Locale(identifier: Strings.localeIdentifier)
         return formatter.string(from: self)
     }

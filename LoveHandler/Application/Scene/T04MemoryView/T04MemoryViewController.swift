@@ -96,7 +96,7 @@ class T04MemoryViewController: BaseViewController {
         
         output.date.sink { [weak self] date in
             guard let self = self else { return }
-            self.dateLabel.text = date.dayMonthYearString
+            self.dateLabel.text = date.dayMonthYearDayOfWeekString
         }.store(in: &cancellables)
         
         output.image.sink { [weak self] image in
@@ -247,7 +247,7 @@ extension T04MemoryViewController {
         switch viewPurpose {
         case .new:
             imageView.contentMode = .scaleAspectFit
-            dateLabel.text = Date().dayMonthYearString
+            dateLabel.text = Date().dayMonthYearDayOfWeekString
             contentTextView.text = titlePlaceHolder
             contentTextView.viewBorderWidth = 1
             contentTextView.viewBorderColor = Colors.pink
@@ -274,7 +274,7 @@ extension T04MemoryViewController {
             
             contentTextView.text = ""
             contentTextView.insertText(text)
-            dateLabel.text = Date(timeIntervalSince1970: TimeInterval(memory.displayedDate)).dayMonthYearString
+            dateLabel.text = Date(timeIntervalSince1970: TimeInterval(memory.displayedDate)).dayMonthYearDayOfWeekString
         }
     }
     

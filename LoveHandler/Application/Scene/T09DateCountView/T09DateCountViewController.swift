@@ -23,6 +23,13 @@ class T09DateCountViewController: BasePageViewChildController {
     override func setupView() {
         super.setupView()
         calculate()
+        todayLabel.text = SettingsHelper.relationshipStartDate.value.dayMonthYearString
+        todayLabel.adjustsFontSizeToFitWidth = true
+    }
+    
+    override func setupTheme() {
+        super.setupTheme()
+        todayLabel.textColor = UIColor.white
     }
     
     private func calculate() {
@@ -40,14 +47,15 @@ class T09DateCountViewController: BasePageViewChildController {
         var second = Date.countBetweenDate(component: .second, start: startDate, end: today)
             .quotientAndRemainder(dividingBy: 60).remainder
         
-        yearView.setupLabel(with: "\(year)")
-        monthView.setupLabel(with: "\(month)")
-        weekView.setupLabel(with: "\(week)")
-        dayView.setupLabel(with: "\(day)")
-        hourView.setupLabel(with: "\(hour)")
-        minuteView.setupLabel(with: "\(minute)")
-        secondView.setupLabel(with: "\(second)")
+        yearView.setupLabel(with: "\(year)", title: "year")
+        monthView.setupLabel(with: "\(month)", title: "month")
+        weekView.setupLabel(with: "\(week)", title: "week")
+        dayView.setupLabel(with: "\(day)", title: "day")
         
+        hourView.setupLabel(with: "\(hour)", size: 15)
+        minuteView.setupLabel(with: "\(minute)", size: 15)
+        secondView.setupLabel(with: "\(second)", size: 15)
+
         var remainMonth = Date.countBetweenDate(component: .month, start: startDate, end: today)
             .quotientAndRemainder(dividingBy: 12).remainder
         var remainWeek = Date.countBetweenDate(component: .weekOfYear, start: startDate, end: today)
@@ -91,13 +99,14 @@ class T09DateCountViewController: BasePageViewChildController {
                 year += 1
             }
             
-            self.yearView.setupLabel(with: "\(year)")
-            self.monthView.setupLabel(with: "\(month)")
-            self.weekView.setupLabel(with: "\(week)")
-            self.dayView.setupLabel(with: "\(day)")
-            self.hourView.setupLabel(with: "\(hour)")
-            self.minuteView.setupLabel(with: "\(minute)")
-            self.secondView.setupLabel(with: "\(second)")
+            self.yearView.setupLabel(with: "\(year)", title: "year")
+            self.monthView.setupLabel(with: "\(month)", title: "month")
+            self.weekView.setupLabel(with: "\(week)", title: "week")
+            self.dayView.setupLabel(with: "\(day)", title: "day")
+            
+            self.hourView.setupLabel(with: "\(hour)", size: 15)
+            self.minuteView.setupLabel(with: "\(minute)", size: 15)
+            self.secondView.setupLabel(with: "\(second)", size: 15)
         }
     }
 }
