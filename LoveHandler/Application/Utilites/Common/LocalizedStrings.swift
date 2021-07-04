@@ -93,4 +93,19 @@ struct LocalizedString {
 
     static var okButton: String { return String(localizedKey: "okButton") }
     static var cancelButton: String { return String(localizedKey: "cancelButton") }
+    
+    static var t07SkipButton: String { return String(localizedKey: "t07SkipButton") }
+    static var t07NextButton: String { return String(localizedKey: "t07NextButton") }
+    static var t07CompleteButton: String { return String(localizedKey: "t07CompleteButton") }
+    static var t07NamePlaceHolder: String { return String(localizedKey: "t07NamePlaceHolder") }
+    static var t07ParterNamePlaceHolder: String { return String(localizedKey: "t07ParterNamePlaceHolder") }
+    static var t07BirthdayPlaceHolder: String { return String(localizedKey: "t07BirthdayPlaceHolder") }
+    static var t07ParterbirthdayPlaceHolder: String { return String(localizedKey: "t07ParterbirthdayPlaceHolder") }
+    static var t08StartDateTitle: String { return String(localizedKey: "t08StartDateTitle") }
+    static var t08WeddingDateTitle: String { return String(localizedKey: "t08WeddingDateTitle") }
+
+    static var t08CompleteDialogTitle: String { return String(localizedKey: "t08CompleteDialogTitle") }
+    static var t08CompleteDialogSubTitle: String { return String(localizedKey: "t08CompleteDialogSubTitle") }
+    static var t07SkipDialogTitle: String { return String(localizedKey: "t07SkipDialogTitle") }
+    static var t07SkipDialogSubTitle: String { return String(localizedKey: "t07SkipDialogSubTitle") }
 }

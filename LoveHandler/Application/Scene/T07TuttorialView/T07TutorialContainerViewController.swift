@@ -31,6 +31,13 @@ class T07TutorialContainerViewController: BaseViewController {
     
     override func bindViewModel() {
         super.bindViewModel()
+        pageViewController?.currentIndex.sink(receiveValue: { [weak self] index in
+            guard let self = self else { return }
+            let title = index == 3 ? LocalizedString.t07CompleteButton : LocalizedString.t07NextButton
+            self.nextButton.setTitle(title, for: .normal)
+        })
+        .store(in: &cancellables)
+
         nextButton.tapPublisher.sink { [weak self] _ in
             guard let self = self else { return }
             self.pageViewController?.goToNextPage()
@@ -38,11 +45,12 @@ class T07TutorialContainerViewController: BaseViewController {
         .store(in: &cancellables)
 
         skipButton.tapPublisher.flatMap { _ in
-            UIAlertController.alertDialog(title: "Your sure?",
-                                          message: "last chance",
+            UIAlertController.alertDialog(title: LocalizedString.t07SkipDialogTitle,
+                                          message: LocalizedString.t07SkipDialogSubTitle,
                                           argument: 0)
         }
-        .sink(receiveValue: { _ in
+        .sink(receiveValue: { option in
+            if option == nil { return }
             Person().save(forKey: .you)
             Person().save(forKey: .soulmate)
             Settings.isCompleteSetting.value = true
@@ -63,5 +71,10 @@ class T07TutorialContainerViewController: BaseViewController {
         nextButton.setTitleColor(UIColor.white, for: .normal)
         nextButton.setTitleColor(UIColor.gray, for: .disabled)
         nextButton.backgroundColor = Colors.deepPink
+    }
+    
+    override func setupLocalizedString() {
+        super.setupLocalizedString()
+        skipButton.setTitle(LocalizedString.t07SkipButton, for: .normal)
     }
 }

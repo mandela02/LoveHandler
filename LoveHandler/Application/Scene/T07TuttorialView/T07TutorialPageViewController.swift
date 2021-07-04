@@ -9,23 +9,29 @@ import UIKit
 import Combine
 
 class T07TutorialPageViewController: UIPageViewController {
-    lazy private var firstViewController: UIViewController = {
+    lazy private var firstViewController: BaseTuttorialViewController = {
         let viewController = T07TuttorialViewController.instantiateFromStoryboard()
-        viewController.tutorialStep = .firstStep
+        viewController.index = 1
         return viewController
     }()
-
-    lazy private var secondViewController: UIViewController = {
+    
+    lazy private var secondViewController: BaseTuttorialViewController = {
         let viewController = T07TuttorialViewController.instantiateFromStoryboard()
-        viewController.tutorialStep = .secondStep
+        viewController.index = 2
         return viewController
     }()
-
-    var index = 1
-    var currentViewController: UIViewController?
+    
+    lazy private var thirdViewController: BaseTuttorialViewController = {
+        let viewController = T08MemoryDateViewController.instantiateFromStoryboard()
+        viewController.index = 3
+        return viewController
+    }()
+    
+    var currentIndex = CurrentValueSubject<Int, Never>(1)
+    private var currentViewController: BaseTuttorialViewController?
     
     private var cancellables = Set<AnyCancellable>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
@@ -36,37 +42,47 @@ class T07TutorialPageViewController: UIPageViewController {
                                 animated: true,
                                 completion: nil)
         currentViewController = firstViewController
-        for view in self.view.subviews where view is UIScrollView {
-            if let view = view as? UIScrollView {
-                view.isScrollEnabled = false
-            }
+    }
+    
+    private func savePerson() {
+        if let firstViewController = firstViewController as? T07TuttorialViewController {
+            firstViewController.savedPerson.save(forKey: .you)
+        }
+        
+        if let secondViewController = secondViewController as? T07TuttorialViewController {
+            secondViewController.savedPerson.save(forKey: .soulmate)
         }
     }
     
     func goToNextPage() {
-        guard let currentViewController = currentViewController as? T07TuttorialViewController else { return }
+        currentIndex.send(currentIndex.value + 1)
+        guard let index = currentViewController?.index else { return }
         
-        if currentViewController.tutorialStep == .firstStep {
+        switch index {
+        case 1:
             self.setViewControllers([secondViewController],
                                     direction: .forward,
                                     animated: true,
                                     completion: nil)
             self.currentViewController = secondViewController
-            for view in self.view.subviews where view is UIScrollView {
-                if let view = view as? UIScrollView {
-                    view.isScrollEnabled = true
-                }
-            }
+            savePerson()
+        case 2:
+            self.setViewControllers([thirdViewController],
+                                    direction: .forward,
+                                    animated: true,
+                                    completion: nil)
+            self.currentViewController = thirdViewController
             
-            if let firstViewController = firstViewController as? T07TuttorialViewController {
-                firstViewController.savedPerson.save(forKey: .you)
+            savePerson()
+            if let thirdViewController = thirdViewController as? T08MemoryDateViewController {
+                thirdViewController.setupPerson()
             }
-            
-        } else {
-            UIAlertController.alertDialog(title: "Your sure?",
-                                          message: "last chance",
+        case 3:
+            UIAlertController.alertDialog(title: LocalizedString.t08CompleteDialogTitle,
+                                          message: LocalizedString.t08CompleteDialogSubTitle,
                                           argument: 0)
-                .sink(receiveValue: { [weak self] _ in
+                .sink(receiveValue: { [weak self] option in
+                    if option == nil { return }
                     guard let self = self else { return }
                     if let firstViewController = self.firstViewController as? T07TuttorialViewController {
                         firstViewController.savedPerson.save(forKey: .you)
@@ -79,44 +95,72 @@ class T07TutorialPageViewController: UIPageViewController {
                     appDelegate.navigator?.setRootViewController()
                 })
                 .store(in: &cancellables)
+        default:
+            return
         }
-        
     }
 }
 
 extension T07TutorialPageViewController: UIPageViewControllerDelegate {
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return 2
+        return 3
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return index - 1
+        return currentIndex.value - 1
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-            currentViewController = self.viewControllers?.first
+            if let viewController = self.viewControllers?.first as? BaseTuttorialViewController {
+                self.currentViewController = viewController
+            }
+            self.currentIndex.send(currentViewController?.index ?? 0)
+            savePerson()
+            if let viewController =  currentViewController as? T08MemoryDateViewController {
+                viewController.setupPerson()
+            }
         }
     }
-    
 }
 
 extension T07TutorialPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let viewController = viewController as? T07TuttorialViewController {
-            if viewController.tutorialStep == .firstStep { return nil }
-            return firstViewController
+        guard let viewController = viewController as? BaseTuttorialViewController,
+              let index = viewController.index else {
+            return nil
         }
-        return nil
+        
+        switch index {
+        case 1:
+            return nil
+        case 2:
+            return firstViewController
+        case 3:
+            return secondViewController
+        default:
+            return nil
+        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if let viewController = viewController as? T07TuttorialViewController {
-            if viewController.tutorialStep == .secondStep { return nil }
-            return secondViewController
+        
+        guard let viewController = viewController as? BaseTuttorialViewController,
+              let index = viewController.index else {
+            return nil
         }
-        return nil
+        
+        switch index {
+        case 1:
+            return secondViewController
+        case 2:
+            return thirdViewController
+        case 3:
+            return nil
+        default:
+            return nil
+        }
     }
 }
