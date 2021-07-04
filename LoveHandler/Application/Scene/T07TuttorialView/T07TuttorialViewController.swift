@@ -25,9 +25,9 @@ class T07TuttorialViewController: BaseTuttorialViewController {
     var namePlaceHolder: String {
         switch index {
         case 1:
-            return "your name"
+            return LocalizedString.t07NamePlaceHolder
         case 2:
-            return "your parter name"
+            return LocalizedString.t07ParterNamePlaceHolder
         default:
             return ""
         }
@@ -36,9 +36,9 @@ class T07TuttorialViewController: BaseTuttorialViewController {
     var datePlaceHolder: String {
         switch index {
         case 1:
-            return "your birthday"
+            return LocalizedString.t07BirthdayPlaceHolder
         case 2:
-            return "your parter birthday"
+            return LocalizedString.t07ParterbirthdayPlaceHolder
         default:
             return ""
         }
@@ -71,6 +71,8 @@ class T07TuttorialViewController: BaseTuttorialViewController {
         super.setupTheme()
         genderButton.setTitleColor(UIColor.white, for: .normal)
         avatarImageView.backgroundColor = UIColor.white
+        nameTextField.textColor = Colors.deepPink
+        dateTextField.textColor = Colors.deepPink
     }
     
     override func setupLocalizedString() {

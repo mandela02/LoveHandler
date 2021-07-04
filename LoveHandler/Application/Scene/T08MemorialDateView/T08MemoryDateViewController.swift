@@ -52,6 +52,20 @@ class T08MemoryDateViewController: BaseTuttorialViewController {
         }.store(in: &cancellables)
     }
     
+    override func setupLocalizedString() {
+        super.setupLocalizedString()
+        weddingDateTItleLabel.text = LocalizedString.t08WeddingDateTitle
+        startDateTitleLabel.text = LocalizedString.t08StartDateTitle
+    }
+    
+    override func setupTheme() {
+        super.setupTheme()
+        weddingDateTItleLabel.textColor = UIColor.white
+        startDateTitleLabel.textColor = UIColor.white
+        startDateTextField.textColor = Colors.deepPink
+        weddingDateTextField.textColor = Colors.deepPink
+    }
+    
     private func setupDatePicker() {
         startDatePicker.locale = Locale(identifier: Strings.localeIdentifier)
         startDatePicker.calendar = Calendar.gregorian

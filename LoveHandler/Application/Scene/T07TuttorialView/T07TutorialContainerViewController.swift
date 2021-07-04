@@ -33,7 +33,7 @@ class T07TutorialContainerViewController: BaseViewController {
         super.bindViewModel()
         pageViewController?.currentIndex.sink(receiveValue: { [weak self] index in
             guard let self = self else { return }
-            let title = index == 3 ? "Complete" : "Next"
+            let title = index == 3 ? LocalizedString.t07CompleteButton : LocalizedString.t07NextButton
             self.nextButton.setTitle(title, for: .normal)
         })
         .store(in: &cancellables)
@@ -45,8 +45,8 @@ class T07TutorialContainerViewController: BaseViewController {
         .store(in: &cancellables)
 
         skipButton.tapPublisher.flatMap { _ in
-            UIAlertController.alertDialog(title: "Your sure?",
-                                          message: "last chance",
+            UIAlertController.alertDialog(title: LocalizedString.t07SkipDialogTitle,
+                                          message: LocalizedString.t07SkipDialogSubTitle,
                                           argument: 0)
         }
         .sink(receiveValue: { option in
@@ -71,5 +71,10 @@ class T07TutorialContainerViewController: BaseViewController {
         nextButton.setTitleColor(UIColor.white, for: .normal)
         nextButton.setTitleColor(UIColor.gray, for: .disabled)
         nextButton.backgroundColor = Colors.deepPink
+    }
+    
+    override func setupLocalizedString() {
+        super.setupLocalizedString()
+        skipButton.setTitle(LocalizedString.t07SkipButton, for: .normal)
     }
 }

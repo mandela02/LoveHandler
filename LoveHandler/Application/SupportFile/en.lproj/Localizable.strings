@@ -90,3 +90,19 @@
 
 "okButton" = "OK";
 "cancelButton" = "Cancel";
+
+"t07SkipButton" = "Skip";
+"t07NextButton" = "Next";
+"t07CompleteButton" = "Complete";
+"t07NamePlaceHolder" = "Your name is ...";
+"t07ParterNamePlaceHolder" = "Your love is ...";
+"t07BirthdayPlaceHolder" = "Your birthday is ...";
+"t07ParterbirthdayPlaceHolder" = "Your love's birthday is ...";
+"t07SkipDialogTitle" = "Are you sure you want to skip?";
+"t07SkipDialogSubTitle" = "You can change this information in app's Settings";
+
+"t08StartDateTitle" = "When did you start dating";
+"t08WeddingDateTitle" = "When is your wedding?";
+
+"t08CompleteDialogTitle" = "You are all set. Do you happy with this information? ";
+"t08CompleteDialogSubTitle" = "You can change this information in app's Settings";

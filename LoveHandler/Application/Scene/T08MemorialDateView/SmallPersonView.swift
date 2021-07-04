@@ -26,6 +26,7 @@ class SmallPersonView: BaseView, NibLoadable {
     func setupView(with person: Person) {
         nameLabel.adjustsFontSizeToFitWidth = true
         nameLabel.text = person.name
+        nameLabel.textColor = UIColor.white
         avatarImageView.image = person.image ?? person.gender?.defaultImage
     }
 }

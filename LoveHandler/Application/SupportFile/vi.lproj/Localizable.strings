@@ -90,3 +90,18 @@
 
 "okButton" = "Chấp nhận";
 "cancelButton" = "Huỷ";
+
+"t07SkipButton" = "Bỏ qua";
+"t07NextButton" = "Tiếp tục";
+"t07CompleteButton" = "Hoàn thành";
+"t07NamePlaceHolder" = "Tên của bạn là ...";
+"t07ParterNamePlaceHolder" = "Người bạn thương là ...";
+"t07BirthdayPlaceHolder" = "Sinh nhật của bạn là ...";
+"t07ParterbirthdayPlaceHolder" = "Sinh nhật người ấy là ...";
+"t07SkipDialogTitle" = "Bạn có muốn bỏ qua?";
+"t07SkipDialogSubTitle" = "Bạn có thể thay đổi những thông tin này trong phần Cài Đặt Ứng Dụng.";
+
+"t08StartDateTitle" = "Bạn bắt đầu hẹn hò khi nào?";
+"t08WeddingDateTitle" = "Bạn dự định khi nào cưới?";
+"t08CompleteDialogTitle" = "Bạn đã hoàn thành. Bạn có hài lòng với cài đặt này?";
+"t08CompleteDialogSubTitle" = "Bạn có thể thay đổi những thông tin này trong phần Cài Đặt Ứng Dụng.";

@@ -78,8 +78,8 @@ class T07TutorialPageViewController: UIPageViewController {
                 thirdViewController.setupPerson()
             }
         case 3:
-            UIAlertController.alertDialog(title: "Your sure?",
-                                          message: "last chance",
+            UIAlertController.alertDialog(title: LocalizedString.t08CompleteDialogTitle,
+                                          message: LocalizedString.t08CompleteDialogSubTitle,
                                           argument: 0)
                 .sink(receiveValue: { [weak self] option in
                     if option == nil { return }
