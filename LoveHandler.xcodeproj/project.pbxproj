@@ -125,6 +125,10 @@
 		84DDAB7B2674B2C900132A18 /* T04MemoryNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DDAB7A2674B2C900132A18 /* T04MemoryNavigator.swift */; };
 		84F039C8269007210069B48C /* T08MemoryDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F039C7269007210069B48C /* T08MemoryDateViewController.swift */; };
 		84F039CA269076900069B48C /* BaseTuttorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F039C9269076900069B48C /* BaseTuttorialViewController.swift */; };
+		84F039CD2691DEED0069B48C /* DateCountViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F039CC2691DEED0069B48C /* DateCountViewController.storyboard */; };
+		84F039CF2691DF010069B48C /* NumberDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F039CE2691DF010069B48C /* NumberDisplayView.xib */; };
+		84F039D12691E41A0069B48C /* NumberDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F039D02691E4190069B48C /* NumberDisplayView.swift */; };
+		84F039D32691E8D10069B48C /* DateCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F039D22691E8D10069B48C /* DateCountViewController.swift */; };
 		A58B088E50493D34567788CF /* Pods_LoveHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */; };
 /* End PBXBuildFile section */
 
@@ -253,6 +257,10 @@
 		84DDAB7A2674B2C900132A18 /* T04MemoryNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T04MemoryNavigator.swift; sourceTree = "<group>"; };
 		84F039C7269007210069B48C /* T08MemoryDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T08MemoryDateViewController.swift; sourceTree = "<group>"; };
 		84F039C9269076900069B48C /* BaseTuttorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTuttorialViewController.swift; sourceTree = "<group>"; };
+		84F039CC2691DEED0069B48C /* DateCountViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DateCountViewController.storyboard; sourceTree = "<group>"; };
+		84F039CE2691DF010069B48C /* NumberDisplayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberDisplayView.xib; sourceTree = "<group>"; };
+		84F039D02691E4190069B48C /* NumberDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberDisplayView.swift; sourceTree = "<group>"; };
+		84F039D22691E8D10069B48C /* DateCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCountViewController.swift; sourceTree = "<group>"; };
 		A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -408,6 +416,7 @@
 		84AB1F612629F21500A01F9E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				84F039CB2691DEDC0069B48C /* T09DateCountView */,
 				84183769268CCB0B00571008 /* T08MemorialDateView */,
 				840B82A726839E09007A82F0 /* T07TuttorialView */,
 				84C1A42B267A6AC8001D18E5 /* T05BackgroundView */,
@@ -662,6 +671,17 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
+		84F039CB2691DEDC0069B48C /* T09DateCountView */ = {
+			isa = PBXGroup;
+			children = (
+				84F039CC2691DEED0069B48C /* DateCountViewController.storyboard */,
+				84F039CE2691DF010069B48C /* NumberDisplayView.xib */,
+				84F039D02691E4190069B48C /* NumberDisplayView.swift */,
+				84F039D22691E8D10069B48C /* DateCountViewController.swift */,
+			);
+			path = T09DateCountView;
+			sourceTree = "<group>";
+		};
 		F8AED075D267D388F1EFB24F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -732,6 +752,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D21F2C2628B162007D43F2 /* wave.json in Resources */,
+				84F039CD2691DEED0069B48C /* DateCountViewController.storyboard in Resources */,
 				846F3E10266E6F8200BB9D3B /* heart-button.json in Resources */,
 				84AB2032262DF6B900A01F9E /* T02SettingsViewController.storyboard in Resources */,
 				84D21F212628B0A7007D43F2 /* LaunchScreen.storyboard in Resources */,
@@ -746,6 +767,7 @@
 				84183764268A1CA200571008 /* T07TutorialContainerViewController.storyboard in Resources */,
 				84AB1FCB262ABCE600A01F9E /* Localizable.strings in Resources */,
 				84C1A42D267A6AF8001D18E5 /* T05BackgroundViewController.storyboard in Resources */,
+				84F039CF2691DF010069B48C /* NumberDisplayView.xib in Resources */,
 				84AB1F9C2629FC8000A01F9E /* PersonView.xib in Resources */,
 				8472987B2674887C00DFB3ED /* T04MemoryViewController.storyboard in Resources */,
 				840B82A926839E2D007A82F0 /* T07TuttorialViewController.storyboard in Resources */,
@@ -826,6 +848,7 @@
 				840B829C267EDDF3007A82F0 /* AppUseCase.swift in Sources */,
 				84AB1F962629F6EB00A01F9E /* AppNavigator.swift in Sources */,
 				84DDAB722674A62300132A18 /* T04MemoryViewModel.swift in Sources */,
+				84F039D12691E41A0069B48C /* NumberDisplayView.swift in Sources */,
 				847298782674880B00DFB3ED /* T04MemoryViewController.swift in Sources */,
 				84AB2016262BEC6D00A01F9E /* GenderAndAgeButtonAction.swift in Sources */,
 				84AB1F9F2629FD5C00A01F9E /* RoundImageView.swift in Sources */,
@@ -882,6 +905,7 @@
 				8472983D26727B8500DFB3ED /* T03MemoryListNavigator.swift in Sources */,
 				840B829A267EDDCE007A82F0 /* CDBackgroundImage+CoreDataProperties.swift in Sources */,
 				84729820267271C800DFB3ED /* CDMemory+CoreDataClass.swift in Sources */,
+				84F039D32691E8D10069B48C /* DateCountViewController.swift in Sources */,
 				84AB1F472628C88900A01F9E /* UITableView+Extension.swift in Sources */,
 				84AB2008262BEB2D00A01F9E /* UIAlertController+Extension.swift in Sources */,
 				840B8299267EDDCE007A82F0 /* CDBackgroundImage+CoreDataClass.swift in Sources */,
