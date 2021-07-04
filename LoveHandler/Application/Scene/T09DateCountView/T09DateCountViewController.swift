@@ -26,7 +26,6 @@ class T09DateCountViewController: BasePageViewChildController {
     
     override func setupView() {
         super.setupView()
-        todayLabel.text = SettingsHelper.relationshipStartDate.value.dayMonthYearString
         todayLabel.adjustsFontSizeToFitWidth = true
     }
     
@@ -40,6 +39,8 @@ class T09DateCountViewController: BasePageViewChildController {
             .map { _ in }
             .eraseToAnyPublisher()
             .sink { [weak self] _ in
+                self?.todayLabel.text = SettingsHelper.relationshipStartDate.value.dayMonthYearString
+
                 self?.timer?.invalidate()
                 self?.timer = nil
                 self?.calculate()
