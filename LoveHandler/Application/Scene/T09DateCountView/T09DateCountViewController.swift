@@ -34,34 +34,19 @@ class T09DateCountViewController: BasePageViewChildController {
     
     private func calculate() {
         let startDate = Settings.relationshipStartDate.value
-        let today = Date()
-        var year = Date.countBetweenDate(component: .year, start: startDate, end: today)
-        var month = Date.countBetweenDate(component: .month, start: startDate, end: today)
-        var week = Date.countBetweenDate(component: .weekOfYear, start: startDate, end: today)
-        var day = Date.countBetweenDate(component: .day, start: startDate, end: today)
-
-        var hour = Date.countBetweenDate(component: .hour, start: startDate, end: today)
-            .quotientAndRemainder(dividingBy: 24).remainder
-        var minute = Date.countBetweenDate(component: .minute, start: startDate, end: today)
-            .quotientAndRemainder(dividingBy: 60).remainder
-        var second = Date.countBetweenDate(component: .second, start: startDate, end: today)
-            .quotientAndRemainder(dividingBy: 60).remainder
         
-        yearView.setupLabel(with: "\(year)", title: "year")
-        monthView.setupLabel(with: "\(month)", title: "month")
-        weekView.setupLabel(with: "\(week)", title: "week")
-        dayView.setupLabel(with: "\(day)", title: "day")
+        createDisplayValue()
+        
+        var hour = Date.countBetweenDate(component: .hour, start: startDate, end: Date())
+            .quotientAndRemainder(dividingBy: 24).remainder
+        var minute = Date.countBetweenDate(component: .minute, start: startDate, end: Date())
+            .quotientAndRemainder(dividingBy: 60).remainder
+        var second = Date.countBetweenDate(component: .second, start: startDate, end: Date())
+            .quotientAndRemainder(dividingBy: 60).remainder
         
         hourView.setupLabel(with: "\(hour)", size: 15)
         minuteView.setupLabel(with: "\(minute)", size: 15)
         secondView.setupLabel(with: "\(second)", size: 15)
-
-        var remainMonth = Date.countBetweenDate(component: .month, start: startDate, end: today)
-            .quotientAndRemainder(dividingBy: 12).remainder
-        var remainWeek = Date.countBetweenDate(component: .weekOfYear, start: startDate, end: today)
-            .quotientAndRemainder(dividingBy: 4).remainder
-        var remainDay = Date.countBetweenDate(component: .day, start: startDate, end: today)
-            .quotientAndRemainder(dividingBy: 7).remainder
 
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
@@ -78,35 +63,26 @@ class T09DateCountViewController: BasePageViewChildController {
             
             if hour == 24 {
                 hour = 0
-                remainDay += 1
-                day += 1
+                self.createDisplayValue()
             }
-            
-            if remainDay == 7 {
-                remainDay = 0
-                remainWeek += 1
-                week += 1
-            }
-            
-            if remainWeek == 4 {
-                remainWeek = 0
-                remainMonth += 1
-                month += 1
-            }
-            
-            if remainMonth == 12 {
-                remainMonth = 0
-                year += 1
-            }
-            
-            self.yearView.setupLabel(with: "\(year)", title: "year")
-            self.monthView.setupLabel(with: "\(month)", title: "month")
-            self.weekView.setupLabel(with: "\(week)", title: "week")
-            self.dayView.setupLabel(with: "\(day)", title: "day")
             
             self.hourView.setupLabel(with: "\(hour)", size: 15)
             self.minuteView.setupLabel(with: "\(minute)", size: 15)
             self.secondView.setupLabel(with: "\(second)", size: 15)
         }
+    }
+    
+    private func createDisplayValue() {
+        let startDate = Settings.relationshipStartDate.value
+        let year = Date.countBetweenDate(component: .year, start: startDate, end: Date())
+        let month = Date.countBetweenDate(component: .month, start: startDate, end: Date())
+        let week = Date.countBetweenDate(component: .weekOfYear, start: startDate, end: Date())
+        let day = Date.countBetweenDate(component: .day, start: startDate, end: Date())
+
+        
+        yearView.setupLabel(with: "\(year)", title: "year")
+        monthView.setupLabel(with: "\(month)", title: "month")
+        weekView.setupLabel(with: "\(week)", title: "week")
+        dayView.setupLabel(with: "\(day)", title: "day")
     }
 }
