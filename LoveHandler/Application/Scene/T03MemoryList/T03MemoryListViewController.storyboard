@@ -43,9 +43,6 @@
                                         <state key="normal">
                                             <imageReference key="image" image="plus" catalog="system" symbolScale="medium" renderingMode="template"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShadowSet" value="NO"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbk-vU-pd0" customClass="RoundButton" customModule="LoveHandler" customModuleProvider="target">
                                         <rect key="frame" x="189.5" y="767" width="35" height="35"/>
@@ -59,7 +56,6 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShadowSet" value="YES"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="color">
                                                 <color key="value" systemColor="systemTealColor"/>
                                             </userDefinedRuntimeAttribute>

@@ -7,6 +7,6 @@
 
 import UIKit
 
-class BaseTuttorialViewController: BaseViewController {
+class BasePageViewChildController: BaseViewController {
     var index: Int?
 }

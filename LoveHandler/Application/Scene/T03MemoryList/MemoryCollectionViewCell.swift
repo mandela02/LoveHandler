@@ -50,7 +50,7 @@ class MemoryCollectionViewCell: UICollectionViewCell {
             imageView.image = image
         }
         
-        dateLabel.text = Date(timeIntervalSince1970: TimeInterval(memory.displayedDate)).dayMonthYearString
+        dateLabel.text = Date(timeIntervalSince1970: TimeInterval(memory.displayedDate)).dayMonthYearDayOfWeekString
         titleLabel.text = memory.title
         
         hero.isEnabled = true

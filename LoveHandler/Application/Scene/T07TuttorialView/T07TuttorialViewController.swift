@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import Mantis
 
-class T07TuttorialViewController: BaseTuttorialViewController {
+class T07TuttorialViewController: BasePageViewChildController {
     @IBOutlet weak var avatarImageView: RoundImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
@@ -124,7 +124,7 @@ class T07TuttorialViewController: BaseTuttorialViewController {
             }
             
             if let dateOfBirth = person.dateOfBirth {
-                self.dateTextField.text = Date(timeIntervalSince1970: dateOfBirth).dayMonthYearString
+                self.dateTextField.text = Date(timeIntervalSince1970: dateOfBirth).dayMonthYearDayOfWeekString
             }
             
             if let image = person.image {

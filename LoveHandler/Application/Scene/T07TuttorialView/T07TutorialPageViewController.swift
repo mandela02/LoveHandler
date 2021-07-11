@@ -9,26 +9,26 @@ import UIKit
 import Combine
 
 class T07TutorialPageViewController: UIPageViewController {
-    lazy private var firstViewController: BaseTuttorialViewController = {
+    lazy private var firstViewController: BasePageViewChildController = {
         let viewController = T07TuttorialViewController.instantiateFromStoryboard()
         viewController.index = 1
         return viewController
     }()
     
-    lazy private var secondViewController: BaseTuttorialViewController = {
+    lazy private var secondViewController: BasePageViewChildController = {
         let viewController = T07TuttorialViewController.instantiateFromStoryboard()
         viewController.index = 2
         return viewController
     }()
     
-    lazy private var thirdViewController: BaseTuttorialViewController = {
+    lazy private var thirdViewController: BasePageViewChildController = {
         let viewController = T08MemoryDateViewController.instantiateFromStoryboard()
         viewController.index = 3
         return viewController
     }()
     
     var currentIndex = CurrentValueSubject<Int, Never>(1)
-    private var currentViewController: BaseTuttorialViewController?
+    private var currentViewController: BasePageViewChildController?
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -107,12 +107,12 @@ extension T07TutorialPageViewController: UIPageViewControllerDelegate {
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return currentIndex.value - 1
+        return 0
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-            if let viewController = self.viewControllers?.first as? BaseTuttorialViewController {
+            if let viewController = self.viewControllers?.first as? BasePageViewChildController {
                 self.currentViewController = viewController
             }
             self.currentIndex.send(currentViewController?.index ?? 0)
@@ -127,7 +127,7 @@ extension T07TutorialPageViewController: UIPageViewControllerDelegate {
 extension T07TutorialPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewController = viewController as? BaseTuttorialViewController,
+        guard let viewController = viewController as? BasePageViewChildController,
               let index = viewController.index else {
             return nil
         }
@@ -147,7 +147,7 @@ extension T07TutorialPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        guard let viewController = viewController as? BaseTuttorialViewController,
+        guard let viewController = viewController as? BasePageViewChildController,
               let index = viewController.index else {
             return nil
         }

@@ -36,10 +36,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nlH-YC-YKT">
-                                        <rect key="frame" x="10" y="0.0" width="394" height="100"/>
+                                        <rect key="frame" x="10" y="0.0" width="394" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xr-EM-15X">
-                                                <rect key="frame" x="0.0" y="25" width="50" height="50"/>
+                                                <rect key="frame" x="0.0" y="5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="AjT-NV-nM9"/>
                                                     <constraint firstAttribute="height" constant="50" id="aNi-QW-fhf"/>
@@ -48,14 +48,12 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25" scale="medium" weight="medium"/>
                                                 </state>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYO-gr-tzX" customClass="BaseLabel" customModule="LoveHandler" customModuleProvider="target">
-                                                <rect key="frame" x="50" y="35" width="294" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWz-e4-qZP">
+                                                <rect key="frame" x="50" y="5" width="294" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXG-56-ZZD">
-                                                <rect key="frame" x="344" y="25" width="50" height="50"/>
+                                                <rect key="frame" x="344" y="5" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Hm0-pZ-sYl"/>
                                                     <constraint firstAttribute="width" constant="50" id="MfH-k0-2io"/>
@@ -66,7 +64,7 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="J4r-gg-h8M"/>
+                                            <constraint firstAttribute="height" constant="60" id="J4r-gg-h8M"/>
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3N2-eE-h16">
@@ -76,22 +74,33 @@
                                             <constraint firstAttribute="height" constant="50" id="4J6-lP-GWb"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-Hb-DyL" customClass="LoveProgressView" customModule="LoveHandler" customModuleProvider="target">
-                                        <rect key="frame" x="100" y="200" width="214" height="214"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WW4-Hb-DyL">
+                                        <rect key="frame" x="0.0" y="60" width="414" height="307"/>
+                                        <subviews>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uY9-OT-cSd">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="307"/>
+                                                <connections>
+                                                    <segue destination="Zbd-ck-5Wy" kind="embed" id="gtQ-Ft-cWD"/>
+                                                </connections>
+                                            </containerView>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="WW4-Hb-DyL" secondAttribute="height" multiplier="1:1" id="dyU-gp-TD0"/>
+                                            <constraint firstAttribute="bottom" secondItem="uY9-OT-cSd" secondAttribute="bottom" id="0QC-lc-6TD"/>
+                                            <constraint firstItem="uY9-OT-cSd" firstAttribute="leading" secondItem="WW4-Hb-DyL" secondAttribute="leading" id="5fR-Gm-XZn"/>
+                                            <constraint firstItem="uY9-OT-cSd" firstAttribute="top" secondItem="WW4-Hb-DyL" secondAttribute="top" id="8II-8v-yPb"/>
+                                            <constraint firstAttribute="trailing" secondItem="uY9-OT-cSd" secondAttribute="trailing" id="XxP-p1-DDq"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8qt-ZT-fzN">
-                                        <rect key="frame" x="10" y="434" width="394" height="314"/>
+                                        <rect key="frame" x="10" y="367" width="394" height="391"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dt1-Qf-aVJ" customClass="PersonView" customModule="LoveHandler" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="30" width="162" height="254"/>
+                                                <rect key="frame" x="0.0" y="68.5" width="162" height="254"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rY-2B-kVW">
-                                                <rect key="frame" x="172" y="107" width="50" height="100"/>
+                                                <rect key="frame" x="172" y="145.5" width="50" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="KOf-CA-zSg"/>
                                                     <constraint firstAttribute="width" constant="50" id="fce-Fi-qkb"/>
@@ -101,7 +110,7 @@
                                                 </state>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RiA-2W-D0j" customClass="PersonView" customModule="LoveHandler" customModuleProvider="target">
-                                                <rect key="frame" x="232" y="30" width="162" height="254"/>
+                                                <rect key="frame" x="232" y="68.5" width="162" height="254"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -110,7 +119,7 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Jf-6q-1Zx" customClass="Floater" customModule="LoveHandler" customModuleProvider="target">
-                                        <rect key="frame" x="157" y="200" width="100" height="291"/>
+                                        <rect key="frame" x="157" y="160" width="100" height="302.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="zhf-oj-dOO"/>
@@ -135,17 +144,17 @@
                                 <constraints>
                                     <constraint firstItem="nlH-YC-YKT" firstAttribute="leading" secondItem="qYI-ge-FWB" secondAttribute="leading" constant="10" id="3Fe-Fh-Uke"/>
                                     <constraint firstAttribute="bottom" secondItem="3N2-eE-h16" secondAttribute="bottom" id="3HX-ff-PZq"/>
-                                    <constraint firstItem="WW4-Hb-DyL" firstAttribute="top" secondItem="nlH-YC-YKT" secondAttribute="bottom" constant="100" id="442-GZ-PWw"/>
+                                    <constraint firstItem="WW4-Hb-DyL" firstAttribute="top" secondItem="nlH-YC-YKT" secondAttribute="bottom" id="442-GZ-PWw"/>
                                     <constraint firstItem="nlH-YC-YKT" firstAttribute="top" secondItem="qYI-ge-FWB" secondAttribute="top" id="5oX-kn-YuX"/>
                                     <constraint firstItem="7Jf-6q-1Zx" firstAttribute="top" secondItem="nlH-YC-YKT" secondAttribute="bottom" constant="100" id="6z0-i1-kEj"/>
                                     <constraint firstItem="7Jf-6q-1Zx" firstAttribute="bottom" secondItem="2rY-2B-kVW" secondAttribute="top" constant="-50" id="Gg6-WX-ilv"/>
                                     <constraint firstAttribute="trailing" secondItem="3N2-eE-h16" secondAttribute="trailing" id="Nnb-Fn-zqa"/>
-                                    <constraint firstAttribute="trailing" secondItem="WW4-Hb-DyL" secondAttribute="trailing" constant="100" id="SwL-yX-dZB"/>
+                                    <constraint firstAttribute="trailing" secondItem="WW4-Hb-DyL" secondAttribute="trailing" id="SwL-yX-dZB"/>
                                     <constraint firstAttribute="trailing" secondItem="nlH-YC-YKT" secondAttribute="trailing" constant="10" id="T7o-cJ-XXb"/>
                                     <constraint firstAttribute="trailing" secondItem="8qt-ZT-fzN" secondAttribute="trailing" constant="10" id="YFK-6L-kIq"/>
-                                    <constraint firstItem="8qt-ZT-fzN" firstAttribute="top" secondItem="WW4-Hb-DyL" secondAttribute="bottom" constant="20" id="ZtY-Dk-grw"/>
+                                    <constraint firstItem="8qt-ZT-fzN" firstAttribute="top" secondItem="WW4-Hb-DyL" secondAttribute="bottom" id="ZtY-Dk-grw"/>
                                     <constraint firstItem="WW4-Hb-DyL" firstAttribute="centerX" secondItem="qYI-ge-FWB" secondAttribute="centerX" id="fu9-Bv-SG0"/>
-                                    <constraint firstItem="3N2-eE-h16" firstAttribute="top" secondItem="8qt-ZT-fzN" secondAttribute="bottom" constant="20" id="rPm-eF-nOn"/>
+                                    <constraint firstItem="3N2-eE-h16" firstAttribute="top" secondItem="8qt-ZT-fzN" secondAttribute="bottom" constant="10" id="rPm-eF-nOn"/>
                                     <constraint firstItem="3N2-eE-h16" firstAttribute="leading" secondItem="qYI-ge-FWB" secondAttribute="leading" id="tkX-5z-QGD"/>
                                     <constraint firstItem="7Jf-6q-1Zx" firstAttribute="centerX" secondItem="qYI-ge-FWB" secondAttribute="centerX" id="zMN-SL-KFB"/>
                                     <constraint firstItem="8qt-ZT-fzN" firstAttribute="leading" secondItem="qYI-ge-FWB" secondAttribute="leading" constant="10" id="zRu-eg-Brh"/>
@@ -160,6 +169,7 @@
                             <constraint firstItem="qYI-ge-FWB" firstAttribute="leading" secondItem="F5M-p3-cgn" secondAttribute="leading" id="AOU-2Z-5hf"/>
                             <constraint firstItem="qYI-ge-FWB" firstAttribute="top" secondItem="F5M-p3-cgn" secondAttribute="top" id="EDo-yC-64e"/>
                             <constraint firstItem="F5M-p3-cgn" firstAttribute="bottom" secondItem="qYI-ge-FWB" secondAttribute="bottom" id="K56-ka-GBy"/>
+                            <constraint firstItem="WW4-Hb-DyL" firstAttribute="height" secondItem="VLa-w7-ODl" secondAttribute="width" multiplier="1/2" constant="100" id="RGt-E1-UfD"/>
                             <constraint firstAttribute="bottom" secondItem="9eo-IX-vCW" secondAttribute="bottom" id="V51-fj-E9s"/>
                             <constraint firstItem="F5M-p3-cgn" firstAttribute="trailing" secondItem="qYI-ge-FWB" secondAttribute="trailing" id="Ws6-4x-TGO"/>
                             <constraint firstItem="9eo-IX-vCW" firstAttribute="top" secondItem="VLa-w7-ODl" secondAttribute="top" id="fcM-TA-nfr"/>
@@ -169,17 +179,23 @@
                         <outlet property="diaryButton" destination="8Xr-EM-15X" id="Tvb-Ol-s5k"/>
                         <outlet property="firstLoverView" destination="Dt1-Qf-aVJ" id="pYS-S5-dlw"/>
                         <outlet property="floaterHeartView" destination="7Jf-6q-1Zx" id="hXX-Od-gOC"/>
-                        <outlet property="heartView" destination="WW4-Hb-DyL" id="6mf-kf-BvL"/>
                         <outlet property="imageBackgroundView" destination="hw1-67-dJD" id="FxV-Ub-2PU"/>
                         <outlet property="loveButton" destination="2rY-2B-kVW" id="ON4-wP-hMA"/>
                         <outlet property="secondLoverView" destination="RiA-2W-D0j" id="Ht5-fk-Rze"/>
                         <outlet property="settingButton" destination="GXG-56-ZZD" id="9nf-V1-XLs"/>
-                        <outlet property="titleLabel" destination="XYO-gr-tzX" id="8ZF-Oy-Vyt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKI-ii-Lrh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1.4492753623188408" y="120.53571428571428"/>
+        </scene>
+        <!--Love Information Page View Controller-->
+        <scene sceneID="nOg-bL-ZWU">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Zbd-ck-5Wy" customClass="LoveInformationPageViewController" customModule="LoveHandler" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pFM-Ix-mnb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="121"/>
         </scene>
     </scenes>
     <resources>

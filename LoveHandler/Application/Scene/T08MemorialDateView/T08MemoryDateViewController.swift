@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class T08MemoryDateViewController: BaseTuttorialViewController {
+class T08MemoryDateViewController: BasePageViewChildController {
     @IBOutlet weak var youView: SmallPersonView!
     @IBOutlet weak var soulMateView: SmallPersonView!
     @IBOutlet weak var startDateTitleLabel: UILabel!
@@ -40,14 +40,14 @@ class T08MemoryDateViewController: BaseTuttorialViewController {
         startDatePicker.datePublisher
             .sink { [weak self] date in
                 guard let self = self else { return }
-                self.startDateTextField.text = date.dayMonthYearString
+                self.startDateTextField.text = date.dayMonthYearDayOfWeekString
                 Settings.relationshipStartDate.value = date
         }.store(in: &cancellables)
         
         weddingDatePicker.datePublisher
             .sink { [weak self] date in
                 guard let self = self else { return }
-                self.weddingDateTextField.text = date.dayMonthYearString
+                self.weddingDateTextField.text = date.dayMonthYearDayOfWeekString
                 Settings.weddingDate.value = date
         }.store(in: &cancellables)
     }
