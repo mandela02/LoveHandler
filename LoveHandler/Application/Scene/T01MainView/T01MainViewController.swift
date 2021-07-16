@@ -48,6 +48,7 @@ class T01MainViewController: BaseViewController {
     }
     
     override func setupLocalizedString() {
+        setUpLover()
     }
     
     override func setupTheme() {

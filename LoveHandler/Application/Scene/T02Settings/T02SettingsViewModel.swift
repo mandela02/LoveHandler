@@ -69,6 +69,8 @@ class T02SettingsViewModel: BaseViewModel {
                 switch cell {
                 case .background:
                     self.navigator.toBackgroundView()
+                case .language:
+                    self.navigator.toLanguage()
                 default:
                     return
                 }

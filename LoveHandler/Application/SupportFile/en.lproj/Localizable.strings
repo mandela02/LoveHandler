@@ -75,6 +75,8 @@
 "t02DeleteAllCellTitle" = "Delete Everything";
 
 "t03NavigationTitle" = "Memory";
+"t03SearchBarPlaceholder" = "Search your memory";
+
 "t04MemoryDatePickerTitle" = "Choose a date";
 "t04MemoryContentPlaceHolder" = "Enter diary here";
 "t04MemorySaveButtonTitle" = "Save";
@@ -106,3 +108,13 @@
 
 "t08CompleteDialogTitle" = "You are all set. Do you happy with this information? ";
 "t08CompleteDialogSubTitle" = "You can change this information in app's Settings";
+
+"year" = "Year";
+"month" = "Month";
+"week" = "Week";
+"day" = "Day";
+
+"yourDefaultName" = "You";
+"yourSoulMateDefaultName" = "Your Soul Mate";
+
+"t11LanguageNavigationTitle" = "Language";

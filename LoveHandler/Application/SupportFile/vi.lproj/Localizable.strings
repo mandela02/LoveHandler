@@ -75,6 +75,8 @@
 "t02DeleteAllCellTitle" = "Xoá tất cả";
 
 "t03NavigationTitle" = "Kỷ niệm đôi ta";
+"t03SearchBarPlaceholder" = "Tìm kiếm kỉ niệm";
+
 "t04MemoryDatePickerTitle" = "Chọn ngày kỉ niệm";
 "t04MemoryContentPlaceHolder" = "Nhập nhật ký ở đây";
 "t04MemorySaveButtonTitle" = "Lưu";
@@ -105,3 +107,14 @@
 "t08WeddingDateTitle" = "Bạn dự định khi nào cưới?";
 "t08CompleteDialogTitle" = "Bạn đã hoàn thành. Bạn có hài lòng với cài đặt này?";
 "t08CompleteDialogSubTitle" = "Bạn có thể thay đổi những thông tin này trong phần Cài Đặt Ứng Dụng.";
+
+"year" = "Năm";
+"month" = "Tháng";
+"week" = "Tuần";
+"day" = "Ngày";
+
+"yourDefaultName" = "Bạn";
+"yourSoulMateDefaultName" = "Nửa kia của bạn";
+
+
+"t11LanguageNavigationTitle" = "Ngôn ngữ";

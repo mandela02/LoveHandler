@@ -25,8 +25,9 @@ extension String {
     
     init(localizedKey key: String) {
         var bundle: Bundle? = Bundle.main
-        let resourceName = Settings.appLanguage.value == LanguageCode.english.rawValue ? "Base" : Strings.localeIdentifier
-        if let path = Bundle.main.path(forResource: resourceName, ofType: "lproj") {
+        let resourceName = Strings.localeIdentifier
+        if let path = Bundle.main.path(forResource: resourceName,
+                                       ofType: "lproj") {
             bundle = Bundle(path: path)
         }
         self = bundle?.localizedString(forKey: key, value: nil, table: nil) ?? key

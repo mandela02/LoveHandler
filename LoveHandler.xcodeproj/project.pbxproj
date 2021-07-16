@@ -23,6 +23,8 @@
 		8418376F268CCED500571008 /* SmallPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418376E268CCED500571008 /* SmallPersonView.swift */; };
 		8423D1A2263B31D800106030 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1A1263B31D800106030 /* RoundButton.swift */; };
 		8423D1DC263BD1B200106030 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */; };
+		846E39C4269B26C90076597A /* T11LanguageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E39C3269B26C90076597A /* T11LanguageViewController.storyboard */; };
+		846E39C6269B28A00076597A /* T11LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E39C5269B28A00076597A /* T11LanguageViewController.swift */; };
 		846F3E10266E6F8200BB9D3B /* heart-button.json in Resources */ = {isa = PBXBuildFile; fileRef = 846F3E0F266E6F8100BB9D3B /* heart-button.json */; };
 		8472980E267262AE00DFB3ED /* FloaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472980D267262AE00DFB3ED /* FloaterView.swift */; };
 		8472981826726E7E00DFB3ED /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472981726726E7E00DFB3ED /* Memory.swift */; };
@@ -155,6 +157,8 @@
 		8418376E268CCED500571008 /* SmallPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallPersonView.swift; sourceTree = "<group>"; };
 		8423D1A1263B31D800106030 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
+		846E39C3269B26C90076597A /* T11LanguageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T11LanguageViewController.storyboard; sourceTree = "<group>"; };
+		846E39C5269B28A00076597A /* T11LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T11LanguageViewController.swift; sourceTree = "<group>"; };
 		846F3E0F266E6F8100BB9D3B /* heart-button.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "heart-button.json"; sourceTree = "<group>"; };
 		8472980D267262AE00DFB3ED /* FloaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloaterView.swift; sourceTree = "<group>"; };
 		8472981726726E7E00DFB3ED /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
@@ -314,6 +318,15 @@
 			path = T08MemorialDateView;
 			sourceTree = "<group>";
 		};
+		846E39C2269B26A50076597A /* T11LanguageView */ = {
+			isa = PBXGroup;
+			children = (
+				846E39C3269B26C90076597A /* T11LanguageViewController.storyboard */,
+				846E39C5269B28A00076597A /* T11LanguageViewController.swift */,
+			);
+			path = T11LanguageView;
+			sourceTree = "<group>";
+		};
 		84729824267271F600DFB3ED /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +434,7 @@
 		84AB1F612629F21500A01F9E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				846E39C2269B26A50076597A /* T11LanguageView */,
 				84F039D42691EB440069B48C /* T10HeartView */,
 				84F039CB2691DEDC0069B48C /* T09DateCountView */,
 				84183769268CCB0B00571008 /* T08MemorialDateView */,
@@ -776,6 +790,7 @@
 				84D21F1E2628B0A7007D43F2 /* Assets.xcassets in Resources */,
 				8418376B268CCB4C00571008 /* T08MemoryDateViewController.storyboard in Resources */,
 				8472983626727A8800DFB3ED /* T03MemoryListViewController.storyboard in Resources */,
+				846E39C4269B26C90076597A /* T11LanguageViewController.storyboard in Resources */,
 				8418376D268CCB6200571008 /* SmallPersonView.xib in Resources */,
 				84AB1FF8262B265A00A01F9E /* LoveProgressView.xib in Resources */,
 				84AB1F152628BCB600A01F9E /* heart_wave.json in Resources */,
@@ -889,6 +904,7 @@
 				84C1A434267B974E001D18E5 /* T05ImageControllerViewCell.swift in Sources */,
 				847298262672721000DFB3ED /* Repositoy.swift in Sources */,
 				84AB1FA9262A06A500A01F9E /* Gender.swift in Sources */,
+				846E39C6269B28A00076597A /* T11LanguageViewController.swift in Sources */,
 				84AB1FFE262B33E600A01F9E /* NibLoadable.swift in Sources */,
 				84AB211C263AFF7500A01F9E /* LoveMemoryDataModel.xcdatamodeld in Sources */,
 				84C1A436267B97C3001D18E5 /* UIDevice+Extension.swift in Sources */,

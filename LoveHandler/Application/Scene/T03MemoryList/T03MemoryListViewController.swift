@@ -237,7 +237,7 @@ extension T03MemoryListViewController: UISearchResultsUpdating, UISearchBarDeleg
     private func setupSearchBarController() {
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Tìm kiếm kỉ niệm"
+        searchController.searchBar.placeholder = LocalizedString.t03SearchBarPlaceholder
         searchController.obscuresBackgroundDuringPresentation = false
 
         navigationItem.searchController = searchController

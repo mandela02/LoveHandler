@@ -70,6 +70,8 @@ struct LocalizedString {
     static var t02ViewHeaderitle: String { return String(localizedKey: "t02ViewHeaderitle") }
     static var t02DataHeaderTitle: String { return String(localizedKey: "t02DataHeaderTitle") }
     
+    static var t03SearchBarPlaceholder: String { return String(localizedKey: "t03SearchBarPlaceholder") }
+
     static var t03NavigationTitle: String { return String(localizedKey: "t03NavigationTitle") }
     static var t04MemoryDatePickerTitle: String { return String(localizedKey: "t04MemoryDatePickerTitle") }
     static var t04MemoryContentPlaceHolder: String { return String(localizedKey: "t04MemoryContentPlaceHolder") }
@@ -108,4 +110,14 @@ struct LocalizedString {
     static var t08CompleteDialogSubTitle: String { return String(localizedKey: "t08CompleteDialogSubTitle") }
     static var t07SkipDialogTitle: String { return String(localizedKey: "t07SkipDialogTitle") }
     static var t07SkipDialogSubTitle: String { return String(localizedKey: "t07SkipDialogSubTitle") }
+    
+    static var year: String { return String(localizedKey: "year") }
+    static var month: String { return String(localizedKey: "month") }
+    static var week: String { return String(localizedKey: "week") }
+    static var day: String { return String(localizedKey: "day") }
+    
+    static var t11LanguageNavigationTitle: String { return String(localizedKey: "t11LanguageNavigationTitle") }
+    
+    static var yourDefaultName: String { return String(localizedKey: "yourDefaultName") }
+    static var yourSoulMateDefaultName: String { return String(localizedKey: "yourSoulMateDefaultName") }
 }
