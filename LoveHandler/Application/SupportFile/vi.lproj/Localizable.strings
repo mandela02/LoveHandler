@@ -107,3 +107,10 @@
 "t08WeddingDateTitle" = "Bạn dự định khi nào cưới?";
 "t08CompleteDialogTitle" = "Bạn đã hoàn thành. Bạn có hài lòng với cài đặt này?";
 "t08CompleteDialogSubTitle" = "Bạn có thể thay đổi những thông tin này trong phần Cài Đặt Ứng Dụng.";
+
+"year" = "Năm";
+"month" = "Tháng";
+"week" = "Tuần";
+"day" = "Ngày";
+
+"t11LanguageNavigationTitle" = "Ngôn ngữ";

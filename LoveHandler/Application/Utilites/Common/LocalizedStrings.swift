@@ -110,4 +110,11 @@ struct LocalizedString {
     static var t08CompleteDialogSubTitle: String { return String(localizedKey: "t08CompleteDialogSubTitle") }
     static var t07SkipDialogTitle: String { return String(localizedKey: "t07SkipDialogTitle") }
     static var t07SkipDialogSubTitle: String { return String(localizedKey: "t07SkipDialogSubTitle") }
+    
+    static var year: String { return String(localizedKey: "year") }
+    static var month: String { return String(localizedKey: "month") }
+    static var week: String { return String(localizedKey: "week") }
+    static var day: String { return String(localizedKey: "day") }
+    
+    static var t11LanguageNavigationTitle: String { return String(localizedKey: "t11LanguageNavigationTitle") }
 }

@@ -49,6 +49,12 @@ class T09DateCountViewController: BasePageViewChildController {
         todayLabel.textColor = UIColor.white
     }
     
+    override func setupLocalizedString() {
+        super.setupLocalizedString()
+        createDisplayValue()
+        todayLabel.text = SettingsHelper.relationshipStartDate.value.dayMonthYearString
+    }
+    
     private func calculate() {
         let startDate = Settings.relationshipStartDate.value
         
@@ -96,10 +102,9 @@ class T09DateCountViewController: BasePageViewChildController {
         let week = Date.countBetweenDate(component: .weekOfYear, start: startDate, end: Date())
         let day = Date.countBetweenDate(component: .day, start: startDate, end: Date())
         
-        
-        yearView.setupLabel(with: "\(year)", title: "year")
-        monthView.setupLabel(with: "\(month)", title: "month")
-        weekView.setupLabel(with: "\(week)", title: "week")
-        dayView.setupLabel(with: "\(day)", title: "day")
+        yearView.setupLabel(with: "\(year)", title: LocalizedString.year)
+        monthView.setupLabel(with: "\(month)", title: LocalizedString.month)
+        weekView.setupLabel(with: "\(week)", title: LocalizedString.week)
+        dayView.setupLabel(with: "\(day)", title: LocalizedString.day)
     }
 }

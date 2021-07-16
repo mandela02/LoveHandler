@@ -22,12 +22,13 @@ class T11LanguageViewController: BaseViewController {
     
     override func setupTheme() {
         super.setupTheme()
-        languageTableView.backgroundColor = UIColor.lightGray
+        //languageTableView.backgroundColor = UIColor(hexString: "FFF9F6")
+        
     }
     
     override func setupLocalizedString() {
         super.setupLocalizedString()
-        navigationTitle = "language"
+        navigationTitle = LocalizedString.t11LanguageNavigationTitle
     }
     
     override func bindViewModel() {
@@ -54,15 +55,15 @@ extension T11LanguageViewController: UITableViewDataSource {
         let code = LanguageCode.getLanguageCode(from: indexPath.row)
         cell.textLabel!.text = code.name
         cell.accessoryType = code.rawValue == Settings.appLanguage.value ? .checkmark : .none
+        cell.backgroundColor = UIColor(hexString: "FFFFFF")
         return cell
     }
 }
 
 extension T11LanguageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
         Settings.appLanguage.value = LanguageCode.getLanguageCode(from: indexPath.row).rawValue
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Strings.languageChangedObserver), object: nil)
         tableView.reloadData()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Strings.languageChangedObserver), object: nil)
     }
 }

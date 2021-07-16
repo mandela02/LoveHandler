@@ -108,3 +108,10 @@
 
 "t08CompleteDialogTitle" = "You are all set. Do you happy with this information? ";
 "t08CompleteDialogSubTitle" = "You can change this information in app's Settings";
+
+"year" = "Year";
+"month" = "Month";
+"week" = "Week";
+"day" = "Day";
+
+"t11LanguageNavigationTitle" = "Language";
