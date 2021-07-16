@@ -13,6 +13,7 @@ protocol T2SettingsNavigatorType {
     func dismiss()
     func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never>
     func toBackgroundView()
+    func toLanguage()
 }
 
 class T2SettingsNavigator: T2SettingsNavigatorType {
@@ -48,6 +49,11 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
     func toBackgroundView() {
         let viewController = T05BackgroundViewController.instantiateFromStoryboard()
         viewController.viewModel = T05BackgroundViewModel(useCase: UseCaseProvider.defaultProvider.getBackgroundSettingUseCase())
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func toLanguage() {
+        let viewController = T11LanguageViewController.instantiateFromStoryboard()
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

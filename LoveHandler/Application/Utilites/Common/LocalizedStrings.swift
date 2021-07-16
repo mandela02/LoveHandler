@@ -70,6 +70,8 @@ struct LocalizedString {
     static var t02ViewHeaderitle: String { return String(localizedKey: "t02ViewHeaderitle") }
     static var t02DataHeaderTitle: String { return String(localizedKey: "t02DataHeaderTitle") }
     
+    static var t03SearchBarPlaceholder: String { return String(localizedKey: "t03SearchBarPlaceholder") }
+
     static var t03NavigationTitle: String { return String(localizedKey: "t03NavigationTitle") }
     static var t04MemoryDatePickerTitle: String { return String(localizedKey: "t04MemoryDatePickerTitle") }
     static var t04MemoryContentPlaceHolder: String { return String(localizedKey: "t04MemoryContentPlaceHolder") }

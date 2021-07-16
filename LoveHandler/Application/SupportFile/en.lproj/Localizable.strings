@@ -75,6 +75,8 @@
 "t02DeleteAllCellTitle" = "Delete Everything";
 
 "t03NavigationTitle" = "Memory";
+"t03SearchBarPlaceholder" = "Search your memory";
+
 "t04MemoryDatePickerTitle" = "Choose a date";
 "t04MemoryContentPlaceHolder" = "Enter diary here";
 "t04MemorySaveButtonTitle" = "Save";

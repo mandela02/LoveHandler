@@ -85,6 +85,10 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeLanguage),
+                                               name: NSNotification.Name(Strings.languageChangedObserver),
+                                               object: nil)
 
         setupView()
         setupLocalizedString()
@@ -131,5 +135,9 @@ class BaseViewController: UIViewController {
     @objc private func keyboardWillHide(notification: NSNotification) {
         keyboarDidHide()
         isKeyboardShow = false
+    }
+    
+    @objc private func changeLanguage() {
+        setupLocalizedString()
     }
 }

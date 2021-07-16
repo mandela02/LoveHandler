@@ -75,6 +75,8 @@
 "t02DeleteAllCellTitle" = "Xoá tất cả";
 
 "t03NavigationTitle" = "Kỷ niệm đôi ta";
+"t03SearchBarPlaceholder" = "Tìm kiếm kỉ niệm";
+
 "t04MemoryDatePickerTitle" = "Chọn ngày kỉ niệm";
 "t04MemoryContentPlaceHolder" = "Nhập nhật ký ở đây";
 "t04MemorySaveButtonTitle" = "Lưu";
