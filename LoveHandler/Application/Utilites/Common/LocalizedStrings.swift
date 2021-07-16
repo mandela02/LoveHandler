@@ -117,4 +117,7 @@ struct LocalizedString {
     static var day: String { return String(localizedKey: "day") }
     
     static var t11LanguageNavigationTitle: String { return String(localizedKey: "t11LanguageNavigationTitle") }
+    
+    static var yourDefaultName: String { return String(localizedKey: "yourDefaultName") }
+    static var yourSoulMateDefaultName: String { return String(localizedKey: "yourSoulMateDefaultName") }
 }

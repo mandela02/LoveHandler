@@ -55,7 +55,7 @@ enum Keys: String {
 
 struct Settings {
     static var appLanguage = UserDefault<String>(key: .appLanguage,
-                                                 defaultValue: LanguageCode.vietnamese.rawValue)
+                                                 defaultValue: Strings.languageCodeDevice)
     static var relationshipStartDate = UserDefault<Date>(key: .relationshipStartDate,
                                                          defaultValue: DefaultDateFormatter.date(from: "2020/7/5") ?? Date())
     static var weddingDate = UserDefault<Date>(key: .weddingDate,

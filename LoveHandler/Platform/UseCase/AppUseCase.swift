@@ -21,14 +21,14 @@ class AppUseCase: AppUseCaseType {
     
     func save() -> DatabaseResponse {
         let screenSize = Utilities.getWindowBound().size
-        [ImageNames.love1.image,
-         ImageNames.love2.image,
-         ImageNames.love3.image,
-         ImageNames.love4.image,
-         ImageNames.love5.image,
-         ImageNames.love6.image,
-         ImageNames.love7.image,
-         ImageNames.love8.image]
+        let images = [ImageNames.love1.image,
+                      ImageNames.love2.image,
+                      ImageNames.love3.image,
+                      ImageNames.love4.image,
+                      ImageNames.love5.image,
+                      ImageNames.love6.image,
+                      ImageNames.love7.image,
+                      ImageNames.love8.image]
             .compactMap { $0 }
             .map { image -> UIImage in
                 let imageAspectRatio = image.size.width / image.size.height
@@ -37,12 +37,16 @@ class AppUseCase: AppUseCaseType {
                 return image
                     .resize(targetSize: imageSize)
             }
-            .forEach { image in
+            
+        images.forEach { image in
                 let _: CDBackgroundImage = CDBackgroundImage.build(context: PersistenceManager.shared.persistentContainer.viewContext) { object in
                     object.id = UUID()
                     object.image = image.jpeg(.medium)
                 }
             }
+        if SettingsHelper.backgroundImage.value == nil {
+            Settings.background.value = images.first?.jpeg(.medium)
+        }
         
         let result = repository.save()
         return result
