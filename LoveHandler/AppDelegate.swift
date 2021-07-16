@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAppNavigator()
         return true
     }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        PasscodeHelper.verify()
+    }
 }
 
 extension AppDelegate {
@@ -28,5 +32,7 @@ extension AppDelegate {
             _ = UseCaseProvider.defaultProvider.getAppUseCase().save()
             Settings.isFirstTimeOpenApp.value = false
         }
+        
+        PasscodeHelper.verify()
     }
 }

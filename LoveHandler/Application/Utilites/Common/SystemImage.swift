@@ -25,6 +25,9 @@ enum SystemImage: String {
     case checkMark = "checkmark.circle.fill"
     case arrowUpSquare = "arrow.up.square"
     case trash = "trash"
+    case faceid = "faceid"
+    case backspace = "delete.left.fill"
+    case touchid = "touchid"
 }
 
 extension SystemImage {

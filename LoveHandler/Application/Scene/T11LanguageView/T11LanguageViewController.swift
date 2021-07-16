@@ -21,9 +21,7 @@ class T11LanguageViewController: BaseViewController {
     }
     
     override func setupTheme() {
-        super.setupTheme()
-        //languageTableView.backgroundColor = UIColor(hexString: "FFF9F6")
-        
+        super.setupTheme()        
     }
     
     override func setupLocalizedString() {

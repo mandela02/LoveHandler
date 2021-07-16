@@ -61,6 +61,8 @@ class T02SettingsViewModel: BaseViewModel {
         
         let viewWillAppear = input.viewWillAppear
         
+        let reloadDataNeeded = input.reloadDataNeeded
+
         let onSelectCell = cellSelected
             .handleEvents(receiveOutput: { [weak self] cell in
                 guard let self = self else {
@@ -78,8 +80,9 @@ class T02SettingsViewModel: BaseViewModel {
             .map { _ in }
             .eraseToAnyPublisher()
         
-        let dataSource = Publishers.Merge(viewWillAppear,
-                                          dateCellSelected)
+        let dataSource = Publishers.Merge3(viewWillAppear,
+                                          dateCellSelected,
+                                          reloadDataNeeded)
             .map { _ in  Section.generateData() }
             .eraseToAnyPublisher()
                 
@@ -155,9 +158,9 @@ class T02SettingsViewModel: BaseViewModel {
                                               title: LocalizedString.t02HeartAnimationCellTitle,
                                               isDisable: false))
             case .passcode:
-                return CellInfo(type: .normal(icon: SystemImage.lockFill.image,
+                return CellInfo(type: .withSwitch(icon: SystemImage.lockFill.image,
                                               title: LocalizedString.t02PasscodeCellTitle,
-                                              isDisable: false))
+                                              isOn: Settings.isUsingPasscode.value))
             case .deleteAll:
                 return CellInfo(type: .plain(title: LocalizedString.t02DeleteAllCellTitle,
                                               isDisable: false))
@@ -205,6 +208,7 @@ class T02SettingsViewModel: BaseViewModel {
     }
     
     struct Input {
+        let reloadDataNeeded: AnyPublisher<Void, Never>
         let viewWillAppear: AnyPublisher<Void, Never>
         let didSelectCell: AnyPublisher<Cell, Never>
         let dismissTrigger: AnyPublisher<Void, Never>
