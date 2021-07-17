@@ -118,3 +118,8 @@
 "yourSoulMateDefaultName" = "Your Soul Mate";
 
 "t11LanguageNavigationTitle" = "Language";
+
+"passcodeViewTitle" = "Enter PIN";
+"passcodeViewDescription" = "Please enter a new PIN";
+"passcodeViewConfirmMesseage" = "Confirm your PIN";
+"passcodeViewNotMatchMessage" = "Confirm PIN doesn't match";

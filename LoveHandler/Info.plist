@@ -45,5 +45,7 @@
 	<string>neex camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>need photo</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Need face id</string>
 </dict>
 </plist>

@@ -4,6 +4,7 @@ PODS:
   - DeviceKit (4.3.0)
   - Fusuma (1.3.3)
   - Hero (1.6.1)
+  - KeychainSwift (19.0.0)
   - lottie-ios (3.2.1)
   - Mantis (1.7.1)
   - SwiftLint (0.43.1)
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - DeviceKit
   - Fusuma
   - Hero
+  - KeychainSwift
   - lottie-ios
   - Mantis (~> 1.7.1)
   - SwiftLint
@@ -27,6 +29,7 @@ SPEC REPOS:
     - DeviceKit
     - Fusuma
     - Hero
+    - KeychainSwift
     - lottie-ios
     - Mantis
     - SwiftLint
@@ -38,11 +41,12 @@ SPEC CHECKSUMS:
   DeviceKit: 7decde449c308ac7e816e2184ded1c7c596fb885
   Fusuma: 3bd08c8c5341ec60c0074fa28570fea8765966f0
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
+  KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
   lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
   Mantis: 0c6052cf902f7b3b9ede7302ddc1116b64b4effe
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   WaveAnimationView: 1ffdf3184884eb3270f4b19cc2e69893fec16b9d
 
-PODFILE CHECKSUM: 9f0f719bb9198e03900d9223ecd4abb03bde2ceb
+PODFILE CHECKSUM: 6dc4a0adae47f34221c23c893669f77e8757d4a8
 
 COCOAPODS: 1.10.1

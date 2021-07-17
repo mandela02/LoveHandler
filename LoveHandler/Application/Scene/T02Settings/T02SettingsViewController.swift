@@ -26,12 +26,13 @@ class T02SettingsViewController: BaseViewController {
     private var cancellables = Set<AnyCancellable>()
     
     private var onCellSelected = PassthroughSubject<IndexPath, Never>()
+    private var onReloadNeeded = PassthroughSubject<Void, Never>()
     private var onViewWillAppearSignal = PassthroughSubject<Void, Never>()
 
     override func deinitView() {
         onCellSelected.send(completion: .finished)
         onViewWillAppearSignal.send(completion: .finished)
-        
+        onReloadNeeded.send(completion: .finished)
         cancellables.forEach { $0.cancel() }
     }
     
@@ -72,7 +73,8 @@ class T02SettingsViewController: BaseViewController {
             .compactMap { $0 }
             .eraseToAnyPublisher()
         
-        let input = T02SettingsViewModel.Input(viewWillAppear: onViewWillAppearSignal.eraseToAnyPublisher(),
+        let input = T02SettingsViewModel.Input(reloadDataNeeded: onReloadNeeded.eraseToAnyPublisher(),
+                                               viewWillAppear: onViewWillAppearSignal.eraseToAnyPublisher(),
                                                didSelectCell: didSelectCell,
                                                dismissTrigger: closeButton.tapPublisher)
         
@@ -108,7 +110,9 @@ class T02SettingsViewController: BaseViewController {
 
 extension T02SettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource.count    }
+        return dataSource.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource[safe: section]?.cells.count ?? 0
     }
@@ -125,7 +129,11 @@ extension T02SettingsViewController: UITableViewDataSource {
         case .withSwitch(let icon, let title, let isOn):
             let cell = tableView.dequeueReusableCell(SettingWithSwitchTableViewCell.self, for: indexPath)
             cell.bind(icon: icon, title: title, isOn: isOn)
-            cell.didValueChange = { value in
+            cell.didValueChange = { isSwitchOn in
+                Settings.isUsingPasscode.value = isSwitchOn
+                if isSwitchOn {
+                    PasscodeHelper.create(at: self)
+                }
             }
             return cell
         case .withSubTitle(icon: let icon, title: let title, subTitle: let subTitle):
@@ -151,7 +159,15 @@ extension T02SettingsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return true
+        guard let sectionInfo = dataSource[safe: indexPath.section]
+        else { return false }
+        let row = sectionInfo.cells[indexPath.row]
+        switch row.info.type {
+        case .withSwitch(icon: _, title: _, isOn: _):
+            return false
+        default:
+            return true
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

@@ -116,5 +116,9 @@
 "yourDefaultName" = "Bạn";
 "yourSoulMateDefaultName" = "Nửa kia của bạn";
 
-
 "t11LanguageNavigationTitle" = "Ngôn ngữ";
+
+"passcodeViewTitle" = "Nhập PIN";
+"passcodeViewDescription" = "Hãy nhập mã PIN mới";
+"passcodeViewConfirmMesseage" = "Xác nhận mã PIN của bạn";
+"passcodeViewNotMatchMessage" = "Xác nhận PIN không khớp. Thử lại.";
