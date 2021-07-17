@@ -22,6 +22,7 @@
 		8412CD8326A20BD1000F0E78 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8412CD7B26A20BD1000F0E78 /* Passcode.storyboard */; };
 		8412CD8426A20BD1000F0E78 /* UIViewController+LocalAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412CD7E26A20BD1000F0E78 /* UIViewController+LocalAuthentication.swift */; };
 		8412CD8626A21037000F0E78 /* PasscodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412CD8526A21037000F0E78 /* PasscodeHelper.swift */; };
+		8412CD8E26A284D8000F0E78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8412CD9026A284D8000F0E78 /* InfoPlist.strings */; };
 		84183764268A1CA200571008 /* T07TutorialContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84183763268A1CA200571008 /* T07TutorialContainerViewController.storyboard */; };
 		84183766268A1DCC00571008 /* T07TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84183765268A1DCC00571008 /* T07TutorialPageViewController.swift */; };
 		84183768268A1DFC00571008 /* T07TutorialContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84183767268A1DFC00571008 /* T07TutorialContainerViewController.swift */; };
@@ -163,6 +164,8 @@
 		8412CD7C26A20BD1000F0E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Passcode.storyboard; sourceTree = "<group>"; };
 		8412CD7E26A20BD1000F0E78 /* UIViewController+LocalAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+LocalAuthentication.swift"; sourceTree = "<group>"; };
 		8412CD8526A21037000F0E78 /* PasscodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeHelper.swift; sourceTree = "<group>"; };
+		8412CD8F26A284D8000F0E78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8412CD9126A284DB000F0E78 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		84183763268A1CA200571008 /* T07TutorialContainerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T07TutorialContainerViewController.storyboard; sourceTree = "<group>"; };
 		84183765268A1DCC00571008 /* T07TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T07TutorialPageViewController.swift; sourceTree = "<group>"; };
 		84183767268A1DFC00571008 /* T07TutorialContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T07TutorialContainerViewController.swift; sourceTree = "<group>"; };
@@ -567,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				84AB1FCD262ABCE600A01F9E /* Localizable.strings */,
+				8412CD9026A284D8000F0E78 /* InfoPlist.strings */,
 			);
 			path = SupportFile;
 			sourceTree = "<group>";
@@ -862,6 +866,7 @@
 				8472985E2673BF0500DFB3ED /* MemoryCollectionViewCell.xib in Resources */,
 				84183764268A1CA200571008 /* T07TutorialContainerViewController.storyboard in Resources */,
 				84AB1FCB262ABCE600A01F9E /* Localizable.strings in Resources */,
+				8412CD8E26A284D8000F0E78 /* InfoPlist.strings in Resources */,
 				84C1A42D267A6AF8001D18E5 /* T05BackgroundViewController.storyboard in Resources */,
 				84F039CF2691DF010069B48C /* NumberDisplayView.xib in Resources */,
 				84AB1F9C2629FC8000A01F9E /* PersonView.xib in Resources */,
@@ -1059,6 +1064,15 @@
 				8412CD7C26A20BD1000F0E78 /* Base */,
 			);
 			name = Passcode.storyboard;
+			sourceTree = "<group>";
+		};
+		8412CD9026A284D8000F0E78 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8412CD8F26A284D8000F0E78 /* en */,
+				8412CD9126A284DB000F0E78 /* vi */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		84AB1FCD262ABCE600A01F9E /* Localizable.strings */ = {
