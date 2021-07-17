@@ -176,6 +176,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerViewContainer" destination="3N2-eE-h16" id="9pK-VM-lX8"/>
+                        <outlet property="bannerViewHeightConstraint" destination="4J6-lP-GWb" id="b7F-vj-hfl"/>
                         <outlet property="diaryButton" destination="8Xr-EM-15X" id="Tvb-Ol-s5k"/>
                         <outlet property="firstLoverView" destination="Dt1-Qf-aVJ" id="pYS-S5-dlw"/>
                         <outlet property="floaterHeartView" destination="7Jf-6q-1Zx" id="hXX-Od-gOC"/>

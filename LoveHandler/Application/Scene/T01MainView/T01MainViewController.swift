@@ -24,6 +24,10 @@ class T01MainViewController: BaseViewController {
     
     @IBOutlet weak var floaterHeartView: Floater!
     
+    @IBOutlet weak var bannerViewContainer: UIView!
+    
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
+    
     private var cancellables = Set<AnyCancellable>()
     var viewModel: T01MainViewViewModel?
         
@@ -41,6 +45,8 @@ class T01MainViewController: BaseViewController {
     override func refreshView() {
         super.refreshView()
         navigationController?.setNavigationBarHidden(true, animated: true)
+        setBannerView(with: bannerViewContainer,
+                      heightConstraint: bannerViewHeightConstraint)
     }
     
     override func dismissView() {
@@ -124,5 +130,13 @@ extension T01MainViewController {
         floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: Colors.lightPink)
         floaterHeartView.floaterImage3 = SystemImage.roundHeart.image.tintColor(with: Colors.pink)
         floaterHeartView.floaterImage4 = SystemImage.roundHeart.image.tintColor(with: Colors.hotPink)
+    }
+}
+
+extension T01MainViewController: AdsPresented {
+    func bannerViewDidShow(bannerView: UIView, height: CGFloat) {}
+    
+    func removeAdsIfNeeded(bannerView: UIView) {
+        bannerViewHeightConstraint.constant = 0
     }
 }

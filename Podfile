@@ -16,4 +16,5 @@ target 'LoveHandler' do
   pod 'Mantis', '~> 1.7.1'
   pod 'SwiftLint'
   pod 'KeychainSwift'
+  pod 'Google-Mobile-Ads-SDK'
 end
