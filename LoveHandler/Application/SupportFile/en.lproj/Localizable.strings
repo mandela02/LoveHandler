@@ -73,6 +73,7 @@
 "t02HeartAnimationCellTitle" = "Animation";
 "t02PasscodeCellTitle" = "Passcode";
 "t02DeleteAllCellTitle" = "Delete Everything";
+"t02MemoDateCellTitle" = "When did you start?";
 
 "t03NavigationTitle" = "Memory";
 "t03SearchBarPlaceholder" = "Search your memory";

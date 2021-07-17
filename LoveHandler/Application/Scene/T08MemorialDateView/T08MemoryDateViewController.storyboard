@@ -68,7 +68,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_line" translatesAutoresizingMaskIntoConstraints="NO" id="SEx-ly-teH">
-                                        <rect key="frame" x="83" y="-50" width="228" height="100"/>
+                                        <rect key="frame" x="83" y="-45" width="228" height="100"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,7 +78,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Zim-vY-pWe" secondAttribute="bottom" id="AHN-jc-fsE"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="Pec-xg-8on"/>
                                     <constraint firstAttribute="bottom" secondItem="IYG-f0-icJ" secondAttribute="bottom" id="SUG-fc-MC9"/>
-                                    <constraint firstItem="SEx-ly-teH" firstAttribute="bottom" secondItem="5fG-vN-SID" secondAttribute="top" constant="50" id="ZXv-Uk-bmj"/>
+                                    <constraint firstItem="SEx-ly-teH" firstAttribute="bottom" secondItem="5fG-vN-SID" secondAttribute="top" constant="55" id="ZXv-Uk-bmj"/>
                                     <constraint firstItem="IYG-f0-icJ" firstAttribute="top" secondItem="5fG-vN-SID" secondAttribute="top" id="fch-G8-FYs"/>
                                     <constraint firstAttribute="trailing" secondItem="Zim-vY-pWe" secondAttribute="trailing" id="jph-Od-pdx"/>
                                     <constraint firstItem="Zim-vY-pWe" firstAttribute="leading" secondItem="SEx-ly-teH" secondAttribute="trailing" id="mmz-j9-5mN"/>
@@ -163,6 +163,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageView" destination="4yo-RS-cV5" id="VuL-Vr-yZs"/>
                         <outlet property="soulMateView" destination="Zim-vY-pWe" id="TLt-ad-MfB"/>
                         <outlet property="startDatePicker" destination="VX7-uO-4jB" id="ouy-vh-U0V"/>
                         <outlet property="startDateTextField" destination="6bW-px-NW3" id="VGB-tp-ZMn"/>
