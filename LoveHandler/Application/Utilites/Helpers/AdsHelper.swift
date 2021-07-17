@@ -41,7 +41,7 @@ class AdsHelper: NSObject, GADBannerViewDelegate {
         if AdsHelper.shouldDisplayAds() {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
             bannerView = GADBannerView()
-            bannerView!.adUnitID = AdsID.testAds
+            bannerView!.adUnitID = AppConfig.adsIDs
             bannerView!.delegate = self
             bannerView!.backgroundColor = .clear
             bannerView!.load(GADRequest())
