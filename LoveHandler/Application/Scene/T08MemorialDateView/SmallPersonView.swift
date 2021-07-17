@@ -11,7 +11,7 @@ class SmallPersonView: BaseView, NibLoadable {
     
     @IBOutlet weak var avatarImageView: RoundImageView!
     
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: BaseLabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
