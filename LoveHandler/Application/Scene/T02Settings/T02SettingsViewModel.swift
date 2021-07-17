@@ -16,54 +16,7 @@ class T02SettingsViewModel: BaseViewModel {
     }
     
     func transform(_ input: Input) -> Output {
-        var selectedCell: Cell?
-        
-        let cellSelected = input.didSelectCell
-            .handleEvents(receiveOutput: {
-                selectedCell = $0
-            }).share()
-            
-        let dateCellSelected = cellSelected
-            .filter { Cell.dateSelectionCell.contains($0) }
-            .flatMap { [weak self] cell -> AnyPublisher<Date?, Never> in
-                guard let self = self else { return Empty(completeImmediately: false).eraseToAnyPublisher()}
-                switch cell {
-                case .marryDateSelection:
-                    return self.navigator.datePicker(title: LocalizedString.t02WeddingDayDatePickerTitle,
-                                                     date: Settings.weddingDate.value,
-                                                     minDate: Settings.relationshipStartDate.value,
-                                                     maxDate: Constant.maxDate)
-                        .eraseToAnyPublisher()
-                case .startDatingDateSelection:
-                    return self.navigator.datePicker(title: LocalizedString.t02StartDatingDatePickerTitle,
-                                                     date: Settings.relationshipStartDate.value,
-                                                     minDate: Constant.minDate,
-                                                     maxDate: Date())
-                        .eraseToAnyPublisher()
-                default :
-                    return Empty(completeImmediately: false).eraseToAnyPublisher()
-                }
-            }
-            .handleEvents(receiveOutput: { date in
-                guard let date = date, let cell = selectedCell else { return }
-                switch cell {
-                case .marryDateSelection:
-                    Settings.weddingDate.value = date
-                case .startDatingDateSelection:
-                    Settings.relationshipStartDate.value = date
-                default:
-                    break
-                }
-                selectedCell = nil
-            })
-            .map { _ in }
-            .eraseToAnyPublisher()
-        
-        let viewWillAppear = input.viewWillAppear
-        
-        let reloadDataNeeded = input.reloadDataNeeded
-
-        let onSelectCell = cellSelected
+        let onSelectCell = input.didSelectCell
             .handleEvents(receiveOutput: { [weak self] cell in
                 guard let self = self else {
                     return
@@ -73,16 +26,20 @@ class T02SettingsViewModel: BaseViewModel {
                     self.navigator.toBackgroundView()
                 case .language:
                     self.navigator.toLanguage()
+                case .dateSetup:
+                    self.navigator.toAnniversary()
                 default:
                     return
                 }
             })
             .map { _ in }
             .eraseToAnyPublisher()
+
+        let viewWillAppear = input.viewWillAppear
         
-        let dataSource = Publishers.Merge3(viewWillAppear,
-                                          dateCellSelected,
-                                          reloadDataNeeded)
+        let reloadDataNeeded = input.reloadDataNeeded
+        
+        let dataSource = Publishers.Merge(viewWillAppear, reloadDataNeeded)
             .map { _ in  Section.generateData() }
             .eraseToAnyPublisher()
                 
@@ -115,8 +72,7 @@ class T02SettingsViewModel: BaseViewModel {
     }
     
     enum Cell {
-        case startDatingDateSelection
-        case marryDateSelection
+        case dateSetup
         case premium
         case theme
         case background
@@ -127,16 +83,10 @@ class T02SettingsViewModel: BaseViewModel {
 
         var info: CellInfo {
             switch self {
-            case .startDatingDateSelection:
-                return CellInfo(type: .withSubTitle(icon: SystemImage.faceDashFill.image,
-                                                    title: LocalizedString.t02StartDateTitle,
-                                                    subTitle: DefaultDateFormatter.string(from: Settings.relationshipStartDate.value,
-                                                                                          dateFormat: "d/M/y")))
-            case .marryDateSelection:
-                return CellInfo(type: .withSubTitle(icon: SystemImage.faceDashFill.image,
-                                                    title: LocalizedString.t02EndDateTitle,
-                                                    subTitle: DefaultDateFormatter.string(from: Settings.weddingDate.value,
-                                                                                          dateFormat: "d/M/y")))                
+            case .dateSetup:
+                return CellInfo(type: .normal(icon: SystemImage.language.image,
+                                              title: LocalizedString.t02MemoDateCellTitle,
+                                              isDisable: false))
             case .premium:
                 return CellInfo(type: .normal(icon: SystemImage.dollarsignCircleFill.image,
                                               title: LocalizedString.t02PremiumTitle,
@@ -166,9 +116,6 @@ class T02SettingsViewModel: BaseViewModel {
                                               isDisable: false))
             }
         }
-        
-        static var dateSelectionCell: [Cell] = [.marryDateSelection, .startDatingDateSelection]
-        
     }
     
     enum Section: CaseIterable {
@@ -182,8 +129,7 @@ class T02SettingsViewModel: BaseViewModel {
             switch self {
             case .dates:
                 return SectionInfo(title: LocalizedString.t02DataHeaderTitle,
-                                   cells: [.startDatingDateSelection,
-                                           .marryDateSelection,
+                                   cells: [.dateSetup,
                                            .background])
             case .ui:
                 return SectionInfo(title: LocalizedString.t02ViewHeaderitle,

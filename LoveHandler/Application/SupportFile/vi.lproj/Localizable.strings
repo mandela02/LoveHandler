@@ -73,6 +73,7 @@
 "t02HeartAnimationCellTitle" = "Hoạt hoạ";
 "t02PasscodeCellTitle" = "Mật khẩu";
 "t02DeleteAllCellTitle" = "Xoá tất cả";
+"t02MemoDateCellTitle" = "Bạn bắt đầu yêu khi nào?";
 
 "t03NavigationTitle" = "Kỷ niệm đôi ta";
 "t03SearchBarPlaceholder" = "Tìm kiếm kỉ niệm";

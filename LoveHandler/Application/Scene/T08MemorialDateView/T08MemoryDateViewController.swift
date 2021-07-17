@@ -17,12 +17,19 @@ class T08MemoryDateViewController: BasePageViewChildController {
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var weddingDateTextField: UITextField!
     @IBOutlet weak var weddingDatePicker: UIDatePicker!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     private var cancellables = Set<AnyCancellable>()
+    
+    var isFromSettingView = false
 
     override func setupView() {
         super.setupView()
         setupDatePicker()
+        if isFromSettingView {
+            setupBackground(data: SettingsHelper.backgroundImage.value)
+            setupPerson()
+        }
     }
     
     func setupPerson() {
@@ -80,5 +87,13 @@ class T08MemoryDateViewController: BasePageViewChildController {
         weddingDatePicker.minimumDate = Constant.minDate
         weddingDatePicker.datePickerMode = .date
         weddingDatePicker.date = SettingsHelper.weddingDate.value
+    }
+    
+    private func setupBackground(data: Data?) {
+        guard let data = data else {
+            backgroundImageView.image = ImageNames.love1.image
+            return
+        }
+        backgroundImageView.image = UIImage(data: data)
     }
 }

@@ -163,6 +163,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageView" destination="4yo-RS-cV5" id="VuL-Vr-yZs"/>
                         <outlet property="soulMateView" destination="Zim-vY-pWe" id="TLt-ad-MfB"/>
                         <outlet property="startDatePicker" destination="VX7-uO-4jB" id="ouy-vh-U0V"/>
                         <outlet property="startDateTextField" destination="6bW-px-NW3" id="VGB-tp-ZMn"/>

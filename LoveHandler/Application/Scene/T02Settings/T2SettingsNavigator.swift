@@ -14,6 +14,7 @@ protocol T2SettingsNavigatorType {
     func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never>
     func toBackgroundView()
     func toLanguage()
+    func toAnniversary()
 }
 
 class T2SettingsNavigator: T2SettingsNavigatorType {
@@ -55,5 +56,11 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
     func toLanguage() {
         let viewController = T11LanguageViewController.instantiateFromStoryboard()
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func toAnniversary() {
+        let viewController = T08MemoryDateViewController.instantiateFromStoryboard()
+        viewController.isFromSettingView = true
+        self.navigationController?.present(viewController, animated: true, completion: nil)
     }
 }
