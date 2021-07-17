@@ -120,4 +120,9 @@ struct LocalizedString {
     
     static var yourDefaultName: String { return String(localizedKey: "yourDefaultName") }
     static var yourSoulMateDefaultName: String { return String(localizedKey: "yourSoulMateDefaultName") }
+    
+    static var passcodeViewTitle: String { return String(localizedKey: "passcodeViewTitle") }
+    static var passcodeViewDescription: String { return String(localizedKey: "passcodeViewDescription") }
+    static var passcodeViewConfirmMesseage: String { return String(localizedKey: "passcodeViewConfirmMesseage") }
+    static var passcodeViewNotMatchMessage: String { return String(localizedKey: "passcodeViewNotMatchMessage") }
 }

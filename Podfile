@@ -15,4 +15,5 @@ target 'LoveHandler' do
   pod 'DeviceKit'
   pod 'Mantis', '~> 1.7.1'
   pod 'SwiftLint'
+  pod 'KeychainSwift'
 end

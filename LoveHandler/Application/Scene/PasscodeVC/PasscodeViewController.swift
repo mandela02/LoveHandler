@@ -69,7 +69,7 @@ class PasscodeViewController: UIViewController {
     }
     
     private func initialSetup() {
-        self.navigationItem.title = (mode == .VERIFY ? nil : (mode == .CREATE ? NSLocalizedString("Setup PIN", comment: "") : NSLocalizedString("Change PIN", comment: "")))
+        self.navigationItem.title = mode == .CREATE ? PasscodeViewController.config.confirmMessage : nil
         setTransparentNavigationBar(.white)
         setupTheme()
         setupMsgLabel()
@@ -81,13 +81,9 @@ class PasscodeViewController: UIViewController {
     
     private func setTransparentNavigationBar(_ color: UIColor = .white) {
         if let navigationBar = self.navigationController?.navigationBar {
-            // Base on the device size navigation image set
             navigationBar.setBackgroundImage(UIImage(), for: .default)
-            // Sets shadow (line below the bar) to a blank image
             navigationBar.shadowImage = UIImage()
-            // Sets the translucent background color
             navigationBar.backgroundColor = .clear
-            // Sets the translucent background color
             if floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1 {
                 navigationBar.tintColor = .clear
             } else {
@@ -95,7 +91,6 @@ class PasscodeViewController: UIViewController {
                 navigationBar.barTintColor = .clear
             }
             navigationBar.barTintColor = .clear
-            // Set translucent. (Default value is already true, so this can be removed if desired.)
             navigationBar.isTranslucent = true
             
             navigationBar.tintColor = color
@@ -137,7 +132,7 @@ class PasscodeViewController: UIViewController {
     }
     
     @objc private func setupMsgLabel() {
-        msgLabel.text = mode == .VERIFY ? PasscodeViewController.config.EnterCurrentPasscodeMessage : PasscodeViewController.config.EnterNewPasscodeMessage
+        msgLabel.text = mode == .VERIFY ? PasscodeViewController.config.confirmMessage : PasscodeViewController.config.viewDesctiption
     }
         
     private func updateDots(isBackspace: Bool) {
@@ -196,28 +191,45 @@ class PasscodeViewController: UIViewController {
                 oldPincode = pincode
                 pincode = ""
                 resetAllDots()
-                msgLabel.text = PasscodeViewController.config.ReEnterPasscodeMessage
+                msgLabel.text = PasscodeViewController.config.confirmMessage
                 numberPadCollectionView.isUserInteractionEnabled = true
                 return
             } else if pincode != oldPincode {
                 numberPadCollectionView.isUserInteractionEnabled = false
                 pinView.shake()
-                msgLabel.text = PasscodeViewController.config.PasscodeNotMatchMessage
+                msgLabel.text = PasscodeViewController.config.notMatchMessage
                 resetAllDots()
                 pincode = ""
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0, execute: {
                     self.numberPadCollectionView.isUserInteractionEnabled = true
                     self.oldPincode = ""
-                    self.msgLabel.text = PasscodeViewController.config.EnterNewPasscodeMessage
+                    self.msgLabel.text = PasscodeViewController.config.viewDesctiption
                 })
                 return
             } else {
-                // Call Set Pin WS
+                guard let code = pincode else { return }
+                PasscodeHelper.savePasscode(passcode: code)
                 completion?(pincode ?? "", oldPincode ?? "", self.mode)
             }
         } else {
-            // Call Verify Pin WS
-            completion?(pincode ?? "", oldPincode ?? "", self.mode)
+            guard let passCode = PasscodeHelper.getPasscode(),
+                  let code = pincode else { return }
+            if code == passCode {
+                completion?(pincode ?? "", oldPincode ?? "", self.mode)
+            } else {
+                numberPadCollectionView.isUserInteractionEnabled = false
+                pinView.shake()
+                msgLabel.text = PasscodeViewController.config.notMatchMessage
+                resetAllDots()
+                pincode = ""
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0, execute: {
+                    self.numberPadCollectionView.isUserInteractionEnabled = true
+                    self.oldPincode = ""
+                    self.msgLabel.text = PasscodeViewController.config.confirmMessage
+                })
+                return
+            }
+            
         }
     }
     
@@ -226,7 +238,6 @@ class PasscodeViewController: UIViewController {
         if response.0 == true {
             self.authenticationWithTouchID({
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: {
-                    // Call Login with Pin WS
                     self.completion?("BioMetric", "", self.mode)
                 })
             }, onFail: { (error) in

@@ -25,8 +25,16 @@ class PasscodeConfig: NSObject {
     var noOfDigits: Int = 4
     var isRandomKeyEnabled = false
     
-    var EnterCurrentPasscodeMessage = NSLocalizedString("Enter PIN", comment: "")
-    var EnterNewPasscodeMessage = NSLocalizedString("Please enter a new PIN", comment: "")
-    var ReEnterPasscodeMessage = NSLocalizedString("Confirm your PIN", comment: "")
-    var PasscodeNotMatchMessage = NSLocalizedString("Confirm PIN doesn't match", comment: "")
+    var title: String {
+        return LocalizedString.passcodeViewTitle
+    }
+    var viewDesctiption: String {
+        return LocalizedString.passcodeViewDescription
+    }
+    var confirmMessage: String {
+        return LocalizedString.passcodeViewConfirmMesseage
+    }
+    var notMatchMessage: String {
+        return LocalizedString.passcodeViewNotMatchMessage
+    }
 }

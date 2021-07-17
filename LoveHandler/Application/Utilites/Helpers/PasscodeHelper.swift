@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class PasscodeHelper {
+    private static let key = "passcode"
+    
     static func create(at viewController: UIViewController) {
         if let vc = PasscodeViewController.instance(with: .CREATE) {
             vc.show(in: viewController) { (passcode, newPasscode, mode) in
@@ -42,5 +45,20 @@ class PasscodeHelper {
                 }
             }
         }
+    }
+    
+    static func savePasscode(passcode: String) {
+        let keychain = KeychainSwift()
+        keychain.set(passcode, forKey: "key")
+    }
+    
+    static func getPasscode() -> String? {
+        let keychain = KeychainSwift()
+        return keychain.get("key")
+    }
+    
+    static func isPasscodeCorrect(input: String) -> Bool {
+        guard let passcode = getPasscode() else { return false }
+        return passcode == input
     }
 }
