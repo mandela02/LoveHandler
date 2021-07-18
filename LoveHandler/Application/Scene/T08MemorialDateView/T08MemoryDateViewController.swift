@@ -49,6 +49,7 @@ class T08MemoryDateViewController: BasePageViewChildController {
                 guard let self = self else { return }
                 self.startDateTextField.text = date.dayMonthYearDayOfWeekString
                 Settings.relationshipStartDate.value = date
+                self.resetLimit()
         }.store(in: &cancellables)
         
         weddingDatePicker.datePublisher
@@ -56,6 +57,7 @@ class T08MemoryDateViewController: BasePageViewChildController {
                 guard let self = self else { return }
                 self.weddingDateTextField.text = date.dayMonthYearDayOfWeekString
                 Settings.weddingDate.value = date
+                self.resetLimit()
         }.store(in: &cancellables)
     }
     
@@ -76,7 +78,7 @@ class T08MemoryDateViewController: BasePageViewChildController {
     private func setupDatePicker() {
         startDatePicker.locale = Locale(identifier: Strings.localeIdentifier)
         startDatePicker.calendar = Calendar.gregorian
-        startDatePicker.maximumDate = Constant.maxDate
+        startDatePicker.maximumDate = SettingsHelper.weddingDate.value
         startDatePicker.minimumDate = Constant.minDate
         startDatePicker.datePickerMode = .date
         startDatePicker.date = SettingsHelper.relationshipStartDate.value
@@ -84,9 +86,14 @@ class T08MemoryDateViewController: BasePageViewChildController {
         weddingDatePicker.locale = Locale(identifier: Strings.localeIdentifier)
         weddingDatePicker.calendar = Calendar.gregorian
         weddingDatePicker.maximumDate = Constant.maxDate
-        weddingDatePicker.minimumDate = Constant.minDate
+        weddingDatePicker.minimumDate = SettingsHelper.relationshipStartDate.value
         weddingDatePicker.datePickerMode = .date
         weddingDatePicker.date = SettingsHelper.weddingDate.value
+    }
+    
+    private func resetLimit() {
+        startDatePicker.maximumDate = SettingsHelper.weddingDate.value > Date() ?  Date() : SettingsHelper.weddingDate.value
+        weddingDatePicker.minimumDate = SettingsHelper.relationshipStartDate.value
     }
     
     private func setupBackground(data: Data?) {

@@ -23,8 +23,8 @@ class T04MemoryViewController: BaseViewController {
     @IBOutlet weak var dateContainerStackView: UIStackView!
     @IBOutlet weak var bigContainerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var bigContainerViewTopConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var placeHolderImage: UIImageView!
+    
     private var picker: ImagePickerHelper?
     private var currentConstraint: CGFloat = 0
     private var backgroundTap: UITapGestureRecognizer?
@@ -337,6 +337,7 @@ extension T04MemoryViewController {
         let width = self.bigContainerView.width
         let ratio = image.size.height / image.size.width
         self.imageHeightConstraint.constant = width * ratio
+        self.currentConstraint = self.imageHeightConstraint.constant
     }
 }
 

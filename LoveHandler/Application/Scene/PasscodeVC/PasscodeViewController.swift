@@ -345,6 +345,7 @@ extension PasscodeViewController: UICollectionViewDelegate, UICollectionViewData
             }
 
         case .backspace:
+            if pincode?.isEmpty ?? true { return }
             pincode?.removeLast()
             updateDots(isBackspace: true)
         case .biometric:
