@@ -66,12 +66,12 @@ extension Person {
             savedPerson = Person(name: self.name ?? "You",
                                  gender: self.gender ?? .female,
                                  dateOfBirth: self.dateOfBirth ?? DefaultDateFormatter.date(from: "2001/5/23")?.timeIntervalSince1970,
-                                 image: self.image ?? Gender.female.defaultImage)
+                                 image: self.image ?? self.gender?.defaultImage ?? Gender.female.defaultImage)
         case .soulmate:
             savedPerson = Person(name: self.name ?? "Your Soulmate",
                                  gender: self.gender ?? .male,
                                  dateOfBirth: self.dateOfBirth ?? DefaultDateFormatter.date(from: "1996/6/18")?.timeIntervalSince1970,
-                                 image: self.image ?? Gender.male.defaultImage)
+                                 image: self.image ?? self.gender?.defaultImage ?? Gender.male.defaultImage)
         }
         
         let savedObject = savedPerson.toObject()

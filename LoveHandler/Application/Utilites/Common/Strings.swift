@@ -8,7 +8,7 @@
 import Foundation
 
 enum LanguageCode: String, CaseIterable {
-    case english = "en-US"
+    case english = "en"
     case vietnamese = "vi"
     
     var name: String {
