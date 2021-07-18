@@ -16,6 +16,9 @@ class T03MemoryListViewController: BaseViewController {
     @IBOutlet weak var toTopButton: RoundButton!
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var bannerView: UIView!
+    @IBOutlet weak var bannerHeightConstraint: NSLayoutConstraint!
+    
     var viewModel: T03MemoryListViewModel?
     
     private var cancellables = Set<AnyCancellable>()
@@ -52,6 +55,8 @@ class T03MemoryListViewController: BaseViewController {
     
     override func refreshView() {
         super.refreshView()
+        setBannerView(with: bannerView,
+                      heightConstraint: bannerHeightConstraint)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -243,5 +248,13 @@ extension T03MemoryListViewController: UISearchResultsUpdating, UISearchBarDeleg
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.sizeToFit()
+    }
+}
+
+extension T03MemoryListViewController: AdsPresented {
+    func bannerViewDidShow(bannerView: UIView, height: CGFloat) {}
+    
+    func removeAdsIfNeeded(bannerView: UIView) {
+        bannerHeightConstraint.constant = 0
     }
 }

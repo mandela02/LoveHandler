@@ -18,77 +18,101 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TL-Pt-Ecn">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3z-Tc-agq">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6kX-St-t4I">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TL-Pt-Ecn">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                        <subviews>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6kX-St-t4I">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ftL-1s-ACh">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells/>
+                                            </collectionView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHh-9C-dBT" customClass="RoundButton" customModule="LoveHandler" customModuleProvider="target">
+                                                <rect key="frame" x="332" y="686" width="62" height="62"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="pHh-9C-dBT" secondAttribute="height" multiplier="1:1" id="FSM-GZ-5Ie"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="plus" catalog="system" symbolScale="medium" renderingMode="template"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbk-vU-pd0" customClass="RoundButton" customModule="LoveHandler" customModuleProvider="target">
+                                                <rect key="frame" x="189.5" y="683" width="35" height="35"/>
+                                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Gbk-vU-pd0" secondAttribute="height" multiplier="1:1" id="dEa-ax-fel"/>
+                                                    <constraint firstAttribute="height" constant="35" id="ykg-b9-ZCR"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="arrow.up" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" systemColor="systemTealColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="toTopButtonAction:" destination="1Zd-7h-VUF" eventType="touchUpInside" id="ltO-Eu-vJ0"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ftL-1s-ACh">
-                                            <size key="itemSize" width="128" height="128"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells/>
-                                    </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHh-9C-dBT" customClass="RoundButton" customModule="LoveHandler" customModuleProvider="target">
-                                        <rect key="frame" x="332" y="770" width="62" height="62"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="pHh-9C-dBT" secondAttribute="height" multiplier="1:1" id="FSM-GZ-5Ie"/>
+                                            <constraint firstAttribute="bottom" secondItem="6kX-St-t4I" secondAttribute="bottom" id="72I-Lr-6lf"/>
+                                            <constraint firstItem="6kX-St-t4I" firstAttribute="leading" secondItem="4TL-Pt-Ecn" secondAttribute="leading" id="Cap-MM-6t2"/>
+                                            <constraint firstItem="Gbk-vU-pd0" firstAttribute="centerX" secondItem="4TL-Pt-Ecn" secondAttribute="centerX" id="QJJ-6C-2nn"/>
+                                            <constraint firstAttribute="trailing" secondItem="6kX-St-t4I" secondAttribute="trailing" id="Tbp-YP-VsC"/>
+                                            <constraint firstAttribute="trailing" secondItem="pHh-9C-dBT" secondAttribute="trailing" constant="20" id="Xud-SE-WqG"/>
+                                            <constraint firstItem="6kX-St-t4I" firstAttribute="top" secondItem="4TL-Pt-Ecn" secondAttribute="top" id="jRS-XD-PLw"/>
+                                            <constraint firstAttribute="bottom" secondItem="pHh-9C-dBT" secondAttribute="bottom" constant="20" id="kCS-5H-LjV"/>
+                                            <constraint firstAttribute="bottom" secondItem="Gbk-vU-pd0" secondAttribute="bottom" constant="50" id="ktb-r6-PRk"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
-                                        <state key="normal">
-                                            <imageReference key="image" image="plus" catalog="system" symbolScale="medium" renderingMode="template"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbk-vU-pd0" customClass="RoundButton" customModule="LoveHandler" customModuleProvider="target">
-                                        <rect key="frame" x="189.5" y="767" width="35" height="35"/>
-                                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lfa-tS-I8X">
+                                        <rect key="frame" x="0.0" y="768" width="414" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="Gbk-vU-pd0" secondAttribute="height" multiplier="1:1" id="dEa-ax-fel"/>
-                                            <constraint firstAttribute="height" constant="35" id="ykg-b9-ZCR"/>
+                                            <constraint firstAttribute="height" constant="50" id="Gkn-MM-NrM"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="arrow.up" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                <color key="value" systemColor="systemTealColor"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="toTopButtonAction:" destination="1Zd-7h-VUF" eventType="touchUpInside" id="ltO-Eu-vJ0"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="6kX-St-t4I" secondAttribute="bottom" id="72I-Lr-6lf"/>
-                                    <constraint firstItem="6kX-St-t4I" firstAttribute="leading" secondItem="4TL-Pt-Ecn" secondAttribute="leading" id="Cap-MM-6t2"/>
-                                    <constraint firstItem="Gbk-vU-pd0" firstAttribute="centerX" secondItem="4TL-Pt-Ecn" secondAttribute="centerX" id="QJJ-6C-2nn"/>
-                                    <constraint firstAttribute="trailing" secondItem="6kX-St-t4I" secondAttribute="trailing" id="Tbp-YP-VsC"/>
-                                    <constraint firstAttribute="trailing" secondItem="pHh-9C-dBT" secondAttribute="trailing" constant="20" id="Xud-SE-WqG"/>
-                                    <constraint firstItem="6kX-St-t4I" firstAttribute="top" secondItem="4TL-Pt-Ecn" secondAttribute="top" id="jRS-XD-PLw"/>
-                                    <constraint firstAttribute="bottom" secondItem="pHh-9C-dBT" secondAttribute="bottom" constant="20" id="kCS-5H-LjV"/>
-                                    <constraint firstAttribute="bottom" secondItem="Gbk-vU-pd0" secondAttribute="bottom" constant="50" id="ktb-r6-PRk"/>
+                                    <constraint firstItem="4TL-Pt-Ecn" firstAttribute="leading" secondItem="F3z-Tc-agq" secondAttribute="leading" id="0Jb-Hg-64p"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lfa-tS-I8X" secondAttribute="trailing" id="Y0R-t9-VFh"/>
+                                    <constraint firstAttribute="bottom" secondItem="Lfa-tS-I8X" secondAttribute="bottom" id="dox-uq-H6j"/>
+                                    <constraint firstItem="4TL-Pt-Ecn" firstAttribute="top" secondItem="F3z-Tc-agq" secondAttribute="top" id="dpb-Z5-71V"/>
+                                    <constraint firstItem="Lfa-tS-I8X" firstAttribute="top" secondItem="4TL-Pt-Ecn" secondAttribute="bottom" id="hq7-hf-2xJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="4TL-Pt-Ecn" secondAttribute="trailing" id="jWF-Ui-VOQ"/>
+                                    <constraint firstItem="Lfa-tS-I8X" firstAttribute="leading" secondItem="F3z-Tc-agq" secondAttribute="leading" id="oHM-Nj-JVT"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4gC-MB-zvO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4TL-Pt-Ecn" firstAttribute="leading" secondItem="4gC-MB-zvO" secondAttribute="leading" id="4U2-wr-8c4"/>
-                            <constraint firstItem="4TL-Pt-Ecn" firstAttribute="top" secondItem="4gC-MB-zvO" secondAttribute="top" id="82M-WA-fmr"/>
-                            <constraint firstAttribute="bottom" secondItem="4TL-Pt-Ecn" secondAttribute="bottom" id="LrS-YP-kAl"/>
-                            <constraint firstItem="4gC-MB-zvO" firstAttribute="trailing" secondItem="4TL-Pt-Ecn" secondAttribute="trailing" id="U9e-kt-ncW"/>
+                            <constraint firstItem="F3z-Tc-agq" firstAttribute="top" secondItem="4gC-MB-zvO" secondAttribute="top" id="4eQ-R4-b0P"/>
+                            <constraint firstItem="4gC-MB-zvO" firstAttribute="trailing" secondItem="F3z-Tc-agq" secondAttribute="trailing" id="TSs-B9-P3f"/>
+                            <constraint firstItem="4gC-MB-zvO" firstAttribute="bottom" secondItem="F3z-Tc-agq" secondAttribute="bottom" id="YOV-Dl-Q3W"/>
+                            <constraint firstItem="F3z-Tc-agq" firstAttribute="leading" secondItem="4gC-MB-zvO" secondAttribute="leading" id="gxN-mv-B2g"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="pHh-9C-dBT" id="8Vj-P3-j6u"/>
+                        <outlet property="bannerHeightConstraint" destination="Gkn-MM-NrM" id="UB5-qe-ZyD"/>
+                        <outlet property="bannerView" destination="Lfa-tS-I8X" id="x9k-Qq-dLd"/>
                         <outlet property="collectionView" destination="6kX-St-t4I" id="uFb-5T-UCZ"/>
                         <outlet property="collectionViewBottomConstraint" destination="72I-Lr-6lf" id="FbK-Qc-AJA"/>
                         <outlet property="toTopButton" destination="Gbk-vU-pd0" id="mOj-Ea-5dG"/>
