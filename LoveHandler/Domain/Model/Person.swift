@@ -63,12 +63,12 @@ extension Person {
         var savedPerson: Person
         switch key {
         case .you:
-            savedPerson = Person(name: self.name ?? "You",
+            savedPerson = Person(name: self.name ?? LocalizedString.yourDefaultName,
                                  gender: self.gender ?? .female,
                                  dateOfBirth: self.dateOfBirth ?? DefaultDateFormatter.date(from: "2001/5/23")?.timeIntervalSince1970,
                                  image: self.image ?? self.gender?.defaultImage ?? Gender.female.defaultImage)
         case .soulmate:
-            savedPerson = Person(name: self.name ?? "Your Soulmate",
+            savedPerson = Person(name: self.name ?? LocalizedString.yourSoulMateDefaultName,
                                  gender: self.gender ?? .male,
                                  dateOfBirth: self.dateOfBirth ?? DefaultDateFormatter.date(from: "1996/6/18")?.timeIntervalSince1970,
                                  image: self.image ?? self.gender?.defaultImage ?? Gender.male.defaultImage)
