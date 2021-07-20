@@ -18,6 +18,11 @@ class PersonView: BaseView, NibLoadable {
     
     var contentView: UIView?
     
+    let genderColorPicker = UIColorPickerViewController()
+    let genderTextColorPicker = UIColorPickerViewController()
+    let zodiacColorPicker = UIColorPickerViewController()
+    let zodiacTextColorPicker = UIColorPickerViewController()
+
     var person: Person? {
         didSet {
             if let person = person {
@@ -47,6 +52,11 @@ class PersonView: BaseView, NibLoadable {
     private func setupView() {
         setupFromNib()
         
+        genderColorPicker.delegate = self
+        genderTextColorPicker.delegate = self
+        zodiacColorPicker.delegate = self
+        zodiacTextColorPicker.delegate = self
+
         let zodiacTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         zodiacContanerView.addGestureRecognizer(zodiacTap)
         
@@ -70,7 +80,19 @@ class PersonView: BaseView, NibLoadable {
     }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        datePickerTapped()
+        UIAlertController.showActionSheet(source: BirthdayAction.self,
+                                          title: LocalizedString.t01OptionTitle,
+                                          message: LocalizedString.t01OptionSubTitle) {[weak self] action in
+            guard let self = self else { return }
+            switch action {
+            case .chooseBirthDay:
+                self.datePickerTapped()
+            case .chooseColor:
+                self.chooseColor(controller: self.zodiacColorPicker)
+            case .chooseTextColor:
+                self.chooseColor(controller: self.zodiacTextColorPicker)
+            }
+        }
     }
     
     @objc private func handleNameTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -91,14 +113,16 @@ class PersonView: BaseView, NibLoadable {
         UIAlertController.showActionSheet(source: GenderAndAgeButtonAction.self,
                                           title: LocalizedString.t01OptionTitle,
                                           message: LocalizedString.t01OptionSubTitle) {[weak self] action in
+            guard let self = self else { return }
             switch action {
-            
             case .chooseGender:
-                self?.chooseGender()
+                self.chooseGender()
             case .chooseDateOfBirth:
-                self?.datePickerTapped()
+                self.datePickerTapped()
             case .chooseColor:
-                self?.chooseGender()
+                self.chooseColor(controller: self.genderColorPicker)
+            case .chooseTextColor:
+                self.chooseColor(controller: self.genderTextColorPicker)
             }
         }
     }
@@ -124,6 +148,11 @@ class PersonView: BaseView, NibLoadable {
             avatarImageView.contentMode = .scaleAspectFit
             avatarImageView.image = person.gender?.defaultImage
         }
+        
+        genderContainerView.backgroundColor = self.person?.genderColor ?? Colors.pink
+        zodiacContanerView.backgroundColor = self.person?.zodiacColor ?? Colors.hotPink
+        genderLabel.textColor = self.person?.genderTextColor ?? Colors.mediumVioletRed
+        zodiacLabel.textColor = self.person?.zodiacTextColor ?? UIColor.white
     }
     
     override func setupTheme() {
@@ -131,11 +160,6 @@ class PersonView: BaseView, NibLoadable {
         avatarImageView.tintColor = Colors.lightPink
 
         nameLabel.textColor = UIColor.white
-        genderLabel.textColor = Colors.mediumVioletRed
-        zodiacLabel.textColor = UIColor.white
-        
-        genderContainerView.backgroundColor = Colors.pink
-        zodiacContanerView.backgroundColor = Colors.hotPink
     }
 }
 
@@ -177,6 +201,10 @@ extension PersonView {
             }
         }
     }
+    
+    private func chooseColor(controller: UIColorPickerViewController) {
+        UIApplication.topViewController()?.present(controller, animated: true, completion: nil)
+    }
 }
 
 extension PersonView: ImagePickerDelegate {
@@ -186,5 +214,26 @@ extension PersonView: ImagePickerDelegate {
     
     func libraryHandle(images: [UIImage]) {
         self.person?.image = images.first
+    }
+}
+
+extension PersonView: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        switch viewController {
+        case genderColorPicker:
+            self.person?.genderColor = viewController.selectedColor
+        case genderTextColorPicker:
+            self.person?.genderTextColor = viewController.selectedColor
+        case zodiacColorPicker:
+            self.person?.zodiacColor = viewController.selectedColor
+        case zodiacTextColorPicker:
+            self.person?.zodiacTextColor = viewController.selectedColor
+        default:
+            return
+        }
     }
 }

@@ -1,23 +1,20 @@
 //
-//  GenderButtonAction.swift
+//  birthdayAction.swift
 //  LoveHandler
 //
-//  Created by LanNTH on 18/04/2021.
+//  Created by LanNTH on 20/07/2021.
 //
 
 import Foundation
 
-enum GenderAndAgeButtonAction: CaseIterable, EnumName {
-    case chooseGender
-    case chooseDateOfBirth
+enum BirthdayAction: CaseIterable, EnumName {
+    case chooseBirthDay
     case chooseColor
     case chooseTextColor
     
     func getName() -> String {
         switch self {
-        case .chooseGender:
-            return LocalizedString.t01GenderOptionTitle
-        case .chooseDateOfBirth:
+        case .chooseBirthDay:
             return LocalizedString.t01BirthDayOptionTitle
         case .chooseColor:
             return LocalizedString.t01ColorOptionTitle

@@ -22,7 +22,7 @@
 "pisces" = "Pisces ";
 
 "t01MainScreenTitle" = "Together Forever";
-"t01DatePickerTitleTitle" = "Pick date of birth";
+"t01DatePickerTitleTitle" = "When is your birthday?";
 "t01ConfirmButtonTitle" = "Choose";
 "t01CancelButtonTitle" = "Cancel";
 
@@ -48,7 +48,8 @@
 
 "t01GenderOptionTitle" = "Gender";
 "t01BirthDayOptionTitle" = "Birthday";
-"t01ColorOptionTitle" = "Colors";
+"t01ColorOptionTitle" = "Background Colors";
+"t01TextColorOptionTitle" = "Text Colors";
 
 "t01NameTitle" = "Name";
 "t01NameSubTitle" = "Enter name";
