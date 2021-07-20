@@ -7,25 +7,30 @@
 
 import UIKit
 import Combine
+import DatePickerDialog
 
 class T08MemoryDateViewController: BasePageViewChildController {
     @IBOutlet weak var youView: SmallPersonView!
     @IBOutlet weak var soulMateView: SmallPersonView!
     @IBOutlet weak var startDateTitleLabel: UILabel!
-    @IBOutlet weak var weddingDateTItleLabel: UILabel!
-    @IBOutlet weak var startDateTextField: UITextField!
-    @IBOutlet weak var startDatePicker: UIDatePicker!
-    @IBOutlet weak var weddingDateTextField: UITextField!
-    @IBOutlet weak var weddingDatePicker: UIDatePicker!
+    @IBOutlet weak var weddingDateTitleLabel: UILabel!
+    
+    @IBOutlet weak var startDateLabel: BaseLabel!
+    @IBOutlet weak var endDateLabel: BaseLabel!
+    
     @IBOutlet weak var backgroundImageView: UIImageView!
     
     private var cancellables = Set<AnyCancellable>()
     
     var isFromSettingView = false
-
+    
     override func setupView() {
         super.setupView()
-        setupDatePicker()
+        setupLabelTap()
+        
+        self.endDateLabel.text = Settings.weddingDate.value.dayMonthYearDayOfWeekString
+        self.startDateLabel.text = Settings.relationshipStartDate.value.dayMonthYearDayOfWeekString
+
         if isFromSettingView {
             setupBackground(data: SettingsHelper.backgroundImage.value)
             setupPerson()
@@ -42,58 +47,85 @@ class T08MemoryDateViewController: BasePageViewChildController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    override func bindViewModel() {
-        super.bindViewModel()
-        startDatePicker.datePublisher
-            .sink { [weak self] date in
-                guard let self = self else { return }
-                self.startDateTextField.text = date.dayMonthYearDayOfWeekString
-                Settings.relationshipStartDate.value = date
-                self.resetLimit()
-        }.store(in: &cancellables)
-        
-        weddingDatePicker.datePublisher
-            .sink { [weak self] date in
-                guard let self = self else { return }
-                self.weddingDateTextField.text = date.dayMonthYearDayOfWeekString
-                Settings.weddingDate.value = date
-                self.resetLimit()
-        }.store(in: &cancellables)
-    }
-    
     override func setupLocalizedString() {
         super.setupLocalizedString()
-        weddingDateTItleLabel.text = LocalizedString.t08WeddingDateTitle
+        weddingDateTitleLabel.text = LocalizedString.t08WeddingDateTitle
         startDateTitleLabel.text = LocalizedString.t08StartDateTitle
     }
     
     override func setupTheme() {
         super.setupTheme()
-        weddingDateTItleLabel.textColor = UIColor.white
+        weddingDateTitleLabel.textColor = UIColor.white
         startDateTitleLabel.textColor = UIColor.white
-        startDateTextField.textColor = Colors.deepPink
-        weddingDateTextField.textColor = Colors.deepPink
+        startDateLabel.textColor = Colors.deepPink
+        endDateLabel.textColor = Colors.deepPink
     }
     
-    private func setupDatePicker() {
-        startDatePicker.locale = Locale(identifier: Strings.localeIdentifier)
-        startDatePicker.calendar = Calendar.gregorian
-        startDatePicker.maximumDate = SettingsHelper.weddingDate.value
-        startDatePicker.minimumDate = Constant.minDate
-        startDatePicker.datePickerMode = .date
-        startDatePicker.date = SettingsHelper.relationshipStartDate.value
+    private func setupGesture() {
         
-        weddingDatePicker.locale = Locale(identifier: Strings.localeIdentifier)
-        weddingDatePicker.calendar = Calendar.gregorian
-        weddingDatePicker.maximumDate = Constant.maxDate
-        weddingDatePicker.minimumDate = SettingsHelper.relationshipStartDate.value
-        weddingDatePicker.datePickerMode = .date
-        weddingDatePicker.date = SettingsHelper.weddingDate.value
     }
     
-    private func resetLimit() {
-        startDatePicker.maximumDate = SettingsHelper.weddingDate.value > Date() ?  Date() : SettingsHelper.weddingDate.value
-        weddingDatePicker.minimumDate = SettingsHelper.relationshipStartDate.value
+    @objc func labelTapped(_ sender: UITapGestureRecognizer) {
+        if sender.view == startDateLabel {
+            startDatePickerTapped()
+        } else {
+            endDatePickerTapped()
+        }
+    }
+    
+    func setupLabelTap() {
+        let startLabelTap = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped(_:)))
+        startDateLabel.isUserInteractionEnabled = true
+        startDateLabel.addGestureRecognizer(startLabelTap)
+        let endLabelTap = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped(_:)))
+        endDateLabel.isUserInteractionEnabled = true
+        endDateLabel.addGestureRecognizer(endLabelTap)
+    }
+    
+    private func startDatePickerTapped() {
+        let dialog = DatePickerDialog(textColor: Colors.paleVioletRed,
+                                      buttonColor: Colors.mediumVioletRed,
+                                      locale: Locale(identifier: Strings.localeIdentifier))
+        
+        dialog.overrideUserInterfaceStyle = .light
+        dialog.datePicker.overrideUserInterfaceStyle = .light
+        
+        dialog.show(LocalizedString.t01DatePickerTitleTitle,
+                    doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
+                    cancelButtonTitle: LocalizedString.t01CancelButtonTitle,
+                    defaultDate: SettingsHelper.relationshipStartDate.value,
+                    minimumDate: Constant.minDate,
+                    maximumDate: SettingsHelper.weddingDate.value,
+                    datePickerMode: .date) { [weak self] date in
+            guard let self = self else { return }
+            if let date = date {
+                self.startDateLabel.text = date.dayMonthYearDayOfWeekString
+                Settings.relationshipStartDate.value = date
+            }
+        }
+    }
+    
+    private func endDatePickerTapped() {
+        let dialog = DatePickerDialog(textColor: Colors.paleVioletRed,
+                                      buttonColor: Colors.mediumVioletRed,
+                                      locale: Locale(identifier: Strings.localeIdentifier))
+        
+        dialog.overrideUserInterfaceStyle = .light
+        dialog.datePicker.overrideUserInterfaceStyle = .light
+        
+        dialog.show(LocalizedString.t01DatePickerTitleTitle,
+                    doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
+                    cancelButtonTitle: LocalizedString.t01CancelButtonTitle,
+                    defaultDate: SettingsHelper.weddingDate.value,
+                    minimumDate: SettingsHelper.relationshipStartDate.value,
+                    maximumDate: Constant.maxDate,
+                    datePickerMode: .date) { [weak self] date in
+            guard let self = self else { return }
+            if let date = date {
+                self.endDateLabel.text = date.dayMonthYearDayOfWeekString
+                Settings.weddingDate.value = date
+            }
+        }
     }
     
     private func setupBackground(data: Data?) {

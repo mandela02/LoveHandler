@@ -24,31 +24,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C00-ef-roi">
                                 <rect key="frame" x="50" y="304.5" width="314" height="60"/>
                                 <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="VX7-uO-4jB">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ay8-GV-461" customClass="BaseLabel" customModule="LoveHandler" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
-                                    </datePicker>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start dating time" borderStyle="roundedRect" placeholder="Date of birth " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6bW-px-NW3">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="VX7-uO-4jB" firstAttribute="top" secondItem="C00-ef-roi" secondAttribute="top" id="1B6-J8-5cD"/>
-                                    <constraint firstAttribute="bottom" secondItem="VX7-uO-4jB" secondAttribute="bottom" id="33r-PQ-FOo"/>
-                                    <constraint firstAttribute="trailing" secondItem="6bW-px-NW3" secondAttribute="trailing" id="7Uf-YG-eo2"/>
-                                    <constraint firstAttribute="trailing" secondItem="VX7-uO-4jB" secondAttribute="trailing" id="Ebg-0b-vhA"/>
-                                    <constraint firstItem="6bW-px-NW3" firstAttribute="top" secondItem="C00-ef-roi" secondAttribute="top" id="OTI-Cf-WLf"/>
-                                    <constraint firstItem="VX7-uO-4jB" firstAttribute="leading" secondItem="C00-ef-roi" secondAttribute="leading" id="YKW-Ew-cOP"/>
-                                    <constraint firstItem="6bW-px-NW3" firstAttribute="leading" secondItem="C00-ef-roi" secondAttribute="leading" id="avY-Za-gK8"/>
+                                    <constraint firstItem="Ay8-GV-461" firstAttribute="top" secondItem="C00-ef-roi" secondAttribute="top" id="XXs-F9-eIv"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ay8-GV-461" secondAttribute="trailing" id="fx5-iU-92u"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ay8-GV-461" secondAttribute="bottom" id="gHs-Ef-sda"/>
+                                    <constraint firstItem="Ay8-GV-461" firstAttribute="leading" secondItem="C00-ef-roi" secondAttribute="leading" id="gm4-yA-uzR"/>
                                     <constraint firstAttribute="height" constant="60" id="jyd-ZZ-aKn"/>
-                                    <constraint firstAttribute="bottom" secondItem="6bW-px-NW3" secondAttribute="bottom" id="jzO-LI-2TQ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
@@ -102,31 +91,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-Sw-0JJ">
                                 <rect key="frame" x="50" y="425" width="314" height="60"/>
                                 <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="hN6-5S-8Xy">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
-                                    </datePicker>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start dating time" borderStyle="roundedRect" placeholder="Date of birth " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YWu-yg-cFu">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxV-ei-8Nw" customClass="BaseLabel" customModule="LoveHandler" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="hN6-5S-8Xy" secondAttribute="bottom" id="3sk-pJ-YJR"/>
-                                    <constraint firstAttribute="trailing" secondItem="hN6-5S-8Xy" secondAttribute="trailing" id="3ti-XT-sg0"/>
-                                    <constraint firstItem="hN6-5S-8Xy" firstAttribute="leading" secondItem="zzb-Sw-0JJ" secondAttribute="leading" id="5Vx-y9-R7n"/>
-                                    <constraint firstItem="YWu-yg-cFu" firstAttribute="leading" secondItem="zzb-Sw-0JJ" secondAttribute="leading" id="7OK-PU-HTX"/>
-                                    <constraint firstAttribute="bottom" secondItem="YWu-yg-cFu" secondAttribute="bottom" id="Aw5-Qc-kNj"/>
-                                    <constraint firstAttribute="trailing" secondItem="YWu-yg-cFu" secondAttribute="trailing" id="EuW-8y-mVA"/>
-                                    <constraint firstItem="hN6-5S-8Xy" firstAttribute="top" secondItem="zzb-Sw-0JJ" secondAttribute="top" id="JFD-5D-PTq"/>
+                                    <constraint firstItem="pxV-ei-8Nw" firstAttribute="top" secondItem="zzb-Sw-0JJ" secondAttribute="top" id="5je-sw-ZaW"/>
+                                    <constraint firstAttribute="bottom" secondItem="pxV-ei-8Nw" secondAttribute="bottom" id="AYz-e5-Vj3"/>
                                     <constraint firstAttribute="height" constant="60" id="Mk1-XP-ZfR"/>
-                                    <constraint firstItem="YWu-yg-cFu" firstAttribute="top" secondItem="zzb-Sw-0JJ" secondAttribute="top" id="NcV-3N-xD0"/>
+                                    <constraint firstItem="pxV-ei-8Nw" firstAttribute="leading" secondItem="zzb-Sw-0JJ" secondAttribute="leading" id="N66-3b-he2"/>
+                                    <constraint firstAttribute="trailing" secondItem="pxV-ei-8Nw" secondAttribute="trailing" id="mFh-7c-kgf"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="viewCornerRadius">
@@ -164,13 +142,11 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="4yo-RS-cV5" id="VuL-Vr-yZs"/>
+                        <outlet property="endDateLabel" destination="pxV-ei-8Nw" id="3au-u6-JqJ"/>
                         <outlet property="soulMateView" destination="Zim-vY-pWe" id="TLt-ad-MfB"/>
-                        <outlet property="startDatePicker" destination="VX7-uO-4jB" id="ouy-vh-U0V"/>
-                        <outlet property="startDateTextField" destination="6bW-px-NW3" id="VGB-tp-ZMn"/>
+                        <outlet property="startDateLabel" destination="Ay8-GV-461" id="3lV-HD-zuB"/>
                         <outlet property="startDateTitleLabel" destination="43s-8L-dlT" id="tmS-41-DUM"/>
-                        <outlet property="weddingDatePicker" destination="hN6-5S-8Xy" id="Ra0-Dt-9Z5"/>
-                        <outlet property="weddingDateTItleLabel" destination="Zuo-6N-xWS" id="b29-Dl-Y5D"/>
-                        <outlet property="weddingDateTextField" destination="YWu-yg-cFu" id="AJv-z3-aqU"/>
+                        <outlet property="weddingDateTitleLabel" destination="Zuo-6N-xWS" id="b29-Dl-Y5D"/>
                         <outlet property="youView" destination="IYG-f0-icJ" id="LWk-OQ-fVH"/>
                     </connections>
                 </viewController>
