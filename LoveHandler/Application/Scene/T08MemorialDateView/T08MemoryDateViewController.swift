@@ -90,7 +90,7 @@ class T08MemoryDateViewController: BasePageViewChildController {
         dialog.overrideUserInterfaceStyle = .light
         dialog.datePicker.overrideUserInterfaceStyle = .light
         
-        dialog.show(LocalizedString.t01DatePickerTitleTitle,
+        dialog.show(LocalizedString.t08StartDateTitle,
                     doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
                     cancelButtonTitle: LocalizedString.t01CancelButtonTitle,
                     defaultDate: SettingsHelper.relationshipStartDate.value,
@@ -113,7 +113,7 @@ class T08MemoryDateViewController: BasePageViewChildController {
         dialog.overrideUserInterfaceStyle = .light
         dialog.datePicker.overrideUserInterfaceStyle = .light
         
-        dialog.show(LocalizedString.t01DatePickerTitleTitle,
+        dialog.show(LocalizedString.t08WeddingDateTitle,
                     doneButtonTitle: LocalizedString.t01ConfirmButtonTitle,
                     cancelButtonTitle: LocalizedString.t01CancelButtonTitle,
                     defaultDate: SettingsHelper.weddingDate.value,
