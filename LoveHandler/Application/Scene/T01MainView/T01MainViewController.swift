@@ -22,7 +22,7 @@ class T01MainViewController: BaseViewController {
     @IBOutlet weak var secondLoverView: PersonView!
     @IBOutlet weak var loveButton: UIButton!
     
-    @IBOutlet weak var floaterHeartView: Floater!
+    @IBOutlet weak var floaterHeartView: HeartFloaterView!
     
     @IBOutlet weak var bannerViewContainer: UIView!
     

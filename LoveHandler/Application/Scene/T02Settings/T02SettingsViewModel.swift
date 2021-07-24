@@ -28,6 +28,8 @@ class T02SettingsViewModel: BaseViewModel {
                     self.navigator.toLanguage()
                 case .dateSetup:
                     self.navigator.toAnniversary()
+                case .heartAnimation:
+                    self.navigator.toAnimationSetting()
                 default:
                     return
                 }

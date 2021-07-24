@@ -15,6 +15,7 @@ protocol T2SettingsNavigatorType {
     func toBackgroundView()
     func toLanguage()
     func toAnniversary()
+    func toAnimationSetting()
 }
 
 class T2SettingsNavigator: T2SettingsNavigatorType {
@@ -61,6 +62,11 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
     func toAnniversary() {
         let viewController = T08MemoryDateViewController.instantiateFromStoryboard()
         viewController.isFromSettingView = true
+        self.navigationController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func toAnimationSetting() {
+        let viewController = T12AnimationSettingViewController.instantiateFromStoryboard()
         self.navigationController?.present(viewController, animated: true, completion: nil)
     }
 }

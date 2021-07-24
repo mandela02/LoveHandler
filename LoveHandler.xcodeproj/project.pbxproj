@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8406B1E626A28BC1004E43F3 /* AdsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B1E526A28BC1004E43F3 /* AdsHelper.swift */; };
 		8406B1E826A72B46004E43F3 /* BirthdayAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B1E726A72B46004E43F3 /* BirthdayAction.swift */; };
+		8406B1EB26A72E97004E43F3 /* T12AnimationSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B1EA26A72E97004E43F3 /* T12AnimationSettingViewController.swift */; };
+		8406B1ED26A72EAD004E43F3 /* T12AnimationSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8406B1EC26A72EAD004E43F3 /* T12AnimationSettingViewController.storyboard */; };
+		8406B1EF26AB5002004E43F3 /* AnimatedSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406B1EE26AB5002004E43F3 /* AnimatedSettingTableViewCell.swift */; };
 		840B8299267EDDCE007A82F0 /* CDBackgroundImage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B8297267EDDCE007A82F0 /* CDBackgroundImage+CoreDataClass.swift */; };
 		840B829A267EDDCE007A82F0 /* CDBackgroundImage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B8298267EDDCE007A82F0 /* CDBackgroundImage+CoreDataProperties.swift */; };
 		840B829C267EDDF3007A82F0 /* AppUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B829B267EDDF3007A82F0 /* AppUseCase.swift */; };
@@ -36,7 +39,7 @@
 		846E39C4269B26C90076597A /* T11LanguageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846E39C3269B26C90076597A /* T11LanguageViewController.storyboard */; };
 		846E39C6269B28A00076597A /* T11LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E39C5269B28A00076597A /* T11LanguageViewController.swift */; };
 		846F3E10266E6F8200BB9D3B /* heart-button.json in Resources */ = {isa = PBXBuildFile; fileRef = 846F3E0F266E6F8100BB9D3B /* heart-button.json */; };
-		8472980E267262AE00DFB3ED /* FloaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472980D267262AE00DFB3ED /* FloaterView.swift */; };
+		8472980E267262AE00DFB3ED /* HeartFloaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472980D267262AE00DFB3ED /* HeartFloaterView.swift */; };
 		8472981826726E7E00DFB3ED /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472981726726E7E00DFB3ED /* Memory.swift */; };
 		84729820267271C800DFB3ED /* CDMemory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472981E267271C800DFB3ED /* CDMemory+CoreDataClass.swift */; };
 		84729821267271C800DFB3ED /* CDMemory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472981F267271C800DFB3ED /* CDMemory+CoreDataProperties.swift */; };
@@ -152,6 +155,9 @@
 		6A6D23C89F3B893C3664717C /* Pods-LoveHandler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveHandler.release.xcconfig"; path = "Target Support Files/Pods-LoveHandler/Pods-LoveHandler.release.xcconfig"; sourceTree = "<group>"; };
 		8406B1E526A28BC1004E43F3 /* AdsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsHelper.swift; sourceTree = "<group>"; };
 		8406B1E726A72B46004E43F3 /* BirthdayAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayAction.swift; sourceTree = "<group>"; };
+		8406B1EA26A72E97004E43F3 /* T12AnimationSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T12AnimationSettingViewController.swift; sourceTree = "<group>"; };
+		8406B1EC26A72EAD004E43F3 /* T12AnimationSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T12AnimationSettingViewController.storyboard; sourceTree = "<group>"; };
+		8406B1EE26AB5002004E43F3 /* AnimatedSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSettingTableViewCell.swift; sourceTree = "<group>"; };
 		840B8297267EDDCE007A82F0 /* CDBackgroundImage+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBackgroundImage+CoreDataClass.swift"; sourceTree = "<group>"; };
 		840B8298267EDDCE007A82F0 /* CDBackgroundImage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBackgroundImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		840B829B267EDDF3007A82F0 /* AppUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUseCase.swift; sourceTree = "<group>"; };
@@ -181,7 +187,7 @@
 		846E39C3269B26C90076597A /* T11LanguageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T11LanguageViewController.storyboard; sourceTree = "<group>"; };
 		846E39C5269B28A00076597A /* T11LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T11LanguageViewController.swift; sourceTree = "<group>"; };
 		846F3E0F266E6F8100BB9D3B /* heart-button.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "heart-button.json"; sourceTree = "<group>"; };
-		8472980D267262AE00DFB3ED /* FloaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloaterView.swift; sourceTree = "<group>"; };
+		8472980D267262AE00DFB3ED /* HeartFloaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartFloaterView.swift; sourceTree = "<group>"; };
 		8472981726726E7E00DFB3ED /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		8472981E267271C800DFB3ED /* CDMemory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDMemory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8472981F267271C800DFB3ED /* CDMemory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDMemory+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -314,6 +320,16 @@
 				6A6D23C89F3B893C3664717C /* Pods-LoveHandler.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		8406B1E926A72E81004E43F3 /* T12AnimationSetting */ = {
+			isa = PBXGroup;
+			children = (
+				8406B1EA26A72E97004E43F3 /* T12AnimationSettingViewController.swift */,
+				8406B1EC26A72EAD004E43F3 /* T12AnimationSettingViewController.storyboard */,
+				8406B1EE26AB5002004E43F3 /* AnimatedSettingTableViewCell.swift */,
+			);
+			path = T12AnimationSetting;
 			sourceTree = "<group>";
 		};
 		840B82A726839E09007A82F0 /* T07TuttorialView */ = {
@@ -480,7 +496,7 @@
 				84AB1F9E2629FD5C00A01F9E /* RoundImageView.swift */,
 				84AB20872630A04200A01F9E /* PaddingLabel.swift */,
 				8423D1A1263B31D800106030 /* RoundButton.swift */,
-				8472980D267262AE00DFB3ED /* FloaterView.swift */,
+				8472980D267262AE00DFB3ED /* HeartFloaterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -500,6 +516,7 @@
 		84AB1F612629F21500A01F9E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				8406B1E926A72E81004E43F3 /* T12AnimationSetting */,
 				8412CD7326A20BD1000F0E78 /* PasscodeVC */,
 				846E39C2269B26A50076597A /* T11LanguageView */,
 				84F039D42691EB440069B48C /* T10HeartView */,
@@ -870,6 +887,7 @@
 				84AB1F642629F27B00A01F9E /* T01MainViewController.storyboard in Resources */,
 				84F039D62691EB620069B48C /* T10HeartViewController.storyboard in Resources */,
 				8472985E2673BF0500DFB3ED /* MemoryCollectionViewCell.xib in Resources */,
+				8406B1ED26A72EAD004E43F3 /* T12AnimationSettingViewController.storyboard in Resources */,
 				84183764268A1CA200571008 /* T07TutorialContainerViewController.storyboard in Resources */,
 				84AB1FCB262ABCE600A01F9E /* Localizable.strings in Resources */,
 				8412CD8E26A284D8000F0E78 /* InfoPlist.strings in Resources */,
@@ -950,7 +968,8 @@
 			files = (
 				84AB1F092628B3C100A01F9E /* Int+Extension.swift in Sources */,
 				84AB2041262E904E00A01F9E /* T2SettingsNavigator.swift in Sources */,
-				8472980E267262AE00DFB3ED /* FloaterView.swift in Sources */,
+				8406B1EB26A72E97004E43F3 /* T12AnimationSettingViewController.swift in Sources */,
+				8472980E267262AE00DFB3ED /* HeartFloaterView.swift in Sources */,
 				84183768268A1DFC00571008 /* T07TutorialContainerViewController.swift in Sources */,
 				840B829C267EDDF3007A82F0 /* AppUseCase.swift in Sources */,
 				84AB1F962629F6EB00A01F9E /* AppNavigator.swift in Sources */,
@@ -980,6 +999,7 @@
 				847298262672721000DFB3ED /* Repositoy.swift in Sources */,
 				84AB1FA9262A06A500A01F9E /* Gender.swift in Sources */,
 				846E39C6269B28A00076597A /* T11LanguageViewController.swift in Sources */,
+				8406B1EF26AB5002004E43F3 /* AnimatedSettingTableViewCell.swift in Sources */,
 				84AB1FFE262B33E600A01F9E /* NibLoadable.swift in Sources */,
 				84AB211C263AFF7500A01F9E /* LoveMemoryDataModel.xcdatamodeld in Sources */,
 				84C1A436267B97C3001D18E5 /* UIDevice+Extension.swift in Sources */,

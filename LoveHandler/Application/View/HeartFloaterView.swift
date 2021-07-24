@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable public class Floater: UIView {
+@IBDesignable public class HeartFloaterView: UIView {
     
     var image1: UIImage?
     var image2: UIImage?

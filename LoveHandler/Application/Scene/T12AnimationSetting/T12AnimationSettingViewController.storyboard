@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Animation Setting View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="T12AnimationSettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="T12AnimationSettingViewController" customModule="LoveHandler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="SVv-Ho-jQi">
+                                <rect key="frame" x="10" y="54" width="394" height="98.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2s-RB-SgU">
+                                        <rect key="frame" x="0.0" y="0.0" width="76" height="98.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_heart" translatesAutoresizingMaskIntoConstraints="NO" id="vew-2J-1OU">
+                                                <rect key="frame" x="13" y="0.0" width="50" height="98.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="Vr6-Be-27c"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="vew-2J-1OU" firstAttribute="centerY" secondItem="d2s-RB-SgU" secondAttribute="centerY" id="C7i-qq-yMa"/>
+                                            <constraint firstItem="vew-2J-1OU" firstAttribute="centerX" secondItem="d2s-RB-SgU" secondAttribute="centerX" id="FEN-vh-xOT"/>
+                                            <constraint firstItem="vew-2J-1OU" firstAttribute="top" secondItem="d2s-RB-SgU" secondAttribute="top" id="clj-EQ-ebf"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1x2-eM-Cy2">
+                                        <rect key="frame" x="106" y="0.0" width="76" height="98.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_heart" translatesAutoresizingMaskIntoConstraints="NO" id="hDP-vV-eUM">
+                                                <rect key="frame" x="13" y="0.0" width="50" height="98.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="Mig-r5-J1x"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="hDP-vV-eUM" firstAttribute="centerX" secondItem="1x2-eM-Cy2" secondAttribute="centerX" id="Drb-KG-VGY"/>
+                                            <constraint firstItem="hDP-vV-eUM" firstAttribute="centerY" secondItem="1x2-eM-Cy2" secondAttribute="centerY" id="Eem-Jq-vnT"/>
+                                            <constraint firstItem="hDP-vV-eUM" firstAttribute="top" secondItem="1x2-eM-Cy2" secondAttribute="top" id="cfj-ae-zdi"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pb-A3-Jk6">
+                                        <rect key="frame" x="212" y="0.0" width="76" height="98.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_heart" translatesAutoresizingMaskIntoConstraints="NO" id="scx-2K-ruQ">
+                                                <rect key="frame" x="13" y="0.0" width="50" height="98.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="cL0-Iw-ufD"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="scx-2K-ruQ" firstAttribute="centerY" secondItem="1pb-A3-Jk6" secondAttribute="centerY" id="6bc-X6-U5D"/>
+                                            <constraint firstItem="scx-2K-ruQ" firstAttribute="centerX" secondItem="1pb-A3-Jk6" secondAttribute="centerX" id="AY8-Dq-Enk"/>
+                                            <constraint firstItem="scx-2K-ruQ" firstAttribute="top" secondItem="1pb-A3-Jk6" secondAttribute="top" id="S2p-Tw-RZc"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hU-Db-1N2">
+                                        <rect key="frame" x="318" y="0.0" width="76" height="98.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_heart" translatesAutoresizingMaskIntoConstraints="NO" id="3ji-en-H5j">
+                                                <rect key="frame" x="13" y="0.0" width="50" height="98.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="9ZK-IN-byu"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="3ji-en-H5j" firstAttribute="top" secondItem="5hU-Db-1N2" secondAttribute="top" id="4lI-0C-bsk"/>
+                                            <constraint firstItem="3ji-en-H5j" firstAttribute="centerX" secondItem="5hU-Db-1N2" secondAttribute="centerX" id="9C4-h2-hEg"/>
+                                            <constraint firstItem="3ji-en-H5j" firstAttribute="centerY" secondItem="5hU-Db-1N2" secondAttribute="centerY" id="C0V-o7-rYw"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SVv-Ho-jQi" secondAttribute="height" multiplier="4:1" id="vjG-DH-i2N"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="9bK-JJ-YMN">
+                                <rect key="frame" x="0.0" y="172.5" width="414" height="519.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnimatedSettingTableViewCell" rowHeight="131" id="Jf2-f6-Jjo" customClass="AnimatedSettingTableViewCell" customModule="LoveHandler" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="131"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jf2-f6-Jjo" id="asg-ER-4nd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="131"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHM-LY-MZ1">
+                                                    <rect key="frame" x="30" y="21" width="48" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Bel-cd-pj2">
+                                                    <rect key="frame" x="28" y="52" width="358" height="59"/>
+                                                    <connections>
+                                                        <action selector="valueDidChanged:" destination="Jf2-f6-Jjo" eventType="valueChanged" id="OCw-IM-2bx"/>
+                                                    </connections>
+                                                </slider>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Bel-cd-pj2" firstAttribute="top" secondItem="nHM-LY-MZ1" secondAttribute="bottomMargin" constant="15" id="Atr-85-x0k"/>
+                                                <constraint firstItem="nHM-LY-MZ1" firstAttribute="leading" secondItem="asg-ER-4nd" secondAttribute="leadingMargin" constant="10" id="I2l-0j-4bE"/>
+                                                <constraint firstItem="nHM-LY-MZ1" firstAttribute="top" secondItem="asg-ER-4nd" secondAttribute="topMargin" constant="10" id="eIy-zn-ZjZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Bel-cd-pj2" secondAttribute="trailing" constant="10" id="j1S-6E-N2z"/>
+                                                <constraint firstItem="Bel-cd-pj2" firstAttribute="leading" secondItem="asg-ER-4nd" secondAttribute="leadingMargin" constant="10" id="mbz-KB-gly"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Bel-cd-pj2" secondAttribute="bottom" constant="10" id="yHw-7I-CzC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="nHM-LY-MZ1" id="lmj-Kg-G5c"/>
+                                            <outlet property="valueSlider" destination="Bel-cd-pj2" id="kOA-dx-GXC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IvG-6Y-Vzq" customClass="HeartFloaterView" customModule="LoveHandler" customModuleProvider="target">
+                                <rect key="frame" x="107" y="202.5" width="200" height="459.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="VXj-Ka-sKs"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="removeAtEnd" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="FloatingUp" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="density">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="floaterImage4" value="red_heart"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="alphaAtStart">
+                                        <real key="value" value="0.69999999999999996"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="alphaAtEnd">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXS-30-uP0">
+                                <rect key="frame" x="157" y="712" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="fd0-PE-Ya5"/>
+                                    <constraint firstAttribute="width" constant="100" id="loC-o3-e7Z"/>
+                                </constraints>
+                                <state key="normal" image="heart.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="70"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9bK-JJ-YMN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="1gW-3E-9Pe"/>
+                            <constraint firstItem="SVv-Ho-jQi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="3kb-gr-DAf"/>
+                            <constraint firstItem="SVv-Ho-jQi" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="6r4-CD-Hsn"/>
+                            <constraint firstItem="HXS-30-uP0" firstAttribute="top" secondItem="IvG-6Y-Vzq" secondAttribute="bottom" constant="50" id="9X7-WN-5eY"/>
+                            <constraint firstItem="IvG-6Y-Vzq" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Cr1-Lg-M41"/>
+                            <constraint firstItem="9bK-JJ-YMN" firstAttribute="top" secondItem="SVv-Ho-jQi" secondAttribute="bottom" constant="20" id="Fvt-mL-Q9N"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="HXS-30-uP0" secondAttribute="bottom" constant="50" id="NB7-vo-txv"/>
+                            <constraint firstItem="IvG-6Y-Vzq" firstAttribute="top" secondItem="SVv-Ho-jQi" secondAttribute="bottom" constant="50" id="SEr-6Z-xO6"/>
+                            <constraint firstItem="HXS-30-uP0" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="T07-5i-C4Z"/>
+                            <constraint firstItem="HXS-30-uP0" firstAttribute="top" secondItem="9bK-JJ-YMN" secondAttribute="bottom" constant="20" id="UeD-Q3-Ka6"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="SVv-Ho-jQi" secondAttribute="trailing" constant="10" id="UlX-gJ-ZWD"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9bK-JJ-YMN" secondAttribute="trailing" id="tI7-83-XHQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="animationView" destination="IvG-6Y-Vzq" id="sff-8x-nPs"/>
+                        <outlet property="firstIconImage" destination="vew-2J-1OU" id="30d-M7-7VW"/>
+                        <outlet property="fourthIconImageView" destination="3ji-en-H5j" id="fWs-Vh-dtD"/>
+                        <outlet property="heartButton" destination="HXS-30-uP0" id="6xE-AX-FYQ"/>
+                        <outlet property="secondIconImageView" destination="hDP-vV-eUM" id="wts-DF-iKQ"/>
+                        <outlet property="settingTableView" destination="9bK-JJ-YMN" id="2qC-Sj-UNm"/>
+                        <outlet property="thirdIconImage" destination="1pb-A3-Jk6" id="6rg-r0-RSx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="108.69565217391305" y="40.848214285714285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="red_heart" width="512" height="512"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
