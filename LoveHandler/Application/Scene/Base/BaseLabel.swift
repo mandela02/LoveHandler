@@ -20,5 +20,6 @@ class BaseLabel: UILabel {
     
     func setupView() {
         self.textColor = UIColor.black
+        self.font = Biotif.regular(size: getFontSize()).font
     }
 }
