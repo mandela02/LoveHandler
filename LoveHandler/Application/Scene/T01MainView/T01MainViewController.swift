@@ -40,6 +40,7 @@ class T01MainViewController: BaseViewController {
         setupBackground(data: Settings.background.value)
         setUpLover()
         setupHeartFloatView()
+        floaterHeartView.isHidden = true
     }
     
     override func refreshView() {
@@ -91,11 +92,13 @@ class T01MainViewController: BaseViewController {
             .sink(receiveValue: { [weak self] _ in
                 if !isAnimating {
                     isAnimating = true
-                    
+                    self?.floaterHeartView.isHidden = false
+
                     self?.floaterHeartView.startAnimation()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         self?.floaterHeartView.stopAnimation()
                         isAnimating = false
+                        self?.floaterHeartView.isHidden = true
                     })
                 }
             })
@@ -126,10 +129,10 @@ extension T01MainViewController {
     }
     
     private func setupHeartFloatView() {
-        floaterHeartView.floaterImage1 = SystemImage.roundHeart.image.tintColor(with: Colors.deepPink)
-        floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: Colors.lightPink)
-        floaterHeartView.floaterImage3 = SystemImage.roundHeart.image.tintColor(with: Colors.pink)
-        floaterHeartView.floaterImage4 = SystemImage.roundHeart.image.tintColor(with: Colors.hotPink)
+        floaterHeartView.floaterImage1 = SystemImage.roundHeart.image.tintColor(with: UIColor.red)
+        floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: UIColor.red.withAlphaComponent(0.5))
+        floaterHeartView.floaterImage3 = SystemImage.roundHeart.image.tintColor(with: UIColor.red.withAlphaComponent(0.25))
+        floaterHeartView.floaterImage4 = SystemImage.roundHeart.image.tintColor(with: UIColor.red.withAlphaComponent(0.75))
     }
 }
 
