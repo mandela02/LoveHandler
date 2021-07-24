@@ -20,10 +20,13 @@ struct HeroIdentifier {
 struct AppConfig {
     #if DEBUG
     static let adsIDs = "ca-app-pub-3940256099942544/2934735716"
+    static let appID = ""
     #elseif RELEASE
     static let adsIDs = "ca-app-pub-7813435127631546/8530945451"
+    static let appID = ""
     #else
     static let adsIDs = "ca-app-pub-3940256099942544/2934735716"
+    static let appID = ""
     #endif
     
 }

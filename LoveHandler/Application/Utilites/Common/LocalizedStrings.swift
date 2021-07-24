@@ -85,7 +85,9 @@ struct LocalizedString {
     static var t02PasscodeCellTitle: String { return String(localizedKey: "t02PasscodeCellTitle") }
     static var t02DeleteAllCellTitle: String { return String(localizedKey: "t02DeleteAllCellTitle") }
     static var t02MemoDateCellTitle: String { return String(localizedKey: "t02MemoDateCellTitle") }
-    
+    static var t02AppStoreRateTitle: String { return String(localizedKey: "t02AppStoreRateTitle") }
+    static var t02ShareTitle: String { return String(localizedKey: "t02ShareTitle") }
+
     static var t05ShareButtonTitle: String { return String(localizedKey: "t05ShareButtonTitle") }
     static var t05ShareButtonSubtitle: String { return String(localizedKey: "t05ShareButtonSubtitle") }
     static var t05DeleteButtonTitle: String { return String(localizedKey: "t05DeleteButtonTitle") }

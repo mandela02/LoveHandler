@@ -7,8 +7,11 @@
 
 import UIKit
 import Combine
+import StoreKit
 
-class T02SettingsViewModel: BaseViewModel {    
+class T02SettingsViewModel: BaseViewModel {
+    private lazy var appUrl = "https://apps.apple.com/app/id\(AppConfig.appID)?mt=8"
+
     private var navigator: T2SettingsNavigatorType
     
     init(navigator: T2SettingsNavigatorType) {
@@ -28,8 +31,10 @@ class T02SettingsViewModel: BaseViewModel {
                     self.navigator.toLanguage()
                 case .dateSetup:
                     self.navigator.toAnniversary()
-                case .heartAnimation:
-                    self.navigator.toAnimationSetting()
+                case .appStoreRate:
+                    self.rateOnAppStore()
+                case .shareToFriend:
+                    self.navigator.shareAppToFriend(appUrl: self.appUrl)
                 default:
                     return
                 }
@@ -56,6 +61,10 @@ class T02SettingsViewModel: BaseViewModel {
                       noRespone: noReponse)
     }
     
+    private func rateOnAppStore() {
+        SKStoreReviewController.requestReviewInCurrentScene()
+    }
+        
     enum CellType {
         case plain(title: String, isDisable: Bool = false)
         case normal(icon: UIImage, title: String, isDisable: Bool = false)
@@ -78,10 +87,11 @@ class T02SettingsViewModel: BaseViewModel {
         case premium
         case theme
         case background
-        case heartAnimation
         case language
         case passcode
         case deleteAll
+        case appStoreRate
+        case shareToFriend
 
         var info: CellInfo {
             switch self {
@@ -105,16 +115,20 @@ class T02SettingsViewModel: BaseViewModel {
                 return CellInfo(type: .normal(icon: SystemImage.background.image,
                                               title: LocalizedString.t02BackgroundCellTitle,
                                               isDisable: false))
-            case .heartAnimation:
-                return CellInfo(type: .normal(icon: SystemImage.heartCircleFill.image,
-                                              title: LocalizedString.t02HeartAnimationCellTitle,
-                                              isDisable: false))
             case .passcode:
                 return CellInfo(type: .withSwitch(icon: SystemImage.lockFill.image,
                                               title: LocalizedString.t02PasscodeCellTitle,
                                               isOn: Settings.isUsingPasscode.value))
             case .deleteAll:
                 return CellInfo(type: .plain(title: LocalizedString.t02DeleteAllCellTitle,
+                                              isDisable: false))
+            case .appStoreRate:
+                return CellInfo(type: .normal(icon: SystemImage.handThumsUpFill.image,
+                                              title: LocalizedString.t02AppStoreRateTitle,
+                                              isDisable: false))
+            case .shareToFriend:
+                return CellInfo(type: .normal(icon: SystemImage.clapSparklesFill.image,
+                                              title: LocalizedString.t02ShareTitle,
                                               isDisable: false))
             }
         }
@@ -125,6 +139,7 @@ class T02SettingsViewModel: BaseViewModel {
         case ui
         case dates
         case utilities
+        case share
         case delete
         
         var info: SectionInfo {
@@ -135,8 +150,7 @@ class T02SettingsViewModel: BaseViewModel {
                                            .background])
             case .ui:
                 return SectionInfo(title: LocalizedString.t02ViewHeaderitle,
-                                   cells: [.theme,
-                                           .heartAnimation])
+                                   cells: [.theme])
             case .premium:
                 return SectionInfo(title: LocalizedString.t02PremiumHeaderitle,
                                    cells: [.premium])
@@ -147,6 +161,10 @@ class T02SettingsViewModel: BaseViewModel {
             case .delete:
                 return SectionInfo(title: "",
                                    cells: [.deleteAll])
+            case .share:
+                return SectionInfo(title: "",
+                                   cells: [.appStoreRate,
+                                           .shareToFriend])
             }
         }
         
@@ -165,5 +183,13 @@ class T02SettingsViewModel: BaseViewModel {
     struct Output {
         let dataSource: AnyPublisher<[SectionInfo], Never>
         let noRespone: AnyPublisher<Void, Never>
+    }
+}
+
+extension SKStoreReviewController {
+    public static func requestReviewInCurrentScene() {
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            requestReview(in: scene)
+        }
     }
 }

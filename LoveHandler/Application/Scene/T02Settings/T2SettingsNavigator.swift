@@ -16,6 +16,7 @@ protocol T2SettingsNavigatorType {
     func toLanguage()
     func toAnniversary()
     func toAnimationSetting()
+    func shareAppToFriend(appUrl: String)
 }
 
 class T2SettingsNavigator: T2SettingsNavigatorType {
@@ -68,5 +69,17 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
     func toAnimationSetting() {
         let viewController = T12AnimationSettingViewController.instantiateFromStoryboard()
         self.navigationController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func shareAppToFriend(appUrl: String) {
+        let shareText = LocalizedString.appName + "\n"
+        guard let shareWebsite = NSURL(string: appUrl) else { return }
+        let shareItems = [shareText, shareWebsite] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: shareItems,
+                                                              applicationActivities: nil)
+        UIApplication.topViewController()?
+            .present(activityViewController,
+                     animated: true,
+                     completion: nil)
     }
 }

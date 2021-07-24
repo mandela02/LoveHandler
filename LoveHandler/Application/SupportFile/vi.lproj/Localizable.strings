@@ -75,6 +75,8 @@
 "t02PasscodeCellTitle" = "Mật khẩu";
 "t02DeleteAllCellTitle" = "Xoá tất cả";
 "t02MemoDateCellTitle" = "Bạn bắt đầu yêu khi nào?";
+"t02AppStoreRateTitle" = "Đánh giá trên app store";
+"t02ShareTitle" = "Chia sẻ cho bạn bè";
 
 "t03NavigationTitle" = "Kỷ niệm đôi ta";
 "t03SearchBarPlaceholder" = "Tìm kiếm kỉ niệm";

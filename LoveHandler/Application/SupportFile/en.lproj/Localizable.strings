@@ -75,6 +75,8 @@
 "t02PasscodeCellTitle" = "Passcode";
 "t02DeleteAllCellTitle" = "Delete Everything";
 "t02MemoDateCellTitle" = "When did you start?";
+"t02AppStoreRateTitle" = "Review on AppStore";
+"t02ShareTitle" = "Share App to friends";
 
 "t03NavigationTitle" = "Memory";
 "t03SearchBarPlaceholder" = "Search your memory";
