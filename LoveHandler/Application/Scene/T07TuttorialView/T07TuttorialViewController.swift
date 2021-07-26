@@ -71,8 +71,10 @@ class T07TuttorialViewController: BasePageViewChildController {
         super.setupTheme()
         genderButton.setTitleColor(UIColor.white, for: .normal)
         avatarImageView.backgroundColor = UIColor.white
-        nameTextField.textColor = Colors.deepPink
-        dateTextField.textColor = Colors.deepPink
+        nameTextField.backgroundColor = Theme.current.navigationColor.background
+        nameTextField.textColor = Theme.current.navigationColor.title
+        dateTextField.backgroundColor = Theme.current.navigationColor.background
+        dateTextField.textColor = Theme.current.navigationColor.title
     }
     
     override func setupLocalizedString() {

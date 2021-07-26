@@ -95,9 +95,12 @@ class T01MainViewController: BaseViewController {
                     self?.floaterHeartView.isHidden = false
 
                     self?.floaterHeartView.startAnimation()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                         self?.floaterHeartView.stopAnimation()
                         isAnimating = false
+                    })
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3 + 3, execute: {
                         self?.floaterHeartView.isHidden = true
                     })
                 }
@@ -129,6 +132,7 @@ extension T01MainViewController {
     }
     
     private func setupHeartFloatView() {
+        floaterHeartView.speedY = 3
         floaterHeartView.floaterImage1 = SystemImage.roundHeart.image.tintColor(with: UIColor.red)
         floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: UIColor.red.withAlphaComponent(0.5))
         floaterHeartView.floaterImage3 = SystemImage.roundHeart.image.tintColor(with: UIColor.red.withAlphaComponent(0.25))

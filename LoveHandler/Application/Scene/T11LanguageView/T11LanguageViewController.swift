@@ -16,7 +16,7 @@ class T11LanguageViewController: BaseViewController {
     override func setupView() {
         languageTableView.dataSource = self
         languageTableView.delegate = self
-        isBackButtonVisible = true
+        isBackButtonVisible = false
         isTitleVisible = true
     }
     

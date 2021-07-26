@@ -14,14 +14,14 @@ class BaseViewController: UIViewController {
                                           style: .plain,
                                           target: nil,
                                           action: nil)
-        closeButton.tintColor = UIColor.white
+        closeButton.tintColor = Theme.current.navigationColor.button
         return closeButton
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = UIColor.white
+        label.textColor = Theme.current.navigationColor.title
         return label
     }()
 
@@ -75,7 +75,9 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = Colors.deepPink
+        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor.background
+        navigationController?.navigationBar.tintColor = Theme.current.navigationColor.button
+        navigationController?.navigationBar.barStyle = Theme.current.navigationColor.barStyle
         self.overrideUserInterfaceStyle = .light
         self.navigationController?.overrideUserInterfaceStyle = .light
 

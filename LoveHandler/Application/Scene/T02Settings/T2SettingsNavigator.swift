@@ -32,8 +32,8 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
     
     func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never> {
         return Future { promise in
-            let dialog = DatePickerDialog(textColor: Colors.paleVioletRed,
-                                          buttonColor: Colors.mediumVioletRed,
+            let dialog = DatePickerDialog(textColor: Theme.current.buttonColor.backgroundColor,
+                                          buttonColor: Theme.current.buttonColor.backgroundColor,
                                           locale: Locale(identifier: Strings.localeIdentifier))
             dialog.overrideUserInterfaceStyle = .light
             dialog.datePicker.overrideUserInterfaceStyle = .light

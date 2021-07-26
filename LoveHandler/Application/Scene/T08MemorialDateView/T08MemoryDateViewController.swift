@@ -57,8 +57,10 @@ class T08MemoryDateViewController: BasePageViewChildController {
         super.setupTheme()
         weddingDateTitleLabel.textColor = UIColor.white
         startDateTitleLabel.textColor = UIColor.white
-        startDateLabel.textColor = Colors.deepPink
-        endDateLabel.textColor = Colors.deepPink
+        startDateLabel.backgroundColor = Theme.current.navigationColor.background
+        startDateLabel.textColor = Theme.current.navigationColor.title
+        endDateLabel.backgroundColor = Theme.current.navigationColor.background
+        endDateLabel.textColor = Theme.current.navigationColor.title
     }
     
     private func setupGesture() {
@@ -83,8 +85,8 @@ class T08MemoryDateViewController: BasePageViewChildController {
     }
     
     private func startDatePickerTapped() {
-        let dialog = DatePickerDialog(textColor: Colors.paleVioletRed,
-                                      buttonColor: Colors.mediumVioletRed,
+        let dialog = DatePickerDialog(textColor: Theme.current.buttonColor.backgroundColor,
+                                      buttonColor: Theme.current.buttonColor.backgroundColor,
                                       locale: Locale(identifier: Strings.localeIdentifier))
         
         dialog.overrideUserInterfaceStyle = .light
@@ -106,8 +108,8 @@ class T08MemoryDateViewController: BasePageViewChildController {
     }
     
     private func endDatePickerTapped() {
-        let dialog = DatePickerDialog(textColor: Colors.paleVioletRed,
-                                      buttonColor: Colors.mediumVioletRed,
+        let dialog = DatePickerDialog(textColor: Theme.current.buttonColor.backgroundColor,
+                                      buttonColor: Theme.current.buttonColor.backgroundColor,
                                       locale: Locale(identifier: Strings.localeIdentifier))
         
         dialog.overrideUserInterfaceStyle = .light
