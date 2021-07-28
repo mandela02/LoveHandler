@@ -37,7 +37,7 @@ class MemoryCollectionViewCell: UICollectionViewCell {
     }
     
     func applyBlurEffect() {
-        visualEffectView.backgroundColor = Theme.current.navigationColor.background
+        visualEffectView.backgroundColor = Theme.current.navigationColor.background.withAlphaComponent(0.25)
         visualEffectView.frame = textContentView.bounds
         visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         visualEffectView.alpha = 0.9

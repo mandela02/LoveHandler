@@ -11,6 +11,7 @@ enum Theme: CaseIterable {
     case pink
     case monotoneBlack
     case freshOrange
+    case fireRed
     
     private var themeColor: Color {
         switch self {
@@ -20,6 +21,8 @@ enum Theme: CaseIterable {
             return ThemeColor.monoToneBlack
         case .freshOrange:
             return ThemeColor.freshOrange
+        case .fireRed:
+            return ThemeColor.fireRed
 
         }
     }
@@ -137,5 +140,23 @@ struct ThemeColor {
                                                           iconColor: UIColor(hexString: "FFFFFF")),
                                  commonColor: CommonColor(textColor: UIColor(hexString: "FFFFFF")),
                                  heartColor: HeartColor(heartBackground: UIColor(hexString: "FFA936"),
+                                                        heartText: UIColor(hexString: "FFFFFF")))
+    
+    static let fireRed = Color(navigationColor: NavigationColor(button: UIColor(hexString: "FFFFFF"),
+                                                                 title: UIColor(hexString: "FFFFFF"),
+                                                                 background: UIColor(hexString: "FF0000"),
+                                                                 barStyle: .black),
+                                tableViewColor: TableViewColor(background: UIColor(hexString: "FFFCEE"),
+                                                               cellBackground: UIColor(hexString: "FFFFFF"),
+                                                               text: UIColor(hexString: "000000"),
+                                                               indicatorStyle: .white),
+                                searchBarColor: SearchBarColor(backgroundColor: UIColor(hexString: "FFFFFF"),
+                                                               textColor: UIColor(hexString: "FF0000"),
+                                                               tintColor: UIColor(hexString: "FFFFFF")),
+                                 buttonColor: ButtonColor(backgroundColor: UIColor(hexString: "FF0000"),
+                                                          tintColor: UIColor(hexString: "FFFFFF"),
+                                                          iconColor: UIColor(hexString: "FFFFFF")),
+                                 commonColor: CommonColor(textColor: UIColor(hexString: "FFFFFF")),
+                                 heartColor: HeartColor(heartBackground: UIColor(hexString: "FF0000"),
                                                         heartText: UIColor(hexString: "FFFFFF")))
 }
