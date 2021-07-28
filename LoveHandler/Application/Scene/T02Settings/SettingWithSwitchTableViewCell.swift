@@ -25,6 +25,8 @@ class SettingWithSwitchTableViewCell: UITableViewCell {
         titleLabel.text = title
         switchButton.isOn = isOn
         switchButton.addTarget(self, action: #selector(didSwitchChange), for: .valueChanged)
+        titleLabel.textColor = Theme.current.tableViewColor.text
+        self.backgroundColor = Theme.current.tableViewColor.cellBackground
         iconImageView.tintColor = titleLabel.textColor
     }
     

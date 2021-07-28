@@ -165,6 +165,8 @@
 		84F1A77526AC7908005FC284 /* Biotif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84F1A76526AC7908005FC284 /* Biotif-Bold.ttf */; };
 		84F1A77726AC7928005FC284 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1A77626AC7927005FC284 /* Font.swift */; };
 		84F1A77926AC7B7E005FC284 /* ThemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1A77826AC7B7E005FC284 /* ThemeHelper.swift */; };
+		84F1A77C26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F1A77B26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard */; };
+		84F1A77E26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1A77D26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift */; };
 		A58B088E50493D34567788CF /* Pods_LoveHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */; };
 /* End PBXBuildFile section */
 
@@ -334,6 +336,8 @@
 		84F1A76526AC7908005FC284 /* Biotif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Biotif-Bold.ttf"; sourceTree = "<group>"; };
 		84F1A77626AC7927005FC284 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		84F1A77826AC7B7E005FC284 /* ThemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeHelper.swift; sourceTree = "<group>"; };
+		84F1A77B26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T13ThemeSelectionViewController.storyboard; sourceTree = "<group>"; };
+		84F1A77D26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T13ThemeSelectionViewController.swift; sourceTree = "<group>"; };
 		A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -552,6 +556,7 @@
 		84AB1F612629F21500A01F9E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				84F1A77A26B1A5C6005FC284 /* T13ThemeView */,
 				8406B1E926A72E81004E43F3 /* T12AnimationSetting */,
 				8412CD7326A20BD1000F0E78 /* PasscodeVC */,
 				846E39C2269B26A50076597A /* T11LanguageView */,
@@ -871,6 +876,15 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		84F1A77A26B1A5C6005FC284 /* T13ThemeView */ = {
+			isa = PBXGroup;
+			children = (
+				84F1A77B26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard */,
+				84F1A77D26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift */,
+			);
+			path = T13ThemeView;
+			sourceTree = "<group>";
+		};
 		F8AED075D267D388F1EFB24F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -982,6 +996,7 @@
 				840B82A926839E2D007A82F0 /* T07TuttorialViewController.storyboard in Resources */,
 				84F1A76626AC7908005FC284 /* Biotif-Medium.ttf in Resources */,
 				84F1A76C26AC7908005FC284 /* Biotif-BlackItalic.ttf in Resources */,
+				84F1A77C26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1142,6 +1157,7 @@
 				84AB1FA2262A02DD00A01F9E /* PersonView.swift in Sources */,
 				84AB1FDF262AD25300A01F9E /* ImageAction.swift in Sources */,
 				84AB1FF2262B1CBE00A01F9E /* DefaultDateFormatter.swift in Sources */,
+				84F1A77E26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift in Sources */,
 				84AB1F542628C88900A01F9E /* UIStackView+Extension.swift in Sources */,
 				84729821267271C800DFB3ED /* CDMemory+CoreDataProperties.swift in Sources */,
 				8472982A267278EF00DFB3ED /* T03MemoryListUseCase.swift in Sources */,

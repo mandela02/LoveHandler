@@ -19,7 +19,7 @@ class BaseLabel: UILabel {
     }
     
     func setupView() {
-        self.textColor = UIColor.black
+        self.textColor = Theme.current.commonColor.textColor
         self.font = Biotif.regular(size: getFontSize()).font
     }
 }

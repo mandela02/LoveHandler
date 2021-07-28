@@ -17,6 +17,7 @@ protocol T2SettingsNavigatorType {
     func toAnniversary()
     func toAnimationSetting()
     func shareAppToFriend(appUrl: String)
+    func toThemeSetting()
 }
 
 class T2SettingsNavigator: T2SettingsNavigatorType {
@@ -69,6 +70,11 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
     func toAnimationSetting() {
         let viewController = T12AnimationSettingViewController.instantiateFromStoryboard()
         self.navigationController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func toThemeSetting() {
+        let viewController = T13ThemeSelectionViewController.instantiateFromStoryboard()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func shareAppToFriend(appUrl: String) {

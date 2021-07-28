@@ -21,6 +21,9 @@ class SettingWithSubTitleTableViewCell: UITableViewCell {
         iconImageView.image = icon
         titleLabel.text = title
         subTitleLabel.text = subTitle
+        titleLabel.textColor = Theme.current.tableViewColor.text
+        subTitleLabel.textColor = Theme.current.tableViewColor.text
+        self.backgroundColor = Theme.current.tableViewColor.cellBackground
         iconImageView.tintColor = titleLabel.textColor
     }
 }

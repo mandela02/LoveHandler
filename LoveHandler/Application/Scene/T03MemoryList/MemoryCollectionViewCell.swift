@@ -18,7 +18,7 @@ class MemoryCollectionViewCell: UICollectionViewCell {
 
     var isAnimated = false
     
-    private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+    private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -37,7 +37,7 @@ class MemoryCollectionViewCell: UICollectionViewCell {
     }
     
     func applyBlurEffect() {
-        visualEffectView.backgroundColor = Theme.current.navigationColor.background.withAlphaComponent(0.5)
+        visualEffectView.backgroundColor = Theme.current.navigationColor.background
         visualEffectView.frame = textContentView.bounds
         visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         visualEffectView.alpha = 0.9
@@ -46,6 +46,9 @@ class MemoryCollectionViewCell: UICollectionViewCell {
     }
     
     func setupContent(memory: CDMemory) {
+        self.backgroundColor = Theme.current.tableViewColor.background
+        imageView.backgroundColor = UIColor.clear
+        
         if let data = memory.image,
         let image = UIImage(data: data) {
             imageView.image = image

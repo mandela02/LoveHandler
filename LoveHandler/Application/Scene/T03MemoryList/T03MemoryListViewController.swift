@@ -97,6 +97,9 @@ class T03MemoryListViewController: BaseViewController {
         addButton.backgroundColor = Theme.current.buttonColor.backgroundColor
         addButton.tintColor = Theme.current.buttonColor.tintColor
         
+        collectionView.backgroundColor = Theme.current.tableViewColor.background
+        collectionView.indicatorStyle = Theme.current.tableViewColor.indicatorStyle
+        
         searchController.searchBar.tintColor = Theme.current.searchBarColor.tintColor
 
         let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField

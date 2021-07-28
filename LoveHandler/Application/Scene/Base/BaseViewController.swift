@@ -91,6 +91,10 @@ class BaseViewController: UIViewController {
                                                selector: #selector(changeLanguage),
                                                name: NSNotification.Name(Strings.languageChangedObserver),
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeTheme),
+                                               name: NSNotification.Name(Strings.themeChangedObserver),
+                                               object: nil)
 
         setupView()
         setupLocalizedString()
@@ -141,5 +145,14 @@ class BaseViewController: UIViewController {
     
     @objc private func changeLanguage() {
         setupLocalizedString()
+    }
+    
+    @objc private func changeTheme() {
+        titleLabel.textColor = Theme.current.navigationColor.title
+        closeButton.tintColor = Theme.current.navigationColor.button
+        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor.background
+        navigationController?.navigationBar.tintColor = Theme.current.navigationColor.button
+        navigationController?.navigationBar.barStyle = Theme.current.navigationColor.barStyle
+        setupTheme()
     }
 }

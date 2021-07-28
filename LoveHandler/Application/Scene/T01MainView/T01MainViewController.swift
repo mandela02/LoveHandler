@@ -59,9 +59,10 @@ class T01MainViewController: BaseViewController {
     }
     
     override func setupTheme() {
-        settingButton.tintColor = UIColor.white
-        diaryButton.tintColor = UIColor.white
-        loveButton.tintColor = UIColor.red
+        settingButton.tintColor = Theme.current.buttonColor.iconColor
+        diaryButton.tintColor = Theme.current.buttonColor.iconColor
+        loveButton.tintColor = Theme.current.heartColor.heartBackground
+        setupHeartFloatView()
     }
     
     override func bindViewModel() {
@@ -95,12 +96,12 @@ class T01MainViewController: BaseViewController {
                     self?.floaterHeartView.isHidden = false
 
                     self?.floaterHeartView.startAnimation()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         self?.floaterHeartView.stopAnimation()
                         isAnimating = false
                     })
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3 + 3, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2 + 4, execute: {
                         self?.floaterHeartView.isHidden = true
                     })
                 }
@@ -132,11 +133,11 @@ extension T01MainViewController {
     }
     
     private func setupHeartFloatView() {
-        floaterHeartView.speedY = 3
-        floaterHeartView.floaterImage1 = SystemImage.roundHeart.image.tintColor(with: UIColor.red)
-        floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: UIColor.red.withAlphaComponent(0.5))
-        floaterHeartView.floaterImage3 = SystemImage.roundHeart.image.tintColor(with: UIColor.red.withAlphaComponent(0.25))
-        floaterHeartView.floaterImage4 = SystemImage.roundHeart.image.tintColor(with: UIColor.red.withAlphaComponent(0.75))
+        floaterHeartView.speedY = 2
+        floaterHeartView.floaterImage1 = SystemImage.roundHeart.image.tintColor(with: Theme.current.heartColor.heartBackground)
+        floaterHeartView.floaterImage2 = SystemImage.roundHeart.image.tintColor(with: Theme.current.heartColor.heartBackground.withAlphaComponent(0.5))
+        floaterHeartView.floaterImage3 = SystemImage.roundHeart.image.tintColor(with: Theme.current.heartColor.heartBackground.withAlphaComponent(0.25))
+        floaterHeartView.floaterImage4 = SystemImage.roundHeart.image.tintColor(with: Theme.current.heartColor.heartBackground.withAlphaComponent(0.75))
     }
 }
 

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -66,7 +65,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Gaa-5e-FjX" firstAttribute="top" secondItem="bN5-RK-l3L" secondAttribute="top" id="78f-NJ-MkD"/>
                             <constraint firstAttribute="trailing" secondItem="caJ-Br-Sf1" secondAttribute="trailing" id="BRW-S2-j8V"/>
@@ -81,6 +80,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="bN5-RK-l3L" firstAttribute="leading" secondItem="Zdr-D0-oMN" secondAttribute="leading" id="0P0-35-Vfq"/>
                     <constraint firstAttribute="bottom" secondItem="bN5-RK-l3L" secondAttribute="bottom" id="1I8-KM-wkw"/>

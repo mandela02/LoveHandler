@@ -37,10 +37,18 @@ class BaseView: UIView {
                                                selector: #selector(changeLanguage),
                                                name: NSNotification.Name(Strings.languageChangedObserver),
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeTheme),
+                                               name: NSNotification.Name(Strings.themeChangedObserver),
+                                               object: nil)
     }
     
     @objc private func changeLanguage() {
         setupLocalizedStrings()
+    }
+    
+    @objc private func changeTheme() {
+        setupTheme()
     }
     
     func setupLocalizedStrings() {}

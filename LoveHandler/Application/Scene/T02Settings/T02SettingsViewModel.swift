@@ -35,6 +35,8 @@ class T02SettingsViewModel: BaseViewModel {
                     self.rateOnAppStore()
                 case .shareToFriend:
                     self.navigator.shareAppToFriend(appUrl: self.appUrl)
+                case .theme:
+                    self.navigator.toThemeSetting()
                 default:
                     return
                 }

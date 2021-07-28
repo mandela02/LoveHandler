@@ -9,7 +9,7 @@ import UIKit
 import Lottie
 import WaveAnimationView
 
-class HeartView: UIView {
+class HeartView: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -34,6 +34,11 @@ class HeartView: UIView {
         animationInitial()
     }
     
+    override func setupTheme() {
+        wave?.frontColor = Theme.current.heartColor.heartBackground.withAlphaComponent(0.5)
+        wave?.backColor = Theme.current.heartColor.heartBackground
+    }
+    
     private func animationInitial() {
         if wave != nil { return }
         
@@ -42,8 +47,8 @@ class HeartView: UIView {
         colorImage = colorImage?.tintColor(with: UIColor.white.withAlphaComponent(0.25))
         
         wave = WaveAnimationView(frame: self.bounds,
-                                 frontColor: UIColor.red.withAlphaComponent(0.5),
-                                 backColor: UIColor.red)
+                                 frontColor: Theme.current.heartColor.heartBackground.withAlphaComponent(0.5),
+                                 backColor: Theme.current.heartColor.heartBackground)
         
         guard let wave = wave else { return }
         

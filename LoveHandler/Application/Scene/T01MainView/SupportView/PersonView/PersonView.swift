@@ -141,7 +141,7 @@ class PersonView: BaseView, NibLoadable {
         
         if let image = person.image {
             avatarImageView.layer.borderWidth = 1
-            avatarImageView.layer.borderColor = UIColor.white.cgColor
+            avatarImageView.layer.borderColor = Theme.current.commonColor.textColor.cgColor
             avatarImageView.image = image
             avatarImageView.contentMode = .scaleAspectFill
         } else {
@@ -159,7 +159,7 @@ class PersonView: BaseView, NibLoadable {
         super.setupTheme()
         avatarImageView.tintColor = Colors.lightPink
 
-        nameLabel.textColor = UIColor.white
+        nameLabel.textColor = Theme.current.commonColor.textColor
     }
 }
 

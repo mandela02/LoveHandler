@@ -45,8 +45,8 @@ class LoveProgressView: BaseView, NibLoadable {
     
     override func setupTheme() {
         super.setupTheme()
-        dayCountTitleLabel.textColor = UIColor.white
-        dayCountSubtitleLabel.textColor = UIColor.white
-        numberOfDayLabel.textColor = UIColor.white
+        dayCountTitleLabel.textColor = Theme.current.heartColor.heartText
+        dayCountSubtitleLabel.textColor = Theme.current.heartColor.heartText
+        numberOfDayLabel.textColor = Theme.current.heartColor.heartText
     }
 }
