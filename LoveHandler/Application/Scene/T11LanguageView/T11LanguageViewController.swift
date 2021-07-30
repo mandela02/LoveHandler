@@ -16,12 +16,14 @@ class T11LanguageViewController: BaseViewController {
     override func setupView() {
         languageTableView.dataSource = self
         languageTableView.delegate = self
-        isBackButtonVisible = true
+        isBackButtonVisible = false
         isTitleVisible = true
     }
     
     override func setupTheme() {
-        super.setupTheme()        
+        super.setupTheme()
+        languageTableView.backgroundColor = Theme.current.tableViewColor.background
+        languageTableView.indicatorStyle = Theme.current.tableViewColor.indicatorStyle
     }
     
     override func setupLocalizedString() {
@@ -51,9 +53,10 @@ extension T11LanguageViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
 
         let code = LanguageCode.getLanguageCode(from: indexPath.row)
-        cell.textLabel!.text = code.name
+        cell.backgroundColor = Theme.current.tableViewColor.cellBackground
+        cell.textLabel?.text = code.name
+        cell.textLabel?.textColor = Theme.current.tableViewColor.text
         cell.accessoryType = code.rawValue == Settings.appLanguage.value ? .checkmark : .none
-        cell.backgroundColor = UIColor(hexString: "FFFFFF")
         return cell
     }
 }

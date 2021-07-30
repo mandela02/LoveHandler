@@ -7,27 +7,27 @@
 
 import UIKit
 
-class NumberDisplayView: UIView, NibLoadable {
+class NumberDisplayView: BaseView, NibLoadable {
     
     @IBOutlet weak var displayLabel: BaseLabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleHeightConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var heartImageView: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupFromNib()
-        setupView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupFromNib()
-        setupView()
     }
         
-    private func setupView() {
-        displayLabel.textColor = UIColor.white
-        titleLabel.textColor = UIColor.white
+    override func setupTheme() {
+        displayLabel.textColor = Theme.current.heartColor.heartText
+        titleLabel.textColor = Theme.current.heartColor.heartText
+        heartImageView.image = "heart_container".image?.tintColor(with: Theme.current.heartColor.heartBackground)
     }
     
     func setupLabel(with content: String, title: String? = nil, size: CGFloat = 20) {

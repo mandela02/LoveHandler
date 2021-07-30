@@ -136,9 +136,9 @@ class T04MemoryViewController: BaseViewController {
     
     override func setupTheme() {
         super.setupTheme()
-        imageView.tintColor = Colors.pink
-        saveButton.backgroundColor = Colors.hotPink
-        saveButton.setTitleColor(UIColor.white, for: .normal)
+        imageView.tintColor = Theme.current.buttonColor.backgroundColor
+        saveButton.backgroundColor = Theme.current.buttonColor.backgroundColor
+        saveButton.setTitleColor(Theme.current.buttonColor.tintColor, for: .normal)
         saveButton.setTitleColor(UIColor.gray, for: .disabled)
         
         imagePickButtonView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -160,7 +160,7 @@ class T04MemoryViewController: BaseViewController {
         }
         
         contentTextView.viewBorderWidth = 1
-        contentTextView.viewBorderColor = Colors.pink
+        contentTextView.viewBorderColor = Theme.current.navigationColor.background
     }
     
     override func keyboarDidHide() {
@@ -250,7 +250,7 @@ extension T04MemoryViewController {
             dateLabel.text = Date().dayMonthYearDayOfWeekString
             contentTextView.text = titlePlaceHolder
             contentTextView.viewBorderWidth = 1
-            contentTextView.viewBorderColor = Colors.pink
+            contentTextView.viewBorderColor = Theme.current.navigationColor.background
             
             imagePickButtonView.isHidden = true
             

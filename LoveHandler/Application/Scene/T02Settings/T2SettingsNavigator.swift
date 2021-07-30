@@ -17,6 +17,7 @@ protocol T2SettingsNavigatorType {
     func toAnniversary()
     func toAnimationSetting()
     func shareAppToFriend(appUrl: String)
+    func toThemeSetting()
 }
 
 class T2SettingsNavigator: T2SettingsNavigatorType {
@@ -32,8 +33,8 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
     
     func datePicker(title: String, date: Date, minDate: Date, maxDate: Date) -> Future<Date?, Never> {
         return Future { promise in
-            let dialog = DatePickerDialog(textColor: Colors.paleVioletRed,
-                                          buttonColor: Colors.mediumVioletRed,
+            let dialog = DatePickerDialog(textColor: Theme.current.buttonColor.backgroundColor,
+                                          buttonColor: Theme.current.buttonColor.backgroundColor,
                                           locale: Locale(identifier: Strings.localeIdentifier))
             dialog.overrideUserInterfaceStyle = .light
             dialog.datePicker.overrideUserInterfaceStyle = .light
@@ -69,6 +70,11 @@ class T2SettingsNavigator: T2SettingsNavigatorType {
     func toAnimationSetting() {
         let viewController = T12AnimationSettingViewController.instantiateFromStoryboard()
         self.navigationController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func toThemeSetting() {
+        let viewController = T13ThemeSelectionViewController.instantiateFromStoryboard()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func shareAppToFriend(appUrl: String) {

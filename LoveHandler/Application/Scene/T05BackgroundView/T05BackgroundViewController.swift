@@ -11,6 +11,7 @@ import Mantis
 
 class T05BackgroundViewController: BaseViewController {
     
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var bigImageVIew: UIImageView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var pageController: CustomPageControl!
@@ -122,7 +123,9 @@ class T05BackgroundViewController: BaseViewController {
     
     override func setupTheme() {
         super.setupTheme()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        backgroundView.backgroundColor = Theme.current.tableViewColor.background
+        imageCollectionView.backgroundColor = Theme.current.tableViewColor.background
+        addImageButton.tintColor = Theme.current.buttonColor.tintColor
     }
     
     @IBAction func onAddImageButtonTapped(_ sender: Any) {

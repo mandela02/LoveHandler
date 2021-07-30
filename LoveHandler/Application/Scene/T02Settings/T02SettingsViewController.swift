@@ -91,6 +91,8 @@ class T02SettingsViewController: BaseViewController {
     
     override func setupTheme() {
         super.setupTheme()
+        self.tableView.backgroundColor = Theme.current.tableViewColor.background
+        self.tableView.indicatorStyle = Theme.current.tableViewColor.indicatorStyle
     }
     
     private func getFooter() -> String {

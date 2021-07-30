@@ -42,4 +42,5 @@ struct Strings {
     }
     
     static var languageChangedObserver = "languageChangedObserver"
+    static var themeChangedObserver = "themeChangedObserver"
 }

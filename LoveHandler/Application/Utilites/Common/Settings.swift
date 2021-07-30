@@ -10,12 +10,12 @@ import Foundation
 struct UserDefault<T> {
     let key: String
     let defaultValue: T
-
+    
     init(key: Keys, defaultValue: T) {
         self.key = key.rawValue
         self.defaultValue = defaultValue
     }
-
+    
     var value: T {
         get {
             if let value = UserDefaults.standard.object(forKey: key) as? T {
@@ -29,13 +29,13 @@ struct UserDefault<T> {
         set {
             UserDefaults.standard.set(newValue, forKey: key)
             UserDefaults.standard.synchronize()
-
+            
             switch value {
             case let relationshipStartDate as Date where key == Keys.relationshipStartDate.rawValue:
                 SettingsHelper.relationshipStartDate.send(relationshipStartDate)
             case let marryDate as Date where key == Keys.weddingDate.rawValue:
                 SettingsHelper.weddingDate.send(marryDate)
-            case let background as Data? where key == Keys.background.rawValue:
+            case let background as Data where key == Keys.background.rawValue:
                 SettingsHelper.backgroundImage.send(background)
             default:
                 break
@@ -52,6 +52,7 @@ enum Keys: String {
     case isFirstTimeOpenApp
     case isCompleteSetting
     case isUsingPasscode
+    case themeId
 }
 
 struct Settings {
@@ -62,11 +63,13 @@ struct Settings {
     static var weddingDate = UserDefault<Date>(key: .weddingDate,
                                                defaultValue: Date().nextYear)
     static var background = UserDefault<Data?>(key: .background,
-                                              defaultValue: nil)
+                                               defaultValue: nil)
     static var isFirstTimeOpenApp = UserDefault<Bool>(key: .isFirstTimeOpenApp,
-                                                       defaultValue: true)
+                                                      defaultValue: true)
     static var isCompleteSetting = UserDefault<Bool>(key: .isCompleteSetting,
-                                                       defaultValue: false)
+                                                     defaultValue: false)
     static var isUsingPasscode = UserDefault<Bool>(key: .isUsingPasscode,
-                                                       defaultValue: false)
+                                                   defaultValue: false)
+    static var themeId = UserDefault<Int>(key: .themeId,
+                                          defaultValue: 0)
 }

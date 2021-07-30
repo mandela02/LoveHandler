@@ -46,7 +46,7 @@ class T09DateCountViewController: BasePageViewChildController {
     
     override func setupTheme() {
         super.setupTheme()
-        todayLabel.textColor = UIColor.white
+        todayLabel.textColor = Theme.current.heartColor.heartText
     }
     
     override func setupLocalizedString() {

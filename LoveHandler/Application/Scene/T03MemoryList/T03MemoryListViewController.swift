@@ -94,13 +94,18 @@ class T03MemoryListViewController: BaseViewController {
     
     override func setupTheme() {
         super.setupTheme()
-        addButton.backgroundColor = Colors.hotPink
-        searchController.searchBar.tintColor = UIColor.white
+        addButton.backgroundColor = Theme.current.buttonColor.backgroundColor
+        addButton.tintColor = Theme.current.buttonColor.tintColor
         
+        collectionView.backgroundColor = Theme.current.tableViewColor.background
+        collectionView.indicatorStyle = Theme.current.tableViewColor.indicatorStyle
+        
+        searchController.searchBar.tintColor = Theme.current.searchBarColor.tintColor
+
         let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
 
-        textFieldInsideSearchBar?.textColor = UIColor.white
-        textFieldInsideSearchBar?.backgroundColor = Colors.pink
+        textFieldInsideSearchBar?.textColor = Theme.current.searchBarColor.textColor
+        textFieldInsideSearchBar?.backgroundColor = Theme.current.searchBarColor.backgroundColor
     }
     
     override func keyboarDidShow(keyboardHeight: CGFloat) {

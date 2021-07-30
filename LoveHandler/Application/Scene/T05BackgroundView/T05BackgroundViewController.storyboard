@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -71,7 +70,7 @@
                                         </cells>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="E6b-PY-LO0" secondAttribute="bottom" constant="5" id="2hD-6W-KsC"/>
                                     <constraint firstAttribute="trailing" secondItem="y8i-lv-Tf1" secondAttribute="trailing" constant="5" id="6x7-Hu-vfC"/>
@@ -93,7 +92,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="OXW-7P-JE3" firstAttribute="centerX" secondItem="pF4-50-dUY" secondAttribute="centerX" id="1Y1-ff-Asr"/>
                                     <constraint firstItem="OXW-7P-JE3" firstAttribute="top" secondItem="pF4-50-dUY" secondAttribute="top" constant="10" id="HZ2-ij-RWo"/>
@@ -125,6 +124,7 @@
                     </view>
                     <connections>
                         <outlet property="addImageButton" destination="E6b-PY-LO0" id="2AQ-kX-HsR"/>
+                        <outlet property="backgroundView" destination="5EZ-qb-Rvc" id="mZx-rc-sCD"/>
                         <outlet property="bigImageVIew" destination="OXW-7P-JE3" id="9gK-94-XXU"/>
                         <outlet property="imageCollectionView" destination="y8i-lv-Tf1" id="Tgs-g3-pCl"/>
                         <outlet property="imageViewWidthConstraint" destination="vnj-QZ-MLa" id="rrU-1w-PVC"/>

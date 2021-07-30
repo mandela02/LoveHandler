@@ -70,7 +70,7 @@ class T07TutorialContainerViewController: BaseViewController {
         skipButton.setTitleColor(UIColor.white, for: .normal)
         nextButton.setTitleColor(UIColor.white, for: .normal)
         nextButton.setTitleColor(UIColor.gray, for: .disabled)
-        nextButton.backgroundColor = Colors.deepPink
+        nextButton.backgroundColor = Theme.current.buttonColor.backgroundColor
     }
     
     override func setupLocalizedString() {

@@ -37,14 +37,18 @@ class MemoryCollectionViewCell: UICollectionViewCell {
     }
     
     func applyBlurEffect() {
-        let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        blurEffectView.frame = textContentView.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        textContentView.addSubview(blurEffectView)
+        visualEffectView.backgroundColor = Theme.current.navigationColor.background.withAlphaComponent(0.25)
+        visualEffectView.frame = textContentView.bounds
+        visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        visualEffectView.alpha = 0.9
+        textContentView.addSubview(visualEffectView)
         textContentView.bringSubviewToFront(titleLabel)
     }
     
     func setupContent(memory: CDMemory) {
+        self.backgroundColor = Theme.current.tableViewColor.background
+        imageView.backgroundColor = UIColor.clear
+        
         if let data = memory.image,
         let image = UIImage(data: data) {
             imageView.image = image

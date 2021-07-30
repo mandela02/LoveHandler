@@ -38,5 +38,7 @@ class T02PlainTableViewCell: UITableViewCell {
 
     func setupCell(title: String) {
         label.text = title
+        label.textColor = UIColor.red
+        self.backgroundColor = Theme.current.tableViewColor.cellBackground
     }
 }

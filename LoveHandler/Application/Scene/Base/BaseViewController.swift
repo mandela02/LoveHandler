@@ -14,14 +14,14 @@ class BaseViewController: UIViewController {
                                           style: .plain,
                                           target: nil,
                                           action: nil)
-        closeButton.tintColor = UIColor.white
+        closeButton.tintColor = Theme.current.navigationColor.button
         return closeButton
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = UIColor.white
+        label.textColor = Theme.current.navigationColor.title
         return label
     }()
 
@@ -75,7 +75,9 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = Colors.deepPink
+        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor.background
+        navigationController?.navigationBar.tintColor = Theme.current.navigationColor.button
+        navigationController?.navigationBar.barStyle = Theme.current.navigationColor.barStyle
         self.overrideUserInterfaceStyle = .light
         self.navigationController?.overrideUserInterfaceStyle = .light
 
@@ -88,6 +90,10 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(changeLanguage),
                                                name: NSNotification.Name(Strings.languageChangedObserver),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeTheme),
+                                               name: NSNotification.Name(Strings.themeChangedObserver),
                                                object: nil)
 
         setupView()
@@ -139,5 +145,14 @@ class BaseViewController: UIViewController {
     
     @objc private func changeLanguage() {
         setupLocalizedString()
+    }
+    
+    @objc private func changeTheme() {
+        titleLabel.textColor = Theme.current.navigationColor.title
+        closeButton.tintColor = Theme.current.navigationColor.button
+        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor.background
+        navigationController?.navigationBar.tintColor = Theme.current.navigationColor.button
+        navigationController?.navigationBar.barStyle = Theme.current.navigationColor.barStyle
+        setupTheme()
     }
 }
