@@ -16,6 +16,9 @@ class T13ThemeSelectionViewController: BaseViewController {
     override func setupView() {
         isBackButtonVisible = false
         isTitleVisible = true
+        
+        themeImageView.viewCornerRadius = 20
+        
         setupPageController()
         addGestureRecognizers()
     }

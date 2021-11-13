@@ -75,9 +75,8 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor.background
-        navigationController?.navigationBar.tintColor = Theme.current.navigationColor.button
-        navigationController?.navigationBar.barStyle = Theme.current.navigationColor.barStyle
+        navigationTheme()
+
         self.overrideUserInterfaceStyle = .light
         self.navigationController?.overrideUserInterfaceStyle = .light
 
@@ -147,12 +146,23 @@ class BaseViewController: UIViewController {
         setupLocalizedString()
     }
     
+    private func navigationTheme() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        
+        appearance.backgroundColor = Theme.current.navigationColor.background
+
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        
+        navigationController?.navigationBar.tintColor = Theme.current.navigationColor.button
+        navigationController?.navigationBar.barStyle = Theme.current.navigationColor.barStyle
+    }
+    
     @objc private func changeTheme() {
         titleLabel.textColor = Theme.current.navigationColor.title
         closeButton.tintColor = Theme.current.navigationColor.button
-        navigationController?.navigationBar.barTintColor = Theme.current.navigationColor.background
-        navigationController?.navigationBar.tintColor = Theme.current.navigationColor.button
-        navigationController?.navigationBar.barStyle = Theme.current.navigationColor.barStyle
+        navigationTheme()
         setupTheme()
     }
 }

@@ -16,7 +16,6 @@ struct HeroIdentifier {
     static let addButtonIdentifier = "addButton"
 }
 
-
 struct AppConfig {
     #if DEBUG
     static let adsIDs = "ca-app-pub-3940256099942544/2934735716"
