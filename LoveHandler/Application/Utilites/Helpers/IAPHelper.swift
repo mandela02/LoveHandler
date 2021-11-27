@@ -12,6 +12,9 @@ public typealias ProductIdentifier = String
 public typealias ProductsRequestCompletionHandler = (_ success: Bool,
                                                      _ products: [SKProduct]?) -> Void
 
+extension Notification.Name {
+    static let IAPHelperPurchaseNotification = NSNotification.Name(IAPHelper.IAPHelperPurchaseNotification)
+}
 struct IAPData {
     static let productId = "com.qtcorp.LoveHandler.ads.removal"
 }
@@ -56,13 +59,15 @@ class IAPHelper: NSObject {
 
 extension IAPHelper {
     
-    func requestAdsProductInfo() -> Future<SKProduct, Never> {
+    func requestAdsProductInfo() -> Future<SKProduct?, Never> {
         return Future { promise  in
             self.requestProducts { success, resproducts in
                 if success,
                    let products = resproducts,
                    let product = products.first(where: { $0.productIdentifier == IAPData.productId }) {
                     promise(.success(product))
+                } else {
+                    promise(.success(nil))
                 }
             }
         }
@@ -187,6 +192,6 @@ extension IAPHelper: SKPaymentTransactionObserver {
     }
     
     private func sendNotification(completed: Bool) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: IAPHelper.IAPHelperPurchaseNotification), object: completed)
+        NotificationCenter.default.post(name: .IAPHelperPurchaseNotification, object: completed)
     }
 }

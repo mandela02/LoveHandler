@@ -11,7 +11,7 @@ import StoreKit
 
 class T02SettingsViewModel: BaseViewModel {
     private lazy var appUrl = "https://apps.apple.com/app/id\(AppConfig.appID)?mt=8"
-
+    
     private var navigator: T2SettingsNavigatorType
     
     init(navigator: T2SettingsNavigatorType) {
@@ -19,7 +19,9 @@ class T02SettingsViewModel: BaseViewModel {
     }
     
     func transform(_ input: Input) -> Output {
-        let onSelectCell = input.didSelectCell
+        let didSelectCell = input.didSelectCell.share()
+        
+        let onSelectCell = didSelectCell
             .handleEvents(receiveOutput: { [weak self] cell in
                 guard let self = self else {
                     return
@@ -43,6 +45,68 @@ class T02SettingsViewModel: BaseViewModel {
             })
             .map { _ in }
             .eraseToAnyPublisher()
+        
+        let onIAPHandle = didSelectCell
+            .compactMap { cell -> AnyPublisher<IAPOption?, Never>? in
+                if cell == .premium {
+                    return UIAlertController.alertDialog(title: "Remove ads",
+                                                         message: "remote ads",
+                                                         argument: IAPOption.buy)
+                        .eraseToAnyPublisher()
+                } else if cell == .restorePremium {
+                    return UIAlertController.alertDialog(title: "restore",
+                                                         message: "restore",
+                                                         argument: IAPOption.restore)
+                        .eraseToAnyPublisher()
+                } else {
+                    return nil
+                }
+            }
+            .flatMap { $0 }
+            .compactMap { option -> AnyPublisher<SKProduct?, Never> in
+                switch option {
+                case .restore:
+                    IAPHelper.shared.restorePurchases()
+                    return Just(nil)
+                        .eraseToAnyPublisher()
+                case .buy:
+                    if let product = IAPHelper.shared.productRemoveAds {
+                        IAPHelper.shared.buyProduct(product)
+                        return Just(nil)
+                            .eraseToAnyPublisher()
+                    } else {
+                        return IAPHelper.shared.requestAdsProductInfo()
+                            .eraseToAnyPublisher()
+                    }
+                case .none:
+                    return Just(nil)
+                        .eraseToAnyPublisher()
+                }
+            }
+            .flatMap { $0 }
+            .flatMap { product -> AnyPublisher<SKProduct?, Never> in
+                if let product = product {
+                    IAPHelper.priceFormatter.locale = product.priceLocale
+                    let priceString = IAPHelper.priceFormatter.string(from: product.price) ?? ""
+                    
+                    let messageRemoveAds = "Do you want to \(priceString)"
+                    
+                    return UIAlertController.alertDialog(title: "restore",
+                                                         message: messageRemoveAds,
+                                                         argument: product)
+                        .eraseToAnyPublisher()
+                } else {
+                    return Just(nil)
+                        .eraseToAnyPublisher()
+                }
+            }
+            .handleEvents(receiveOutput: { result in
+                if let result = result {
+                    IAPHelper.shared.buyProduct(result)
+                }
+            })
+            .map { _ in Void() }
+            .eraseToAnyPublisher()
 
         let viewWillAppear = input.viewWillAppear
         
@@ -51,14 +115,16 @@ class T02SettingsViewModel: BaseViewModel {
         let dataSource = Publishers.Merge(viewWillAppear, reloadDataNeeded)
             .map { _ in  Section.generateData() }
             .eraseToAnyPublisher()
-                
+        
         let dissmiss = input.dismissTrigger.handleEvents(receiveOutput: navigator.dismiss)
             .map { _ in }
             .eraseToAnyPublisher()
-
-        let noReponse = Publishers.MergeMany([dissmiss, onSelectCell])
+        
+        let noReponse = Publishers.MergeMany([dissmiss,
+                                              onSelectCell,
+                                              onIAPHandle])
             .eraseToAnyPublisher()
-
+        
         return Output(dataSource: dataSource,
                       noRespone: noReponse)
     }
@@ -66,7 +132,7 @@ class T02SettingsViewModel: BaseViewModel {
     private func rateOnAppStore() {
         SKStoreReviewController.requestReviewInCurrentScene()
     }
-        
+    
     enum CellType {
         case plain(title: String, isDisable: Bool = false)
         case normal(icon: UIImage, title: String, isDisable: Bool = false)
@@ -95,7 +161,7 @@ class T02SettingsViewModel: BaseViewModel {
         case appStoreRate
         case shareToFriend
         case restorePremium
-
+        
         var info: CellInfo {
             switch self {
             case .dateSetup:
@@ -120,11 +186,11 @@ class T02SettingsViewModel: BaseViewModel {
                                               isDisable: false))
             case .passcode:
                 return CellInfo(type: .withSwitch(icon: SystemImage.lockFill.image,
-                                              title: LocalizedString.t02PasscodeCellTitle,
-                                              isOn: Settings.isUsingPasscode.value))
+                                                  title: LocalizedString.t02PasscodeCellTitle,
+                                                  isOn: Settings.isUsingPasscode.value))
             case .deleteAll:
                 return CellInfo(type: .plain(title: LocalizedString.t02DeleteAllCellTitle,
-                                              isDisable: false))
+                                             isDisable: false))
             case .appStoreRate:
                 return CellInfo(type: .normal(icon: SystemImage.handThumsUpFill.image,
                                               title: LocalizedString.t02AppStoreRateTitle,
@@ -161,7 +227,7 @@ class T02SettingsViewModel: BaseViewModel {
             case .premium:
                 return SectionInfo(title: LocalizedString.t02PremiumHeaderitle,
                                    cells: [.premium,
-                                            .restorePremium])
+                                           .restorePremium])
             case .utilities:
                 return SectionInfo(title: "",
                                    cells: [.language,
@@ -179,6 +245,11 @@ class T02SettingsViewModel: BaseViewModel {
         static func generateData() -> [SectionInfo] {
             return Self.allCases.map {$0.info}
         }
+    }
+    
+    enum IAPOption {
+        case buy
+        case restore
     }
     
     struct Input {

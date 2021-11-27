@@ -8,7 +8,6 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
     lazy var closeButton: UIBarButtonItem = {
         let closeButton = UIBarButtonItem(image: SystemImage.xMark.image,
                                           style: .plain,
@@ -94,6 +93,12 @@ class BaseViewController: UIViewController {
                                                selector: #selector(changeTheme),
                                                name: NSNotification.Name(Strings.themeChangedObserver),
                                                object: nil)
+        
+        if !Settings.isPremium.value {
+            NotificationCenter.default.addObserver(self, selector: #selector(handlePurchaseNotification(_:)),
+                                                   name: .IAPHelperPurchaseNotification,
+                                                   object: nil)
+        }
 
         setupView()
         setupLocalizedString()
@@ -123,11 +128,18 @@ class BaseViewController: UIViewController {
     
     func bindViewModel() {}
     
+    func didPurchaseSomething(isSuccess: Bool) {}
+    
     func keyboarDidShow(keyboardHeight: CGFloat) {}
     
     func keyboarDidHide() {}
 
     func deinitView() {}
+    
+    @objc private func handlePurchaseNotification(_ notification: Notification) {
+        guard let isPurchase = notification.object as? Bool else { return }
+        didPurchaseSomething(isSuccess: isPurchase)
+    }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }

@@ -70,9 +70,9 @@ extension UIAlertController {
         UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
     }
     
-    static func alertDialog(title: String,
+    static func alertDialog<T>(title: String,
                             message: String,
-                            argument: Any) -> Future<Any?, Never> {
+                            argument: T?) -> Future<T?, Never> {
         return Future { promise in
             let alert = UIAlertController(title: title,
                                           message: message, preferredStyle: .alert)
