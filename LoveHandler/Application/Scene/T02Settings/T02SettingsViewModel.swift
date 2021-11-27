@@ -94,6 +94,7 @@ class T02SettingsViewModel: BaseViewModel {
         case deleteAll
         case appStoreRate
         case shareToFriend
+        case restorePremium
 
         var info: CellInfo {
             switch self {
@@ -132,6 +133,10 @@ class T02SettingsViewModel: BaseViewModel {
                 return CellInfo(type: .normal(icon: SystemImage.clapSparklesFill.image,
                                               title: LocalizedString.t02ShareTitle,
                                               isDisable: false))
+            case .restorePremium:
+                return CellInfo(type: .normal(icon: SystemImage.dollarsignCircleFill.image,
+                                              title: LocalizedString.t02RestorePremiumTitle,
+                                              isDisable: false))
             }
         }
     }
@@ -155,7 +160,8 @@ class T02SettingsViewModel: BaseViewModel {
                                    cells: [.theme])
             case .premium:
                 return SectionInfo(title: LocalizedString.t02PremiumHeaderitle,
-                                   cells: [.premium])
+                                   cells: [.premium,
+                                            .restorePremium])
             case .utilities:
                 return SectionInfo(title: "",
                                    cells: [.language,

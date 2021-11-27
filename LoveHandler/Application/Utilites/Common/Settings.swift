@@ -53,6 +53,7 @@ enum Keys: String {
     case isCompleteSetting
     case isUsingPasscode
     case themeId
+    case isPremium
 }
 
 struct Settings {
@@ -72,4 +73,6 @@ struct Settings {
                                                    defaultValue: false)
     static var themeId = UserDefault<Int>(key: .themeId,
                                           defaultValue: 0)
+    static var isPremium = UserDefault<Bool>(key: .isPremium,
+                                          defaultValue: false)
 }

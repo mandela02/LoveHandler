@@ -60,6 +60,8 @@ struct LocalizedString {
     static var t01NameSubmitButtonTitle: String { return String(localizedKey: "t01NameSubmitButtonTitle") }
     
     static var t02PremiumTitle: String { return String(localizedKey: "t02PremiumTitle") }
+    static var t02RestorePremiumTitle: String { return String(localizedKey: "t02RestorePremiumTitle") }
+
     static var t02WaveBackgroundTitle: String { return String(localizedKey: "t02WaveBackgroundTitle") }
     static var t02StartDateTitle: String { return String(localizedKey: "t02StartDateTitle") }
     static var t02EndDateTitle: String { return String(localizedKey: "t02EndDateTitle") }

@@ -56,7 +56,8 @@
 "t01NamePlaceholder" = "Nhập tên vào đây";
 "t01NameSubmitButtonTitle" = "Xác nhận";
 
-"t02PremiumTitle" = "Phiên bản Premium";
+"t02PremiumTitle" = "Xoá quảng cáo";
+"t02RestorePremiumTitle" = "Khôi phục xoá quảng cáo";
 "t02WaveBackgroundTitle" = "Bật hình nền sóng";
 "t02StartDateTitle" = "Ngày bắt đầu hẹn hò";
 "t02EndDateTitle" = "Ngày cưới";

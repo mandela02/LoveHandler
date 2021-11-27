@@ -105,14 +105,16 @@ class T05BackgroundViewController: BaseViewController {
         output.selectedIndex
             .sink { [weak self] index in
                 guard let self = self else { return }
-                self.selectedIndex = index
-                self.pageController.currentPage = index
-                self.imageCollectionView
-                    .scrollToItem(at: IndexPath(item: index,
-                                                section: 0),
-                                  at: .centeredHorizontally,
-                                  animated: true)
-                self.imageCollectionView.reloadData()
+                if self.images.count > 0 {
+                    self.selectedIndex = index
+                    self.pageController.currentPage = index
+                    self.imageCollectionView
+                        .scrollToItem(at: IndexPath(item: index,
+                                                    section: 0),
+                                      at: .centeredHorizontally,
+                                      animated: true)
+                    self.imageCollectionView.reloadData()
+                }
             }
             .store(in: &cancellables)    }
     

@@ -11,23 +11,7 @@ extension UIViewController {
     var appDelegate: AppDelegate? {
         return UIApplication.shared.delegate as? AppDelegate
     }
-    
-    var topBarHeight: CGFloat {
-        var topBarHeight = UIApplication.shared.statusBarFrame.height
-        if let navigationBarHeight = self.navigationController?.navigationBar.height {
-            topBarHeight += navigationBarHeight
-        }
-        return topBarHeight
-    }
-    
-    var safeAreaInsetBottom: CGFloat {
-        var height: CGFloat = 0
-        if #available(iOS 11.0, *), let window = UIApplication.shared.keyWindow {
-            height = window.safeAreaInsets.bottom
-        }
-        return height
-    }
-    
+        
     public class func vc() -> Self {
         return self.init(nibName: String(describing: self), bundle: nil)
     }
