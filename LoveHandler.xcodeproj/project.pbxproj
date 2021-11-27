@@ -167,7 +167,7 @@
 		84F1A77926AC7B7E005FC284 /* ThemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1A77826AC7B7E005FC284 /* ThemeHelper.swift */; };
 		84F1A77C26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F1A77B26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard */; };
 		84F1A77E26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1A77D26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift */; };
-		907A5C35274042550046626B /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907A5C34274042550046626B /* IAPHelper.swift */; };
+		90D60CAE2751F0D8006B56AE /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D60CAD2751F0D8006B56AE /* IAPHelper.swift */; };
 		A58B088E50493D34567788CF /* Pods_LoveHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */; };
 /* End PBXBuildFile section */
 
@@ -339,7 +339,7 @@
 		84F1A77826AC7B7E005FC284 /* ThemeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeHelper.swift; sourceTree = "<group>"; };
 		84F1A77B26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T13ThemeSelectionViewController.storyboard; sourceTree = "<group>"; };
 		84F1A77D26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T13ThemeSelectionViewController.swift; sourceTree = "<group>"; };
-		907A5C34274042550046626B /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		90D60CAD2751F0D8006B56AE /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -720,12 +720,12 @@
 		84AB2050262FDC1E00A01F9E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				907A5C34274042550046626B /* IAPHelper.swift */,
 				84AB2051262FDC3000A01F9E /* SettingsHelper.swift */,
 				8423D1DB263BD1B200106030 /* ImagePickerHelper.swift */,
 				8412CD8526A21037000F0E78 /* PasscodeHelper.swift */,
 				8406B1E526A28BC1004E43F3 /* AdsHelper.swift */,
 				84F1A77826AC7B7E005FC284 /* ThemeHelper.swift */,
+				90D60CAD2751F0D8006B56AE /* IAPHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1076,7 +1076,7 @@
 				8472980E267262AE00DFB3ED /* HeartFloaterView.swift in Sources */,
 				84183768268A1DFC00571008 /* T07TutorialContainerViewController.swift in Sources */,
 				840B829C267EDDF3007A82F0 /* AppUseCase.swift in Sources */,
-				907A5C35274042550046626B /* IAPHelper.swift in Sources */,
+				90D60CAE2751F0D8006B56AE /* IAPHelper.swift in Sources */,
 				84AB1F962629F6EB00A01F9E /* AppNavigator.swift in Sources */,
 				84DDAB722674A62300132A18 /* T04MemoryViewModel.swift in Sources */,
 				84F039D12691E41A0069B48C /* NumberDisplayView.swift in Sources */,

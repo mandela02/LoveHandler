@@ -109,17 +109,9 @@ extension UIView {
             layer.masksToBounds = newValue > 0
         }
     }
-    
-    class var statusBarHeight: CGFloat {
-        return UIApplication.shared.statusBarFrame.size.height
-    }
-    
+        
     class var navigationBarHeight: CGFloat {
         return UINavigationController().navigationBar.frame.size.height
-    }
-    
-    class var navigationBarBottom: CGFloat {
-        return statusBarHeight + navigationBarHeight
     }
     
     class var tabBarHeight: CGFloat {
