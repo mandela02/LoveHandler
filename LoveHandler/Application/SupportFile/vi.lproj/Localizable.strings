@@ -79,8 +79,17 @@
 "t02AppStoreRateTitle" = "Đánh giá trên app store";
 "t02ShareTitle" = "Chia sẻ cho bạn bè";
 
+"t02RemoveAdsDialogTitle" = "Xoá quảng cáo";
+"t02RemoveAdsDialogMessage" = "Bạn có muốn xoá quảng cáo?";
+"t02RestoreDialogTitle" = "Khôi phục";
+"t02RestoreDialogMessage" = "Bạn có muốn khôi phục phần xoá quảng cáo đã mua?";
+"t02ConfirmPurchaseDialogTitle" = "Xác nhận thanh toán";
+"t02ConfirmPurchaseDialogMessage" = "Bạn muốn chi %@ để xoá quảng cáo?";
+
 "t03NavigationTitle" = "Kỷ niệm đôi ta";
 "t03SearchBarPlaceholder" = "Tìm kiếm kỉ niệm";
+"t03ClosingDialogTitle" = "Đang đóng!!";
+"t03ClosingDialogMessage" = "Bạn có muốn huỷ bỏ bản ghi này?";
 
 "t04MemoryDatePickerTitle" = "Chọn ngày kỉ niệm";
 "t04MemoryContentPlaceHolder" = "Nhập nhật ký ở đây";

@@ -49,13 +49,13 @@ class T02SettingsViewModel: BaseViewModel {
         let onIAPHandle = didSelectCell
             .compactMap { cell -> AnyPublisher<IAPOption?, Never>? in
                 if cell == .premium {
-                    return UIAlertController.alertDialog(title: "Remove ads",
-                                                         message: "remote ads",
+                    return UIAlertController.alertDialog(title: LocalizedString.t02RemoveAdsDialogTitle,
+                                                         message: LocalizedString.t02RemoveAdsDialogMessage,
                                                          argument: IAPOption.buy)
                         .eraseToAnyPublisher()
                 } else if cell == .restorePremium {
-                    return UIAlertController.alertDialog(title: "restore",
-                                                         message: "restore",
+                    return UIAlertController.alertDialog(title: LocalizedString.t02RestoreDialogTitle,
+                                                         message: LocalizedString.t02RestoreDialogMessage,
                                                          argument: IAPOption.restore)
                         .eraseToAnyPublisher()
                 } else {
@@ -133,9 +133,9 @@ class T02SettingsViewModel: BaseViewModel {
         IAPHelper.priceFormatter.locale = product.priceLocale
         let priceString = IAPHelper.priceFormatter.string(from: product.price) ?? ""
         
-        let messageRemoveAds = "Do you want to \(priceString)"
+        let messageRemoveAds = String(format: LocalizedString.t02ConfirmPurchaseDialogMessage, priceString)
         
-        return UIAlertController.alertDialog(title: "buy",
+        return UIAlertController.alertDialog(title: LocalizedString.t02ConfirmPurchaseDialogTitle,
                                              message: messageRemoveAds,
                                              argument: product)
             .eraseToAnyPublisher()
@@ -179,7 +179,7 @@ class T02SettingsViewModel: BaseViewModel {
             case .premium:
                 return CellInfo(type: .normal(icon: SystemImage.dollarsignCircleFill.image,
                                               title: LocalizedString.t02PremiumTitle,
-                                              isDisable: false))
+                                              isDisable: Settings.isPremium.value))
             case .theme:
                 return CellInfo(type: .normal(icon: SystemImage.sunMinFill.image,
                                               title: LocalizedString.t02ThemeCellTitle,
@@ -210,7 +210,7 @@ class T02SettingsViewModel: BaseViewModel {
             case .restorePremium:
                 return CellInfo(type: .normal(icon: SystemImage.dollarsignCircleFill.image,
                                               title: LocalizedString.t02RestorePremiumTitle,
-                                              isDisable: false))
+                                              isDisable: Settings.isPremium.value))
             }
         }
     }

@@ -73,7 +73,6 @@ class T05BackgroundViewModel: BaseViewModel {
             .compactMap { $0 }
             .handleEvents(receiveOutput: { [weak self] index in
                 guard let self = self else { return }
-                guard let index = index as? Int else { return }
                 if backgroundImageModels.value.count == 1 { return }
                 guard let model = backgroundImageModels.value[safe: index] else { return }
                 self.useCase.delete(model: model)

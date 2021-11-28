@@ -73,7 +73,16 @@ struct LocalizedString {
     static var t02ViewHeaderitle: String { return String(localizedKey: "t02ViewHeaderitle") }
     static var t02DataHeaderTitle: String { return String(localizedKey: "t02DataHeaderTitle") }
     
+    static var t02RemoveAdsDialogTitle: String { return String(localizedKey: "t02RemoveAdsDialogTitle") }
+    static var t02RemoveAdsDialogMessage: String { return String(localizedKey: "t02RemoveAdsDialogMessage") }
+    static var t02RestoreDialogTitle: String { return String(localizedKey: "t02RestoreDialogTitle") }
+    static var t02RestoreDialogMessage: String { return String(localizedKey: "t02RestoreDialogMessage") }
+    static var t02ConfirmPurchaseDialogTitle: String { return String(localizedKey: "t02ConfirmPurchaseDialogTitle") }
+    static var t02ConfirmPurchaseDialogMessage: String { return String(localizedKey: "t02ConfirmPurchaseDialogMessage") }
+
     static var t03SearchBarPlaceholder: String { return String(localizedKey: "t03SearchBarPlaceholder") }
+    static var t03ClosingDialogTitle: String { return String(localizedKey: "t03ClosingDialogTitle") }
+    static var t03ClosingDialogMessage: String { return String(localizedKey: "t03ClosingDialogMessage") }
 
     static var t03NavigationTitle: String { return String(localizedKey: "t03NavigationTitle") }
     static var t04MemoryDatePickerTitle: String { return String(localizedKey: "t04MemoryDatePickerTitle") }

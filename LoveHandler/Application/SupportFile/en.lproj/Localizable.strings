@@ -64,8 +64,8 @@
 "t02WeddingDayDatePickerTitle" = "Your Wedding day is";
 
 "t02SettingsTitle" = "Settings";
-"t02PremiumHeaderitle" = "Premium";
-"t02RestorePremiumTitle" = "Restore Premium";
+"t02PremiumHeaderitle" = "Remove Ads";
+"t02RestorePremiumTitle" = "Restore Remove Ads";
 "t02ViewHeaderitle" = "Theme Setting";
 "t02DataHeaderTitle" = "Love memories";
 
@@ -79,8 +79,17 @@
 "t02AppStoreRateTitle" = "Review on AppStore";
 "t02ShareTitle" = "Share App to friends";
 
+"t02RemoveAdsDialogTitle" = "Removing ads";
+"t02RemoveAdsDialogMessage" = "Do you want to remove ads?";
+"t02RestoreDialogTitle" = "Restore Purchase";
+"t02RestoreDialogMessage" = "Do you want to restore the previous purchase?";
+"t02ConfirmPurchaseDialogTitle" = "Confirm purchase";
+"t02ConfirmPurchaseDialogMessage" = "Do you want to spend %@ to remove ads";
+
 "t03NavigationTitle" = "Memory";
 "t03SearchBarPlaceholder" = "Search your memory";
+"t03ClosingDialogTitle" = "Closing!!";
+"t03ClosingDialogMessage" = "Are your sure you want to dismiss everything?";
 
 "t04MemoryDatePickerTitle" = "Choose a date";
 "t04MemoryContentPlaceHolder" = "Enter diary here";

@@ -189,8 +189,8 @@ extension T04MemoryViewController {
         } else {
             if saveButton.isEnabled ||
                 contentTextView.text != LocalizedString.t04MemoryContentPlaceHolder {
-                UIAlertController.alertDialog(title: "Closing",
-                                              message: "Are you sure you wanna dismiss everything",
+                UIAlertController.alertDialog(title: LocalizedString.t03ClosingDialogTitle,
+                                              message: LocalizedString.t03ClosingDialogMessage,
                                               argument: Void())
                     .sink { [weak self] result in
                         if result != nil {
