@@ -108,6 +108,16 @@ class T02SettingsViewController: BaseViewController {
             .forEach { $0.isActive = true }
         return footer
     }
+    
+    override func didPurchaseSomething(isSuccess: Bool) {
+        super.didPurchaseSomething(isSuccess: isSuccess)
+        let title = isSuccess ? "Sucess" : "Error"
+        let message = isSuccess ? "All ads is removed" : "Something happende"
+        
+        UIAlertController.alertDialog(title: title, message: message, argument: 0)
+            .sink(receiveValue: { _ in })
+            .store(in: &cancellables)
+    }
 }
 
 extension T02SettingsViewController: UITableViewDataSource {

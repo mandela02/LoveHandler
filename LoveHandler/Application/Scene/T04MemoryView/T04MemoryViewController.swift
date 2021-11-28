@@ -141,6 +141,9 @@ class T04MemoryViewController: BaseViewController {
         saveButton.setTitleColor(Theme.current.buttonColor.tintColor, for: .normal)
         saveButton.setTitleColor(UIColor.gray, for: .disabled)
         
+        contentTextView.textColor = Theme.current.tableViewColor.text
+        dateLabel.textColor = Theme.current.tableViewColor.text
+
         imagePickButtonView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
     }
     
@@ -182,20 +185,36 @@ extension T04MemoryViewController {
         if contentTextView.isFirstResponder {
             contentTextView.resignFirstResponder()
         } else {
-            if isInEditMode {
-                self.bigContainerViewBottomConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - self.imageHeightConstraint.constant - 50
+            if saveButton.isEnabled ||
+                contentTextView.text != LocalizedString.t04MemoryContentPlaceHolder {
+                UIAlertController.alertDialog(title: "Closing",
+                                              message: "Are you sure you wanna dismiss everything",
+                                              argument: Void())
+                    .sink { [weak self] result in
+                        if result != nil {
+                            self?.exitView()
+                        }
+                    }
+                    .store(in: &cancellables)
             } else {
-                bigContainerViewTopConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - 50
+                exitView()
             }
-            
-            UIView.animate(withDuration: animateDuration) {  [weak self] in
-                self?.view.layoutIfNeeded()
-            } completion: { [weak self] isFinish in
-                if isFinish {
-                    self?.dismiss(animated: true, completion: nil)
-                }
+        }
+    }
+    
+    private func exitView() {
+        if isInEditMode {
+            self.bigContainerViewBottomConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - self.imageHeightConstraint.constant - 50
+        } else {
+            bigContainerViewTopConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - 50
+        }
+        
+        UIView.animate(withDuration: animateDuration) {  [weak self] in
+            self?.view.layoutIfNeeded()
+        } completion: { [weak self] isFinish in
+            if isFinish {
+                self?.dismiss(animated: true, completion: nil)
             }
-
         }
     }
     
