@@ -44,7 +44,8 @@ class T04MemoryViewController: BaseViewController {
     var isInEditMode = false
     
     private var isDoneInitAnimation = false
-    private var limitConstaints: CGFloat = 150
+    private var limitConstaints: CGFloat = 100
+    private let doneButtonHeight: CGFloat = 50
     private var animateDuration = 0.3
 
     override func deinitView() {
@@ -63,7 +64,8 @@ class T04MemoryViewController: BaseViewController {
         addPicker()
         
         if !isInEditMode {
-            bigContainerViewTopConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - 50
+            bigContainerViewTopConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - doneButtonHeight
+            bigContainerViewBottomConstraint.constant = self.limitConstaints
         }
     }
     
@@ -118,7 +120,7 @@ class T04MemoryViewController: BaseViewController {
             self.currentConstraint = self.imageHeightConstraint.constant
             
             if !self.isDoneInitAnimation {
-                self.bigContainerViewBottomConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - self.imageHeightConstraint.constant - 50
+                self.bigContainerViewBottomConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - self.imageHeightConstraint.constant - self.doneButtonHeight
             }
             
         }.store(in: &cancellables)
@@ -204,9 +206,9 @@ extension T04MemoryViewController {
     
     private func exitView() {
         if isInEditMode {
-            self.bigContainerViewBottomConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - self.imageHeightConstraint.constant - 50
+            self.bigContainerViewBottomConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - self.imageHeightConstraint.constant - doneButtonHeight
         } else {
-            bigContainerViewTopConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - 50
+            bigContainerViewTopConstraint.constant = Utilities.getWindowSize().height - self.limitConstaints - doneButtonHeight
         }
         
         UIView.animate(withDuration: animateDuration) {  [weak self] in
