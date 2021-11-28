@@ -26,15 +26,9 @@ class AdsHelper: NSObject, GADBannerViewDelegate {
     private override init() {
         super.init()
     }
-    
-    static var showAdsAfterDay: Int {
-//        return Int(AppConfig.showAdsAfterDay) ?? 0
-        return 0
-    }
-    
+        
     static func shouldDisplayAds() -> Bool {
-        return true
-//        return !Settings.isAdsRemoved.value && Utilities.usedAppDays() >= showAdsAfterDay
+        return !Settings.isPremium.value
     }
     
     func configure() {
@@ -134,21 +128,23 @@ extension AdsPresented where Self: UIViewController {
     }
     
     private func addAdsRemoveNotification(_ container: UIView, _ heightConstraint: NSLayoutConstraint) {
-//        _ = NotificationCenter.default
-//            .addObserver(forName: .IAPHelperPurchaseNotification,
-//                         object: nil, queue: nil) {[weak self] notification in
-//                guard let isPurchase = notification.object as? Bool else { return }
-//                if isPurchase {
-//                    self?.removeAdsIfNeeded?(bannerView: container)
-//                    AdsHelper.shared.removeBannerView()
-//                    heightConstraint.constant = 0
-//                }
-//            }
+        _ = NotificationCenter.default
+            .addObserver(forName: .IAPHelperPurchaseNotification,
+                         object: nil, queue: nil) {[weak self] notification in
+                DispatchQueue.main.async {
+                    guard let isPurchase = notification.object as? Bool else { return }
+                    Settings.isPremium.value = isPurchase
+                    if isPurchase {
+                        self?.removeAdsIfNeeded?(bannerView: container)
+                        AdsHelper.shared.removeBannerView()
+                        heightConstraint.constant = 0
+                    }
+                }
+            }
     }
 }
 
 extension NSNotification.Name {
     static let BannerViewLoadedNotification = NSNotification.Name(AdsHelper.BannerViewLoadedNotification)
-//    static let IAPHelperPurchaseNotification = NSNotification.Name(IAPHelper.IAPHelperPurchaseNotification)
-    static let languageChangeObserver = NSNotification.Name(rawValue: Strings.languageChangedObserver)
+    static let IAPHelperPurchaseNotification = NSNotification.Name(IAPHelper.IAPHelperPurchaseNotification)
 }

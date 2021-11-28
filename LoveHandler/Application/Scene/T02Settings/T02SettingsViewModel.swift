@@ -63,7 +63,11 @@ class T02SettingsViewModel: BaseViewModel {
                 }
             }
             .flatMap { $0 }
-            .compactMap { option -> AnyPublisher<SKProduct?, Never> in
+            .compactMap { [weak self] option -> AnyPublisher<SKProduct?, Never> in
+                guard let self = self else {
+                    return Empty(completeImmediately: true)
+                        .eraseToAnyPublisher()
+                }
                 switch option {
                 case .restore:
                     IAPHelper.shared.restorePurchases()
@@ -71,11 +75,18 @@ class T02SettingsViewModel: BaseViewModel {
                         .eraseToAnyPublisher()
                 case .buy:
                     if let product = IAPHelper.shared.productRemoveAds {
-                        IAPHelper.shared.buyProduct(product)
-                        return Just(nil)
-                            .eraseToAnyPublisher()
+                        return self.purchase(product: product)
                     } else {
                         return IAPHelper.shared.requestAdsProductInfo()
+                            .receive(on: DispatchQueue.main)
+                            .flatMap { product -> AnyPublisher<SKProduct?, Never> in
+                                if let product = product {
+                                    return self.purchase(product: product)
+                                } else {
+                                    return Just(nil)
+                                        .eraseToAnyPublisher()
+                                }
+                            }
                             .eraseToAnyPublisher()
                     }
                 case .none:
@@ -83,23 +94,8 @@ class T02SettingsViewModel: BaseViewModel {
                         .eraseToAnyPublisher()
                 }
             }
+            .receive(on: DispatchQueue.main)
             .flatMap { $0 }
-            .flatMap { product -> AnyPublisher<SKProduct?, Never> in
-                if let product = product {
-                    IAPHelper.priceFormatter.locale = product.priceLocale
-                    let priceString = IAPHelper.priceFormatter.string(from: product.price) ?? ""
-                    
-                    let messageRemoveAds = "Do you want to \(priceString)"
-                    
-                    return UIAlertController.alertDialog(title: "restore",
-                                                         message: messageRemoveAds,
-                                                         argument: product)
-                        .eraseToAnyPublisher()
-                } else {
-                    return Just(nil)
-                        .eraseToAnyPublisher()
-                }
-            }
             .handleEvents(receiveOutput: { result in
                 if let result = result {
                     IAPHelper.shared.buyProduct(result)
@@ -131,6 +127,18 @@ class T02SettingsViewModel: BaseViewModel {
     
     private func rateOnAppStore() {
         SKStoreReviewController.requestReviewInCurrentScene()
+    }
+    
+    private func purchase(product: SKProduct) -> AnyPublisher<SKProduct?, Never> {
+        IAPHelper.priceFormatter.locale = product.priceLocale
+        let priceString = IAPHelper.priceFormatter.string(from: product.price) ?? ""
+        
+        let messageRemoveAds = "Do you want to \(priceString)"
+        
+        return UIAlertController.alertDialog(title: "buy",
+                                             message: messageRemoveAds,
+                                             argument: product)
+            .eraseToAnyPublisher()
     }
     
     enum CellType {

@@ -12,9 +12,6 @@ public typealias ProductIdentifier = String
 public typealias ProductsRequestCompletionHandler = (_ success: Bool,
                                                      _ products: [SKProduct]?) -> Void
 
-extension Notification.Name {
-    static let IAPHelperPurchaseNotification = NSNotification.Name(IAPHelper.IAPHelperPurchaseNotification)
-}
 struct IAPData {
     static let productId = "com.qtcorp.LoveHandler.ads.removal"
 }

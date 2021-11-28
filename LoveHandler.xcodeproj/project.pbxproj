@@ -168,6 +168,7 @@
 		84F1A77C26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F1A77B26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard */; };
 		84F1A77E26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F1A77D26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift */; };
 		90D60CAE2751F0D8006B56AE /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D60CAD2751F0D8006B56AE /* IAPHelper.swift */; };
+		90D60CB027520571006B56AE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D60CAF27520571006B56AE /* StoreKit.framework */; };
 		A58B088E50493D34567788CF /* Pods_LoveHandler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */; };
 /* End PBXBuildFile section */
 
@@ -340,6 +341,7 @@
 		84F1A77B26B1A5E7005FC284 /* T13ThemeSelectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = T13ThemeSelectionViewController.storyboard; sourceTree = "<group>"; };
 		84F1A77D26B1A5FA005FC284 /* T13ThemeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T13ThemeSelectionViewController.swift; sourceTree = "<group>"; };
 		90D60CAD2751F0D8006B56AE /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		90D60CAF27520571006B56AE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveHandler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -349,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A58B088E50493D34567788CF /* Pods_LoveHandler.framework in Frameworks */,
+				90D60CB027520571006B56AE /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,6 +894,7 @@
 		F8AED075D267D388F1EFB24F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90D60CAF27520571006B56AE /* StoreKit.framework */,
 				A70A0B6780B54F2805E800D9 /* Pods_LoveHandler.framework */,
 			);
 			name = Frameworks;
