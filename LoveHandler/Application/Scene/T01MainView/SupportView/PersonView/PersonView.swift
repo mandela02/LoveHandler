@@ -208,11 +208,7 @@ extension PersonView {
 }
 
 extension PersonView: ImagePickerDelegate {
-    func cameraHandle(image: UIImage) {
-        self.person?.image = image
-    }
-    
-    func libraryHandle(images: [UIImage]) {
+    func didPickImage(images: [UIImage]) {
         self.person?.image = images.first
     }
 }

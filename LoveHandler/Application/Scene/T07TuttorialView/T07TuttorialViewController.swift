@@ -166,16 +166,14 @@ extension T07TuttorialViewController {
 
 // MARK: - ImagePickerDelegate
 extension T07TuttorialViewController: ImagePickerDelegate {
-    func cameraHandle(image: UIImage) {
-        cropImage(image: image)
-    }
-    
-    func libraryHandle(images: [UIImage]) {
-        if !images.isEmpty {
-            cropImage(image: images.first!)
+    func didPickImage(images: [UIImage]) {
+        func libraryHandle(images: [UIImage]) {
+            if !images.isEmpty {
+                cropImage(image: images.first!)
+            }
         }
     }
-    
+        
     private func cropImage(image: UIImage) {
         var config = Mantis.Config()
         config.cropShapeType = .circle(maskOnly: true)

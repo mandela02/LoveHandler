@@ -165,7 +165,11 @@ extension T03MemoryListViewController: CHTCollectionViewDelegateWaterfallLayout 
               let data = memory.image,
               let image = UIImage(data: data) else { return CGSize.zero }
         let size = image.size
-        return CGSize(width: size.width / 10, height: size.height / 10)
+        
+        let width = (collectionView.size.width - 3) / 2
+        let height = width * size.height / size.width
+        
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, columnCountFor section: Int) -> Int {

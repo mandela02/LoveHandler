@@ -71,8 +71,8 @@ extension UIAlertController {
     }
     
     static func alertDialog<T>(title: String,
-                            message: String,
-                            argument: T?) -> Future<T?, Never> {
+                               message: String,
+                               argument: T?) -> Future<T?, Never> {
         return Future { promise in
             let alert = UIAlertController(title: title,
                                           message: message, preferredStyle: .alert)

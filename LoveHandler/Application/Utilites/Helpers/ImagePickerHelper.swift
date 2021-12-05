@@ -7,21 +7,45 @@
 
 import Foundation
 import UIKit
-import Fusuma
+import PhotosUI
 import Photos
 
 protocol ImagePickerDelegate: AnyObject {
-    func cameraHandle(image: UIImage)
-    func libraryHandle(images: [UIImage])
+    func didPickImage(images: [UIImage])
 }
+
+typealias CameraPickerDelegate = UIImagePickerControllerDelegate & UINavigationControllerDelegate
 
 class ImagePickerHelper: NSObject {
     var title: String
     var message: String
     var isMultiplePick: Bool
     
-    var fusuma: FusumaViewController?
+    lazy var configuration: PHPickerConfiguration = {
+        var configuration = PHPickerConfiguration(photoLibrary: .shared())
+        if isMultiplePick {
+            configuration.selectionLimit = 10
+        } else {
+            configuration.selectionLimit = 1
+        }
+        configuration.filter = .images
+        return configuration
+    }()
     
+    lazy var imagePicker: PHPickerViewController = {
+        var imagePicker =  PHPickerViewController(configuration: configuration)
+        imagePicker.delegate = self
+        return imagePicker
+    }()
+    
+    lazy var cameraPicker: UIImagePickerController = {
+        var imagePicker = UIImagePickerController()
+        imagePicker.sourceType = UIImagePickerController.SourceType.camera
+        imagePicker.allowsEditing = false
+        imagePicker.delegate = self
+        return imagePicker
+    }()
+
     weak var delegate: ImagePickerDelegate?
 
     init(title: String, message: String, isMultiplePick: Bool = false) {
@@ -42,48 +66,70 @@ class ImagePickerHelper: NSObject {
 
 extension ImagePickerHelper {
     private func imagePickerTapped(action: ImageAction) {
-        fusuma = FusumaViewController()
-        guard let fusuma = fusuma else { return }
-        fusuma.delegate = self
         switch action {
         case .camera:
-            fusuma.availableModes = [.camera]
+            UIApplication.topViewController()?.present(cameraPicker, animated: true, completion: nil)
         case .library:
-            fusuma.availableModes = [.library]
-            fusuma.allowMultipleSelection = isMultiplePick
-            fusuma.photoSelectionLimit = 15
+            UIApplication.topViewController()?.present(imagePicker, animated: true, completion: nil)
         }
-        UIApplication.topViewController()?.present(fusuma, animated: true, completion: nil)
     }
 }
 
-extension ImagePickerHelper: FusumaDelegate {
-    func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode, metaData: [ImageMetadata]) {
-        delegate?.libraryHandle(images: images)
-    }
-    
-    func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
-        delegate?.libraryHandle(images: images)
-    }
-    
-    func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
-        fusuma?.dismiss(animated: true, completion: { [weak self] in
+extension ImagePickerHelper: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: { [weak self] in
             guard let self = self else { return }
-            switch source {
-            case .camera:
-                self.delegate?.cameraHandle(image: image)
-            case .library:
-                self.delegate?.libraryHandle(images: [image])
-            default:
-                return
-            }
+            self.fetchImage(from: picker, results: results)
         })
     }
-    
-    func fusumaVideoCompleted(withFileURL fileURL: URL) {
+    private func fetchImage(from picker: PHPickerViewController, results: [PHPickerResult]) {
+        guard !results.isEmpty else {
+            return
+        }
+        
+        let identifier = results.compactMap(\.assetIdentifier)
+        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifier, options: nil)
+        
+        var resultCount = 0
+        var images: [UIImage] = []
+                
+        fetchResult.enumerateObjects { [weak self] (asset, _, _) in
+            guard let self = self else { return }
+            resultCount += 1
+            
+            asset.getImage { image in
+                if let image = image {
+                    images.append(image)
+                    
+                    if images.count == resultCount {
+                        self.delegate?.didPickImage(images: images)
+                    }
+                }
+            }
+        }
+    }
+}
+
+extension ImagePickerHelper: CameraPickerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true) {
+            print(#function)
+        }
     }
     
-    func fusumaCameraRollUnauthorized() {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        picker.dismiss(animated: true) {
+            guard let image = info[.originalImage] as? UIImage else {
+                return
+            }
+            self.delegate?.didPickImage(images: [image])
+        }
+    }
+}
+
+extension ImagePickerHelper {
+    func unauthorizationHandle() {
         let alert = UIAlertController(title: "Access Requested",
                                       message: "Saving image needs to access your photo album",
                                       preferredStyle: .alert)
@@ -105,5 +151,23 @@ extension ImagePickerHelper: FusumaDelegate {
         }
 
         presented.present(alert, animated: true, completion: nil)
+    }
+}
+
+private extension PHAsset {
+    func getImage(completionHandler: @escaping (UIImage?) -> Void) {
+        let imageManager = PHCachingImageManager()
+        
+        let options = PHImageRequestOptions()
+        options.version = .current
+        options.isSynchronous = true
+
+        imageManager.requestImage(for: self,
+                                  targetSize: CGSize(width: self.pixelWidth, height: self.pixelHeight),
+                                  contentMode: .aspectFit,
+                                  options: options,
+                                  resultHandler: { image, _ in
+                completionHandler(image)
+        })
     }
 }

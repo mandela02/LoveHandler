@@ -374,11 +374,7 @@ extension T04MemoryViewController: UIGestureRecognizerDelegate {
 
 // MARK: - ImagePickerDelegate
 extension T04MemoryViewController: ImagePickerDelegate {
-    func cameraHandle(image: UIImage) {
-        self.image.send(image)
-    }
-    
-    func libraryHandle(images: [UIImage]) {
+    func didPickImage(images: [UIImage]) {
         if !images.isEmpty {
             self.image.send(images.first!)
         }

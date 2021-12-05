@@ -317,11 +317,7 @@ extension T05BackgroundViewController: UIContextMenuInteractionDelegate {
 
 // MARK: - ImagePickerDelegate
 extension T05BackgroundViewController: ImagePickerDelegate {
-    func cameraHandle(image: UIImage) {
-        cropImage(image: image)
-    }
-    
-    func libraryHandle(images: [UIImage]) {
+    func didPickImage(images: [UIImage]) {
         if !images.isEmpty {
             cropImage(image: images.first!)
         }
